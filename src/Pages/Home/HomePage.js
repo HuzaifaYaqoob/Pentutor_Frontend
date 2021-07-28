@@ -9,13 +9,17 @@ import OnlineTutoring from "./online-tutoring";
 // Components 
 import HeroSection from '../../components/HeroSection/HeroSection'
 import FormSection from '../../components/FormSection/FormSection';
+import InputField from '../../components/FormSection/InputField';
+
 
 const HomePage = (props) => {
     return (
         <main>
             <HeroSection />
-            <FormSection>
-                {props.children}
+            <FormSection formHeading='student query form'>
+                <div className='container mx-auto'>
+                    <InputField />
+                </div>
             </FormSection>
             <div >
                 <Main />
