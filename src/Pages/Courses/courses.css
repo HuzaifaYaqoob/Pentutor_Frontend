@@ -1,0 +1,73 @@
+.main-sec-courses {
+  width: 100%;
+  height: 90vh;
+}
+.welcome-to-pen-tutor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 50vh;
+  /* background-image: url("../images/main-sec.jpg"); */
+}
+.pen-tutor {
+  font-family: "Poppins", sans-serif;
+  margin-left: 5%;
+  font-weight: bolder;
+  color: #313d6a;
+  margin-bottom: -1em;
+}
+.studnt-query-button-view {
+  display: "flex";
+  align-items: "flex-start";
+}
+.studnt-query-button {
+  background-color: #f5bb07;
+  color: #313d6a;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-color: #f5bb07;
+  align-items: flex-end;
+  margin-left: 5%;
+  font-weight: bold;
+}
+
+.student-query-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #313d6a;
+  height: 40vh;
+  color: white;
+  width: 100%;
+  position: relative;
+}
+.btn-primary {
+  background-color: #f5bb07 !important;
+  color: #313d6a !important;
+  border-radius: 5px !important;
+  border-color: #f5bb07 !important;
+  margin-left: 1% !important;
+  font-weight: bold !important;
+}
+
+/* card */
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.card {
+  width: 100%;
+  border-radius: 30px;
+  box-shadow: #f4f3f3;
+}
+.card-title {
+  color: #313d6a;
+}
+.btn-light {
+  height: 10% !important;
+  border-radius: 10px !important;
+}

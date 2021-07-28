@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+
+  margin: 0;
+  font-family: 'Poppins' , 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-yellow-450{
+  background-color: #F5BB07;
+
+}
+
+.activeNavLinkAnimation{
+  animation: ActiveNavAnimate 300ms linear forwards;
+}
+@keyframes ActiveNavAnimate{
+  0%{
+    right:100% ;
+  }
+  100%{
+    right: 0;
+  }
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

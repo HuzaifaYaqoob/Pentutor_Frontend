@@ -1,0 +1,21 @@
+h2 {
+  color: #f5bb07;
+}
+.form-block {
+  box-shadow: gray;
+}
+.button-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-primary {
+  background-color: #f5bb07 !important;
+  color: white !important;
+}
+.form-control {
+  background-color: #f4f3f3 !important;
+}
+.form-label {
+  font-weight: bold !important;
+}

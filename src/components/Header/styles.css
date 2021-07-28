@@ -1,0 +1,18 @@
+.nav-item {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+.blog {
+  background-color: #f5bb07;
+}
+.sign-in {
+  background-color: #313d6a;
+  color: white;
+  border-radius: 5px;
+  margin-right: 2px;
+}
+.sign-up {
+  border-color: #313d6a;
+  border-radius: 5px;
+  color: #313d6a;
+}

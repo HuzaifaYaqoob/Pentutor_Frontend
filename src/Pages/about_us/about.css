@@ -1,0 +1,23 @@
+.description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+h3 {
+  color: #f5bb07;
+  width: 45%;
+}
+.detail {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  /* background-image: url("../images/main-sec.jpg"); */
+}
+p {
+  color: white;
+}
