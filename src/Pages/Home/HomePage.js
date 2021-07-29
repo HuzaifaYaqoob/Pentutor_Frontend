@@ -18,7 +18,11 @@ const HomePage = (props) => {
             <HeroSection />
             <FormSection formHeading='student query form'>
                 <div className='container mx-auto'>
-                    <InputField />
+                    <div className='grid grid-cols-3 gap-6'>
+                        <div>
+                            <InputField placeholder='Username' className='outline-none rounded ring-1 ring-yellow-300 ' />
+                        </div>
+                    </div>
                 </div>
             </FormSection>
             <div >

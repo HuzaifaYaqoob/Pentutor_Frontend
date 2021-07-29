@@ -1,9 +1,9 @@
 
 
-const InputField = () =>{
+const InputField = (props) =>{
     return(
         <div>
-            <h1>this is input</h1>
+            <input className='w-full' {...props} />
         </div>
     )
 }
