@@ -9,6 +9,9 @@ import OurTutor from "./Pages/Our-Tutors/index";
 import AboutUs from "./Pages/about_us";
 import ContactUS from "./Pages/contactUs";
 import Blogs from "./Pages/Blogs";
+import LoginPage from "./Pages/Auth/LoginPage";
+import RegisterPage from "./Pages/Auth/RegisterPage";
+
 import { Switch, Route } from "react-router-dom";
 
 const App = () => {
@@ -22,6 +25,10 @@ const App = () => {
         <Route path="/about-us" component={AboutUs} />
         <Route path="/contact-us" component={ContactUS} />
         <Route path="/blogs" component={Blogs} />
+        <Route path='/auth' >
+          <Route path='/login' component={LoginPage} />
+          <Route path='/register' component={RegisterPage} />
+        </Route>
       </Switch>
       <Footer />
     </>

@@ -32,3 +32,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.hide-input-arrow-button::-webkit-inner-spin-button,
+.hide-input-arrow-button::-webkit-outer-spin-button
+{
+  display: none;
+}
