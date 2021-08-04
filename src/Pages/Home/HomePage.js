@@ -11,8 +11,9 @@ import HeroSection from '../../components/HeroSection/HeroSection'
 import FormSection from '../../components/FormSection/FormSection';
 import InputField from '../../components/FormSection/InputField';
 import DropDown from '../../components/FormSection/DropDown';
-
 import HomePageCard from '../../components/HomePageCard/HomePageCard';
+import WhyChoose from './whyChoose';
+import OurServices from './OurServices';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
@@ -39,16 +40,10 @@ const HomePage = (props) => {
                     </div>
                 </div>
             </FormSection>
-            <HomePageCard/>
-
-            <div >
-                <Main />
-                <StudentTutor />
-                {/* <FutureTutor /> */}
-                <PenTutor />
-                <Services />
-                {/* <OnlineTutoring /> */}
-            </div>
+            <HomePageCard cardReverse={true}  preferredColor='yellow-450' imagePath='/images/girlImage.png' heading='for students' />
+            <HomePageCard preferredColor='indigo-900' imagePath='/images/girlImage1.png' heading='for tutors' />
+            <WhyChoose/>
+            <OurServices/>
         </main>
     )
 }
