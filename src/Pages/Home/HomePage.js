@@ -18,8 +18,18 @@ import OurServices from './OurServices';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
+import { Carousel } from '3d-react-carousal';
+
+import BlogPost from '../Blogs/BlogPost'
 
 const HomePage = (props) => {
+    let slides = [
+        <BlogPost />,
+        <BlogPost />,
+        <BlogPost />
+    ];
+
+
     return (
         <main>
             <HeroSection Text='welcome to pen tutor' ImagePath='/images/studentImages.png' />
@@ -28,7 +38,7 @@ const HomePage = (props) => {
                     <div className='grid grid-cols-3 gap-6'>
                         <InputField placeholder='Enter Your Full Name' type='text' />
                         <InputField placeholder='Enter Your Email Address' type='email' />
-                        <DropDown  />
+                        <DropDown />
                         <InputField placeholder='Enter Your Number' className='hide-input-arrow-button' type='number' />
                         <InputField placeholder='Enter Your City Name' type='text' />
                         <InputField placeholder='Enter Your Area' className='hide-input-arrow-button' type='number' />
@@ -40,10 +50,22 @@ const HomePage = (props) => {
                     </div>
                 </div>
             </FormSection>
-            <HomePageCard cardReverse={true}  preferredColor='yellow-450' imagePath='/images/girlImage.png' heading='for students' />
+            <HomePageCard cardReverse={true} preferredColor='yellow-450' imagePath='/images/girlImage.png' heading='for students' />
             <HomePageCard preferredColor='indigo-900' imagePath='/images/girlImage1.png' heading='for tutors' />
-            <WhyChoose/>
-            <OurServices/>
+            <WhyChoose />
+            <OurServices />
+            <div className='my-10'>
+                <h3 className='w-full text-center text-4xl text-indigo-900 font-bold my-20'>Online Tutoring</h3>
+                <Carousel slides={slides} />
+            </div>
+            <div className='my-10'>
+                <h3 className='w-full text-center text-4xl text-indigo-900 font-bold my-20'>Personal Training</h3>
+                <Carousel slides={slides} />
+            </div>
+            <div className='my-10'>
+                <h3 className='w-full text-center text-4xl text-indigo-900 font-bold my-20'>Blogs</h3>
+                <Carousel slides={slides} />
+            </div>
         </main>
     )
 }

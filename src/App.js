@@ -12,6 +12,10 @@ import BlogPage from "./Pages/Blogs/BlogPage";
 import LoginPage from "./Pages/Auth/LoginPage";
 import RegisterPage from "./Pages/Auth/RegisterPage";
 
+import StudentDashboard from './Pages/Dashboard/Student/StudentDashboard'
+import TutorDashboard from "./Pages/Dashboard/Tutor/TutorDashboard";
+import AdminDashboard from "./Pages/Dashboard/SuperAdmin/AdminDashboard";
+
 import { Switch, Route } from "react-router-dom";
 
 const App = () => {
@@ -47,6 +51,9 @@ const App = () => {
           '/blogs',
         ]
       } component={Footer} />
+      <Route exact path='/dashboard/student/' component={StudentDashboard} />
+      <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
+      <Route exact path='/dashboard/super-admin/' component={AdminDashboard} />
     </>
   );
 }
