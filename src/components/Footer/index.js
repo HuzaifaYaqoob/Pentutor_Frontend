@@ -1,46 +1,57 @@
 import React from 'react'
 import './footer.css'
 
+import { Link } from 'react-router-dom'
+
+const FooterLink = (props) => {
+    return (
+        <li>
+            <Link className='text-gray-200 text-sm'>
+                {props.text}
+            </Link>
+        </li>
+    )
+}
+
 const Footer = () => {
     return (
-        <div className="mt-5">
-            <footer class=" py-5 footer">
-                <div class="row">
-                    <div className="row col-6">
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <h5 className="footer-heading">Features</h5>
-                            <ul class="list-unstyled text-small">
-                                <li><a class="link-secondary" href="/">Youtube</a></li>
-                                <li><a class="link-secondary" href="/">Instagram</a></li>
-                                <li><a class="link-secondary" href="/">Linkedin</a></li>
-                                <li><a class="link-secondary" href="/">Skype</a></li>
-                                <li><a class="link-secondary" href="/">Pinterest</a></li>
-                                <li><a class="link-secondary" href="/">Reddit</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <h5 className="footer-heading">Resources</h5>
-                            <ul class="list-unstyled text-small">
-                                <li><a class="link-secondary" href="/">home</a></li>
-                                <li><a class="link-secondary" href="/">FAQs</a></li>
-                                <li><a class="link-secondary" href="/">Contact Us</a></li>
-                            </ul>
-                        </div>
+        <footer className='footer-gray mt-10'>
+            <div className='flex container mx-auto py-20'>
+                <div className='w-full flex gap-20'>
+                    <div>
+                        <h3 className='text-yellow-400 underline font-bold text-xl'>Follow Us</h3>
+                        <ul>
+                            <FooterLink text='Youtube' />
+                            <FooterLink text='Instagram' />
+                            <FooterLink text='LinkedIn' />
+                            <FooterLink text='Skype' />
+                            <FooterLink text='Pinterest' />
+                            <FooterLink text='Reddit' />
+                        </ul>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div className="subscribe-newsletter">
-                            <h5 className="footer-heading">Subscribe To Our Newsletter</h5>
-                            <input type="text" placeholder="Enter Your Name" size="30" />
-                            <input type="text" placeholder="Enter Your Email" size="30" className="mt-2" />
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <button type="button" class="subscribe mt-2">Subscribe</button>
-                        </div>
+                    <div>
+                        <h3 className='text-yellow-400 text-bold text-xl underline'>Quick Links</h3>
+                        <ul>
+                            <FooterLink text='Home' />
+                            <FooterLink text="FAQs" />
+                            <FooterLink text="Contact Us" />
+                        </ul>
                     </div>
 
                 </div>
-            </footer>
-        </div>
+                <div className='w-full'>
+                    <div className='max-w-sm mx-auto'>
+                        <h3 className='w-full text-center text-yellow-400 text-xl underline font-bold'>Subscribe to Our Newsletter</h3>
+                        <div>
+                            <input type="text" className='bg-white rounded w-full outline-none mb-3' placeholder='Enter Your Name' />
+                            <input type="email" className='bg-white rounded w-full outline-none mb-3' placeholder='Enter Your Email' />
+                        </div>
+                        <button className='text-white bg-yellow-450 rounded mx-auto py-1 px-3 block'>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <p className='py-2 w-full text-white text-center'>Copyright © 2020 | Pen Tutor</p>
+        </footer>
     )
 }
 

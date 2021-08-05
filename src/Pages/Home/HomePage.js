@@ -22,7 +22,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 const HomePage = (props) => {
     return (
         <main>
-            <HeroSection />
+            <HeroSection Text='welcome to pen tutor' ImagePath='/images/studentImages.png' />
             <FormSection formHeading='student query form'>
                 <div className='container mx-auto'>
                     <div className='grid grid-cols-3 gap-6'>
