@@ -2,6 +2,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
+import {Link} from 'react-router-dom'
+
 import HeroSection from '../../components/HeroSection/HeroSection'
 import FormSection from '../../components/FormSection/FormSection'
 import InputField from '../../components/FormSection/InputField'
@@ -34,7 +36,7 @@ const TutorCard = (props) => {
                 <TutorPoint property='teach online' value='yes' />
             </div>
             <div className='flex items-center justify-evenly'>
-                <button className='py-2 px-3 rounded-lg cursor-pointer bg-yellow-450 text-white'>View Full Profile</button>
+                <Link to='/our-tutor/profile/userprofileHuzaifaID' className='py-2 px-3 rounded-lg cursor-pointer bg-yellow-450 text-white'>View Full Profile</Link>
                 <button className='py-2 px-3 rounded-lg cursor-pointer bg-indigo-900 text-white'>Take Trial Class</button>
             </div>
         </div>

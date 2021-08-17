@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, Route } from 'react-router-dom'
 import './styles.css'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 
 const ActiveEffect = () => {
     return (
@@ -20,6 +23,7 @@ const NavLink = (props) => {
 }
 
 const Header = () => {
+    const [loggedIn, setLoggedIn] = useState(true)
     return (
         <header className='container py-4 px-14 mx-auto flex items-center justify-between '>
             <div className='LOGO '>
@@ -36,12 +40,26 @@ const Header = () => {
                 </ul>
             </nav>
             <ul className='flex items-center text-xs gap-2'>
-                <li className='py-2 px-4 rounded overflow-hidden bg-gray-700 text-white cursor-pointer'>
-                    <Link to='/auth/login/'>Sign In</Link>
-                </li>
-                <li className='py-2 px-4 rounded overflow-hidden border border-gray-700  cursor-pointer'>
-                    <Link to='/auth/register/student/'>Sign Up</Link>
-                </li>
+                {
+                    loggedIn ?
+                        <>
+                            <Link className='y-2 px-4 rounded overflow-hidden cursor-pointer' to='/dashboard/student/'>
+                                <FontAwesomeIcon icon={faUserAlt} />
+                            </Link>
+                            <li className='py-2 px-4 rounded overflow-hidden bg-gray-700 text-white cursor-pointer' onClick={()=>{setLoggedIn(false)}}>
+                                Log Out
+                            </li>
+                        </>
+                        :
+                        <>
+                            <li className='py-2 px-4 rounded overflow-hidden bg-gray-700 text-white cursor-pointer'>
+                                <Link to='/auth/login/'>Sign In</Link>
+                            </li>
+                            <li className='py-2 px-4 rounded overflow-hidden border border-gray-700  cursor-pointer'>
+                                <Link to='/auth/register/student/'>Sign Up</Link>
+                            </li>
+                        </>
+                }
             </ul>
         </header>
     )

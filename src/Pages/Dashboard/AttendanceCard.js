@@ -24,8 +24,8 @@ const AttendanceCard = () =>{
                 <AttendanceRow property='1st week' value='2 absent' />
                 <AttendanceRow property='1st week' value='2 absent' />
             </ul>
-            <button className='color-green text-white font-bold mt-20 rounded flex items-center justify-between p-4 w-full'>
-                <p>Performance:</p>
+            <button className='color-green text-sm text-white font-bold mt-20 rounded flex items-center justify-between p-4 w-full'>
+                <p >Performance:</p>
                 <p>70%</p>
             </button>
         </div>

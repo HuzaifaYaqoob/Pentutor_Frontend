@@ -5,7 +5,7 @@ const ContentBanner = (props) => {
         <div className='py-20 mt-10 mb-20 bg-cover bg-no-repeat bg-center relative text-center text-white' style={{ backgroundImage: `url('${props.bgImage}')` }}>
             <div className='absolute top-0 bottom-0 left-0 right-0 bg-gray-800 bg-opacity-70 z-0'>
             </div>
-            <div className='container mx-auto relative z-10 font-light'>
+            <div className='container mx-auto relative z-10 font-light text-xs'>
                 {props.children}
             </div>
         </div>
@@ -20,7 +20,7 @@ const AboutUsPage = () => {
                 <h1 className='w-full text-center font-bold text-xl text-yellow-400'>"PEN TUTOR COVERS THE GAP BETWEEN<br />STUDENT AND HIS/HER ACADEMIC SUCCESS"</h1>
             </div>
             <ContentBanner bgImage={process.env.PUBLIC_URL + '/images/about/about1.jpg'} >
-                <p className='mb-4'>
+                <p className='mb-4 '>
                     Pen Tutor is a platform providing all types of national and international learning needs. We provide qualified and dedicated tutors for online, on-campus, individual and group studies. Our tutors are highly specialized and adept in new educational methods and techniques to meet the requirements of this advance era. We enable our students to keep pace with advancement in education and technology through best use of our tutor expertise. We make learning easy, available and affordable for all.
                 </p>
                 <p className='text-lg'>

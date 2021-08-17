@@ -1,10 +1,4 @@
-import React from 'react'
-import Main from "./main-sec";
-import StudentTutor from "./student_tutors";
-import FutureTutor from "./featured_tutor";
-import PenTutor from "./choose_pen-tutor";
-import Services from "./services";
-import OnlineTutoring from "./online-tutoring";
+import React , {useEffect , useState} from 'react'
 
 // Components 
 import HeroSection from '../../components/HeroSection/HeroSection'
@@ -12,6 +6,7 @@ import FormSection from '../../components/FormSection/FormSection';
 import InputField from '../../components/FormSection/InputField';
 import DropDown from '../../components/FormSection/DropDown';
 import HomePageCard from '../../components/HomePageCard/HomePageCard';
+import Loader from '../../components/Loader/Loader'
 import WhyChoose from './whyChoose';
 import OurServices from './OurServices';
 
@@ -22,7 +17,11 @@ import { Carousel } from '3d-react-carousal';
 
 import BlogPost from '../Blogs/BlogPost'
 
+import useTitle from  '../../Hooks/useTitle'
+
 const HomePage = (props) => {
+    useTitle('Home')
+
     let slides = [
         <BlogPost />,
         <BlogPost />,
@@ -32,6 +31,7 @@ const HomePage = (props) => {
 
     return (
         <main>
+            {/* <Loader  /> */}
             <HeroSection Text='welcome to pen tutor' ImagePath='/images/studentImages.png' />
             <FormSection formHeading='student query form'>
                 <div className='container mx-auto'>

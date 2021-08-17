@@ -5,6 +5,7 @@ import InputField from '../../components/FormSection/InputField'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
+import { Link } from 'react-router-dom'
 
 const SlideDot = (props) => {
     return (
@@ -15,9 +16,9 @@ const SlideDot = (props) => {
 
 const CardItem = (props) => {
     return (
-        <p className='w-full p-3 text-center bg-gray-200 hover:bg-gray-300 transition-all cursor-pointer mb-2 rounded-lg'>
+        <Link to='/courses/course-id/view/' className='block w-full p-3 text-center bg-gray-200 hover:bg-gray-300 transition-all cursor-pointer mb-2 rounded-lg'>
             {props.text}
-        </p>
+        </Link>
     )
 }
 

@@ -5,7 +5,7 @@ import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
 
 const PaymentButton = (props) =>{
     return(
-        <div className={`flex items-center justify-between mb-5 p-4 rounded text-white cursor-pointer ${props.colorClass}`}>
+        <div className={`flex items-center justify-between mb-5 p-4 rounded text-white cursor-pointer text-sm ${props.colorClass}`}>
             <p className='capitalize'>{props.property}:</p>
             <p className='uppercase'>{props.value}</p>
         </div>
@@ -15,7 +15,7 @@ const PaymentButton = (props) =>{
 const PaymentCard = () =>{
     return(
         <div className='mt-10 pentutor-shadow bg-white p-5 pb-10'>
-            <div className='flex items-center justify-between mb-10'>
+            <div className='flex items-center justify-between mb-10 text-sm'>
                 <h3 className='font-bold '>Payment</h3>
                 <FontAwesomeIcon icon={faChevronRight} />
             </div>
