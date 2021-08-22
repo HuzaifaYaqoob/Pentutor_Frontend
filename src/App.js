@@ -16,8 +16,18 @@ import RegisterPage from "./Pages/Auth/RegisterPage";
 
 
 import StudentDashboard from './Pages/Dashboard/Student/StudentDashboard'
+import EditProfile from "./Pages/Dashboard/Student/Profile/EditProfile";
+
 import TutorDashboard from "./Pages/Dashboard/Tutor/TutorDashboard";
+import EditProfileTutor from "./Pages/Dashboard/Tutor/Profile/EditProfile";
+import AddCourse from "./Pages/Dashboard/Tutor/Courses/AddCourse";
+
 import AdminDashboard from "./Pages/Dashboard/SuperAdmin/AdminDashboard";
+import RegisterStudent from "./Pages/Dashboard/SuperAdmin/Register/RegisterStudent";
+import RegisterTutor from "./Pages/Dashboard/SuperAdmin/Register/RegisterTutor";
+import RegisterAdmin from "./Pages/Dashboard/SuperAdmin/Register/RegisterAdmin";
+
+import PostNewJob from "./Pages/Dashboard/SuperAdmin/Jobs/PostNew";
 
 import Loader from './components/Loader/Loader'
 import { Switch, Route } from "react-router-dom";
@@ -81,8 +91,17 @@ const App = () => {
         ]
       } component={Footer} />
       <Route exact path='/dashboard/student/' component={StudentDashboard} />
+      <Route exact path='/dashboard/student/profile/edit/' component={EditProfile} />
+
       <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
+      <Route exact path='/dashboard/tutor/profile/edit/' component={EditProfileTutor} />
+      <Route exact path='/dashboard/tutor/course/add-new/' component={AddCourse} />
+
       <Route exact path='/dashboard/super-admin/' component={AdminDashboard} />
+      <Route exact path='/dashboard/super-admin/register/student/' component={RegisterStudent} />
+      <Route exact path='/dashboard/super-admin/register/tutor/' component={RegisterTutor} />
+      <Route exact path='/dashboard/super-admin/register/admin/' component={RegisterAdmin} />
+      <Route exact path='/dashboard/super-admin/jobs/post-new/' component={PostNewJob} />
     </>
   );
 }

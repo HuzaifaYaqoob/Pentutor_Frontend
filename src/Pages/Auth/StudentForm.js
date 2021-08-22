@@ -5,6 +5,14 @@ import { faArrowRight, faArrowLeft, faFileAlt, faUserCircle } from '@fortawesome
 import { Link, Route } from 'react-router-dom'
 
 
+const NavNext = (props) => {
+    return (
+        <Link className='w-10 h-10 flex items-center justify-center bg-yellow-450 rounded-full cursor-pointer' to={props.nextPath} >
+            <FontAwesomeIcon className='text-indigo-900' icon={faArrowRight} />
+        </Link>
+    )
+}
+
 const NavigateButton = (props) => {
     return (
         <>
@@ -17,13 +25,25 @@ const NavigateButton = (props) => {
                         '/auth/register/student/document/',
                     ]
                 } >
-                    <span className='w-10 h-10 flex items-center justify-center bg-yellow-450 rounded-full' onClick={() => { props.history.goBack() }}>
+                    <span className='w-10 h-10 flex items-center justify-center bg-yellow-450 rounded-full cursor-pointer' onClick={() => { props.history.goBack() }}>
                         <FontAwesomeIcon className='text-indigo-900' icon={faArrowLeft} />
                     </span>
                 </Route>
-                <span className='w-10 h-10 flex items-center justify-center bg-yellow-450 rounded-full'>
-                    <FontAwesomeIcon className='text-indigo-900' icon={faArrowRight} />
-                </span>
+                <Route exact path='/auth/register/student/' >
+                    <NavNext nextPath='/auth/register/student/address/' />
+                </Route>
+                <Route exact path='/auth/register/student/address/' >
+                    <NavNext nextPath='/auth/register/student/record/' />
+                </Route>
+                <Route exact path='/auth/register/student/record/' >
+                    <NavNext nextPath='/auth/register/student/study_plan/' />
+                </Route>
+                <Route exact path='/auth/register/student/study_plan/' >
+                    <NavNext nextPath='/auth/register/student/document/' />
+                </Route>
+                <Route exact path='/auth/register/student/document/' >
+                    <NavNext nextPath='/auth/register/student/' />
+                </Route>
             </div>
 
 

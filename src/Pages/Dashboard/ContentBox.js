@@ -2,10 +2,10 @@
 
 import DashboardHeader from "./DashboardHeader"
 
-const ContentBox = () =>{
+const ContentBox = (props) =>{
     return(
         <div className='relative'>
-            <DashboardHeader/>
+            <DashboardHeader HeaderText={props.HeaderText ? props.HeaderText : 'Welcome To Dashboard'} />
         </div>
     )
 }

@@ -5,6 +5,48 @@ import { faArrowRight, faArrowLeft, faFileAlt, faUserCircle } from '@fortawesome
 import { Route , Link} from 'react-router-dom'
 
 
+
+const NavNext = (props) => {
+    return (
+        <Link className='w-10 h-10 flex items-center justify-center bg-yellow-450 rounded-full cursor-pointer' to={props.nextPath} >
+            <FontAwesomeIcon className='text-indigo-900' icon={faArrowRight} />
+        </Link>
+    )
+}
+
+const NavigateButton = (props) => {
+    return (
+        <>
+            <div className='rounded-full flex items-center justify-around absolute bottom-0 left-0 right-0  transform translate-y-1/2 '>
+                <Route exact path={
+                    [
+                        '/auth/register/tutor/address/',
+                        '/auth/register/tutor/record/',
+                        '/auth/register/tutor/study_plan/',
+                        '/auth/register/tutor/document/',
+                    ]
+                } >
+                    <span className='w-10 h-10 flex items-center justify-center bg-yellow-450 rounded-full cursor-pointer' onClick={() => { props.history.goBack() }}>
+                        <FontAwesomeIcon className='text-indigo-900' icon={faArrowLeft} />
+                    </span>
+                </Route>
+                <Route exact path='/auth/register/tutor/' >
+                    <NavNext nextPath='/auth/register/tutor/address/' />
+                </Route>
+                <Route exact path='/auth/register/tutor/address/' >
+                    <NavNext nextPath='/auth/register/tutor/document/' />
+                </Route>
+                <Route exact path='/auth/register/tutor/document/' >
+                    <NavNext nextPath='/auth/register/tutor/' />
+                </Route>
+            </div>
+
+
+        </>
+    )
+}
+
+
 const Bio = () => {
     return (
         <>
@@ -101,7 +143,7 @@ const DocumentForm = () => {
 }
 
 
-const TutorRegisterForm = () => {
+const TutorRegisterForm = (props) => {
     return (
         <>
             <div className='bg-white p-8 relative'>
@@ -109,9 +151,8 @@ const TutorRegisterForm = () => {
                 <Route exact path='/auth/register/tutor/address/' component={Address} />
                 <Route exact path='/auth/register/tutor/document/' component={DocumentForm} />
                 
-                <div className='rounded-full bg-yellow-450 w-10 h-10 flex items-center justify-center absolute bottom-0 left-1/2 transform translate-y-1/2 -translate-x-1/2'>
-                    <FontAwesomeIcon className='text-indigo-900' icon={faArrowRight} />
-                </div>
+               <NavigateButton {...props} />
+
 
             </div>
             <div className='bg-yellow-450 text-white fixed left-0 top-1/2 transform -translate-y-1/2 px-2 py-3 rounded-r-lg h-96 flex flex-col-reverse items-center'>

@@ -9,7 +9,7 @@ import DashboardChart from "../DashboardChart"
 
 const TutorDashboard = () =>{
     return(
-        <DashboardBase>
+        <DashboardBase activeUser='tutor'>
             <ContentBox/>
             <ContentBoxSubConent/>
             
