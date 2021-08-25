@@ -27,7 +27,7 @@ const TutorCard = (props) => {
             <div className='w-full text-center'>
                 <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>ID: PT149</p>
             </div>
-            <div className='my-10'>
+            <div className='my-10 whitespace-nowrap'>
                 <TutorPoint property='qualification' value='master' />
                 <TutorPoint property='experience' value='21 years' />
                 <TutorPoint property='areas to teach' value='johar town' />
@@ -49,7 +49,7 @@ const OurTutors = () => {
             <HeroSection Text='certified tutors' ImagePath='/images/girlImage1.png' />
             <FormSection formHeading='Search Tutor'>
                 <div className='container mx-auto my-10'>
-                    <div className='grid grid-cols-3 gap-6'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6'>
                         <InputField placeholder='Enter Any Subject' type='text' />
                         <InputField placeholder='Enter Any Grade to Search' type='text' />
                         <InputField placeholder='Enter City/Area to Search' type='text' />
@@ -61,11 +61,11 @@ const OurTutors = () => {
                     </div>
                 </div>
             </FormSection>
-            <div className='container mx-auto my-20'>
+            <div className='container mx-auto my-20 px-5'>
                 <div>
                     <h3 className='w-full text-center text-indigo-900 font-bold text-2xl'>Registered Tutors</h3>
                 </div>
-                <div className='grid grid-cols-2 gap-20 my-20'>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap5 my-20'>
                     <TutorCard ImagePath='/images/profilepic.png' />
                     <TutorCard ImagePath='/images/profilepic.png' />
                     <TutorCard ImagePath='/images/profilepic.png' />

@@ -58,3 +58,18 @@ code {
 .slide-right{
   background-color: red !important;
 }
+
+.w-110{
+  width: 27rem;
+}
+.lg:w-110{
+  width: 27rem;
+}
+
+.h-110{
+  height: 27rem;
+}
+
+.lg:h-110{
+  height: 27rem;
+}

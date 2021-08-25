@@ -13,8 +13,8 @@ import { CourseCard } from "../Our-Tutors/ViewProfile"
 const CourseViewHeroSection = () => {
     return (
         <div className='pt-10 bg-indigo-900 '>
-            <div className='container mx-auto flex '>
-                <div className='w-full'>
+            <div className='container mx-auto flex lg:flex-row flex-col items-center justify-between'>
+                <div className=''>
                     <h1 className='text-white text-2xl font-medium mb-4'>Learn SEO: Begginer To Advance | <br />Rank Your Website On 1st Page</h1>
                     <p className='text-xs text-white font-light'>Use Advance tools to rank your website on 1st page</p>
                     <p className='flex items-center gap-3 text-yellow-300 text-xs mt-4'>
@@ -32,7 +32,7 @@ const CourseViewHeroSection = () => {
                         <button className='bg-transparent border border-white py-3 px-5 rounded-md text-white text-sm'>Buy Now</button>
                     </div>
                 </div>
-                <div className='max-w-sm w-full bg-white'>
+                <div className='max-w-sm w-full bg-white lg:mt-0 mt-10'>
                     <div className='bg-gray-200 flex items-center justify-center w-full h-56 px-16 relative'>
                         <img className='w-full' src={process.env.PUBLIC_URL + '/images/seo.png'} alt="SEO" />
                         <img className='w-10 absolute' src={process.env.PUBLIC_URL + '/images/yt.png'} alt="" />
@@ -63,7 +63,7 @@ const CourseView = () => {
             <hr className='container mx-auto' />
             <div className='container mx-auto my-10'>
                 <h3 className='mb-4'>More Course By  <span className='text-yellow-400'>Ibrahim Akram</span> </h3>
-                <div className='grid-cols-3 grid gap-10'>
+                <div className='md:grid-cols-2 place-content-center lg:grid-cols-3 grid gap-10'>
                     <CourseCard />
                     <CourseCard />
                     <CourseCard />

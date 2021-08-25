@@ -2,7 +2,7 @@ import React from 'react'
 
 const ContentBanner = (props) => {
     return (
-        <div className='py-20 mt-10 mb-20 bg-cover bg-no-repeat bg-center relative text-center text-white' style={{ backgroundImage: `url('${props.bgImage}')` }}>
+        <div className='py-20 mt-10 mb-20 bg-cover bg-no-repeat bg-center relative text-center text-white px-5' style={{ backgroundImage: `url('${props.bgImage}')` }}>
             <div className='absolute top-0 bottom-0 left-0 right-0 bg-gray-800 bg-opacity-70 z-0'>
             </div>
             <div className='container mx-auto relative z-10 font-light text-xs'>

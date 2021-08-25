@@ -32,7 +32,7 @@ const AdminDashboard = (props) => {
                     <FontAwesomeIcon icon={faPlusCircle} />
                 </div>
             </div>
-            <div className='mt-10 grid grid-cols-3 gap-8'>
+            <div className='mt-10 grid sm:grid-cols-2  md:grid-cols-3 gap-8'>
                 <RegisteredCard content='100' colorCLass='bg-yellow-450' icon={faUserTag} Heading='total registered students' />
                 <RegisteredCard content='100' colorCLass='bg-blue-500' icon={faUser} Heading='total registered tutors' />
                 <RegisteredCard content='100' colorCLass='bg-red-500' icon={faUserTie} Heading='total registered super admin' />
@@ -55,8 +55,6 @@ const AdminDashboard = (props) => {
             </div>
             <DashboardChart color='#314866' />
             <DashboardChart color='#E5AB67' />
-            <Link  to='/dashboard/super-admin/register/tutor'>tutor register</Link>
-            <Link  to='/dashboard/super-admin/register/admin'>tutor register</Link>
         </DashboardBase>
     )
 }

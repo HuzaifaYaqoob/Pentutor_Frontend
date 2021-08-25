@@ -27,7 +27,7 @@ const CourseCard = (props) => {
 
 const ContentBoxSubConent = () => {
     return (
-        <div className='grid grid-cols-5 gap-5'>
+        <div className='lg:grid grid-cols-5 gap-5'>
             <div className='col-span-3'>
                 <QuickOverviewCard />
                 <div>
@@ -41,7 +41,7 @@ const ContentBoxSubConent = () => {
                     </div>
                 </div>
             </div>
-            <div className='col-span-2'>
+            <div className='col-span-2 px-5 lg:mt-0 mt-10'>
                 <AttendanceCard />
                 <PaymentCard />
             </div>

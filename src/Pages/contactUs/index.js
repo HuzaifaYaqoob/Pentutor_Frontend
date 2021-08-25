@@ -7,7 +7,7 @@ const ContactUs = () => {
             <div >
                 <h3 className='text-yellow-400 w-full text-center font-bold text-lg'>Send Message</h3>
             </div>
-            <div className='max-w-3xl mx-auto pentutor-shadow py-8 px-5 my-10 rounded-lg'>
+            <div className='max-w-3xl mx-5 lg:mx-auto pentutor-shadow py-8 px-5 my-10 rounded-lg '>
                 <div className='mb-8'>
                     <label htmlFor="name" className='text-gray-700 font-semibold block'>Your Name</label>
                     <input type="text" id='name' placeholder='Enter Your Name' className='outline-none bg-gray-200 w-full rounded' />

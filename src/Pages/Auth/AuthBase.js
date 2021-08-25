@@ -17,7 +17,7 @@ const AuthBase = (props) =>{
                 {props.children}
             </div>
 
-            <div>
+            <div className='lg:block hidden'>
                 <img className='w-96 rounded-l-xl' src={process.env.PUBLIC_URL + props.CurrentImage} alt="LoginPage Image" />
             </div>
         </div>

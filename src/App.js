@@ -14,6 +14,8 @@ import BlogPage from "./Pages/Blogs/BlogPage";
 import LoginPage from "./Pages/Auth/LoginPage";
 import RegisterPage from "./Pages/Auth/RegisterPage";
 
+import AddBlogPost from "./Pages/Dashboard/SuperAdmin/Blog/AddBlogPost";
+
 
 import StudentDashboard from './Pages/Dashboard/Student/StudentDashboard'
 import EditProfile from "./Pages/Dashboard/Student/Profile/EditProfile";
@@ -102,6 +104,7 @@ const App = () => {
       <Route exact path='/dashboard/super-admin/register/tutor/' component={RegisterTutor} />
       <Route exact path='/dashboard/super-admin/register/admin/' component={RegisterAdmin} />
       <Route exact path='/dashboard/super-admin/jobs/post-new/' component={PostNewJob} />
+      <Route exact path='/dashboard/super-admin/blog/post-new/' component={AddBlogPost} />
     </>
   );
 }

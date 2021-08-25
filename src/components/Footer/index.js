@@ -50,7 +50,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <p className='py-2 w-full text-white text-center'>Copyright © 2020 | Pen Tutor</p>
+            <p className='py-2 w-full text-white text-center'>Copyright © 2021 | Pen Tutor</p>
         </footer>
     )
 }

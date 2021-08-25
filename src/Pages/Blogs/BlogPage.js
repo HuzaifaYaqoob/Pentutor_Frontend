@@ -4,7 +4,7 @@ import BlogPost from './BlogPost'
 
 const BlogPage = () => {
     return (
-        <div className="container mx-auto grid grid-cols-3 gap-10">
+        <div className="container px-5 mx-auto grid-cols-1 md:grid-cols-2 place-content-center grid lg:grid-cols-3 gap-10">
             <BlogPost/>
             <BlogPost/>
             <BlogPost/>

@@ -13,15 +13,15 @@ const RegisterAdmin = () => {
         <DashboardBase>
             <ContentBox HeaderText='Register Admin' />
             <Form btnText='Register' >
-                <div className='flex gap-10 mb-5'>
+                <div className='md:flex gap-10 mb-5'>
                     <TextInput Label='admin Name' placeholder='Enter Student Name' />
                     <EmailInput Label='admin E-Mail Address' placeholder='Enter Student Email Address' />
                 </div>
-                <div className='flex gap-10 mb-5'>
+                <div className='md:flex gap-10 mb-5'>
                     <ContactNumberInput Label='admin contact number' />
                     <ContactNumberInput Label='emergency contact number' />
                 </div>
-                <div className='flex gap-10 mb-5'>
+                <div className='md:flex gap-10 mb-5'>
                     <DropDownInput Label='select gender' placeholder='Male' data={['hola', 'video', 'logo']} />
                     <DOBInput Label='Date of birth' />
                 </div>

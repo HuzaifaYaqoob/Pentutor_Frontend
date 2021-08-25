@@ -24,7 +24,7 @@ const CardItem = (props) => {
 
 const CoursesCard = (props) => {
     return (
-        <div className='max-w-sm'>
+        <div className='max-w-sm mx-auto'>
             <div>
                 <h3 className='w-full text-center text-3xl text-indigo-900 font-bold mb-7'>{props.Heading}</h3>
             </div>
@@ -68,7 +68,7 @@ const Courses = () => {
                     <button className='text-center bg-yellow-450 text-indigo-900 h-full py-2 rounded px-7 font-semibold text-xl'>Search</button>
                 </div>
             </FormSection>
-            <div className='container mx-auto grid grid-cols-2 gap-20 my-20'>
+            <div className='container mx-auto grid grid-cols-1 place-content-center md:grid-cols-2 gap-20 my-20'>
                 <CoursesCard Heading='Classes' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} />
                 <CoursesCard Heading='Subjects' itemsData={['Accouting', 'Commerce', 'Geography', 'English', 'Math']} />
                 <CoursesCard Heading='Test/Exams' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} />

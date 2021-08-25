@@ -86,8 +86,8 @@ export const CourseCard = () => {
 const ViewProfile = () => {
     return (
         <>
-            <div className='container mx-auto my-20 flex items-start'>
-                <div className='flex-1 px-20'>
+            <div className='container mx-auto my-20 flex lg:flex-row flex-col-reverse px-5 items-start '>
+                <div className='flex-1 px-5 mt-5 lg:mt-0 lg:px-20'>
                     <h3 className='text-md font-medium mb-6'>About Me</h3>
                     <p className='text-xs text-gray-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi urna quis ut lacus viverra eleifend natoque porttitor. Magna aenean ullamcorper cum ultrices sed netus enim blandit amet. Enim neque, sociis risus risus pharetra. Mattis habitant orci, mi mattis morbi platea euismod. Sagittis scelerisque semper pretium mauris. Et nisl nullam quis ut ut elit. Leo, amet, egestas tempor mauris integer nulla felis at morbi. <br />
                         Quam nulla pellentesque mattis quis fermentum laoreet. Tempus pellentesque a ut egestas quam. In bibendum eu in sed at sapien curabitur at. Id mauris feugiat egestas sed odio tempus. Libero ut tempus aenean egestas. Sed ultrices nulla venenatis rhoncus volutpat. Amet, orci est nunc, eget porta bibendum odio viverra. Pharetra et augue imperdiet urna morbi hendrerit amet sollicitudin proin. Massa sed sagittis faucibus lacinia lorem quis. Sed id amet, amet in sed nisi. Sed aliquet nunc donec morbi adipiscing tellus. Nunc amet in aliquam metus egestas et praesent. Posuere velit egestas ipsum varius viverra porta nibh id donec. Vehicula pharetra massa in eget nec. <br />                    Cursus sit est, et odio lacus diam eleifend nulla. Bibendum fringilla ullamcorper amet, blandit arcu tincidunt. Laoreet dui faucibus sed a mauris enim purus. Feugiat nibh phasellus elit nunc risus sem nibh. Hendrerit eget nulla feugiat id volutpat porta sem. Aliquam purus, id velit a congue. Lacus pharetra consectetur turpis ultrices sed morbi nisi. Mattis amet, sed vitae eu arcu. Vulputate lacus, laoreet mauris at. Tortor commodo, amet sit gravida sagittis quam sit lobortis. Rutrum sed ipsum id consequat ut. Purus eget dapibus in pellentesque nunc eu. Facilisis cras diam imperdiet vitae facilisi. <br />
@@ -97,7 +97,7 @@ const ViewProfile = () => {
             </div>
             <div className='container mx-auto' >
                 <h3 className='mb-8 font-medium'>Courses I Offer</h3>
-                <div className='grid grid-cols-3 gap-10'>
+                <div className='grid md:grid-cols-2 place-content-center lg:grid-cols-3 gap-10'>
                     <CourseCard />
                     <CourseCard />
                     <CourseCard />

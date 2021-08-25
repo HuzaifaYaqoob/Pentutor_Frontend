@@ -34,17 +34,19 @@ const StudentFeedback = () => {
             <div className='mb-2'>
                 <h3 className='font-medium'>Student Feedback</h3>
             </div>
-            <div className='flex items-center gap-5'>
-                <div>
-                    <h3 className='text-7xl font-medium ' style={{ color: '#02C8C8' }}>4.9</h3>
-                    <span className='text-xs flex items-center justify-center gap-1 text-yellow-400'>
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                    </span>
-                    <p className='text-xs font-medium my-2 w-full text-center' style={{ color: '#02C8C8' }}>Course Rating</p>
+            <div className='flex lg:items-center gap-5 lg:flex-row flex-col'>
+                <div className='flex items-center'>
+                    <div className='mx-auto'>
+                        <h3 className='text-7xl font-medium ' style={{ color: '#02C8C8' }}>4.9</h3>
+                        <span className='text-xs flex items-center justify-center gap-1 text-yellow-400'>
+                            <FontAwesomeIcon icon={faStar} />
+                            <FontAwesomeIcon icon={faStar} />
+                            <FontAwesomeIcon icon={faStar} />
+                            <FontAwesomeIcon icon={faStar} />
+                            <FontAwesomeIcon icon={faStar} />
+                        </span>
+                        <p className='text-xs font-medium my-2 w-full text-center' style={{ color: '#02C8C8' }}>Course Rating</p>
+                    </div>
                 </div>
                 <div className='flex-1'>
                     <RatingBar value='1/2' />

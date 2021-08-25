@@ -1,9 +1,10 @@
 
 
 
-const BlogPost = () =>{
+const BlogPost = (props) =>{
+    const {className , otherProps} = props
     return(
-        <div className='max-w-md rounded overflow-hidden pb-6 pentutor-shadow'>
+        <div className={'max-w-md rounded overflow-hidden pb-6 pentutor-shadow mx-auto ' + className}>
             <div className='w-full h-44 bg-no-repeat bg-center bg-cover px-0.5 relative' style={{backgroundImage:'url("/images/blog/blogImage.png")'}}>
                 <p className='shadow-lg capitalize text-white w-full bg-yellow-450 py-1 relative px-2 rounded text-lg font-semibold text-center ' style={{top:'85%'}}>Online indivisual coaching</p>
             </div>

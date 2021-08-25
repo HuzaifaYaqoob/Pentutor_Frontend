@@ -24,7 +24,7 @@ const LearnThings = (props) =>{
 
 const CourseOutline = () => {
     return (
-        <div className='container mx-auto flex items-start my-16 gap-10'>
+        <div className='container mx-auto flex flex-col lg:flex-row items-start my-16 gap-10 px-5'>
             <div className='w-60 pentutor-shadow '>
                 <h3 className='py-4 w-full text-center font-bold'>This course includes</h3>
                 <hr />
@@ -37,7 +37,7 @@ const CourseOutline = () => {
                     <button className='bg-yellow-300 mr-2 py-3 px-5 w-full mt-3 rounded-md '>Add to Cart</button>
                 </div>
             </div>
-            <div className='p-6 bg-white pentutor-shadow flex-1 rounded'>
+            <div className='p-6 bg-white pentutor-shadow flex-1 rounded '>
                 <h3 className='font-bold mb-10'>This you will Learn</h3>
                 <LearnThings text='Latest Recorder Lectures Latest Recorder Lectures' ol_value={1} />
                 <LearnThings text='Latest Recorder Lectures Latest Recorder Lectures Latest Recorder Lectures' ol_value={2} />
