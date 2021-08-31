@@ -22,6 +22,7 @@ import EditProfile from "./Pages/Dashboard/Student/Profile/EditProfile";
 
 import TutorDashboard from "./Pages/Dashboard/Tutor/TutorDashboard";
 import EditProfileTutor from "./Pages/Dashboard/Tutor/Profile/EditProfile";
+import CoursesList from "./Pages/Dashboard/Tutor/Courses/CoursesList";
 import AddCourse from "./Pages/Dashboard/Tutor/Courses/AddCourse";
 
 import AdminDashboard from "./Pages/Dashboard/SuperAdmin/AdminDashboard";
@@ -79,32 +80,33 @@ const App = () => {
             '/auth/register/:UserStatus/:step_status/',
           ]
         } component={RegisterPage} />
+        <Route exact path={
+          [
+            '/',
+            '/courses',
+            '/courses/:course_slug/view/',
+            '/our-tutor',
+            '/our-tutor/profile/:profile_slug/',
+            '/about-us',
+            '/contact-us',
+            '/blogs',
+          ]
+        } component={Footer} />
+        <Route exact path='/dashboard/student/' component={StudentDashboard} />
+        <Route exact path='/dashboard/student/profile/edit/' component={EditProfile} />
+
+        <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
+        <Route exact path='/dashboard/tutor/profile/edit/' component={EditProfileTutor} />
+        <Route exact path='/dashboard/tutor/courses/' component={CoursesList} />
+        <Route exact path='/dashboard/tutor/courses/add-new/' component={AddCourse} />
+
+        <Route exact path='/dashboard/super-admin/' component={AdminDashboard} />
+        <Route exact path='/dashboard/super-admin/register/student/' component={RegisterStudent} />
+        <Route exact path='/dashboard/super-admin/register/tutor/' component={RegisterTutor} />
+        <Route exact path='/dashboard/super-admin/register/admin/' component={RegisterAdmin} />
+        <Route exact path='/dashboard/super-admin/jobs/post-new/' component={PostNewJob} />
+        <Route exact path='/dashboard/super-admin/blog/post-new/' component={AddBlogPost} />
       </Switch>
-      <Route exact path={
-        [
-          '/',
-          '/courses',
-          '/courses/:course_slug/view/',
-          '/our-tutor',
-          '/our-tutor/profile/:profile_slug/',
-          '/about-us',
-          '/contact-us',
-          '/blogs',
-        ]
-      } component={Footer} />
-      <Route exact path='/dashboard/student/' component={StudentDashboard} />
-      <Route exact path='/dashboard/student/profile/edit/' component={EditProfile} />
-
-      <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
-      <Route exact path='/dashboard/tutor/profile/edit/' component={EditProfileTutor} />
-      <Route exact path='/dashboard/tutor/course/add-new/' component={AddCourse} />
-
-      <Route exact path='/dashboard/super-admin/' component={AdminDashboard} />
-      <Route exact path='/dashboard/super-admin/register/student/' component={RegisterStudent} />
-      <Route exact path='/dashboard/super-admin/register/tutor/' component={RegisterTutor} />
-      <Route exact path='/dashboard/super-admin/register/admin/' component={RegisterAdmin} />
-      <Route exact path='/dashboard/super-admin/jobs/post-new/' component={PostNewJob} />
-      <Route exact path='/dashboard/super-admin/blog/post-new/' component={AddBlogPost} />
     </>
   );
 }

@@ -34,7 +34,7 @@ const Content = () => {
 const AddCourse = () => {
     return (
         <DashboardBase>
-            <ContentBox HeaderText='Welcome to Profile' />
+            <ContentBox HeaderText='Add Course' />
             <Form btnText='Publish' >
                 <TextInput Label='Course Title / Name' placeholder='Learn Seo: Begginer To Advance In 1 Month | Rank Your Website On 1st Page ' />
                 <hr className='my-10' />

@@ -50,7 +50,8 @@ const SideBar = (props) => {
                     <BarLink icon={faThList} text='Pentutor' nextPath='/' />
                     <BarLink icon={faThList} text='Dashboard' nextPath='/dashboard/student/' />
                     <Route path='/dashboard/tutor/' >
-                        <BarLink icon={faBook} text='Add New Course' nextPath='/dashboard/tutor/course/add-new/' />
+                        <BarLink icon={faBook} text='Courses' nextPath='/dashboard/tutor/courses/' />
+                        <BarLink icon={faBook} text='Add New Course' nextPath='/dashboard/tutor/courses/add-new/' />
                     </Route>
 
                     <Route path='/dashboard/super-admin/'>
