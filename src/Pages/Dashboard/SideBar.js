@@ -77,7 +77,8 @@ const SideBar = (props) => {
                     <BarLink icon={faHandshake} text='agreement' />
                     <BarLink icon={faThList} text='home tution' />
                     <BarLink icon={faExclamationCircle} text='report' />
-                    <BarLink icon={faUser} text='log out' />
+                    <BarLink icon={faUser} text='Chat Box' nextPath='/chat/' />
+                    <BarLink icon={faUser} text='log out'  />
                 </ul>
             </div></>
     )

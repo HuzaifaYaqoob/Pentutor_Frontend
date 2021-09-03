@@ -21,6 +21,7 @@ import Wishlist from "./Pages/Wishlist/Wishlist";
 
 import AvailableJobs from "./Pages/Jobs/AvailableJobs";
 
+import ChatBox from "./Pages/Dashboard/Chat/ChatBox";
 
 import StudentDashboard from './Pages/Dashboard/Student/StudentDashboard'
 import EditProfile from "./Pages/Dashboard/Student/Profile/EditProfile";
@@ -96,6 +97,11 @@ const App = () => {
         <Route exact path="/blogs" component={BlogPage} />
         <Route exact path="/blogs/view/:blog_id/" component={BlogView} />
         <Route exact path="/jobs" component={AvailableJobs} />
+
+
+        <Route exact path="/chat/" component={ChatBox} />
+
+
 
 
         <Route exact path='/auth/login/' component={LoginPage} />
