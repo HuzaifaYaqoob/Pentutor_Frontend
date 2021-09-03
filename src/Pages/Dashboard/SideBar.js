@@ -49,16 +49,25 @@ const SideBar = (props) => {
                 <ul className='p-4'>
                     <BarLink icon={faThList} text='Pentutor' nextPath='/' />
                     <BarLink icon={faThList} text='Dashboard' nextPath='/dashboard/student/' />
+
+                    <Route path='/dashboard/student/'>
+                        <BarLink icon={faBook} text='Courses' nextPath='/dashboard/student/courses/' />
+                    </Route>
+
+
                     <Route path='/dashboard/tutor/' >
                         <BarLink icon={faBook} text='Courses' nextPath='/dashboard/tutor/courses/' />
-                        <BarLink icon={faBook} text='Add New Course' nextPath='/dashboard/tutor/courses/add-new/' />
+                        <BarLink icon={faBook} text='Jobs' nextPath='/dashboard/tutor/jobs/' />
                     </Route>
 
                     <Route path='/dashboard/super-admin/'>
                         <BarLink icon={faUser} text='Register Student' nextPath='/dashboard/super-admin/register/student/' />
                         <BarLink icon={faUser} text='Register Tutor' nextPath='/dashboard/super-admin/register/tutor/' />
                         <BarLink icon={faUser} text='Register Super Admin' nextPath='/dashboard/super-admin/register/admin/' />
+                        <BarLink icon={faCodeBranch} text='Courses' nextPath='/dashboard/super-admin/courses/' />
+                        <BarLink icon={faCodeBranch} text='Jobs' nextPath='/dashboard/super-admin/jobs/' />
                         <BarLink icon={faCodeBranch} text='New Job' nextPath='/dashboard/super-admin/jobs/post-new/' />
+                        <BarLink icon={faPager} text='Blog' nextPath='/dashboard/super-admin/blog/' />
                         <BarLink icon={faPager} text='Add Blog Post' nextPath='/dashboard/super-admin/blog/post-new/' />
 
                     </Route>

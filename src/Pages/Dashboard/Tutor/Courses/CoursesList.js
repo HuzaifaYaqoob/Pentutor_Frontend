@@ -1,6 +1,6 @@
 
 
-import { faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons"
+import {  faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import DashboardBase from "../../DashboardBase"
 
