@@ -22,6 +22,7 @@ import Wishlist from "./Pages/Wishlist/Wishlist";
 import AvailableJobs from "./Pages/Jobs/AvailableJobs";
 
 import ChatBox from "./Pages/Dashboard/Chat/ChatBox";
+import Inbox from "./Pages/Dashboard/Chat/Inbox";
 
 import StudentDashboard from './Pages/Dashboard/Student/StudentDashboard'
 import EditProfile from "./Pages/Dashboard/Student/Profile/EditProfile";
@@ -100,6 +101,7 @@ const App = () => {
 
 
         <Route exact path="/chat/" component={ChatBox} />
+        <Route exact path="/chat/message/:username/" component={Inbox} />
 
 
 

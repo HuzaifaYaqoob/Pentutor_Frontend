@@ -1,4 +1,5 @@
 
+import useTitle from "../../Hooks/useTitle"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
@@ -53,6 +54,7 @@ const CourseViewHeroSection = () => {
 
 
 const CourseView = () => {
+    useTitle('Courses Title Here | Pentutor')
     return (
         <div>
             <CourseViewHeroSection />

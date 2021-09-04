@@ -3,6 +3,8 @@
 import DashboardBase from '../DashboardBase'
 import ContentBox from '../ContentBox'
 
+import {Link} from 'react-router-dom'
+
 
 const InboxCard = () => {
     return (
@@ -10,9 +12,9 @@ const InboxCard = () => {
             <div className='w-12 h-12 overflow-hidden relative rounded-full'>
                 <img src={process.env.PUBLIC_URL + '/images/img3.png'} alt="" />
             </div>
-            <div className='border border-gray-300 px-3 py-2 rounded flex-1 shadow'>
+            <Link to='/chat/message/maryamIbrahim/' className='border border-gray-300 px-3 py-2 rounded flex-1 shadow'>
                 <p>maryam.safdar@gmail.com</p>
-            </div>
+            </Link>
         </div>
     )
 }

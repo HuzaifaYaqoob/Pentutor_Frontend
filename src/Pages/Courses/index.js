@@ -7,6 +7,8 @@ import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 import { Link } from 'react-router-dom'
 
+import useTitle from '../../Hooks/useTitle'
+
 const SlideDot = (props) => {
     return (
         <span className={'mx-1 w-2 h-2 rounded-full block ' + (props.active ? 'bg-indigo-900 flex-1' : 'bg-gray-400 cursor-pointer') }></span>
@@ -57,6 +59,7 @@ const CoursesCard = (props) => {
 
 
 const Courses = () => {
+    useTitle('Courses')
     return (
         <div>
             <HeroSection Text='courses of your choice' ImagePath='/images/image1.png' />
