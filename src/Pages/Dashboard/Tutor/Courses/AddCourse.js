@@ -1,73 +1,57 @@
 
 
-
+import { useState } from 'react'
 
 import DashboardBase from "../../DashboardBase"
 import ContentBox from "../../ContentBox"
 
 import Form, { TextInput, EmailInput, ContactNumberInput, DOBInput, DropDownInput, FileInput } from "../../FormSection/Form"
 
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlay } from "@fortawesome/free-solid-svg-icons"
-
-
-
-const Content = () => {
-    return (
-        <div className='my-4'>
-            <div className='flex items-center justify-between text-xs mb-6'>
-                <div className='flex items-center gap-4'>
-                    <FontAwesomeIcon className='text-gray-700' icon={faPlay} />
-                    <p>Getting Started</p>
-                </div>
-                <p>3 Lectures. 1 attachement. 1 assignment. 25m</p>
-            </div>
-            <hr />
-        </div>
-    )
-}
-
-
+import ReactQuill from "react-quill"
+import 'react-quill/dist/quill.snow.css'
 
 
 const AddCourse = () => {
+    const [details, setDetail] = useState("");
+    const [yourWillLearn, setyourWillLearn] = useState("");
+
     return (
         <DashboardBase>
             <ContentBox HeaderText='Add Course' />
-            <Form btnText='Publish' >
-                <TextInput Label='Course Title / Name' placeholder='Learn Seo: Begginer To Advance In 1 Month | Rank Your Website On 1st Page ' />
-                <hr className='my-10' />
-                <TextInput Label='Set Course Price' placeholder='20K' />
-                <hr className='my-10' />
-                <h3 className='mb-5'>Things you will Learn</h3>
-                <div className='pentutor-shadow bg-white rounded p-4'>
-                    <textarea placeholder='Enter Your Text Here' className='w-full outline-none h-40'>
-
-                    </textarea>
-                </div>
-
-                <div className='pentutor-shadow rounded my-8 overflow-hidden'>
-                    <div className='bg-yellow-450 p-7 flex items-center justify-between'>
-                        <h3>Course Content</h3>
-                        <span className='bg-gray-500 bg-opacity-60 px-3 py-1 rounded text-white cursor-pointer'>
-                            Add Section
-                        </span>
+            <Form btnText='Create' >
+                <div className='block lg:flex items-stretch gap-5'>
+                    <div className='flex-1'>
+                        <TextInput Label='Course Title / Name' placeholder='Learn Seo: Begginer To Advance In 1 Month ...' />
+                        <br />
+                        <TextInput Label='Set Course Price' placeholder='20K PKR' />
                     </div>
-                    <div className='p-6'>
-                        <Content />
-                        <Content />
-                        <Content />
-
+                    <div className='flex-1 border border-dashed border-gray-300 rounded'>
+                        <FileInput />
                     </div>
-
                 </div>
-                <div className='pentutor-shadow p-5 mb-10'>
-                    <h3 className='mb-5 text-lg font-medium'>Course Detail</h3>
-                    <textarea className='text-xs w-full outline-none' >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna a dignissim neque aliquam dis dui gravida. Pretium sed risus scelerisque bibendum sagittis. Tristique cursus id sed amet. Sit nisl vivamus ultricies phasellus malesuada in libero, et. Quis sollicitudin purus dolor ipsum, dictumst egestas pretium sit. Nunc, risus, feugiat egestas consectetur. Lectus nulla morbi ut est tincidunt elit eu, bibendum. Quis turpis eu adipiscing integer at at nulla nisl. Nunc, vivamus tortor augue at tellus. Tincidunt ipsum a vel lorem lectus ac in at turpis. Orci, tempor nec arcu velit facilisis posuere egestas suspendisse. 
-                        Ultrices arcu venenatis nulla non, eget senectus diam. Blandit quis egestas et pellentesque est. Id fermentum, arcu pellentesque sed eu nunc, lacus. Sit dui nisl, dui duis cursus amet aenean. Id sit elementum proin sapien a malesuada at sit diam. Vitae tortor maecenas sit nibh in diam interdum. Porttitor risus sed eleifend.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna a dignissim neque aliquam dis dui gravida. Pretium sed risus scelerisque bibendum sagittis. Tristique cursus id sed amet. Sit nisl vivamus ultricies phasellus malesuada in libero, et. Quis sollicitudin purus dolor ipsum, dictumst egestas pretium sit. Nunc, risus, feugiat egestas consectetur. Lectus nulla morbi ut est tincidunt elit eu, bibendum. Quis turpis eu adipiscing integer at at nulla nisl. Nunc, vivamus tortor augue at tellus. Tincidunt ipsum a vel lorem lectus ac in at turpis. Orci, tempor nec arcu velit facilisis posuere egestas suspendisse. 
-                        Ultrices arcu venenatis nulla non, eget senectus diam. Blandit quis egestas et pellentesque est. Id fermentum, arcu pellentesque sed eu nunc, lacus. Sit dui nisl, dui duis cursus amet aenean. Id sit elementum proin sapien a malesuada at sit diam. Vitae tortor maecenas sit nibh in diam interdum. Porttitor risus sed eleifend.</textarea>
-
+                <div className=' flex flex-col md:flex-row my-7 gap-6'>
+                    <DropDownInput Label='Select Level' placeholder='Advance' data={['Advance', 'Medium', 'Low']} />
+                    <DropDownInput Label='Select Category' placeholder='Marketing' data={['Marketing', 'Agency']} />
+                </div>
+                <div>
+                    <h3 className='font-bold text-lg mb-5'>Course Details</h3>
+                    <ReactQuill
+                        className='h-52'
+                        theme='snow'
+                        value={details}
+                        style={{ minHeight: '300px' }}
+                        placeholder='Enter Course Detail'
+                    />
+                </div>
+                <div className='my-16 mb-32'>
+                    <h3 className='font-bold text-lg mb-5'>Things You Will Learn</h3>
+                    <ReactQuill
+                        className='h-52'
+                        theme='snow'
+                        value={yourWillLearn}
+                        style={{ minHeight: '300px' }}
+                        placeholder='Things You Will Learn'
+                    />
                 </div>
 
             </Form>

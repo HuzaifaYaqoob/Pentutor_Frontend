@@ -33,20 +33,20 @@ const SideBar = (props) => {
 
     return (
         <>
-            <div className='fixed  w-12 pentutor-shadow flex lg:hidden items-center justify-center rounded-full top-2 left-2 h-12 z-50 cursor-pointer bg-white'  onClick={() => { setSideBarShow('fixed') }}>
+            <div className='fixed  w-12 pentutor-shadow flex lg:hidden items-center justify-center rounded-full top-2 left-2 h-12 z-50 cursor-pointer bg-white' onClick={() => { setSideBarShow('fixed') }}>
                 <HamburgerIcon />
             </div >
-            <div className={`w-56 pentutor-shadow rounded-3xl overflow-hidden ${sideBarshow} bg-white lg:block top-10 z-50`}>
+            <div className={`w-52 pentutor-shadow rounded-3xl overflow-hidden ${sideBarshow} bg-white lg:block top-0 z-50 max-h-screen lg:max-h-full overflow-y-auto `}>
                 <span className='absolute top-3 right-3 text-white cursor-pointer' onClick={() => { setSideBarShow('hidden') }} >
                     <FontAwesomeIcon icon={faTimes} />
                 </span>
-                <div className='w-56 h-48 bg-indigo-900 flex items-center justify-center rounded-3xl'>
+                <div className='w-52 h-44 bg-indigo-900 flex items-center justify-center rounded-3xl'>
                     <div>
-                        <img className='w-28' src={process.env.PUBLIC_URL + '/images/profilepic.png'} alt="ProfilePic" />
+                        <img className='w-24' src={process.env.PUBLIC_URL + '/images/profilepic.png'} alt="ProfilePic" />
                         <Link to={`/dashboard/${props.activeUser}/profile/edit/`} className='capitalize w-full text-center mt-4 text-white font-medium text-sm'>maryam safdar</Link>
                     </div>
                 </div>
-                <ul className='p-4'>
+                <ul className='p-4 '>
                     <BarLink icon={faThList} text='Pentutor' nextPath='/' />
                     <BarLink icon={faThList} text='Dashboard' nextPath='/dashboard/student/' />
 
@@ -78,9 +78,10 @@ const SideBar = (props) => {
                     <BarLink icon={faThList} text='home tution' />
                     <BarLink icon={faExclamationCircle} text='report' />
                     <BarLink icon={faUser} text='Chat Box' nextPath='/chat/' />
-                    <BarLink icon={faUser} text='log out'  />
+                    <BarLink icon={faUser} text='log out' />
                 </ul>
-            </div></>
+            </div>
+        </>
     )
 }
 

@@ -6,9 +6,9 @@ import { Link } from "react-router-dom"
 
 export const CartCourseCard = () => {
     return (
-        <div className='bg-white p-1 shadow-lg rounded border border-gray-300 w-full mb-5 flex gap-3'>
-            <img className='w-52' src={process.env.PUBLIC_URL + '/images/blog/blogImage.png'} alt="" />
-            <div className='flex flex-col justify-between py-1 flex-1'>
+        <div className='bg-white p-1 shadow-lg rounded border border-gray-300 w-full mb-5 flex flex-col mx-auto md:mx-px md:flex-row gap-3'>
+            <img className='sm:block mx-auto w-52 md:w-32 lg:w-52 ' src={process.env.PUBLIC_URL + '/images/blog/blogImage.png'} alt="" />
+            <div className='flex flex-col justify-between py-1 flex-1 px-5 md:px-0'>
                 <div>
 
                     <h3>Adobe Photoshop : Beginner to Advance in 1 Month</h3>
@@ -26,12 +26,12 @@ export const CartCourseCard = () => {
                     </span>
                 </span>
             </div>
-            <div className='text-gray-500 text-right text-sm '>
-                <p className='mb-3 cursor-pointer hover:text-gray-700'>Remove</p>
+            <div className='text-gray-500 px-5 md:px-0 md:text-right text-sm '>
+                <p className='md:mb-3 cursor-pointer hover:text-gray-700'>Remove</p>
                 <p className='cursor-pointer hover:text-gray-700'>Move to Wishlist</p>
             </div>
             <div className='text-center px-10'>
-                <p className='text-red-500 font-bold mb-3'>20K PKR</p>
+                <p className='text-red-500 font-bold md:mb-3'>20K PKR</p>
                 <p className='text-xs text-gray-400'><del>40k PKR</del></p>
             </div>
         </div>
@@ -46,7 +46,7 @@ const UserCart = () => {
                 <h3 className='font-bold text-xl'>My Cart</h3>
             </div>
 
-            <div className='flex items-start justify-between gap-9 container mx-auto bg my-10 px-5'>
+            <div className='flex flex-col-reverse lg:flex-row items-start justify-between gap-9 container mx-auto bg my-10 px-5'>
                 <div className='flex-1'>
                     <CartCourseCard />
                     <CartCourseCard />

@@ -39,11 +39,10 @@ const Course = () => {
 
 const StudentCourses = () => {
     return (
-        <div className='bg-white shadow rounded border border-gray-200 mt-10'>
-            <div className="table w-full px-5 overflow-x-auto">
+        <div className='bg-white shadow rounded border border-gray-200 mt-10 '>
+            <div className="table w-full px-5 overflow-x-scroll">
                 <div className="table-row-group">
                     <div className="table-row">
-
                         <p className='table-cell py-2 text-indigo-600'>Preview</p>
                         <p className='table-cell py-2 text-indigo-600'>Course Name</p>
                         <p className='table-cell py-2 text-indigo-600'>Buying Date</p>
