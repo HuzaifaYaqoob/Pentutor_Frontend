@@ -1,10 +1,9 @@
 {
   "name": "learning_management_system",
-  "homepage": ".",
+  "homepage": "http://ZeevhY.github.io/aphd04300",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "3d-react-carousal": "^4.0.2",
     "@craco/craco": "^6.2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
@@ -12,6 +11,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "3d-react-carousal": "^4.0.2",
     "chart.js": "^3.5.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -24,6 +24,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
@@ -49,6 +51,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
+    "gh-pages": "^3.2.3",
     "postcss": "^7.0.36",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
   }
