@@ -141,7 +141,7 @@ export const HamburgerIcon = (props) => {
 }
 
 const Header = () => {
-    const [loggedIn, setLoggedIn] = useState(true)
+    const [loggedIn, setLoggedIn] = useState(false)
 
     const [mobileNavshow, setMobileNavShow] = useState('hidden')
 
