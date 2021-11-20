@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-//  Components
+//  Components 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/index";
 import Home from "./Pages/Home/HomePage";
@@ -50,6 +50,7 @@ import PostNewJob from "./Pages/Dashboard/SuperAdmin/Jobs/PostNew";
 import Loader from './components/Loader/Loader'
 import { Switch, Route } from "react-router-dom";
 
+
 const App = () => {
   const [loading, setLoading] = useState(true)
 
@@ -87,6 +88,7 @@ const App = () => {
 
       <Switch>
         <Route exact path="/" component={Home} />
+
         <Route exact path='/wishlist/' component={Wishlist} />
         <Route exact path='/cart/' component={UserCart} />
         <Route exact path='/checkout/' component={Checkout} />
