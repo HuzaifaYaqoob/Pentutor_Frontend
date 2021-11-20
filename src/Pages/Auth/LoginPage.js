@@ -1,12 +1,12 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLowVision } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import AuthBase from './AuthBase'
-
+import Cookies from 'js-cookie'
 import { LoginUser } from '../../redux/Actions/UserActions/UserActions'
-import {  connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 
 const LoginPage = (props) => {
@@ -40,6 +40,13 @@ const LoginPage = (props) => {
         // }
         props.LoginUser()
     }
+
+    useEffect(() => {
+        const user_token = Cookies.get('auth_token')
+        if (user_token) {
+            props.history.push('/')
+        }
+    }, [])
 
 
     return (
