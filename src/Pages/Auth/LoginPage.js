@@ -12,7 +12,10 @@ import { connect } from 'react-redux'
 const LoginPage = (props) => {
     const [show_pw, setShowPassword] = useState(false)
     const [username, setUsername] = useState('')
+    const [username_err , setUsernameErr] = useState(undefined)
+
     const [password, setPassword] = useState('')
+    const [password_err , setPasswordErr] = useState(undefined)
 
     console.log(props)
 
@@ -20,25 +23,32 @@ const LoginPage = (props) => {
         setUsername(username.trim())
         setPassword(password.trim())
         if (username == '' || password == '') {
+            if(username == ''){
+                setUsernameErr('Username is required')
+            }
+            if(password == ''){
+                setPasswordErr('Password is required')
+            }
             return false
         }
         return true
     }
 
     const Submit = () => {
-        // if(Validation()){
-        //     let login_form = new FormData()
-
-        //     login_form.append('username' , username)
-        //     login_form.append('password' , password)
-
-        //     let rs_code;
-        //     let req_ = {
-        //         method : 'POST' ,
-        //         body : login_form
-        //     }
-        // }
-        props.LoginUser()
+        if(Validation()){
+            let login_data = {
+                username : username,
+                password : password
+            }
+            props.LoginUser(
+                login_data,
+                ()=>{},
+                ()=>{
+                    setUsernameErr('Invalid Credentials')
+                    setPasswordErr('Invalid Credentials')
+                }
+                )
+        }
     }
 
     useEffect(() => {
@@ -46,34 +56,34 @@ const LoginPage = (props) => {
         if (user_token) {
             props.history.push('/')
         }
-    }, [])
+    }, [props.Login.loggedIn])
 
 
     return (
         <AuthBase Heading='Login' CurrentImage='/images/auth/LoginPageImage.png' >
             <div className='rounded-md bg-white pentutor-shadow p-10 max-w-sm mx-auto'>
                 <div className='text-gray-800 mb-3'>
-                    <label htmlFor="Username" className='block text-sm mb-1'>Username</label>
+                    <label htmlFor="Username" className={`block text-sm mb-1 ${username_err && 'text-red-700'}`}>Username</label>
                     <div >
                         <input
                             value={username}
                             type="text" id='Username'
                             placeholder='Enter Your Username/ User ID'
-                            className='outline-none w-full bg-gray-200 block rounded-lg text-sm p-2'
-                            onChange={(e) => { setUsername(e.target.value) }}
+                            className={`outline-none w-full bg-gray-200 block rounded-lg text-sm p-2 ${username_err && 'border border-red-700'}`}
+                            onChange={(e) => { setUsername(e.target.value); setUsernameErr(undefined) }}
                         />
                     </div>
                 </div>
                 <div className='text-gray-800 mb-3'>
-                    <label htmlFor="Password" className='block text-sm mb-1'>Password</label>
+                    <label htmlFor="Password" className={`${password_err && 'text-red-700'} block text-sm mb-1`}>Password</label>
                     <div className='relative'>
                         <input
                             value={password}
                             type={show_pw ? 'text' : "password"}
                             id='Password'
                             placeholder='Enter Your Password'
-                            className='outline-none bg-gray-200 rounded-lg  text-sm w-full block p-2'
-                            onChange={(e) => { setPassword(e.target.value) }}
+                            className={`outline-none bg-gray-200 rounded-lg  text-sm w-full block p-2 ${password_err && 'border border-red-700'}`}
+                            onChange={(e) => { setPassword(e.target.value) ; setPasswordErr(undefined)}}
                         />
                         <span
                             className='cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2'

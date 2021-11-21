@@ -3,6 +3,7 @@ import { Link, Route } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faTimes, faUserAlt } from '@fortawesome/free-solid-svg-icons'
+import { connect } from 'react-redux'
 
 const ActiveEffect = () => {
     return (
@@ -140,7 +141,7 @@ export const HamburgerIcon = (props) => {
     )
 }
 
-const Header = () => {
+const Header = (props) => {
     const [loggedIn, setLoggedIn] = useState(false)
 
     const [mobileNavshow, setMobileNavShow] = useState('hidden')
@@ -167,7 +168,7 @@ const Header = () => {
             </nav>
             <ul className='flex items-center text-xs gap-2'>
                 {
-                    loggedIn ?
+                    props.Login.loggedIn ?
                         <LoggedUser setLoggedIn={setLoggedIn} />
                         :
                         <>
@@ -184,4 +185,12 @@ const Header = () => {
     )
 }
 
-export default Header
+const mapStateToProps = state =>{
+    return state
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
