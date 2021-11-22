@@ -1,5 +1,5 @@
 
-import React from 'react'
+import { useState } from 'react'
 
 import AuthBase from "./AuthBase"
 
@@ -7,11 +7,13 @@ import { Route, useParams } from 'react-router-dom'
 
 import StudentForm from "./StudentForm"
 import TutorRegisterForm from "./TutorRegisterForm"
+import RegisterForm from './RegisterForm'
 
 const RegisterTab = (props) => {
+
     const ChangeTab = () => {
-        props.path && 
-        props.history.push(`/auth/register/${props.path}/`)
+        props.path &&
+            props.history.push(`/auth/register/${props.path}/`)
     }
     return (
         <div className={'w-full py-6 text-center cursor-pointer ' + (props.active ? 'bg-white ' : 'bg-gray-200 ') + (props.path && 'hover:bg-gray-100 ')} onClick={() => { ChangeTab() }}>
@@ -19,6 +21,7 @@ const RegisterTab = (props) => {
         </div>
     )
 }
+
 
 
 const RegisterPage = (props) => {
@@ -44,9 +47,10 @@ const RegisterPage = (props) => {
                     </Route>
 
                 </div>
-                <div>
-                    <Route path='/auth/register/student/' component={StudentForm} />
-                    <Route path='/auth/register/tutor/' component={TutorRegisterForm} />
+                <div className='bg-white p-8 pt-3 relative'>
+                    {/* <Route path='/auth/register/student/' component={StudentForm} />
+                    <Route path='/auth/register/tutor/' component={TutorRegisterForm} /> */}
+                    <RegisterForm />
                 </div>
             </div>
         </AuthBase>
