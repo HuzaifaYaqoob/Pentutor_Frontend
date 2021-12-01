@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { Link, Route } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { LoggoutUser } from '../../redux/Actions/UserActions/UserActions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faTimes, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux'
+import Cookies from 'js-cookie'
+import AlertPopup from '../AlertPopup'
 
 const ActiveEffect = () => {
     return (
@@ -13,61 +17,81 @@ const ActiveEffect = () => {
 
 
 const UserDropDown = (props) => {
-
+    const dispatch = useDispatch()
     const [dropDownActive, setDropDownActive] = useState(false)
+    const [show_alert, setShowAlert] = useState(false)
 
     return (
-        <div className='relative'>
-            <span onClick={() => { setDropDownActive(!dropDownActive) }}>
-                <img className='w-10 cursor-pointer ' src={process.env.PUBLIC_URL + '/images/profilepic.png'} alt="Logo" />
-            </span>
-
+        <>
             {
-                dropDownActive ?
-                    <div className='absolute top-full mt-5 right-0 bg-gray-600 rounded-lg text-white z-50 w-72'>
-                        <div className='py-4 px-4 flex items-center gap-4'>
-                            <img className='w-16 ' src={process.env.PUBLIC_URL + '/images/profilepic.png'} alt="Logo" />
-                            <div>
-                                <p className='font-medium text-lg'>Maryam Safdar</p>
-                                <p className='text-sm'>Maryam.Safdar@gmail.com</p>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className='p-7'>
-                            <Link to='/dashboard/student/' className='text-lg relative w-full block mb-4'>
-                                Dashboard
-                            </Link>
-                            <Link to='/cart/' className='text-lg relative w-full block mb-4'>
-                                Cart
-                                <span className='absolute right-0 bg-yellow-450 w-6 top-0 flex items-center justify-center h-6 rounded-full'>
-                                    1
-                                </span>
-                            </Link>
-                            <Link to='/wishlist/' className='text-lg relative w-full block'>
-                                Wishlist
-                                <span className='absolute right-0 bg-yellow-450 w-6 top-0 flex items-center justify-center h-6 rounded-full'>
-                                    1
-                                </span>
-                            </Link>
-                        </div>
-                        <hr />
-                        <div className='p-6'>
-                            <Link to='/dashboard/student/' className='text-lg relative w-full block'>
-                                Profile Setting
-                            </Link>
-                        </div>
-                        <hr />
-                        <div className='p-6'>
-                            <span className='text-lg cursor-pointer' onClick={() => { props.setLoggedIn(false) }}>
-                                Logout
-                            </span>
-                        </div>
-
-                    </div>
-                    :
-                    <></>
+                show_alert &&
+                <AlertPopup type='error' message='Something went wrong' callBack={() => { setShowAlert(false) }} />
             }
-        </div>
+            <div className='relative'>
+                <span onClick={() => { setDropDownActive(!dropDownActive) }}>
+                    <img className='w-10 cursor-pointer ' src={process.env.PUBLIC_URL + '/images/profilepic.png'} alt="Logo" />
+                </span>
+
+                {
+                    dropDownActive ?
+                        <div className='absolute top-full mt-5 right-0 bg-gray-600 rounded-lg text-white z-50 w-72'>
+                            <div className='py-4 px-4 flex items-center gap-4'>
+                                <img className='w-16 ' src={process.env.PUBLIC_URL + '/images/profilepic.png'} alt="Logo" />
+                                <div>
+                                    <p className='font-medium text-lg'>Maryam Safdar</p>
+                                    <p className='text-sm'>Maryam.Safdar@gmail.com</p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className='p-7'>
+                                <Link to='/dashboard/student/' className='text-lg relative w-full block mb-4'>
+                                    Dashboard
+                                </Link>
+                                <Link to='/cart/' className='text-lg relative w-full block mb-4'>
+                                    Cart
+                                    <span className='absolute right-0 bg-yellow-450 w-6 top-0 flex items-center justify-center h-6 rounded-full'>
+                                        1
+                                    </span>
+                                </Link>
+                                <Link to='/wishlist/' className='text-lg relative w-full block'>
+                                    Wishlist
+                                    <span className='absolute right-0 bg-yellow-450 w-6 top-0 flex items-center justify-center h-6 rounded-full'>
+                                        1
+                                    </span>
+                                </Link>
+                            </div>
+                            <hr />
+                            <div className='p-6'>
+                                <Link to='/dashboard/student/' className='text-lg relative w-full block'>
+                                    Profile Setting
+                                </Link>
+                            </div>
+                            <hr />
+                            <div className='p-6'>
+                                <span
+                                    className='text-lg cursor-pointer'
+                                    onClick={() => {
+                                        dispatch(
+                                            LoggoutUser(
+                                                () => {
+                                                    Cookies.remove('auth_token')
+                                                },
+                                                () => {
+                                                    setShowAlert(true)
+                                                }
+                                            )
+                                        )
+                                    }}>
+                                    Logout
+                                </span>
+                            </div>
+
+                        </div>
+                        :
+                        <></>
+                }
+            </div>
+        </>
     )
 }
 
@@ -77,33 +101,33 @@ const NotificationItem = () => {
         <div className='py-2 overflow-hidden cursor-pointer '>
             <p className='text-lg whitespace-nowrap'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
             <p className='text-gray-300'>26 Sep, 2021</p>
-            <span className='block w-full bg-gray-500 mt-2' style={{height:'1px'}}></span>
+            <span className='block w-full bg-gray-500 mt-2' style={{ height: '1px' }}></span>
         </div>
     )
 }
 
 const NotificationDropDown = () => {
 
-    const [NotifyActive , setNotifyActive] = useState(false)
+    const [NotifyActive, setNotifyActive] = useState(false)
     return (
         <div className='relative'>
-            <span onClick={()=>{setNotifyActive(!NotifyActive)}} >
+            <span onClick={() => { setNotifyActive(!NotifyActive) }} >
                 <FontAwesomeIcon icon={faBell} className='text-indigo-900 text-xl cursor-pointer' />
             </span>
             {
                 NotifyActive ?
-            <div className='absolute top-full mt-5 right-0 bg-gray-600 text-white w-96 rounded-lg z-50'>
-                <h3 className='text-xl px-3 py-1'>Notifications</h3>
-                <hr />
-                <div className='px-2'>
-                    <NotificationItem />
-                    <NotificationItem />
-                    <NotificationItem />
-                    <NotificationItem />
-                    <NotificationItem />
-                </div>
-            </div>
-            :<></>
+                    <div className='absolute top-full mt-5 right-0 bg-gray-600 text-white w-96 rounded-lg z-50'>
+                        <h3 className='text-xl px-3 py-1'>Notifications</h3>
+                        <hr />
+                        <div className='px-2'>
+                            <NotificationItem />
+                            <NotificationItem />
+                            <NotificationItem />
+                            <NotificationItem />
+                            <NotificationItem />
+                        </div>
+                    </div>
+                    : <></>
             }
         </div>
     )
@@ -113,7 +137,7 @@ const LoggedUser = (props) => {
     return (
         <div className='flex items-center gap-5'>
             <NotificationDropDown />
-            <UserDropDown setLoggedIn={props.setLoggedIn} />
+            <UserDropDown />
         </div>
     )
 }
@@ -142,8 +166,6 @@ export const HamburgerIcon = (props) => {
 }
 
 const Header = (props) => {
-    const [loggedIn, setLoggedIn] = useState(false)
-
     const [mobileNavshow, setMobileNavShow] = useState('hidden')
 
     return (
@@ -168,8 +190,8 @@ const Header = (props) => {
             </nav>
             <ul className='flex items-center text-xs gap-2'>
                 {
-                    props.Login.loggedIn ?
-                        <LoggedUser setLoggedIn={setLoggedIn} />
+                    props.user.loggedIn ?
+                        <LoggedUser />
                         :
                         <>
                             <li className='py-2 px-4 rounded overflow-hidden bg-gray-700 text-white cursor-pointer'>
@@ -185,7 +207,7 @@ const Header = (props) => {
     )
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
     return state
 }
 

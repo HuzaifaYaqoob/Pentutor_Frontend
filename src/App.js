@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+import { getUserData } from "./redux/Actions/UserActions/UserActions";
+import { useDispatch } from "react-redux";
+
 //  Components 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/index";
@@ -49,14 +52,23 @@ import PostNewJob from "./Pages/Dashboard/SuperAdmin/Jobs/PostNew";
 
 import Loader from './components/Loader/Loader'
 import { Switch, Route } from "react-router-dom";
+import Cookies from "js-cookie";
 
 
 const App = () => {
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const user_token = Cookies.get('auth_token')
+    if (user_token) {
+      dispatch(
+        getUserData(
+          user_token
+        )
+      )
+    }
     setTimeout(() => {
-
       setLoading(false)
     }, 2000);
   }, [])

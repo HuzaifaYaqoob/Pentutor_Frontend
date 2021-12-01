@@ -2,15 +2,15 @@
 
 import { useState } from 'react'
 import { connect } from 'react-redux'
-import {useHistory, useParams} from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { RegisterUser } from '../../redux/Actions/UserActions/UserActions'
-
+import Loader from '../../components/Loader/Loader'
 
 const RegisterForm = (props) => {
     const params = useParams()
     const history = useHistory()
-    console.log(params)
 
+    const [loading, setLoading] = useState(false)
     const [first_name, setFIrstName] = useState('')
     const [first_name_err, setFIrstNameErr] = useState('')
 
@@ -48,21 +48,24 @@ const RegisterForm = (props) => {
     }
 
     const Submit = () => {
-        if(ValidateData()){
-            // console.log(params)
+        if (ValidateData()) {
+            setLoading(true)
             props.RegisterUser(
-                params.UserStatus ,
+                params.UserStatus,
                 {
-                    first_name : first_name,
-                    last_name : last_name,
-                    email : email,
-                    password : password
+                    first_name: first_name,
+                    last_name: last_name,
+                    email: email,
+                    password: password,
+                    type: params.UserStatus
                 },
-                ()=>{
+                () => {
                     history.push('/auth/login/')
+                    setLoading(false)
                 },
-                ()=>{
-                    alert('Fail')
+                (data) => {
+                    alert(data)
+                    setLoading(false)
                 }
             )
         }
@@ -70,6 +73,10 @@ const RegisterForm = (props) => {
 
     return (
         <>
+            {
+                loading &&
+                <Loader />
+            }
             <div className='mb-2'>
                 <label htmlFor="f_name" className={`text-xs font-semibold mb-1 ${first_name_err && 'text-red-700'}`}>First Name</label>
                 <div>
@@ -106,7 +113,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    RegisterUser : RegisterUser
+    RegisterUser: RegisterUser
 }
 
-export default connect(mapStateToProps,mapDispatchToProps )(RegisterForm)
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm)

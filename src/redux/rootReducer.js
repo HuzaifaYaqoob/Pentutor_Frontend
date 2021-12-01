@@ -5,7 +5,7 @@ import { combineReducers } from 'redux'
 import UserReducers from './reducers/UserReducers/UserReducer'
 
 const root_reducer = combineReducers({
-    Login : UserReducers,
+    user : UserReducers,
 })
 
 export default root_reducer

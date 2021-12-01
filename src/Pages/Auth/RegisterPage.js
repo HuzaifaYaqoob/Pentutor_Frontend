@@ -10,7 +10,6 @@ import TutorRegisterForm from "./TutorRegisterForm"
 import RegisterForm from './RegisterForm'
 
 const RegisterTab = (props) => {
-
     const ChangeTab = () => {
         props.path &&
             props.history.push(`/auth/register/${props.path}/`)
