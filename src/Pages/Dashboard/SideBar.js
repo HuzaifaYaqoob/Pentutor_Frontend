@@ -42,7 +42,7 @@ const SideBar = (props) => {
                 </span>
                 <div className='w-52 h-44 bg-indigo-900 flex items-center justify-center rounded-3xl'>
                     <div>
-                        <img className='w-24' src={process.env.PUBLIC_URL + '/images/profilepic.png'} alt="ProfilePic" />
+                        <img className='w-24 mx-auto' src={process.env.PUBLIC_URL + '/images/profilepic.png'} alt="ProfilePic" />
                         <Link to={`/dashboard/${props.activeUser}/profile/edit/`} className='capitalize w-full text-center mt-4 text-white font-medium text-sm'>maryam safdar</Link>
                     </div>
                 </div>

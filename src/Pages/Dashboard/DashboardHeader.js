@@ -18,7 +18,7 @@ const DashboardHeader = (props) =>{
                 <div className='bg-white pentutor-shadow rounded flex items-center px-3 text-xs'>
                     <FontAwesomeIcon className='text-gray-400' icon={faSearch} />
                     <div className='flex-1'>
-                        <input type="text" className='outline-none text-xs py-2 w-full text-center' placeholder='Search Anything' />
+                        <input type="text" className='outline-none text-xs py-3 w-full text-center' placeholder='Search Anything' />
                     </div>
                 </div>
             </div>

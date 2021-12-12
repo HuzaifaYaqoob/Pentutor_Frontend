@@ -2,19 +2,26 @@
 
 import DashboardBase from "../../DashboardBase"
 import ContentBox from "../../ContentBox"
-
+import { connect } from 'react-redux'
 import Form, { TextInput, EmailInput, ContactNumberInput, DOBInput, DropDownInput, FileInput } from '../../FormSection/Form'
 
+import { getUserProfile } from '../../../../redux/Actions/ProfileActions/ProfileActions'
+import { useEffect } from "react"
 
-const EditProfile = () => {
+const EditProfile = (props) => {
+    console.log(props)
+
+    useEffect(() => {
+        props.getUserProfile()
+    }, [])
     return (
         <>
             <DashboardBase>
                 <ContentBox HeaderText='Welcome to Profile' />
-                <Form btnText='save'>
+                <Form btnText='save' className='mx-auto max-w-6xl w-full '>
                     <div className='md:flex gap-10 mb-5'>
                         <TextInput Label='Your Name' placeholder='Maryam Safdar' />
-                        <EmailInput Label='E-Mail Address' placeholder='Yourname@gmail.com' verify />
+                        <EmailInput Label='E-Mail Address' placeholder='Yourname@gmail.com' />
                     </div>
                     <div className='md:flex gap-10'>
                         <ContactNumberInput Label='contact number' />
@@ -41,8 +48,35 @@ const EditProfile = () => {
                     </div>
                     <TextInput Label='preferred timing of study' placeholder='11:00 AM -- To -- 3:PM' />
                     <hr className='my-10' />
-                    <FileInput Label='add CNIC/b-form' />
-                    <FileInput Label='add degree picture' />
+                    <div className="flex items-center justify-between">
+                        <FileInput
+                            accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
+                            Label='Profile Picture'
+                            id='profile-picture'
+                            onChange={
+                                (event) => {
+                                    console.log(event.target.files)
+                                }}
+                        />
+                        <FileInput
+                            accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
+                            Label='add CNIC/b-form'
+                            id='cnic-picture'
+                            onChange={
+                                (event) => {
+                                    console.log(event.target.files)
+                                }}
+                        />
+                        <FileInput
+                            accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
+                            Label='add degree picture'
+                            id='degree-picture'
+                            onChange={
+                                (event) => {
+                                    console.log(event.target.files)
+                                }}
+                        />
+                    </div>
                     <hr className='my-10' />
 
                 </Form>
@@ -52,4 +86,12 @@ const EditProfile = () => {
 }
 
 
-export default EditProfile
+const mapStateToProps = state => {
+    return state
+}
+
+const mapDispatchToProps = {
+    getUserProfile: getUserProfile
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
