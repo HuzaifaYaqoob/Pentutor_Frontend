@@ -23,7 +23,6 @@ export const getUserProfile = (data , success, fail) => dispatch =>{
     })
     .then(result =>{
         if(s_code == 200){
-            alert('DOne')
             dispatch(
                 {
                     type : GET_USER_PROFILE,

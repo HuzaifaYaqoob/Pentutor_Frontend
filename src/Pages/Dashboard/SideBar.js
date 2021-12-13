@@ -6,7 +6,9 @@ import { faChevronRight, faThList, faUser, faBook, faCodeBranch, faCreditCard, f
 
 import { Link, Route } from 'react-router-dom'
 import { HamburgerIcon } from '../../components/Header/Header'
+import { connect } from 'react-redux'
 
+import { apiBaseURL } from '../../redux/apiURLs'
 
 const BarLink = (props) => {
     return (
@@ -42,13 +44,15 @@ const SideBar = (props) => {
                 </span>
                 <div className='w-52 h-44 bg-indigo-900 flex items-center justify-center rounded-3xl'>
                     <div>
-                        <img className='w-24 mx-auto' src={process.env.PUBLIC_URL + '/images/profilepic.png'} alt="ProfilePic" />
-                        <Link to={`/dashboard/${props.activeUser}/profile/edit/`} className='capitalize w-full text-center mt-4 text-white font-medium text-sm'>maryam safdar</Link>
+                        <div className='w-28 overflow-hidden h-28 rounded-full  mx-auto'>
+                            <img className='w-24 mx-auto' src={props.user.userData && props.user.userData.profile_image ? apiBaseURL + props.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'} alt="ProfilePic" />
+                        </div>
+                        <Link to={`/dashboard/${props.user.userData && props.user.userData.user_type.toLowerCase()}/profile/edit/`} className='capitalize w-full text-center mt-4 text-white font-medium text-sm'>{props.user.userData && `${props.user.userData.user.first_name} ${props.user.userData.user.last_name}`}</Link>
                     </div>
                 </div>
                 <ul className='p-4 '>
                     <BarLink icon={faThList} text='Pentutor' nextPath='/' />
-                    <BarLink icon={faThList} text='Dashboard' nextPath='/dashboard/student/' />
+                    <BarLink icon={faThList} text='Dashboard' nextPath={`/dashboard/${props.user.userData && props.user.userData.user_type.toLowerCase()}/`} />
 
                     <Route path='/dashboard/student/'>
                         <BarLink icon={faBook} text='Courses' nextPath='/dashboard/student/courses/' />
@@ -85,4 +89,9 @@ const SideBar = (props) => {
     )
 }
 
-export default SideBar
+const mapStateToProps = state => {
+    return state
+}
+
+
+export default connect(mapStateToProps, null)(SideBar)

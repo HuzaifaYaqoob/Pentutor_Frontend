@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import { getUserData } from "./redux/Actions/UserActions/UserActions";
-import { useDispatch } from "react-redux";
+import { getUserProfile } from "./redux/Actions/ProfileActions/ProfileActions";
+import { connect, useDispatch } from "react-redux";
 
 //  Components 
 import Header from "./components/Header/Header";
@@ -51,13 +52,33 @@ import AdminJobs from "./Pages/Dashboard/SuperAdmin/Jobs/JobsListing";
 import PostNewJob from "./Pages/Dashboard/SuperAdmin/Jobs/PostNew";
 
 import Loader from './components/Loader/Loader'
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
 
-const App = () => {
+const App = (props) => {
+  const history = useHistory()
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
+
+  const USER_URLs = [
+    '/',
+    '/courses/',
+    '/courses/:course_slug/view/',
+    '/our-tutor/',
+    '/our-tutor/profile/:profile_slug/',
+    '/about-us/',
+    '/contact-us/',
+    '/blogs/',
+    '/blogs/view/:blog_id/',
+    '/wishlist/',
+    '/cart/',
+    '/checkout/',
+    '/jobs/',
+    '/home/',
+    '/auth/logn/',
+    '/auth/register/',
+  ]
 
   useEffect(() => {
     const user_token = Cookies.get('auth_token')
@@ -67,6 +88,14 @@ const App = () => {
           user_token
         )
       )
+      dispatch(
+        getUserProfile()
+      )
+    }
+    else {
+      if (!USER_URLs.includes(history.location.pathname)) {
+        history.push('/auth/login/')
+      }
     }
     setTimeout(() => {
       setLoading(false)
@@ -129,30 +158,36 @@ const App = () => {
           ]
         } component={RegisterPage} />
 
-        <Route exact path='/dashboard/student/' component={StudentDashboard} />
-        <Route exact path='/dashboard/student/profile/edit/' component={EditProfile} />
-        <Route exact path='/dashboard/student/courses/' component={PurchasesCourses} />
+        {
+          props.user.loggedIn &&
+          <>
 
-        <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
-        <Route exact path='/dashboard/tutor/profile/edit/' component={EditProfileTutor} />
-        <Route exact path='/dashboard/tutor/courses/' component={CoursesList} />
-        <Route exact path='/dashboard/tutor/courses/add-new/' component={AddCourse} />
-        <Route exact path='/dashboard/tutor/courses/:course_id/add-videos/' component={AddCourseContent} />
+            <Route exact path='/dashboard/student/' component={StudentDashboard} />
+            <Route exact path='/dashboard/student/profile/edit/' component={EditProfile} />
+            <Route exact path='/dashboard/student/courses/' component={PurchasesCourses} />
+
+            <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
+            <Route exact path='/dashboard/tutor/profile/edit/' component={EditProfileTutor} />
+            <Route exact path='/dashboard/tutor/courses/' component={CoursesList} />
+            <Route exact path='/dashboard/tutor/courses/add-new/' component={AddCourse} />
+            <Route exact path='/dashboard/tutor/courses/:course_id/add-videos/' component={AddCourseContent} />
 
 
 
-        <Route exact path='/dashboard/tutor/jobs/' component={TutorJobs} />
-        <Route exact path='/dashboard/tutor/jobs/add-new/' component={CreateJob} />
+            <Route exact path='/dashboard/tutor/jobs/' component={TutorJobs} />
+            <Route exact path='/dashboard/tutor/jobs/add-new/' component={CreateJob} />
 
-        <Route exact path='/dashboard/super-admin/' component={AdminDashboard} />
-        <Route exact path='/dashboard/super-admin/register/student/' component={RegisterStudent} />
-        <Route exact path='/dashboard/super-admin/register/tutor/' component={RegisterTutor} />
-        <Route exact path='/dashboard/super-admin/register/admin/' component={RegisterAdmin} />
-        <Route exact path='/dashboard/super-admin/jobs/' component={AdminJobs} />
-        <Route exact path='/dashboard/super-admin/jobs/post-new/' component={PostNewJob} />
-        <Route exact path='/dashboard/super-admin/blog/' component={BlogListing} />
-        <Route exact path='/dashboard/super-admin/blog/post-new/' component={AddBlogPost} />
-        <Route exact path='/dashboard/super-admin/courses/' component={AdminCoursesList} />
+            <Route exact path='/dashboard/super-admin/' component={AdminDashboard} />
+            <Route exact path='/dashboard/super-admin/register/student/' component={RegisterStudent} />
+            <Route exact path='/dashboard/super-admin/register/tutor/' component={RegisterTutor} />
+            <Route exact path='/dashboard/super-admin/register/admin/' component={RegisterAdmin} />
+            <Route exact path='/dashboard/super-admin/jobs/' component={AdminJobs} />
+            <Route exact path='/dashboard/super-admin/jobs/post-new/' component={PostNewJob} />
+            <Route exact path='/dashboard/super-admin/blog/' component={BlogListing} />
+            <Route exact path='/dashboard/super-admin/blog/post-new/' component={AddBlogPost} />
+            <Route exact path='/dashboard/super-admin/courses/' component={AdminCoursesList} />
+          </>
+        }
 
 
       </Switch>
@@ -178,4 +213,12 @@ const App = () => {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return state
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, null)(App);

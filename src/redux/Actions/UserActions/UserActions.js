@@ -19,13 +19,13 @@ export const LoginUser = (login_cred, success, fail) => dispatch => {
     )
         .then(response => {
             rs_code = response.status
-            if (rs_code == 201) {
+            if (rs_code == 200) {
                 return response.json()
             }
         })
         .then(result => {
-            if (rs_code == 201) {
-                Cookies.set('auth_token', result.user.auth_token)
+            if (rs_code == 200) {
+                Cookies.set('auth_token', result.user.user.auth_token)
                 dispatch({
                     type: LOGIN_USER,
                     payload: result
@@ -33,7 +33,7 @@ export const LoginUser = (login_cred, success, fail) => dispatch => {
             }
         })
         .then(() => {
-            if (rs_code == 201) {
+            if (rs_code == 200) {
                 success && success()
             }
             else if (rs_code == 404) {
@@ -119,7 +119,7 @@ export const getUserData = (auth_token, success, fail) => dispatch => {
                 })
             }
         })
-        .then(err => {
+        .catch(err => {
             console.log('User Error : ', err)
         })
 }

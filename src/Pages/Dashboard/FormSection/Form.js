@@ -19,7 +19,7 @@ export const TextInput = (props) => {
     return (
         <div className='flex-1'>
             <InputLabel text={props.Label} />
-            <input type='text' placeholder={props.placeholder} className='w-full pentutor-shadow text-center outline-none py-2 ' />
+            <input type='text' placeholder={props.placeholder} className='w-full pentutor-shadow text-center outline-none py-2 ' value={props.value && props.value} />
         </div>
     )
 }
@@ -29,7 +29,7 @@ export const EmailInput = (props) => {
         <div className='flex-1'>
             <InputLabel text={props.Label} />
             <div className='flex pentutor-shadow '>
-                <input type="email" placeholder={props.placeholder} className='w-full flex-1 text-center my-0 outline-none py-2' />
+                <input type="email" placeholder={props.placeholder} className='w-full flex-1 text-center my-0 outline-none py-2' value={props.value && props.value} />
                 {
                     props.verify &&
                     <button className='color-green rounded text-white text-xs py-0 block px-4'>Verify</button>
@@ -49,7 +49,7 @@ export const ContactNumberInput = (props) => {
                     +92
                 </span> */}
                 <div className='flex pentutor-shadow flex-1'>
-                    <input type="text" placeholder='3********' className='outline-none my-0 flex-1 py-2 px-2' />
+                    <input type="text" placeholder='3********' className='outline-none my-0 flex-1 py-2 px-2' value={props.value && props.value} />
                     {/* <button className='color-green rounded text-white text-xs py-0 block px-4'>Verify</button> */}
                 </div>
             </div>
@@ -62,7 +62,7 @@ export const DOBInput = (props) => {
     return (
         <div className='flex-1'>
             <InputLabel text={props.Label} />
-            <input type="date" className='w-full bg-white pentutor-shadow outline-none py-2 px-2' />
+            <input type="date" className='w-full bg-white pentutor-shadow outline-none py-2 px-2' value={props.value && props.value} />
         </div>
     )
 }
@@ -113,7 +113,7 @@ export const FileInput = (props) => {
                 onChange={props.onChange && props.onChange}
                 accept={props.accept && props.accept}
                 hidden
-
+                value={props.value && props.value}
             />
         </div>
     )
