@@ -46,6 +46,9 @@ const EditProfile = (props) => {
                 ...image_data
             }
         )
+        setSelectedImage(undefined)
+        setSelectedDegree(undefined)
+        setSelectedCnic(undefined)
     }
 
     const getCity = (country) => {
@@ -363,7 +366,7 @@ const EditProfile = (props) => {
                                                 backgroundImage: `url('${user_profile &&
                                                     user_profile.degree_image && !selected_degree ?
                                                     apiBaseURL + user_profile.degree_image :
-                                                    user_profile.degree_image 
+                                                    user_profile.degree_image
                                                     }')`
                                             }}
                                         >
@@ -403,17 +406,30 @@ const EditProfile = (props) => {
                             user_profile && user_profile.cnic_image ?
                                 <>
                                     <div className="w-full text-center">
-                                        <div
-                                            className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
-                                            style={{
-                                                backgroundImage: `url('${user_profile &&
-                                                    user_profile.cnic_image && !selected_cnic ?
-                                                    apiBaseURL + user_profile.cnic_image :
-                                                    user_profile.cnic_image
-                                                    }')`
-                                            }}
-                                        >
-                                        </div>
+                                        {
+                                            !selected_cnic ?
+                                                <div
+                                                    className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
+                                                    style={{
+                                                        backgroundImage: `url('${user_profile &&
+                                                            user_profile.cnic_image  ?
+                                                            apiBaseURL + user_profile.cnic_image :
+                                                            ''
+                                                            }')`
+                                                    }}
+                                                >
+                                                </div>
+                                                :
+                                                <div
+                                                    className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
+                                                    style={{
+                                                        backgroundImage: `url('${
+                                                            user_profile.cnic_image
+                                                            }')`
+                                                    }}
+                                                >
+                                                </div>
+                                        }
                                         <FileInput
                                             remove_logo
                                             accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
