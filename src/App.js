@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { getUserData } from "./redux/Actions/UserActions/UserActions";
 import { getUserProfile } from "./redux/Actions/ProfileActions/ProfileActions";
+import { getAllCountries } from "./redux/Actions/UtilityActions/UtilityActions";
 import { connect, useDispatch } from "react-redux";
 
 //  Components 
@@ -80,6 +81,10 @@ const App = (props) => {
     '/auth/register/',
   ]
 
+  useEffect(()=>{
+    props.getAllCountries()
+  } , [])
+
   useEffect(() => {
     const user_token = Cookies.get('auth_token')
     if (user_token) {
@@ -100,7 +105,7 @@ const App = (props) => {
     setTimeout(() => {
       setLoading(false)
     }, 2000);
-  }, [])
+  }, [props.user.loggedIn])
 
   return (
     <>
@@ -218,7 +223,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-
+  getAllCountries: getAllCountries
 }
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

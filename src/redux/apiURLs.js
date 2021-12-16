@@ -1,6 +1,13 @@
 
 
-export const apiBaseURL = 'http://127.0.0.1:8000' ;
+export const apiBaseURL = 'http://127.0.0.1:8000';
+
+
+// Utility URLs 
+
+export const get_all_countries = '/api/utility/get_all_countries/';
+// export const get_states = '/api/utility/get_states/?country=' ;
+export const get_cities = '/api/utility/get_cities/?country=';
 
 
 // Authentication URLs 
@@ -11,4 +18,4 @@ export const user_api = '/api/authentication/user/'; // THis URL is to GET User 
 
 // Profile URLs 
 
-export const profile = '/api/profile/' ;
+export const profile = '/api/profile/';

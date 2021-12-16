@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LoggoutUser } from '../../redux/Actions/UserActions/UserActions'
@@ -10,6 +10,7 @@ import Cookies from 'js-cookie'
 import AlertPopup from '../AlertPopup'
 
 import { apiBaseURL } from '../../redux/apiURLs'
+import { getUserProfile } from '../../redux/Actions/ProfileActions/ProfileActions'
 
 
 
@@ -51,14 +52,14 @@ const UserDropDown = (props) => {
                                 </div>
                             </div>
                             <hr />
-                            <div className='p-7'>
+                            <div className='px-5   py-3 '>
                                 <Link
-                                    to={`/dashboard/${state.user.userData && state.user.userData.user_type.toLowerCase()}/`}
-                                    className='text-lg relative w-full block mb-4'
+                                    to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type.toLowerCase()}/`}
+                                    className='text-lg relative w-full block mb-1'
                                 >
                                     Dashboard
                                 </Link>
-                                <Link to='/cart/' className='text-lg relative w-full block mb-4'>
+                                <Link to='/cart/' className='text-lg relative w-full block mb-1'>
                                     Cart
                                     <span className='absolute right-0 bg-yellow-450 w-6 top-0 flex items-center justify-center h-6 rounded-full'>
                                         1
@@ -74,10 +75,10 @@ const UserDropDown = (props) => {
                             <hr />
                             <div className='p-6'>
                                 <Link
-                                     to={`/dashboard/${state.user.userData && state.user.userData.user_type.toLowerCase()}/profile/edit/`}
+                                    to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type.toLowerCase()}/profile/edit/`}
                                     className='text-lg relative w-full block'
                                 >
-                                    Edit Profile 
+                                    Edit Profile
                                 </Link>
                             </div>
                             <hr />
@@ -183,6 +184,15 @@ const Header = (props) => {
     console.log(props)
     const [mobileNavshow, setMobileNavShow] = useState('hidden')
 
+
+    // useEffect(() => {
+    //     const user_auth_token = Cookies.get('auth_token')
+    //     if (user_auth_token && props.user.loggedIn) {
+    //         props.getUserProfile()
+    //     }
+    // }, [props.user.loggedIn])s
+
+
     return (
         <header className='container py-4 lg:px-14 px-3 mx-auto flex items-center justify-between '>
             <HamburgerIcon onClick={() => { setMobileNavShow('block') }} />
@@ -227,7 +237,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-
+    getUserProfile: getUserProfile
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
