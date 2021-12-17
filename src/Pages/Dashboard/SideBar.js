@@ -44,7 +44,7 @@ const SideBar = (props) => {
                 </span>
                 <div className='w-52 h-44 bg-indigo-900 flex items-center justify-center rounded-3xl'>
                     <div>
-                        <div className='w-28 overflow-hidden h-28 rounded-full  mx-auto'>
+                        <div className='w-28 overflow-hidden h-28 rounded-full  mx-auto flex items-center justify-center'>
                             <img className='w-24 mx-auto' src={props.user.userData && props.user.userData.profile_image ? apiBaseURL + props.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'} alt="ProfilePic" />
                         </div>
                         <Link to={`/dashboard/${props.user.userData && props.user.userData.user_type.toLowerCase()}/profile/edit/`} className='capitalize w-full text-center mt-4 text-white font-medium text-sm'>{props.user.userData && `${props.user.userData.user.first_name} ${props.user.userData.user.last_name}`}</Link>

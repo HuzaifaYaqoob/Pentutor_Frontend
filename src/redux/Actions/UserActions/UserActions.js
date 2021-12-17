@@ -25,7 +25,7 @@ export const LoginUser = (login_cred, success, fail) => dispatch => {
         })
         .then(result => {
             if (rs_code == 200) {
-                Cookies.set('auth_token', result.user.user.auth_token)
+                Cookies.set('auth_token', result.user.user.auth_token ,  { expires: 7 })
                 dispatch({
                     type: LOGIN_USER,
                     payload: result
