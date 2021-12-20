@@ -180,23 +180,25 @@ const EditProfile = (props) => {
                                                     return ft_ct
                                                 }
                                             })[0]
-                                        }
+                                        },
+                                        city : 0
                                     }
                                 )
                             }}
                         />
                         <DropDownInput
                             Label='Select City'
-                            placeholder='Lahores'
+                            placeholder='Select City'
                             value={user_profile && user_profile.city && user_profile.city.name}
                             data={
-                                all_cities.length > 0 &&
+                                all_cities.length > 0 ?
                                 all_cities.map((ct) => {
                                     return {
                                         label: ct.name,
                                         value: ct.id
                                     }
                                 })
+                                : []
                             }
                             onChange={(value) => {
                                 setUserProfile(
