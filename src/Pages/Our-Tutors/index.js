@@ -1,12 +1,15 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-
-import {Link} from 'react-router-dom'
+import { apiBaseURL } from '../../redux/apiURLs'
+import { Link } from 'react-router-dom'
 
 import HeroSection from '../../components/HeroSection/HeroSection'
 import FormSection from '../../components/FormSection/FormSection'
 import InputField from '../../components/FormSection/InputField'
+import { connect } from 'react-redux'
+import { getAllTutors } from '../../redux/Actions/TutorActions/TutorActions'
+import { useEffect } from 'react'
 
 
 const TutorPoint = (props) => {
@@ -18,21 +21,26 @@ const TutorPoint = (props) => {
     )
 }
 
-const TutorCard = (props) => {
+const TutorCard = ({ data, ...props }) => {
     return (
         <div className='pentutor-shadow rounded p-7 mb-14 pt-24 relative max-w-sm mx-auto w-full'>
-            <div className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                <img className='w-36' src={process.env.PUBLIC_URL + props.ImagePath} alt="Profile Image" />
+            <div className='absolute w-36 h-36 flex items-center justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden'>
+                <img
+                    className='w-36'
+                    src={data.profile_image ? apiBaseURL + data.profile_image : process.env.PUBLIC_URL + props.ImagePath}
+                    alt="Profile Image"
+                />
             </div>
             <div className='w-full text-center'>
-                <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>ID: PT149</p>
+                {/* <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>ID: PT149</p> */}
+                <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>{data.user.first_name} {data.user.last_name}</p>
             </div>
             <div className='my-10 whitespace-nowrap'>
-                <TutorPoint property='qualification' value='master' />
-                <TutorPoint property='experience' value='21 years' />
+                <TutorPoint property='qualification' value={data.qualification} />
+                {/* <TutorPoint property='experience' value='21 years' /> */}
                 <TutorPoint property='areas to teach' value='johar town' />
-                <TutorPoint property='experience' value='21 years' />
-                <TutorPoint property='age' value='39' />
+                <TutorPoint property='experience' value={'21 years'} />
+                <TutorPoint property='age' value={data.date_of_birth} />
                 <TutorPoint property='teach online' value='yes' />
             </div>
             <div className='flex items-center justify-evenly'>
@@ -43,7 +51,15 @@ const TutorCard = (props) => {
     )
 }
 
-const OurTutors = () => {
+const OurTutors = (props) => {
+    console.log(props)
+
+    useEffect(() => {
+        if (props.tutor.all_tutors.length == 0) {
+            props.getAllTutors()
+        }
+    }, [])
+
     return (
         <div>
             <HeroSection Text='certified tutors' ImagePath='/images/girlImage1.png' />
@@ -66,13 +82,28 @@ const OurTutors = () => {
                     <h3 className='w-full text-center text-indigo-900 font-bold text-2xl'>Registered Tutors</h3>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap5 my-20'>
-                    <TutorCard ImagePath='/images/profilepic.png' />
-                    <TutorCard ImagePath='/images/profilepic.png' />
-                    <TutorCard ImagePath='/images/profilepic.png' />
-                    <TutorCard ImagePath='/images/profilepic.png' />
+                    {
+                        props.tutor.all_tutors.length > 0 &&
+                        props.tutor.all_tutors.map((tutor, t_ind) => {
+                            return (
+                                <TutorCard key={t_ind} data={tutor} ImagePath='/images/profilepic.png' />
+                            )
+                        })
+                    }
                 </div>
             </div>
         </div>
     )
 }
-export default OurTutors
+
+
+const mapStateToProps = (state) => {
+    return state
+}
+
+const mapDispatchToProps = {
+    getAllTutors: getAllTutors
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(OurTutors)
