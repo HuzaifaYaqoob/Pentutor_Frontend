@@ -15,6 +15,24 @@ const InputLabel = (props) => {
 
 
 
+export const TextArea = (props) => {
+    return (
+        <div className='flex-1 my-4'>
+            <InputLabel text={props.Label} />
+            <textarea
+                placeholder={props.placeholder}
+                className='w-full text-center outline-none p-2 border border-gray-200 rounded h-40 '
+                value={props.value && props.value}
+                onChange={(e) => {
+                    props.onChange && props.onChange(e)
+                }}
+            >
+
+            </textarea>
+        </div>
+    )
+}
+
 export const TextInput = (props) => {
     return (
         <div className='flex-1'>
@@ -22,7 +40,7 @@ export const TextInput = (props) => {
             <input
                 type='text'
                 placeholder={props.placeholder}
-                className='w-full pentutor-shadow text-center outline-none py-2 '
+                className='w-full text-center outline-none p-2 border border-gray-200 rounded '
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)
@@ -64,11 +82,11 @@ export const ContactNumberInput = (props) => {
                 {/* <span className='pentutor-shadow px-3 text-sm flex items-center'>
                     +92
                 </span> */}
-                <div className='flex pentutor-shadow flex-1'>
+                <div className='flex flex-1'>
                     <input
                         type="text"
                         placeholder='3********'
-                        className='outline-none my-0 flex-1 py-2 px-2'
+                        className='outline-none my-0 flex-1 p-2 border border-gray-200 rounded '
                         value={props.value && props.value}
                         onChange={(e) => {
                             props.onChange && props.onChange(e)
@@ -88,7 +106,7 @@ export const DOBInput = (props) => {
             <InputLabel text={props.Label} />
             <input
                 type="date"
-                className='w-full bg-white pentutor-shadow outline-none py-2 px-2'
+                className='w-full bg-white outline-none p-2 border border-gray-200 rounded '
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)
@@ -116,7 +134,7 @@ export const DropDownInput = (props) => {
         <div className='flex-1 relative'>
             <InputLabel text={props.Label} />
             <div className='relative'>
-                <div className='pentutor-shadow flex items-center cursor-pointer' onClick={() => { setDropDownActive(!dropDownActive) }} s >
+                <div className='flex items-center cursor-pointer px-2 border border-gray-200 rounded ' onClick={() => { setDropDownActive(!dropDownActive) }} s >
                     <p className='w-full text-center  text-gray-500 my-2'  >{props.value ? props.value : props.placeholder}</p>
                     {
                         dropDownActive ?
@@ -128,7 +146,7 @@ export const DropDownInput = (props) => {
                 </div>
                 {
                     dropDownActive &&
-                    <div className='absolute w-full top-full bg-white py-3 px-1 pentutor-shadow'>
+                    <div className='absolute w-full top-full bg-white py-3 px-1 pentutor-shadow z-50'>
                         {
                             props.data.map((item) => {
                                 return (
@@ -147,6 +165,18 @@ export const DropDownInput = (props) => {
                         }
                     </div>
                 }
+            </div>
+        </div>
+    )
+}
+
+
+export const RadioButtons = (props) => {
+    return (
+        <div className='flex-1 relative'>
+            <InputLabel text={props.Label} />
+            <div>
+                {props.children}
             </div>
         </div>
     )
@@ -185,7 +215,7 @@ const Form = ({ className, ...props }) => {
             {props.children}
             <div>
                 <button
-                    className='color-green py-2 px-5 text-lg text-white rounded capitalize'
+                    className='color-green py-2 px-5 mt-4 text-lg text-white rounded capitalize'
                     onClick={() => {
                         props.onSubmit ? props.onSubmit() : alert('onSubmit Event Lister required')
                     }}

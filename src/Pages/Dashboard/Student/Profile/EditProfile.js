@@ -10,11 +10,20 @@ import { useEffect, useState } from "react"
 import { apiBaseURL } from "../../../../redux/apiURLs"
 import { getCity } from "../../../../redux/Actions/UtilityActions/UtilityActions"
 
-
+// Importing Tabs Content 
+import EditBasicDetails from './EditBasic'
+import EditQualification from "./Edit Qualification"
+import EditDocument from "./EditDocuments"
+import EditExperience from "./EditExperience"
+import EditReferrence from "./EditReferrence"
+import EditProfessionalDetails from "./EditProfessional"
 
 const ProfileTab = (props) => {
     return (
-        <div className={`py-1 px-4 rounded cursor-pointer ${props.active ? 'bg-yellow-450 text-white' : ' border border-yellow-400 '} hover:bg-yellow-400 hover:text-white`}>
+        <div
+            className={`py-1 px-4 my-2 rounded cursor-pointer ${props.active ? 'bg-yellow-450 text-white' : ' border border-yellow-400 '} hover:bg-yellow-400 hover:text-white`}
+            onClick={props.onClick}
+        >
             {props.text}
         </div>
     )
@@ -25,8 +34,9 @@ const ProfileTab = (props) => {
 
 
 const EditProfile = (props) => {
+    const [active_tab, setActiveTab] = useState('BASIC')
+
     const [user_profile, setUserProfile] = useState()
-    const [all_cities, setAllCities] = useState([])
 
     const [selected_image, setSelectedImage] = useState(undefined)
     const [selected_degree, setSelectedDegree] = useState(undefined)
@@ -34,7 +44,7 @@ const EditProfile = (props) => {
 
 
 
-    console.log(props)
+    console.log(user_profile)
 
     const UpdateStudentProfile = () => {
         delete user_profile.profile_image
@@ -65,15 +75,6 @@ const EditProfile = (props) => {
         setSelectedCnic(undefined)
     }
 
-    const getCity = (country) => {
-        props.getCity(
-            country,
-            (data) => {
-                console.log(data)
-                setAllCities(data.response)
-            }
-        )
-    }
 
     useEffect(() => {
         if (props.user_profile.profile) {
@@ -85,169 +86,80 @@ const EditProfile = (props) => {
             <DashboardBase>
                 <ContentBox HeaderText='Welcome to Profile' />
                 <div className="mx-auto max-w-6xl w-full">
-                    <div className="flex items-center justify-between">
-                        <ProfileTab text='Basic Information' />
-                        <ProfileTab text='Professional Details' />
-                        <ProfileTab text='Qualification' />
-                        <ProfileTab text='References' />
-                        <ProfileTab text='Documents/Media' />
+                    <div className="flex items-center justify-between flex-wrap">
+                        <ProfileTab
+                            active={active_tab == 'BASIC' ? true : false}
+                            text='Basic Information'
+                            onClick={() => {
+                                setActiveTab('BASIC')
+                            }}
+                        />
+                        <ProfileTab
+                            active={active_tab == 'PROFESSIONAL' ? true : false}
+                            text='Professional Details'
+                            onClick={() => {
+                                setActiveTab('PROFESSIONAL')
+                            }}
+                        />
+                        <ProfileTab
+                            active={active_tab == 'QUALIFICATION' ? true : false}
+                            text='Qualification'
+                            onClick={() => {
+                                setActiveTab('QUALIFICATION')
+                            }}
+                        />
+                        <ProfileTab
+                            active={active_tab == 'EXPERIENCE' ? true : false}
+                            text='Experience'
+                            onClick={() => {
+                                setActiveTab('EXPERIENCE')
+                            }}
+                        />
+                        <ProfileTab
+                            active={active_tab == 'REFERRENCE' ? true : false}
+                            text='References'
+                            onClick={() => {
+                                setActiveTab('REFERRENCE')
+                            }}
+                        />
+                        <ProfileTab
+                            active={active_tab == 'DOCUMENT' ? true : false}
+                            text='Documents/Media'
+                            onClick={() => {
+                                setActiveTab('DOCUMENT')
+                            }}
+                        />
                     </div>
-                    <h1>edit profi</h1>
+                    <div>
+                        {
+                            active_tab == 'BASIC' &&
+                            <EditBasicDetails user_profile_={user_profile} setUserProfile={setUserProfile} />
+                        }
+                        {
+                            active_tab == 'PROFESSIONAL' &&
+                            <EditProfessionalDetails user_profile_={user_profile} setUserProfile={setUserProfile} />
+                        }
+                        {
+                            active_tab == 'QUALIFICATION' &&
+                            <EditQualification user_profile_={user_profile} setUserProfile={setUserProfile} />
+                        }
+                        {
+                            active_tab == 'EXPERIENCE' &&
+                            <EditExperience user_profile_={user_profile} setUserProfile={setUserProfile} />
+                        }
+                        {
+                            active_tab == 'REFERRENCE' &&
+                            <EditReferrence user_profile_={user_profile} setUserProfile={setUserProfile} />
+                        }
+                        {
+                            active_tab == 'DOCUMENT' &&
+                            <EditDocument user_profile_={user_profile} setUserProfile={setUserProfile} />
+                        }
+                    </div>
                 </div>
+
+
                 <Form btnText='save' onSubmit={() => { UpdateStudentProfile() }} className='mx-auto max-w-6xl w-full '>
-                    <div className='md:flex gap-10 mb-5'>
-                        <TextInput
-                            Label='First Name'
-                            placeholder='First Name'
-                            value={
-                                user_profile && user_profile.user && user_profile.user.first_name && user_profile.user.first_name
-                            }
-                            onChange={(e) => {
-                                console.log(e.target.value)
-                                setUserProfile(
-                                    {
-                                        ...user_profile,
-                                        user: {
-                                            ...user_profile.user,
-                                            first_name: e.target.value
-                                        }
-                                    }
-                                )
-                            }}
-                        />
-                        <TextInput
-                            Label='Last Name'
-                            placeholder='Last Name'
-                            value={
-                                user_profile && user_profile.user && user_profile.user.last_name && user_profile.user.last_name
-                            }
-                            onChange={(e) => {
-                                console.log(e.target.value)
-                                setUserProfile(
-                                    {
-                                        ...user_profile,
-                                        user: {
-                                            ...user_profile.user,
-                                            last_name: e.target.value
-                                        }
-                                    }
-                                )
-                            }}
-                        />
-                        <EmailInput
-                            Label='E-Mail Address'
-                            placeholder='Yourname@gmail.com'
-                            value={user_profile && user_profile.user && user_profile.user.email}
-                            onChange={(e) => {
-                                setUserProfile(
-                                    {
-                                        ...user_profile,
-                                        user: {
-                                            ...user_profile.user,
-                                            email: e.target.value
-                                        }
-                                    }
-                                )
-                            }}
-                        />
-                    </div>
-                    <div className='md:flex gap-10'>
-                        <ContactNumberInput
-                            Label='contact number'
-                            value={user_profile && user_profile.mobile}
-                            onChange={(e) => {
-                                setUserProfile(
-                                    {
-                                        ...user_profile,
-                                        mobile: e.target.value
-                                    }
-                                )
-                            }}
-                        />
-                        <DOBInput
-                            Label='date of birth'
-                            value={user_profile && user_profile.date_of_birth && user_profile.date_of_birth}
-                            onChange={(e) => {
-                                setUserProfile(
-                                    {
-                                        ...user_profile,
-                                        date_of_birth: e.target.value
-                                    }
-                                )
-                            }}
-                        />
-                    </div>
-                    <hr className='my-10' />
-                    <div className='md:flex gap-10'>
-                        <DropDownInput
-                            Label='Select Country'
-                            placeholder='Select Country'
-                            value={user_profile && user_profile.Country && user_profile.Country.name}
-                            data={
-                                props.utility.countries.length > 0 &&
-                                props.utility.countries.map((ct) => {
-                                    return {
-                                        label: ct.name,
-                                        value: ct.id
-                                    }
-                                })
-                            }
-                            onChange={(value) => {
-                                getCity(value)
-                                setUserProfile(
-                                    {
-                                        ...user_profile,
-                                        Country: {
-                                            ...props.utility.countries.filter((ft_ct) => {
-                                                if (ft_ct.id == value) {
-                                                    console.log(ft_ct)
-                                                    return ft_ct
-                                                }
-                                            })[0]
-                                        },
-                                        city: 0
-                                    }
-                                )
-                            }}
-                        />
-                        <DropDownInput
-                            Label='Select City'
-                            placeholder='Select City'
-                            value={user_profile && user_profile.city && user_profile.city.name}
-                            data={
-                                all_cities.length > 0 ?
-                                    all_cities.map((ct) => {
-                                        return {
-                                            label: ct.name,
-                                            value: ct.id
-                                        }
-                                    })
-                                    : []
-                            }
-                            onChange={(value) => {
-                                setUserProfile(
-                                    {
-                                        ...user_profile,
-                                        city: {
-                                            ...all_cities.filter((ft_ct) => {
-                                                if (ft_ct.id == value) {
-                                                    console.log(ft_ct)
-                                                    return ft_ct
-                                                }
-                                            })[0]
-                                        }
-                                    }
-                                )
-                            }}
-                        />
-                    </div>
-                    <br />
-                    <TextInput
-                        Label='add your area'
-                        placeholder='Gulberg Town, House # 89, Main Ferozpur Town, Lahore'
-                        value={user_profile && user_profile.area}
-                    />
-                    <hr className='my-10' />
                     <div className='md:flex gap-10'>
                         <TextInput
                             Label='add your qualification'

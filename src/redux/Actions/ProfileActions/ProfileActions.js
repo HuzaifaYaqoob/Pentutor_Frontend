@@ -34,22 +34,16 @@ export const getUserProfile = (data, success, fail) => dispatch => {
         .catch(err => {
             console.log('Profile ERROR :  ', err)
         })
-
-
 }
 
 
 export const UpdateUserProfile = (data) => dispatch => {
     let s_code;
 
-    alert('sdf')
-    console.log(data)
-
 
     let update_form = new FormData()
 
     for (let dt_k in data) {
-        console.log(dt_k, typeof(data[dt_k]))
         if (dt_k == 'user') {
             update_form.append(dt_k, JSON.stringify(data[dt_k]))
         }
