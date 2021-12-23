@@ -181,7 +181,7 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                                     name="gender"
                                     value={gender}
                                     id='male'
-                                    checked
+                                    checked={gender == 'Male' ? true: false}
                                     onChange={(e) => {
                                         setGender('Male')
                                     }}
@@ -196,6 +196,7 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                                     name="gender"
                                     value={gender}
                                     id='female'
+                                    checked={gender == 'Female' ? true : false}
                                     onChange={(e) => {
                                         setGender('Female')
                                     }}

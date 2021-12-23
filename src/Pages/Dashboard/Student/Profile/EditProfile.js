@@ -95,33 +95,33 @@ const EditProfile = (props) => {
                             }}
                         />
                         <ProfileTab
-                            active={active_tab == 'PROFESSIONAL' ? true : false}
-                            text='Professional Details'
+                            active={active_tab == 'OTHERDETAILS' ? true : false}
+                            text='Other Details'
                             onClick={() => {
-                                setActiveTab('PROFESSIONAL')
+                                setActiveTab('OTHERDETAILS')
                             }}
                         />
-                        <ProfileTab
+                        {/* <ProfileTab
                             active={active_tab == 'QUALIFICATION' ? true : false}
                             text='Qualification'
                             onClick={() => {
                                 setActiveTab('QUALIFICATION')
                             }}
-                        />
-                        <ProfileTab
+                        /> */}
+                        {/* <ProfileTab
                             active={active_tab == 'EXPERIENCE' ? true : false}
                             text='Experience'
                             onClick={() => {
                                 setActiveTab('EXPERIENCE')
                             }}
-                        />
-                        <ProfileTab
+                        /> */}
+                        {/* <ProfileTab
                             active={active_tab == 'REFERRENCE' ? true : false}
                             text='References'
                             onClick={() => {
                                 setActiveTab('REFERRENCE')
                             }}
-                        />
+                        /> */}
                         <ProfileTab
                             active={active_tab == 'DOCUMENT' ? true : false}
                             text='Documents/Media'
