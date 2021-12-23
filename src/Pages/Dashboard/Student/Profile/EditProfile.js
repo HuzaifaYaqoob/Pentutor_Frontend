@@ -10,6 +10,20 @@ import { useEffect, useState } from "react"
 import { apiBaseURL } from "../../../../redux/apiURLs"
 import { getCity } from "../../../../redux/Actions/UtilityActions/UtilityActions"
 
+
+
+const ProfileTab = (props) => {
+    return (
+        <div className={`py-1 px-4 rounded cursor-pointer ${props.active ? 'bg-yellow-450 text-white' : ' border border-yellow-400 '} hover:bg-yellow-400 hover:text-white`}>
+            {props.text}
+        </div>
+    )
+
+}
+
+
+
+
 const EditProfile = (props) => {
     const [user_profile, setUserProfile] = useState()
     const [all_cities, setAllCities] = useState([])
@@ -70,6 +84,16 @@ const EditProfile = (props) => {
         <>
             <DashboardBase>
                 <ContentBox HeaderText='Welcome to Profile' />
+                <div className="mx-auto max-w-6xl w-full">
+                    <div className="flex items-center justify-between">
+                        <ProfileTab text='Basic Information' />
+                        <ProfileTab text='Professional Details' />
+                        <ProfileTab text='Qualification' />
+                        <ProfileTab text='References' />
+                        <ProfileTab text='Documents/Media' />
+                    </div>
+                    <h1>edit profi</h1>
+                </div>
                 <Form btnText='save' onSubmit={() => { UpdateStudentProfile() }} className='mx-auto max-w-6xl w-full '>
                     <div className='md:flex gap-10 mb-5'>
                         <TextInput
@@ -181,7 +205,7 @@ const EditProfile = (props) => {
                                                 }
                                             })[0]
                                         },
-                                        city : 0
+                                        city: 0
                                     }
                                 )
                             }}
@@ -192,13 +216,13 @@ const EditProfile = (props) => {
                             value={user_profile && user_profile.city && user_profile.city.name}
                             data={
                                 all_cities.length > 0 ?
-                                all_cities.map((ct) => {
-                                    return {
-                                        label: ct.name,
-                                        value: ct.id
-                                    }
-                                })
-                                : []
+                                    all_cities.map((ct) => {
+                                        return {
+                                            label: ct.name,
+                                            value: ct.id
+                                        }
+                                    })
+                                    : []
                             }
                             onChange={(value) => {
                                 setUserProfile(
@@ -414,7 +438,7 @@ const EditProfile = (props) => {
                                                     className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
                                                     style={{
                                                         backgroundImage: `url('${user_profile &&
-                                                            user_profile.cnic_image  ?
+                                                            user_profile.cnic_image ?
                                                             apiBaseURL + user_profile.cnic_image :
                                                             ''
                                                             }')`
@@ -425,8 +449,7 @@ const EditProfile = (props) => {
                                                 <div
                                                     className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
                                                     style={{
-                                                        backgroundImage: `url('${
-                                                            user_profile.cnic_image
+                                                        backgroundImage: `url('${user_profile.cnic_image
                                                             }')`
                                                     }}
                                                 >
