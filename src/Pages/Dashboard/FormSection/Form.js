@@ -116,6 +116,22 @@ export const DOBInput = (props) => {
     )
 }
 
+export const TimeInput = (props) => {
+    return (
+        <div className='flex-1'>
+            <InputLabel text={props.Label} />
+            <input
+                type="time"
+                className='w-full bg-white outline-none p-2 border border-gray-200 rounded '
+                value={props.value && props.value}
+                onChange={(e) => {
+                    props.onChange && props.onChange(e)
+                }}
+            />
+        </div>
+    )
+}
+
 export const DropDownItem = ({ label, value, onClick, ...props }) => {
     return (
         <p

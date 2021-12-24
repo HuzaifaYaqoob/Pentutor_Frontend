@@ -47,7 +47,6 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
         props.getCity(
             country,
             (data) => {
-                console.log(data)
                 setAllCities(data.response)
             }
         )

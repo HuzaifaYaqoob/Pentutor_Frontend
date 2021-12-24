@@ -75,7 +75,7 @@ const SideBar = (props) => {
                     </div>
                 </div>
                 <ul className='p-4 '>
-                    <BarLink icon={faThList} text='Pentutor' nextPath='/' />
+                    {/* <BarLink icon={faThList} text='Pentutor' nextPath='/' /> */}
                     <BarLink icon={faThList} text='Dashboard' nextPath={`/dashboard/${props.user.userData && props.user.userData.user_type.toLowerCase()}/`} />
 
                     <Route path='/dashboard/student/'>
