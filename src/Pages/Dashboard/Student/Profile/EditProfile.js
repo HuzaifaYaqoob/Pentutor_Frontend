@@ -44,7 +44,6 @@ const EditProfile = (props) => {
 
 
 
-    console.log(user_profile)
 
     const UpdateStudentProfile = () => {
         delete user_profile.profile_image

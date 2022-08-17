@@ -24,10 +24,10 @@ const TutorPoint = (props) => {
 const TutorCard = ({ data, ...props }) => {
     return (
         <div className='pentutor-shadow rounded p-7 mb-14 pt-24 relative max-w-sm mx-auto w-full'>
-            <div className='absolute w-36 h-36 flex items-center justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden'>
-                <img
-                    className='w-36'
-                    src={data.profile_image ? apiBaseURL + data.profile_image : process.env.PUBLIC_URL + props.ImagePath}
+            <div className='absolute w-36 h-36 shadow-xl p-2 flex items-center justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden'>
+                <div
+                    className='w-36 h-36 rounded-full bg-center bg-cover bg-no-repeat'
+                    style={{backgroundImage : `url('${data.profile_image ? apiBaseURL + data.profile_image : process.env.PUBLIC_URL + props.ImagePath}')`}}
                     alt="Profile Image"
                 />
             </div>
@@ -44,7 +44,7 @@ const TutorCard = ({ data, ...props }) => {
                 <TutorPoint property='teach online' value='yes' />
             </div>
             <div className='flex items-center justify-evenly'>
-                <Link to='/our-tutor/profile/userprofileHuzaifaID' className='py-2 px-3 rounded-lg cursor-pointer bg-yellow-450 text-white'>View Full Profile</Link>
+                <Link to={`/our-tutor/profile/${data.slug}`} className='py-2 px-3 rounded-lg cursor-pointer bg-yellow-450 text-white'>View Full Profile</Link>
                 <button className='py-2 px-3 rounded-lg cursor-pointer bg-indigo-900 text-white'>Take Trial Class</button>
             </div>
         </div>
@@ -52,7 +52,6 @@ const TutorCard = ({ data, ...props }) => {
 }
 
 const OurTutors = (props) => {
-    console.log(props)
 
     useEffect(() => {
         if (props.tutor.all_tutors.length == 0) {

@@ -183,7 +183,6 @@ export const HamburgerIcon = (props) => {
 }
 
 const Header = (props) => {
-    console.log(props)
     const [mobileNavshow, setMobileNavShow] = useState('hidden')
 
 

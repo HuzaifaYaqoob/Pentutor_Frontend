@@ -40,7 +40,7 @@ export const TextInput = (props) => {
             <input
                 type='text'
                 placeholder={props.placeholder}
-                className='w-full text-center outline-none p-2 border border-gray-200 rounded '
+                className={`w-full text-center outline-none p-2 border border-gray-200 rounded ${props.className}`}
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)

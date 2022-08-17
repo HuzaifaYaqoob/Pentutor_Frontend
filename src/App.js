@@ -98,7 +98,7 @@ const App = (props) => {
       )
     }
     else {
-      if (!USER_URLs.includes(history.location.pathname)) {
+      if (!USER_URLs.includes(history?.location?.pathname)) {
         history.push('/auth/login/')
       }
     }
@@ -132,6 +132,7 @@ const App = (props) => {
         ]
       } component={Header} />
 
+
       <Switch>
         <Route exact path="/" component={Home} />
 
@@ -156,6 +157,7 @@ const App = (props) => {
 
 
         <Route exact path='/auth/login/' component={LoginPage} />
+        <Route exact path='/auth/forgot-password/' component={LoginPage} />
         <Route exact path={
           [
             '/auth/register/:UserStatus/',

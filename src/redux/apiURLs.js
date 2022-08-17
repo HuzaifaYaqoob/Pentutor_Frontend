@@ -1,7 +1,7 @@
 
 
-// export const apiBaseURL = 'http://127.0.0.1:8000';
-export const apiBaseURL = 'http://pentutors.com';
+export const apiBaseURL = 'http://127.0.0.1:8000';
+// export const apiBaseURL = 'http://pentutors.com';
 
 
 // Utility URLs 
@@ -24,3 +24,8 @@ export const profile = '/api/profile/';
 // Tutors URLs
 
 export const get_all_tutors = '/api/profile/get_all_tutors/';
+export const get_tutor = '/api/profile/get_tutor/';
+
+
+export const get_all_courses = '/api/course/get_all_courses/';
+

@@ -26,7 +26,7 @@ const RegisterTab = (props) => {
 const RegisterPage = (props) => {
     const params = useParams()
 
-    if (props.location.pathname == '/auth/register/') {
+    if (props?.location?.pathname == '/auth/register/') {
         props.history.push('/auth/register/student/')
     }
 

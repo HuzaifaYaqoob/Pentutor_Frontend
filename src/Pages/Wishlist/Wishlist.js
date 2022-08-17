@@ -8,7 +8,6 @@ import { CourseCard } from "../Our-Tutors/ViewProfile"
 
 
 const FilterTab = (props) =>{
-    console.log(props)
     return(
         <span className={'mx-2 cursor-pointer hover:text-gray-600' + ' ' + (props.active ? 'text-gray-600  border-gray-700 border-b-2 ' : 'text-gray-400 ' ) }>
             {props.displayText}

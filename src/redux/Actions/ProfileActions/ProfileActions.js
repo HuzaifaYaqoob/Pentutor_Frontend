@@ -37,19 +37,19 @@ export const getUserProfile = (data, success, fail) => dispatch => {
 }
 
 
-export const UpdateUserProfile = (data) => dispatch => {
+export const UpdateUserProfile = (data, success, fail) => dispatch => {
     let s_code;
-
-
     let update_form = new FormData()
 
     for (let dt_k in data) {
-        if (dt_k == 'user') {
-            update_form.append(dt_k, JSON.stringify(data[dt_k]))
-        }
-        else {
-            update_form.append(dt_k, data[dt_k])
-
+        if (data[dt_k]){
+            if (dt_k == 'user') {
+                update_form.append(dt_k, JSON.stringify(data[dt_k]))
+            }
+            else {
+                update_form.append(dt_k, data[dt_k])
+                
+            }
         }
     }
 

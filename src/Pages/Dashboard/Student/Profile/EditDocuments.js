@@ -104,7 +104,7 @@ const EditDocument = ({ user_profile_, setUserProfile, ...props }) => {
                             id='profile-picture'
                             onChange={
                                 (event) => {
-                                    console.log(event.target.files)
+
                                 }}
                             value=''
                         />
@@ -162,7 +162,6 @@ const EditDocument = ({ user_profile_, setUserProfile, ...props }) => {
                             id='degree-picture'
                             onChange={
                                 (event) => {
-                                    console.log(event.target.files)
                                 }}
                             value=''
                         />
@@ -208,7 +207,6 @@ const EditDocument = ({ user_profile_, setUserProfile, ...props }) => {
                                                     cnic_image: URL.createObjectURL(event.target.files[0])
                                                 }
                                             )
-                                            console.log(event.target.files)
                                         }}
                                     value=''
                                 />
@@ -221,7 +219,6 @@ const EditDocument = ({ user_profile_, setUserProfile, ...props }) => {
                             id='cnic-picture'
                             onChange={
                                 (event) => {
-                                    console.log(event.target.files)
                                 }}
                             value=''
                         />
@@ -279,7 +276,6 @@ const EditDocument = ({ user_profile_, setUserProfile, ...props }) => {
                             id='cnic-picture'
                             onChange={
                                 (event) => {
-                                    console.log(event.target.files)
                                     setSelectedCnicBack(event.target.files[0])
                                 }}
                             value=''

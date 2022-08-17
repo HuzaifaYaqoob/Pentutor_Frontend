@@ -20,7 +20,6 @@ const LoginPage = (props) => {
     const [password, setPassword] = useState('')
     const [password_err, setPasswordErr] = useState(undefined)
 
-    console.log(props)
 
     const Validation = () => {
         setUsername(username.trim())
@@ -120,7 +119,7 @@ const LoginPage = (props) => {
                         </span>
                     </div>
                 </div>
-                <Link className='text-yellow-600 text-xs  '>Forgot Password?</Link>
+                <Link to={'/auth/forgot-password/'} className='text-yellow-600 text-xs'>Forgot Password?</Link>
                 <button
                     className='w-full text-white capitalize py-2 mt-4 bg-indigo-900 rounded'
                     onClick={() => { Submit() }}

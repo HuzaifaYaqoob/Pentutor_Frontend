@@ -19,7 +19,6 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
     const [area, SetArea] = useState('')
     const [detail, setDetail] = useState('')
 
-    console.log(user_profile_)
 
 
     const UpdateStudentProfile = () => {
@@ -77,7 +76,6 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                             first_name
                         }
                         onChange={(e) => {
-                            console.log(e.target.value)
                             setFirstName(e.target.value)
                         }}
                     />
@@ -88,7 +86,6 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                             last_name
                         }
                         onChange={(e) => {
-                            console.log(e.target.value)
                             setLastName(e.target.value)
 
                         }}
@@ -129,10 +126,8 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                         }
                         onChange={(value) => {
                             getCity(value)
-                            console.log(value)
                             props.utility.countries.filter((ct) => {
                                 if (ct.id == value) {
-                                    console.log(ct)
                                     setCountry(ct)
                                 }
                             })

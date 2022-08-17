@@ -8,10 +8,13 @@ import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 import useTitle from '../../Hooks/useTitle'
+import { CourseCard } from '../Our-Tutors/ViewProfile'
+import { useEffect, useState } from 'react'
+import { apiBaseURL, get_all_courses } from '../../redux/apiURLs'
 
 const SlideDot = (props) => {
     return (
-        <span className={'mx-1 w-2 h-2 rounded-full block ' + (props.active ? 'bg-indigo-900 flex-1' : 'bg-gray-400 cursor-pointer') }></span>
+        <span className={'mx-1 w-2 h-2 rounded-full block ' + (props.active ? 'bg-indigo-900 flex-1' : 'bg-gray-400 cursor-pointer')}></span>
     )
 }
 
@@ -44,9 +47,9 @@ const CoursesCard = (props) => {
                     </div>
                     <div className='flex items-center flex-1 px-4'>
                         <SlideDot active={true} />
-                        <SlideDot/>
-                        <SlideDot/>
-                        <SlideDot/>
+                        <SlideDot />
+                        <SlideDot />
+                        <SlideDot />
                     </div>
                     <div className='w-10 h-10 flex items-center justify-center rounded-full bg-yellow-450'>
                         <FontAwesomeIcon className='text-indigo-900' icon={faArrowRight} />
@@ -60,6 +63,26 @@ const CoursesCard = (props) => {
 
 const Courses = () => {
     useTitle('Courses')
+    const [course_data, setCourseData] = useState([])
+    console.log(course_data)
+
+    const getAllCourses = () => {
+        fetch(
+            apiBaseURL + get_all_courses
+        )
+            .then(response => {
+                if (response.status == 200) {
+                    return response.json()
+                }
+            })
+            .then(result => {
+                setCourseData(result.data)
+            })
+    }
+
+    useEffect(() => {
+        getAllCourses()
+    }, [])
     return (
         <div>
             <HeroSection Text='courses of your choice' ImagePath='/images/image1.png' />
@@ -71,12 +94,22 @@ const Courses = () => {
                     <button className='text-center bg-yellow-450 text-indigo-900 h-full py-2 rounded px-7 font-semibold text-xl'>Search</button>
                 </div>
             </FormSection>
-            <div className='container mx-auto grid grid-cols-1 place-content-center md:grid-cols-2 gap-20 my-20'>
-                <CoursesCard Heading='Classes' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} />
-                <CoursesCard Heading='Subjects' itemsData={['Accouting', 'Commerce', 'Geography', 'English', 'Math']} />
-                <CoursesCard Heading='Test/Exams' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} />
-                <CoursesCard Heading='Languages' itemsData={['Arabic', 'Chinese', 'French', 'German', 'English']} />
-                <CoursesCard Heading='Short Courses' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} />
+            <div className='container mx-auto grid grid-cols-1 place-content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20 my-20'>
+                {/* <CoursesCard Heading='Classes' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
+                {/* <CoursesCard Heading='Subjects' itemsData={['Accouting', 'Commerce', 'Geography', 'English', 'Math']} /> */}
+                {/* <CoursesCard Heading='Test/Exams' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
+                {/* <CoursesCard Heading='Languages' itemsData={['Arabic', 'Chinese', 'French', 'German', 'English']} /> */}
+                {/* <CoursesCard Heading='Short Ceourses' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
+                {
+                    course_data &&
+                    course_data.map((course, index) => {
+                        return (
+                            <>
+                                <CourseCard data={course} key={index} />
+                            </>
+                        )
+                    })
+                }
             </div>
         </div>
     )

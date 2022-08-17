@@ -22,10 +22,6 @@ const EditProfileTutor = (props) => {
     const [selected_degree, setSelectedDegree] = useState(undefined)
     const [selected_cnic, setSelectedCnic] = useState(undefined)
 
-    console.log(selected_image)
-
-    console.log(props)
-
 
     const UpdateStudentProfile = () => {
         delete user_profile.profile_image
@@ -60,7 +56,6 @@ const EditProfileTutor = (props) => {
         props.getCity(
             country,
             (data) => {
-                console.log(data)
                 setAllCities(data.response)
             }
         )
@@ -179,7 +174,6 @@ const EditProfileTutor = (props) => {
                                         Country: {
                                             ...props.utility.countries.filter((ft_ct) => {
                                                 if (ft_ct.id == value) {
-                                                    console.log(ft_ct)
                                                     return ft_ct
                                                 }
                                             })[0]
@@ -223,6 +217,7 @@ const EditProfileTutor = (props) => {
                     <TextInput
                         Label='add your area'
                         placeholder='Gulberg Town, House # 89, Main Ferozpur Town, Lahore'
+                        className='text-start'
                         value={user_profile && user_profile.area ? user_profile.area : ''}
                         onChange={(e) => {
                             setUserProfile(
@@ -379,7 +374,6 @@ const EditProfileTutor = (props) => {
                                                         cnic_image: URL.createObjectURL(event.target.files[0])
                                                     }
                                                 )
-                                                console.log(event.target.files)
                                             }}
                                         value=''
                                     />
@@ -399,7 +393,6 @@ const EditProfileTutor = (props) => {
                                                 cnic_image: URL.createObjectURL(event.target.files[0])
                                             }
                                         )
-                                        console.log(event.target.files)
                                     }}
                                 value=''
                             />

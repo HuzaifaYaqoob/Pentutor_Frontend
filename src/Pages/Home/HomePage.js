@@ -60,7 +60,7 @@ const HomePage = (props) => {
                     <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 '>
                         <InputField placeholder='Enter Your Full Name' type='text' />
                         <InputField placeholder='Enter Your Email Address' type='email' />
-                        <DropDown />
+                        <DropDown dropDownList={{}} />
                         <InputField placeholder='Enter Your Number' className='hide-input-arrow-button' type='number' />
                         <InputField placeholder='Enter Your City Name' type='text' />
                         <InputField placeholder='Enter Your Area' className='hide-input-arrow-button' type='number' />
