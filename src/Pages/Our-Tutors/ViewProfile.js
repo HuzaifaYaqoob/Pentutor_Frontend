@@ -85,6 +85,18 @@ export const CourseCard = ({ data }) => {
 }
 
 
+const ProfileDetails = ({ heading, text }) => {
+    return (
+        <>
+            <div className='mb-1'>
+                <span className='text-sm text-[#F5BB07] font-bold'>{heading} : </span>
+                <span className='text-sm text-white'>{text}</span>
+            </div>
+        </>
+    )
+}
+
+
 const ViewProfile = ({ match, ...props }) => {
     const { profile_slug } = match.params
     const [tutor_data, setTutorData] = useState({})
@@ -99,11 +111,14 @@ const ViewProfile = ({ match, ...props }) => {
                     return response.json()
                 }
                 else {
-                    props.history.goBack()
+                    // props.history.goBack()
                 }
             })
             .then(result => {
                 setTutorData(result.data)
+            })
+            .catch(() => {
+                // props.history.goBack()
             })
     }
 
@@ -114,6 +129,45 @@ const ViewProfile = ({ match, ...props }) => {
     }, [profile_slug])
     return (
         <>
+            <div className='max-w-[1300px] mx-auto my-10 flex itemrounded-tr-[30px]s-start justify-between gap-10'>
+                <div className='max-w-[250px] w-full bg-[#313D6A] rounded-tr-[30px] overflow-hidden'>
+                    <div className='my-10'>
+                        <div className='w-[100px] mb-3 h-[100px] mx-auto rounded-full bg-gray-100'></div>
+                        <p className='text-white text-center text-sm'>Tutor ID: PT143</p>
+                        <p className='text-[#F5BB07] text-center text-2xl font-medium'>Kashif Liaqat</p>
+                    </div>
+                    <div className='flex items-start gap-3 pl-3 text-white'>
+                        <span>icon</span>
+                        <p className='text-sm'>House No.110, Block A, PIA Housing Society, Johar Town, Lahore</p>
+                    </div>
+                    <hr className='bg-red-500 my-4' />
+                    <div className='flex items-start gap-3 pl-3 text-white'>
+                        <span>icon</span>
+                        <p className='text-sm'>+92 321-8815888 <br />
+                            +92 321-8815888</p>
+                    </div>
+                    <hr className='bg-red-500 my-4' />
+                    <div className='pl-3 mb-4'>
+                        <ProfileDetails heading='City' text='Lahore' />
+                        <ProfileDetails heading='Province' text='Punjab' />
+                        <ProfileDetails heading='Country' text='Pakistan' />
+                        <ProfileDetails heading='Nationality' text='Pakistani' />
+                        <ProfileDetails heading='Birth Place' text='Lahore' />
+                        <ProfileDetails heading='Date of Birth' text='date here' />
+                        <ProfileDetails heading='CNIC No.' text='cnic' />
+                        <ProfileDetails heading='Gender' text='Male' />
+                    </div>
+                    <div className='flex gap-3'>
+                        <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
+                        <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
+                        <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
+                        <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
+                    </div>
+                </div>
+                <div className='flex-1'>center</div>
+                <div className='max-w-[250px] w-full bg-[#F5BB0759]/[35%] rounded-tl-[30px] overflow-hidden'>side right</div>
+            </div>
+
             <div className='container mx-auto my-20 flex lg:flex-row flex-col-reverse px-5 items-start '>
                 <div className='flex-1 px-5 mt-5 lg:mt-0 lg:px-20'>
                     <h3 className='text-md font-medium mb-6'>About Me</h3>

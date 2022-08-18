@@ -18,14 +18,16 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import BlogPost from '../Blogs/BlogPost'
 
 import useTitle from '../../Hooks/useTitle'
+import WelcomePTHeroSection from '../../components/HeroSection/HeroSection1';
+import HomePageCard from '../../components/HomePageCard/HomePageCard';
 
 
-const HomePagePromotCard = (props) =>{
-    return(
-        <div  className='w-full rounded-md overflow-hidden p-10 py-32 bg-center bg-cover relative flex items-center justify-center flex-col bg-no-repeat text-white' style={{backgroundImage : `url(${process.env.PUBLIC_URL + props.ImagePath})`}}>
+const HomePagePromotCard = (props) => {
+    return (
+        <div className='w-full rounded-md overflow-hidden p-10 py-32 bg-center bg-cover relative flex items-center justify-center flex-col bg-no-repeat text-white' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + props.ImagePath})` }}>
             <span className='w-full absolute h-full block top-0 left-0 bg-black bg-opacity-25'></span>
             <h3 className='text-3xl relative z-20 capitalize mb-10'>{props.heading}</h3>
-            <button className={'text-white rounded-full z-20 relative py-3 px-5 text-xl capitalize ' + (props.activeBtn ? 'bg-yellow-400 border-0' : 'bg-transparent border-2 border-white' )}>{props.btnText}</button>
+            <button className={'text-white rounded-full z-20 relative py-3 px-5 text-xl capitalize ' + (props.activeBtn ? 'bg-yellow-400 border-0' : 'bg-transparent border-2 border-white')}>{props.btnText}</button>
         </div>
     )
 }
@@ -45,8 +47,8 @@ const HomePage = (props) => {
     return (
         <main>
             {/* <Loader  /> */}
-            <HomeHeroSection Text='welcome to pen tutor' ImagePath='/images/studentImages.png' />
-
+            {/* <HomeHeroSection Text='welcome to pen tutor' ImagePath='/images/studentImages.png' /> */}
+            <WelcomePTHeroSection />
 
             {/* Form Section Student QUery Form  */}
             <div className='mt-20'>
@@ -72,18 +74,18 @@ const HomePage = (props) => {
                     </button>
                 </div>
             </FormSection>
-
-
+            <HomePageCard preferredColor={'text-[#F5BB07]'} bgpreferredColor={'bg-[#F5BB07]'} heading={'For Students'} imagePath={'/images/girlImage.png'} cardReverse />
+            <HomePageCard preferredColor={'text-[#313D6A]'} bgpreferredColor={'bg-[#313D6A]'} heading={'For Tutors'} imagePath={'/images/girlImage1.png'} />
             <WhyChoose />
-            <div className='flex flex-col sm:flex-row gap-5 container mx-auto px-5'>
-                <HomePagePromotCard ImagePath='/images/img1.png'  heading='for tutors' btnText='start a course' />
-                <HomePagePromotCard ImagePath='/images/img2.png' activeBtn  heading='for students' btnText='take a course' />
-            </div>
-            <FeaturedTutors/>
+            {/* <div className='flex flex-col sm:flex-row gap-5 container mx-auto px-5'>
+                <HomePagePromotCard ImagePath='/images/img1.png' heading='for tutors' btnText='start a course' />
+                <HomePagePromotCard ImagePath='/images/img2.png' activeBtn heading='for students' btnText='take a course' />
+            </div> */}
+            <FeaturedTutors />
             <OurServices />
-            <ProfessionalTraining/>
-            <BlogSection/>
-           
+            <ProfessionalTraining />
+            <BlogSection />
+
         </main>
     )
 }

@@ -21,30 +21,30 @@ const TutorPoint = (props) => {
     )
 }
 
-const TutorCard = ({ data, ...props }) => {
+export const TutorCard = ({ data, ...props }) => {
     return (
         <div className='pentutor-shadow rounded p-7 mb-14 pt-24 relative max-w-sm mx-auto w-full'>
             <div className='absolute w-36 h-36 shadow-xl p-2 flex items-center justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden'>
                 <div
                     className='w-36 h-36 rounded-full bg-center bg-cover bg-no-repeat'
-                    style={{backgroundImage : `url('${data.profile_image ? apiBaseURL + data.profile_image : process.env.PUBLIC_URL + props.ImagePath}')`}}
+                    style={{backgroundImage : `url('${data?.profile_image ? apiBaseURL + data?.profile_image : process.env.PUBLIC_URL + props.ImagePath}')`}}
                     alt="Profile Image"
                 />
             </div>
             <div className='w-full text-center'>
                 {/* <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>ID: PT149</p> */}
-                <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>{data.user.first_name} {data.user.last_name}</p>
+                <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>{data?.user?.first_name} {data?.user?.last_name}</p>
             </div>
             <div className='my-10 whitespace-nowrap'>
-                <TutorPoint property='qualification' value={data.qualification} />
+                <TutorPoint property='qualification' value={data?.qualification} />
                 {/* <TutorPoint property='experience' value='21 years' /> */}
                 <TutorPoint property='areas to teach' value='johar town' />
                 <TutorPoint property='experience' value={'21 years'} />
-                <TutorPoint property='age' value={data.date_of_birth} />
+                <TutorPoint property='age' value={data?.date_of_birth} />
                 <TutorPoint property='teach online' value='yes' />
             </div>
             <div className='flex items-center justify-evenly'>
-                <Link to={`/our-tutor/profile/${data.slug}`} className='py-2 px-3 rounded-lg cursor-pointer bg-yellow-450 text-white'>View Full Profile</Link>
+                <Link to={`/our-tutor/profile/${data?.slug}`} className='py-2 px-3 rounded-lg cursor-pointer bg-yellow-450 text-white'>View Full Profile</Link>
                 <button className='py-2 px-3 rounded-lg cursor-pointer bg-indigo-900 text-white'>Take Trial Class</button>
             </div>
         </div>
