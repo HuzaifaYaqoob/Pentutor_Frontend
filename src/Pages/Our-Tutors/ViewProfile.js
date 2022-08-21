@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
 import { apiBaseURL, get_tutor } from '../../redux/apiURLs'
+import LineHeader from '../../components/LineHeading'
 
 const ProfileDisplayCard = ({ data }) => {
     return (
@@ -157,17 +158,34 @@ const ViewProfile = ({ match, ...props }) => {
                         <ProfileDetails heading='CNIC No.' text='cnic' />
                         <ProfileDetails heading='Gender' text='Male' />
                     </div>
-                    <div className='flex gap-3'>
+                    <div className='flex gap-3 mb-4'>
                         <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
                         <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
                         <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
                         <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
                     </div>
                 </div>
-                <div className='flex-1'>center</div>
-                <div className='max-w-[250px] w-full bg-[#F5BB0759]/[35%] rounded-tl-[30px] overflow-hidden'>side right</div>
+                <div className='flex-1'>
+                    <div>
+                        <LineHeader text={'Qualification'} />
+                        <div>
+                            <p>Master in Chemistry</p>
+                            <p>Punjab University (2006)</p>
+                        </div>
+                        <LineHeader text={'Experience'} bgClass='bg-[#313D6A]' />
+                        <LineHeader text={'references'}  />
+                        <LineHeader text={'demo video'} bgClass='bg-[#313D6A]' />
+                        <LineHeader text={'My document'}  />
+                    </div>
+                </div>
+                <div className='max-w-[250px] w-full bg-[#F5BB0759]/[35%] rounded-tl-[30px] overflow-hidden'>
+                    <h3 className='text-center text-black text-xl my-5 font-bold'>Professional Details</h3>
+                    <div>
+                        <p></p>
+                    </div>
+                </div>
             </div>
-
+{/* 
             <div className='container mx-auto my-20 flex lg:flex-row flex-col-reverse px-5 items-start '>
                 <div className='flex-1 px-5 mt-5 lg:mt-0 lg:px-20'>
                     <h3 className='text-md font-medium mb-6'>About Me</h3>
@@ -203,7 +221,7 @@ const ViewProfile = ({ match, ...props }) => {
                         <FontAwesomeIcon icon={faArrowRight} />
                     </span>
                 </div>
-            </div>
+            </div> */}
 
         </>
     )
