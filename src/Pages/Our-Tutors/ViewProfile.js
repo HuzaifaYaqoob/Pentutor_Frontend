@@ -5,6 +5,7 @@ import { faStar, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-i
 import { useEffect, useState } from 'react'
 import { apiBaseURL, get_tutor } from '../../redux/apiURLs'
 import LineHeader from '../../components/LineHeading'
+import Table from '../../components/Table'
 
 const ProfileDisplayCard = ({ data }) => {
     return (
@@ -89,8 +90,8 @@ export const CourseCard = ({ data }) => {
 const ProfileDetails = ({ heading, text }) => {
     return (
         <>
-            <div className='mb-1'>
-                <span className='text-sm text-[#F5BB07] font-bold'>{heading} : </span>
+            <div className='mb-1 flex items-center justify-between'>
+                <span className='text-sm text-[#F5BB07] font-bold'>{heading}</span>
                 <span className='text-sm text-white'>{text}</span>
             </div>
         </>
@@ -101,7 +102,7 @@ const ProfileDetails = ({ heading, text }) => {
 const ViewProfile = ({ match, ...props }) => {
     const { profile_slug } = match.params
     const [tutor_data, setTutorData] = useState({})
-    console.log(tutor_data)
+    // console.log(tutor_data)
 
     const getTutorProfile = () => {
         fetch(
@@ -135,28 +136,27 @@ const ViewProfile = ({ match, ...props }) => {
                     <div className='my-10'>
                         <div className='w-[100px] mb-3 h-[100px] mx-auto rounded-full bg-gray-100'></div>
                         <p className='text-white text-center text-sm'>Tutor ID: PT143</p>
-                        <p className='text-[#F5BB07] text-center text-2xl font-medium'>Kashif Liaqat</p>
+                        <p className='text-[#F5BB07] text-center text-2xl font-medium'>{tutor_data?.name}</p>
                     </div>
                     <div className='flex items-start gap-3 pl-3 text-white'>
                         <span>icon</span>
-                        <p className='text-sm'>House No.110, Block A, PIA Housing Society, Johar Town, Lahore</p>
+                        <p className='text-sm'>{tutor_data?.area}</p>
                     </div>
                     <hr className='bg-red-500 my-4' />
                     <div className='flex items-start gap-3 pl-3 text-white'>
                         <span>icon</span>
-                        <p className='text-sm'>+92 321-8815888 <br />
-                            +92 321-8815888</p>
+                        <p className='text-sm'>{tutor_data?.mobile}</p>
                     </div>
                     <hr className='bg-red-500 my-4' />
-                    <div className='pl-3 mb-4'>
-                        <ProfileDetails heading='City' text='Lahore' />
-                        <ProfileDetails heading='Province' text='Punjab' />
-                        <ProfileDetails heading='Country' text='Pakistan' />
-                        <ProfileDetails heading='Nationality' text='Pakistani' />
-                        <ProfileDetails heading='Birth Place' text='Lahore' />
-                        <ProfileDetails heading='Date of Birth' text='date here' />
-                        <ProfileDetails heading='CNIC No.' text='cnic' />
-                        <ProfileDetails heading='Gender' text='Male' />
+                    <div className='px-3 mb-4'>
+                        <ProfileDetails heading='City' text={`${tutor_data?.city?.name}`} />
+                        <ProfileDetails heading='Province' text={`${tutor_data?.state?.name}`} />
+                        <ProfileDetails heading='Country' text={`${tutor_data?.Country?.name}`} />
+                        <ProfileDetails heading='Nationality' text={`${tutor_data?.nationality}`} />
+                        <ProfileDetails heading='Birth Place' text={`${tutor_data?.brith_place}`} />
+                        <ProfileDetails heading='Date of Birth' text={`${tutor_data?.date_of_birth}`} />
+                        <ProfileDetails heading='CNIC No.' text={`${tutor_data?.cnic_number}`} />
+                        <ProfileDetails heading='Gender' text={`${tutor_data?.gender}`} />
                     </div>
                     <div className='flex gap-3 mb-4'>
                         <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
@@ -168,61 +168,85 @@ const ViewProfile = ({ match, ...props }) => {
                 <div className='flex-1'>
                     <div>
                         <LineHeader text={'Qualification'} />
-                        <div>
-                            <p>Master in Chemistry</p>
-                            <p>Punjab University (2006)</p>
-                        </div>
+                        <Table
+                            header={['Degree', 'Subject', 'Passing year', 'institute']}
+                            data={
+                                tutor_data?.qualifications ?
+                                    tutor_data?.qualifications.map(itm => {
+                                        return [
+                                            itm.degree,
+                                            itm.subject,
+                                            itm.institute,
+                                            itm.passing_year,
+                                        ]
+                                    })
+                                    :
+                                    []
+                            }
+                        />
                         <LineHeader text={'Experience'} bgClass='bg-[#313D6A]' />
-                        <LineHeader text={'references'}  />
+                        <Table
+                            header={['position', 'from', 'to', 'institute', 'experience']}
+                            data={
+                                tutor_data?.experiences ?
+                                    tutor_data?.experiences.map(itm => {
+                                        return [
+                                            itm.position,
+                                            itm.from_date,
+                                            itm.to_date,
+                                            itm.institute,
+                                            itm.exprience_years,
+                                        ]
+                                    })
+                                    :
+                                    []
+                            }
+                        />
+                        <LineHeader text={'references'} />
+                        <Table
+                            header={['name', 'contact', 'relation']}
+                            data={
+                                tutor_data?.references ?
+                                    tutor_data?.references.map(itm => {
+                                        return [
+                                            itm.name,
+                                            itm.mobile_number,
+                                            itm.relation,
+                                        ]
+                                    })
+                                    :
+                                    []
+                            }
+                        />
                         <LineHeader text={'demo video'} bgClass='bg-[#313D6A]' />
-                        <LineHeader text={'My document'}  />
+                        <div className='flex flex-wrap'>
+                            {
+                                tutor_data?.videos.length > 0 ?
+                                    tutor_data?.videos.map((vid, index) => {
+                                        return (
+                                            <>
+                                                <div className='w-[100px] h-[80px] flex items-center justify-center bg-gray-100'>video</div>
+                                            </>
+                                        )
+                                    })
+                                    :
+                                    <>No Video</>
+                            }
+                        </div>
+                        <LineHeader text={'My document'} />
+                        <div>
+                            my documents
+                        </div>
                     </div>
                 </div>
                 <div className='max-w-[250px] w-full bg-[#F5BB0759]/[35%] rounded-tl-[30px] overflow-hidden'>
                     <h3 className='text-center text-black text-xl my-5 font-bold'>Professional Details</h3>
                     <div>
-                        <p></p>
+                        <p>Heading</p>
+                        <p>Details</p>
                     </div>
                 </div>
             </div>
-{/* 
-            <div className='container mx-auto my-20 flex lg:flex-row flex-col-reverse px-5 items-start '>
-                <div className='flex-1 px-5 mt-5 lg:mt-0 lg:px-20'>
-                    <h3 className='text-md font-medium mb-6'>About Me</h3>
-                    {
-                        tutor_data &&
-                        <p className='text-xs text-gray-700'>{tutor_data?.detail}</p>
-                    }
-                </div>
-                <ProfileDisplayCard data={tutor_data} />
-            </div>
-            <div className='container mx-auto' >
-                <h3 className='mb-8 font-medium'>Courses I Offer</h3>
-                <div className='grid md:grid-cols-2 place-content-center lg:grid-cols-3 gap-10'>
-                    <CourseCard />
-                    <CourseCard />
-                    <CourseCard />
-                    <CourseCard />
-                    <CourseCard />
-                    <CourseCard />
-                </div>
-
-                <div className=' mx-auto my-10 flex items-center justify-center gap-10'>
-                    <span className='w-10 h-10 rounded-full bg-yellow-450 flex items-center justify-center cursor-pointer text-indigo-900'>
-                        <FontAwesomeIcon icon={faArrowLeft} />
-                    </span>
-                    <div className='flex items-center justify-center gap-5 font-medium'>
-                        <span className='text-yellow-400'>1</span>
-                        <span className='text-indigo-900'>2</span>
-                        <span className='text-indigo-900'>3</span>
-                        <span className='text-indigo-900'>4</span>
-                    </div>
-                    <span className='w-10 h-10 rounded-full bg-yellow-450 flex items-center justify-center cursor-pointer text-indigo-900'>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                    </span>
-                </div>
-            </div> */}
-
         </>
     )
 }

@@ -4,7 +4,7 @@
 const LineHeader = ({ text, isDoubleLine, icon, bgClass }) => {
     return (
         <>
-            <div className="w-full relative flex items-end justify-between mb-5">
+            <div className="w-full relative flex items-end justify-between my-5">
                 {
                     isDoubleLine ?
                         <span className={`block ${bgClass} flex-1 h-[3px]`}></span>
@@ -13,7 +13,7 @@ const LineHeader = ({ text, isDoubleLine, icon, bgClass }) => {
                 }
                 <div className={`${bgClass} ${isDoubleLine ? 'rounded-full rounded-bl-none rounded-br-none' : 'rounded-full rounded-br-none'} px-6 py-2 max-w-max flex items-center gap-4`}>
                     {icon}
-                    <p className="capitalizes text-white text-xl font-bold">{text}</p>
+                    <p className="capitalize text-white text-xl font-bold">{text}</p>
                 </div>
                 <span className={`block ${bgClass} flex-1 h-[3px]`}></span>
             </div>
