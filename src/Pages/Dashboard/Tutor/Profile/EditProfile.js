@@ -178,7 +178,7 @@ const EditProfileTutor = (props) => {
                                                 }
                                             })[0]
                                         },
-                                        city : 0
+                                        city: 0
                                     }
                                 )
                             }}
@@ -229,174 +229,177 @@ const EditProfileTutor = (props) => {
                         }}
                     />
                     <hr className='my-10' />
-                    {
-                        user_profile && user_profile.profile_image ?
-                            <>
-                                <div className="w-full text-center">
-                                    <div
-                                        className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
-                                        style={{
-                                            backgroundImage: `url('${user_profile &&
-                                                user_profile.profile_image && !selected_image ?
-                                                apiBaseURL + user_profile.profile_image :
-                                                user_profile.profile_image
-                                                }')`
-                                        }}
-                                    >
-                                    </div>
-                                    <FileInput
-                                        remove_logo
-                                        accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
-                                        Label='Change picture'
-                                        id='profile-update-picture'
-                                        onChange={
-                                            (event) => {
-                                                setSelectedImage(event.target.files[0])
-                                                setUserProfile(
-                                                    {
-                                                        ...user_profile,
-                                                        profile_image: URL.createObjectURL(event.target.files[0])
-                                                    }
-                                                )
+                    <div className="flex flex-col md:flex-row items-center justify-between">
+
+                        {
+                            user_profile && user_profile.profile_image ?
+                                <>
+                                    <div className="w-full text-center">
+                                        <div
+                                            className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
+                                            style={{
+                                                backgroundImage: `url('${user_profile &&
+                                                    user_profile.profile_image && !selected_image ?
+                                                    apiBaseURL + user_profile.profile_image :
+                                                    user_profile.profile_image
+                                                    }')`
                                             }}
-                                        value=''
-                                    />
-                                </div>
-                            </>
-                            :
-                            <FileInput
-                                accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
-                                Label='Profile Picture'
-                                id='profile-picture'
-                                onChange={
-                                    (event) => {
-                                        setSelectedImage(event.target.files[0])
-                                        setUserProfile(
-                                            {
-                                                ...user_profile,
-                                                profile_image: URL.createObjectURL(event.target.files[0])
-                                            }
-                                        )
-                                    }}
-                                value=''
-                            />
-                    }
-                    {
-                        user_profile && user_profile.degree_image ?
-                            <>
-                                <div className="w-full text-center">
-                                    <div
-                                        className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
-                                        style={{
-                                            backgroundImage: `url('${user_profile &&
-                                                user_profile.degree_image && !selected_degree ?
-                                                apiBaseURL + user_profile.degree_image :
-                                                user_profile.degree_image
-                                                }')`
-                                        }}
-                                    >
-                                    </div>
-                                    <FileInput
-                                        remove_logo
-                                        accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
-                                        Label='Change degree picture'
-                                        id='degree-update-picture'
-                                        onChange={
-                                            (event) => {
-                                                setSelectedDegree(event.target.files[0])
-                                                setUserProfile(
-                                                    {
-                                                        ...user_profile,
-                                                        degree_image: URL.createObjectURL(event.target.files[0])
-                                                    }
-                                                )
-                                            }}
-                                        value=''
-                                    />
-                                </div>
-                            </>
-                            :
-                            <FileInput
-                                accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
-                                Label='add degree picture'
-                                id='degree-picture'
-                                onChange={
-                                    (event) => {
-                                        setSelectedDegree(event.target.files[0])
-                                        setUserProfile(
-                                            {
-                                                ...user_profile,
-                                                degree_image: URL.createObjectURL(event.target.files[0])
-                                            }
-                                        )
-                                    }}
-                                value=''
-                            />
-                    }
-                    {
-                        user_profile && user_profile.cnic_image ?
-                            <>
-                                <div className="w-full text-center">
-                                    {
-                                        !selected_cnic ?
-                                            <div
-                                                className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
-                                                style={{
-                                                    backgroundImage: `url('${user_profile &&
-                                                        user_profile.cnic_image ?
-                                                        apiBaseURL + user_profile.cnic_image :
-                                                        ''
-                                                        }')`
+                                        >
+                                        </div>
+                                        <FileInput
+                                            remove_logo
+                                            accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
+                                            Label='Change picture'
+                                            id='profile-update-picture'
+                                            onChange={
+                                                (event) => {
+                                                    setSelectedImage(event.target.files[0])
+                                                    setUserProfile(
+                                                        {
+                                                            ...user_profile,
+                                                            profile_image: URL.createObjectURL(event.target.files[0])
+                                                        }
+                                                    )
                                                 }}
-                                            >
-                                            </div>
-                                            :
-                                            <div
-                                                className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
-                                                style={{
-                                                    backgroundImage: `url('${user_profile.cnic_image
-                                                        }')`
-                                                }}
-                                            >
-                                            </div>
-                                    }
-                                    <FileInput
-                                        remove_logo
-                                        accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
-                                        Label='Change CNIC Image'
-                                        id='cnic-update-picture'
-                                        onChange={
-                                            (event) => {
-                                                setSelectedCnic(event.target.files[0])
-                                                setUserProfile(
-                                                    {
-                                                        ...user_profile,
-                                                        cnic_image: URL.createObjectURL(event.target.files[0])
-                                                    }
-                                                )
+                                            value=''
+                                        />
+                                    </div>
+                                </>
+                                :
+                                <FileInput
+                                    accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
+                                    Label='Profile Picture'
+                                    id='profile-picture'
+                                    onChange={
+                                        (event) => {
+                                            setSelectedImage(event.target.files[0])
+                                            setUserProfile(
+                                                {
+                                                    ...user_profile,
+                                                    profile_image: URL.createObjectURL(event.target.files[0])
+                                                }
+                                            )
+                                        }}
+                                    value=''
+                                />
+                        }
+                        {
+                            user_profile && user_profile.degree_image ?
+                                <>
+                                    <div className="w-full text-center">
+                                        <div
+                                            className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
+                                            style={{
+                                                backgroundImage: `url('${user_profile &&
+                                                    user_profile.degree_image && !selected_degree ?
+                                                    apiBaseURL + user_profile.degree_image :
+                                                    user_profile.degree_image
+                                                    }')`
                                             }}
-                                        value=''
-                                    />
-                                </div>
-                            </>
-                            :
-                            <FileInput
-                                accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
-                                Label='add CNIC/b-form'
-                                id='cnic-picture'
-                                onChange={
-                                    (event) => {
-                                        setSelectedCnic(event.target.files[0])
-                                        setUserProfile(
-                                            {
-                                                ...user_profile,
-                                                cnic_image: URL.createObjectURL(event.target.files[0])
-                                            }
-                                        )
-                                    }}
-                                value=''
-                            />
-                    }
+                                        >
+                                        </div>
+                                        <FileInput
+                                            remove_logo
+                                            accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
+                                            Label='Change degree picture'
+                                            id='degree-update-picture'
+                                            onChange={
+                                                (event) => {
+                                                    setSelectedDegree(event.target.files[0])
+                                                    setUserProfile(
+                                                        {
+                                                            ...user_profile,
+                                                            degree_image: URL.createObjectURL(event.target.files[0])
+                                                        }
+                                                    )
+                                                }}
+                                            value=''
+                                        />
+                                    </div>
+                                </>
+                                :
+                                <FileInput
+                                    accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
+                                    Label='add degree picture'
+                                    id='degree-picture'
+                                    onChange={
+                                        (event) => {
+                                            setSelectedDegree(event.target.files[0])
+                                            setUserProfile(
+                                                {
+                                                    ...user_profile,
+                                                    degree_image: URL.createObjectURL(event.target.files[0])
+                                                }
+                                            )
+                                        }}
+                                    value=''
+                                />
+                        }
+                        {
+                            user_profile && user_profile.cnic_image ?
+                                <>
+                                    <div className="w-full text-center">
+                                        {
+                                            !selected_cnic ?
+                                                <div
+                                                    className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
+                                                    style={{
+                                                        backgroundImage: `url('${user_profile &&
+                                                            user_profile.cnic_image ?
+                                                            apiBaseURL + user_profile.cnic_image :
+                                                            ''
+                                                            }')`
+                                                    }}
+                                                >
+                                                </div>
+                                                :
+                                                <div
+                                                    className="mb-4 image-preview mx-auto w-32 h-32 bg-gray-200  bg-center bg-cover bg-no-repeat rounded-full"
+                                                    style={{
+                                                        backgroundImage: `url('${user_profile.cnic_image
+                                                            }')`
+                                                    }}
+                                                >
+                                                </div>
+                                        }
+                                        <FileInput
+                                            remove_logo
+                                            accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
+                                            Label='Change CNIC Image'
+                                            id='cnic-update-picture'
+                                            onChange={
+                                                (event) => {
+                                                    setSelectedCnic(event.target.files[0])
+                                                    setUserProfile(
+                                                        {
+                                                            ...user_profile,
+                                                            cnic_image: URL.createObjectURL(event.target.files[0])
+                                                        }
+                                                    )
+                                                }}
+                                            value=''
+                                        />
+                                    </div>
+                                </>
+                                :
+                                <FileInput
+                                    accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
+                                    Label='add CNIC/b-form'
+                                    id='cnic-picture'
+                                    onChange={
+                                        (event) => {
+                                            setSelectedCnic(event.target.files[0])
+                                            setUserProfile(
+                                                {
+                                                    ...user_profile,
+                                                    cnic_image: URL.createObjectURL(event.target.files[0])
+                                                }
+                                            )
+                                        }}
+                                    value=''
+                                />
+                        }
+                    </div>
                     <hr className='my-10' />
 
                 </Form>

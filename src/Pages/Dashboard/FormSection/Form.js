@@ -21,7 +21,7 @@ export const TextArea = (props) => {
             <InputLabel text={props.Label} />
             <textarea
                 placeholder={props.placeholder}
-                className='w-full text-center outline-none p-2 border border-gray-200 rounded h-40 '
+                className='w-full text-start outline-none p-2 border border-gray-200 rounded h-40 '
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)
@@ -54,7 +54,7 @@ export const EmailInput = (props) => {
     return (
         <div className='flex-1'>
             <InputLabel text={props.Label} />
-            <div className='flex pentutor-shadow '>
+            <div className='flex pentutor-shadow border border-gray-200'>
                 <input
                     type="email"
                     placeholder={props.placeholder}

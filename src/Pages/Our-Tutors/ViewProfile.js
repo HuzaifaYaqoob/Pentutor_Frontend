@@ -7,6 +7,14 @@ import { apiBaseURL, get_tutor } from '../../redux/apiURLs'
 import LineHeader from '../../components/LineHeading'
 import Table from '../../components/Table'
 
+const ProfHeading = ({ text }) => {
+    return (
+        <>
+            <p className='bg-[#313D6A] text-white px-2 py-1 rounded-xl max-w-max'>{text}</p>
+        </>
+    )
+}
+
 const ProfileDisplayCard = ({ data }) => {
     return (
         <div className='pentutor-shadow bg-white rounded-md w-64 item'>
@@ -221,7 +229,7 @@ const ViewProfile = ({ match, ...props }) => {
                         <LineHeader text={'demo video'} bgClass='bg-[#313D6A]' />
                         <div className='flex flex-wrap'>
                             {
-                                tutor_data?.videos.length > 0 ?
+                                tutor_data?.videos?.length > 0 ?
                                     tutor_data?.videos.map((vid, index) => {
                                         return (
                                             <>
@@ -239,11 +247,15 @@ const ViewProfile = ({ match, ...props }) => {
                         </div>
                     </div>
                 </div>
-                <div className='max-w-[250px] w-full bg-[#F5BB0759]/[35%] rounded-tl-[30px] overflow-hidden'>
+                <div className='max-w-[250px] px-4 w-full bg-[#F5BB0759]/[35%] rounded-tl-[30px] overflow-hidden'>
                     <h3 className='text-center text-black text-xl my-5 font-bold'>Professional Details</h3>
                     <div>
-                        <p>Heading</p>
-                        <p>Details</p>
+                        <ProfHeading text={'Days Availablity'} />
+                        <div className='flex items-center gap-3 my-2'>
+                            <input type={'checkbox'} disabled checked={tutor_data?.days[0]} />
+                            <p>Monday</p>
+                        </div>
+
                     </div>
                 </div>
             </div>

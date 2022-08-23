@@ -28,8 +28,8 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                     first_name: first_name,
                     last_name: last_name
                 },
-                mobile : mobile,
-                date_of_birth : date_of_birth,
+                mobile: mobile,
+                date_of_birth: date_of_birth,
                 Country: country.id,
                 city: city.id,
                 cnic_number: cnic_number,
@@ -159,6 +159,8 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                 </div>
                 <div className='md:flex gap-10 my-4'>
                     <TextInput
+                        type='number'
+                        className='text-start'
                         Label='CNIC Number'
                         placeholder='34***-*******-*'
                         value={cnic_number}
@@ -175,7 +177,7 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                                     name="gender"
                                     value={gender}
                                     id='male'
-                                    checked={gender == 'Male' ? true: false}
+                                    checked={gender == 'Male' ? true : false}
                                     onChange={(e) => {
                                         setGender('Male')
                                     }}
@@ -202,19 +204,20 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                     </RadioButtons>
                 </div>
                 <TextInput
+                    className='text-start'
                     Label='Street Address'
                     placeholder='Gulberg Town, House # 89, Main Ferozpur Town, Lahore'
                     value={area}
-                    onChange={(e)=>{
+                    onChange={(e) => {
                         SetArea(e.target.value)
                     }}
                 />
                 <TextArea
-                    className='my-4'
+                    className='my-4 text-start'
                     Label='Description'
                     placeholder='Enter Your Details Here...'
                     value={detail}
-                    onChange={(e)=>{
+                    onChange={(e) => {
                         setDetail(e.target.value)
                     }}
                 />

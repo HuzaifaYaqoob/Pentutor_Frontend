@@ -45,7 +45,7 @@ export const TutorCard = ({ data, ...props }) => {
             </div>
             <div className='flex items-center justify-evenly'>
                 <Link to={`/our-tutor/profile/${data?.slug}`} className='py-2 px-3 rounded-lg cursor-pointer bg-yellow-450 text-white'>View Full Profile</Link>
-                <button className='py-2 px-3 rounded-lg cursor-pointer bg-indigo-900 text-white'>Take Trial Class</button>
+                {/* <button className='py-2 px-3 rounded-lg cursor-pointer bg-indigo-900 text-white'>Take Trial Class</button> */}
             </div>
         </div>
     )
