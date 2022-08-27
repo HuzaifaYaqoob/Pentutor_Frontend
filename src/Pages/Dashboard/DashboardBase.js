@@ -12,9 +12,9 @@ const DashboardBase = (props) => {
                     {props.children}
                 </div>
             </div>
-            {/* <Link to='/dashboard/student/'>GO to student dashboard</Link><br /> */}
-            {/* <Link to='/dashboard/tutor/'>GO to tutor dashboard</Link><br /> */}
-            {/* <Link to='/dashboard/super-admin/'>GO to admin dashboard</Link> */}
+            <Link to='/dashboard/student/'>GO to student dashboard</Link><br />
+            <Link to='/dashboard/tutor/'>GO to tutor dashboard</Link><br />
+            <Link to='/dashboard/super-admin/'>GO to admin dashboard</Link>
         </>
     )
 }

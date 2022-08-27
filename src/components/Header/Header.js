@@ -56,7 +56,7 @@ const UserDropDown = (props) => {
                             <hr />
                             <div className='px-5   py-3 '>
                                 <Link
-                                    to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type.toLowerCase()}/`}
+                                    to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type?.toLowerCase()}/`}
                                     className='text-lg relative w-full block mb-1'
                                 >
                                     Dashboard
@@ -77,7 +77,7 @@ const UserDropDown = (props) => {
                             <hr />
                             <div className='p-6'>
                                 <Link
-                                    to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type.toLowerCase()}/profile/edit/`}
+                                    to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type?.toLowerCase()}/profile/edit/`}
                                     className='text-lg relative w-full block'
                                 >
                                     Edit Profile

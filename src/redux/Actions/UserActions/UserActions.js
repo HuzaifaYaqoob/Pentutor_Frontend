@@ -6,8 +6,8 @@ import { LOGIN_USER, REGISTER_USER, GET_USER_DATA , LOGGOUT_USER } from "../../A
 
 export const LoginUser = (login_cred, success, fail) => dispatch => {
     let login_form = new FormData()
-    login_form.append('username', login_cred.username)
-    login_form.append('password', login_cred.password)
+    login_form.append('username', login_cred?.username)
+    login_form.append('password', login_cred?.password)
     let login_req = {
         method: 'POST',
         body: login_form

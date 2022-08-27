@@ -81,9 +81,9 @@ const App = (props) => {
     '/auth/register/',
   ]
 
-  useEffect(()=>{
+  useEffect(() => {
     props.getAllCountries()
-  } , [])
+  }, [])
 
   useEffect(() => {
     const user_token = Cookies.get('auth_token')
@@ -165,36 +165,31 @@ const App = (props) => {
           ]
         } component={RegisterPage} />
 
-        {
-          props.user.loggedIn &&
-          <>
 
-            <Route exact path='/dashboard/student/' component={StudentDashboard} />
-            <Route exact path='/dashboard/student/profile/edit/' component={EditProfile} />
-            <Route exact path='/dashboard/student/courses/' component={PurchasesCourses} />
+        <Route exact path='/dashboard/student/' component={StudentDashboard} />
+        <Route exact path='/dashboard/student/profile/edit/' component={EditProfile} />
+        <Route exact path='/dashboard/student/courses/' component={PurchasesCourses} />
 
-            <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
-            <Route exact path='/dashboard/tutor/profile/edit/' component={EditProfileTutor} />
-            <Route exact path='/dashboard/tutor/courses/' component={CoursesList} />
-            <Route exact path='/dashboard/tutor/courses/add-new/' component={AddCourse} />
-            <Route exact path='/dashboard/tutor/courses/:course_id/add-videos/' component={AddCourseContent} />
+        <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
+        <Route exact path='/dashboard/tutor/profile/edit/' component={EditProfileTutor} />
+        <Route exact path='/dashboard/tutor/courses/' component={CoursesList} />
+        <Route exact path='/dashboard/tutor/courses/add-new/' component={AddCourse} />
+        <Route exact path='/dashboard/tutor/courses/:course_id/add-videos/' component={AddCourseContent} />
 
 
 
-            <Route exact path='/dashboard/tutor/jobs/' component={TutorJobs} />
-            <Route exact path='/dashboard/tutor/jobs/add-new/' component={CreateJob} />
+        <Route exact path='/dashboard/tutor/jobs/' component={TutorJobs} />
+        <Route exact path='/dashboard/tutor/jobs/add-new/' component={CreateJob} />
 
-            <Route exact path='/dashboard/super-admin/' component={AdminDashboard} />
-            <Route exact path='/dashboard/super-admin/register/student/' component={RegisterStudent} />
-            <Route exact path='/dashboard/super-admin/register/tutor/' component={RegisterTutor} />
-            <Route exact path='/dashboard/super-admin/register/admin/' component={RegisterAdmin} />
-            <Route exact path='/dashboard/super-admin/jobs/' component={AdminJobs} />
-            <Route exact path='/dashboard/super-admin/jobs/post-new/' component={PostNewJob} />
-            <Route exact path='/dashboard/super-admin/blog/' component={BlogListing} />
-            <Route exact path='/dashboard/super-admin/blog/post-new/' component={AddBlogPost} />
-            <Route exact path='/dashboard/super-admin/courses/' component={AdminCoursesList} />
-          </>
-        }
+        <Route exact path='/dashboard/super-admin/' component={AdminDashboard} />
+        <Route exact path='/dashboard/super-admin/register/student/' component={RegisterStudent} />
+        <Route exact path='/dashboard/super-admin/register/tutor/' component={RegisterTutor} />
+        <Route exact path='/dashboard/super-admin/register/admin/' component={RegisterAdmin} />
+        <Route exact path='/dashboard/super-admin/jobs/' component={AdminJobs} />
+        <Route exact path='/dashboard/super-admin/jobs/post-new/' component={PostNewJob} />
+        <Route exact path='/dashboard/super-admin/blog/' component={BlogListing} />
+        <Route exact path='/dashboard/super-admin/blog/post-new/' component={AddBlogPost} />
+        <Route exact path='/dashboard/super-admin/courses/' component={AdminCoursesList} />
 
 
       </Switch>

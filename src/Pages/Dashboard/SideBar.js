@@ -71,12 +71,12 @@ const SideBar = (props) => {
                         <div className='w-28 overflow-hidden h-28 rounded-full mx-auto flex items-center justify-center'>
                             <div className='w-24 h-24 mx-auto bg-center bg-cover rounded-full bg-no-repeat border border-gray-200' style={{backgroundImage : `url('${props.user.userData && props.user.userData.profile_image ? apiBaseURL + props.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'}')` }} alt="ProfilePic" />
                         </div>
-                        <Link to={`/dashboard/${props.user.userData && props.user.userData.user_type.toLowerCase()}/profile/edit/`} className='capitalize w-full text-center mt-4 text-white font-medium text-sm'>{props.user.userData && props.user?.userData?.user?.first_name ? `${props.user.userData.user.first_name} ${props.user.userData.user.last_name}` : props.user.userData.user.username}</Link>
+                        <Link to={`/dashboard/${props.user.userData && props.user.userData.user_type?.toLowerCase()}/profile/edit/`} className='capitalize w-full text-center mt-4 text-white font-medium text-sm'>{props.user.userData && props.user?.userData?.user?.first_name ? `${props.user.userData.user.first_name} ${props.user.userData.user.last_name}` : props.user.userData?.user?.username}</Link>
                     </div>
                 </div>
                 <ul className='p-4 '>
                     {/* <BarLink icon={faThList} text='Pentutor' nextPath='/' /> */}
-                    <BarLink icon={faThList} text='Dashboard' nextPath={`/dashboard/${props.user.userData && props.user.userData.user_type.toLowerCase()}/`} />
+                    <BarLink icon={faThList} text='Dashboard' nextPath={`/dashboard/${props.user.userData && props.user.userData.user_type?.toLowerCase()}/`} />
 
                     <Route path='/dashboard/student/'>
                         <BarLink icon={faBook} text='Courses' nextPath='/dashboard/student/courses/' />
