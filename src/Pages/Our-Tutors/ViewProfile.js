@@ -10,7 +10,7 @@ import Table from '../../components/Table'
 const ProfHeading = ({ text }) => {
     return (
         <>
-            <p className='bg-[#313D6A] text-white px-2 py-1 rounded-xl max-w-max'>{text}</p>
+            <p className='bg-[#313D6A] text-white px-4 my-2 py-1 rounded-xl max-w-max'>{text}</p>
         </>
     )
 }
@@ -110,7 +110,7 @@ const ProfileDetails = ({ heading, text }) => {
 const ViewProfile = ({ match, ...props }) => {
     const { profile_slug } = match.params
     const [tutor_data, setTutorData] = useState({})
-    // console.log(tutor_data)
+    console.log(tutor_data)
 
     const getTutorProfile = () => {
         fetch(
@@ -139,7 +139,7 @@ const ViewProfile = ({ match, ...props }) => {
     }, [profile_slug])
     return (
         <>
-            <div className='max-w-[1300px] mx-auto my-10 flex itemrounded-tr-[30px]s-start justify-between gap-10'>
+            <div className='max-w-[1300px] mx-auto my-10 flex items-start rounded-tr-[30px] justify-between gap-10'>
                 <div className='max-w-[250px] w-full bg-[#313D6A] rounded-tr-[30px] overflow-hidden'>
                     <div className='my-10'>
                         <div className='w-[100px] mb-3 h-[100px] mx-auto rounded-full bg-gray-100'></div>
@@ -247,16 +247,140 @@ const ViewProfile = ({ match, ...props }) => {
                         </div>
                     </div>
                 </div>
-                <div className='max-w-[250px] px-4 w-full bg-[#F5BB0759]/[35%] rounded-tl-[30px] overflow-hidden'>
+                <div className='max-w-[250px] pb-5 px-4 w-full bg-[#F5BB0759]/[35%] rounded-tl-[30px] overflow-hidden'>
                     <h3 className='text-center text-black text-xl my-5 font-bold'>Professional Details</h3>
                     <div>
                         <ProfHeading text={'Days Availablity'} />
                         <div className='flex items-center gap-3 my-2'>
-                            <input type={'checkbox'} disabled checked={tutor_data?.days[0]} />
+                            <input type={'checkbox'} disabled checked={tutor_data?.days?.monday} />
                             <p>Monday</p>
                         </div>
-
+                        <div className='flex items-center gap-3 my-2'>
+                            <input type={'checkbox'} disabled checked={tutor_data?.days?.tuesday} />
+                            <p>Tuesday</p>
+                        </div>
+                        <div className='flex items-center gap-3 my-2'>
+                            <input type={'checkbox'} disabled checked={tutor_data?.days?.wednesday} />
+                            <p>Wednesday</p>
+                        </div>
+                        <div className='flex items-center gap-3 my-2'>
+                            <input type={'checkbox'} disabled checked={tutor_data?.days?.thursday} />
+                            <p>Thursday</p>
+                        </div>
+                        <div className='flex items-center gap-3 my-2'>
+                            <input type={'checkbox'} disabled checked={tutor_data?.days?.friday} />
+                            <p>Friday</p>
+                        </div>
+                        <div className='flex items-center gap-3 my-2'>
+                            <input type={'checkbox'} disabled checked={tutor_data?.days?.saturday} />
+                            <p>Saturday</p>
+                        </div>
+                        <div className='flex items-center gap-3 my-2'>
+                            <input type={'checkbox'} disabled checked={tutor_data?.days?.sunday} />
+                            <p>Sunday</p>
+                        </div>
                     </div>
+                    <div>
+                        <ProfHeading text={'Time Availability'} />
+                        <div>
+                            <p>{tutor_data?.professional_details?.time_availability ? tutor_data?.professional_details?.time_availability : 'N/A'}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <ProfHeading text={'Areas to Teach'} />
+                        <div>
+                            <p>{tutor_data?.professional_details?.areas_to_teach ? tutor_data?.professional_details?.areas_to_teach : 'N/A'}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <ProfHeading text={'Available for online Teaching'} />
+                        <div>
+                            <p>{tutor_data?.professional_details?.online_teaching ? 'Yes' : 'N/A'}</p>
+                            {
+                                tutor_data?.professional_details?.online_teaching &&
+                                <p>Teaching Method : {tutor_data?.professional_details?.online_teaching}</p>
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <ProfHeading text={'Home Tutoring Status'} />
+                        <div>
+                            <p>{tutor_data?.professional_details?.home_tutor_status ? 'Yes' : 'N/A'}</p>
+                            {
+                                tutor_data?.professional_details?.home_tutor_status &&
+                                <p>{tutor_data?.professional_details?.home_tutor_status}</p>
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <ProfHeading text={'Own Institute'} />
+                        <div>
+                            <p>{tutor_data?.professional_details?.own_institute ? 'Yes' : 'N/A'}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <ProfHeading text={'Offering Subjects'} />
+                        {
+                            tutor_data?.professional_details?.subjects?.length > 0 ?
+                                <div>
+                                    {
+                                        tutor_data?.professional_details?.subjects?.map(sb => {
+                                            return (
+                                                <p>{sb.subject}</p>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                :
+                                <>
+                                    <p>N/A</p>
+                                </>
+                        }
+                    </div>
+                    <div>
+                        <ProfHeading text={'Teaching Language'} />
+                        {
+                            tutor_data?.professional_details?.languages?.length > 0 ?
+                                <div>
+                                    {
+                                        tutor_data?.professional_details?.languages?.map(sb => {
+                                            return (
+                                                <p>{sb.name}</p>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                :
+                                <>
+                                    <p>N/A</p>
+                                </>
+                        }
+                    </div>
+                    <div>
+                        <ProfHeading text={'Short Couse'} />
+                        <div>
+                            <p>{tutor_data?.professional_details?.short_courses ? 'Yes' : 'N/A'}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <ProfHeading text={'Fee'} />
+                        <div>
+                            <p>{tutor_data?.professional_details?.fee ? tutor_data?.professional_details?.fee : 'N/A'}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <ProfHeading text={'Currently Employeed'} />
+                        <div>
+                            <p>{tutor_data?.professional_details?.currently_employeed ? tutor_data?.professional_details?.currently_employeed : 'N/A'}</p>
+                        </div>
+                    </div>
+                    {/* <div>
+                        <ProfHeading text={'Languages'} />
+                        <div>
+                            <p>Urdu 5 star</p>
+                            <p>English 5 star</p>
+                        </div>
+                    </div> */}
                 </div>
             </div>
         </>
