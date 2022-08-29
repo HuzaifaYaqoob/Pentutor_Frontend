@@ -1,6 +1,6 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignature , faMonument , faGlobeEurope} from '@fortawesome/free-solid-svg-icons'
+import { faSignature, faMonument, faGlobeEurope, faFunnelDollar } from '@fortawesome/free-solid-svg-icons'
 
 import QuickOverviewCard from './QuickOverviewCard'
 
@@ -31,13 +31,223 @@ const ContentBoxSubConent = () => {
             <div className='col-span-3'>
                 <QuickOverviewCard />
                 <div>
-                    <div className='mb-5'>
-                        <h3 className='font-bold text-gray-700 text-xl'>Your Upcomming Courses/Tution</h3>
+                    <div className='mb-5 text-center'>
+                        <h3 className='font-bold text-gray-700 text-2xl'>My Scheduled Classes</h3>
                     </div>
-                    <div className='grid grid-cols-2 gap-5'>
-                        <CourseCard heading='calculus' content='10 courses' colorClass='bg-yellow-450' icon={faSignature} />
-                        <CourseCard heading='German' content='10 courses' colorClass='bg-blue-600' icon={faGlobeEurope} />
-                        <CourseCard heading='History' content='10 courses' colorClass='bg-red-600' icon={faMonument} />
+                    <div className='flex flex-col gap-4'>
+                        <div className='flex flex-col gap-3'>
+                            <h2 className='font-semibold text-lg text-black'>My Scheduled Home Tuitions</h2>
+                            <div className='w-full p-5 bg-center bg-cover bg-no-repeat relative mb-10' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/images/about/about1.jpg'})` }}>
+                                <div className='absolute top-0 right-0 bottom-0 left-0 bg-indigo-900 bg-opacity-75'>
+                                </div>
+                                <div className='relative z-10 text-white flex flex-col gap-3'>
+                                    <div class="flex flex-col">
+                                        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                                                <div class="overflow-hidden">
+                                                    <table class="table-auto w-full border text-center text-[#FBC210] border-[#FBC210]">
+                                                        <thead class="border-b border-[#FBC210]">
+                                                            <tr>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    &nbsp;
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Student Id
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Class/Level
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Subject
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Days & Timings
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Location
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="border-b border-[#FBC210]">
+                                                                <td class="p-2 whitespace-nowrap text-sm font-medium border-r border-[#FBC210]">1</td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Mark
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Mark
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Mark
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Otto
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap">
+                                                                    @mdo
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col gap-3'>
+                            <h2 className='font-semibold text-lg text-black'>My Scheduled Online Tuitions</h2>
+                            <div className='w-full p-5 bg-center bg-cover bg-no-repeat relative mb-10' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/images/about/about1.jpg'})` }}>
+                                <div className='absolute top-0 right-0 bottom-0 left-0 bg-indigo-900 bg-opacity-75'>
+                                </div>
+                                <div className='relative z-10 text-white flex flex-col gap-3'>
+                                    <div class="flex flex-col">
+                                        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                                                <div class="overflow-hidden">
+                                                    <table class="table-auto w-full border text-center text-[#FBC210] border-[#FBC210]">
+                                                        <thead class="border-b border-[#FBC210]">
+                                                            <tr>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    &nbsp;
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Student Id
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Class/Level
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Subject
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Days & Timings
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="border-b border-[#FBC210]">
+                                                                <td class="p-2 whitespace-nowrap text-sm font-medium border-r border-[#FBC210]">1</td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Mark
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Mark
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Otto
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap">
+                                                                    @mdo
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col gap-3'>
+                            <h2 className='font-semibold text-lg text-black'>My Scheduled Online Group Sessions</h2>
+                            <div className='w-full p-5 bg-center bg-cover bg-no-repeat relative mb-10' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/images/about/about1.jpg'})` }}>
+                                <div className='absolute top-0 right-0 bottom-0 left-0 bg-indigo-900 bg-opacity-75'>
+                                </div>
+                                <div className='relative z-10 text-white flex flex-col gap-3'>
+                                    <div class="flex flex-col">
+                                        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                                                <div class="overflow-hidden">
+                                                    <table class="table-auto w-full border text-center text-[#FBC210] border-[#FBC210]">
+                                                        <thead class="border-b border-[#FBC210]">
+                                                            <tr>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    &nbsp;
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Student Id
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Class/Level
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Subject
+                                                                </th>
+                                                                <th scope="col" class="text-sm font-medium p-2 border-r border-[#FBC210]">
+                                                                    Days & Timings
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="border-b border-[#FBC210]">
+                                                                <td class="p-2 whitespace-nowrap text-sm font-medium border-r border-[#FBC210]">1</td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Mark
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Mark
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap border-r border-[#FBC210]">
+                                                                    Otto
+                                                                </td>
+                                                                <td class="text-sm font-light p-2 whitespace-nowrap">
+                                                                    @mdo
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className='mb-5 text-center'>
+                                <h3 className='font-bold text-gray-700 text-2xl'>My Video Courses</h3>
+                            </div>
+                            <div className='grid md:grid-cols-3 gap-3'>
+                                <div className='bg-[#F5BB07E5] rounded-lg h-[8rem] flex flex-col gap-4 items-center justify-center'>
+                                    <FontAwesomeIcon icon={faFunnelDollar} className='text-2xl' />
+                                    <p className='font-semibold'>O Level Chemistry</p>
+                                </div>
+                                <div className='bg-[#02C8C8CC] rounded-lg h-[8rem] flex flex-col gap-4 items-center justify-center'>
+                                    <FontAwesomeIcon icon={faFunnelDollar} className='text-2xl' />
+                                    <p className='font-semibold'>O Level Chemistry</p>
+                                </div>
+                                <div className='bg-[#F50740E5] rounded-lg h-[8rem] flex flex-col gap-4 items-center justify-center'>
+                                    <FontAwesomeIcon icon={faFunnelDollar} className='text-2xl' />
+                                    <p className='font-semibold'>O Level Chemistry</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='mt-5'>
+                            <div className='mb-5 text-center'>
+                                <h3 className='font-bold text-gray-700 text-2xl'>My Video Courses</h3>
+                            </div>
+                            <div className='grid md:grid-cols-3 gap-3'>
+                                <div className='bg-[#F5BB07E5] rounded-lg h-[8rem] flex flex-col gap-4 items-center justify-center'>
+                                    <FontAwesomeIcon icon={faFunnelDollar} className='text-2xl' />
+                                    <p className='font-semibold'>O Level Chemistry</p>
+                                </div>
+                                <div className='bg-[#02C8C8CC] rounded-lg h-[8rem] flex flex-col gap-4 items-center justify-center'>
+                                    <FontAwesomeIcon icon={faFunnelDollar} className='text-2xl' />
+                                    <p className='font-semibold'>O Level Chemistry</p>
+                                </div>
+                                <div className='bg-[#F50740E5] rounded-lg h-[8rem] flex flex-col gap-4 items-center justify-center'>
+                                    <FontAwesomeIcon icon={faFunnelDollar} className='text-2xl' />
+                                    <p className='font-semibold'>O Level Chemistry</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
