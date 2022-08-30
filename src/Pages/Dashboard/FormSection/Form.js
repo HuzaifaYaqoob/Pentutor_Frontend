@@ -38,7 +38,8 @@ export const TextInput = (props) => {
         <div className='flex-1'>
             <InputLabel text={props.Label} />
             <input
-                type='text'
+                type={props.type  ? props.type  :'text'}
+                name={props.name}
                 placeholder={props.placeholder}
                 className={`w-full text-center outline-none p-2 border border-gray-200 rounded ${props.className}`}
                 value={props.value && props.value}
@@ -219,6 +220,7 @@ export const FileInput = (props) => {
                 accept={props.accept && props.accept}
                 hidden
                 value={props.value && props.value}
+                name={props.name}
             />
         </div>
     )

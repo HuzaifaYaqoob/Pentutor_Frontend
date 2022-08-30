@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { getUserData } from "./redux/Actions/UserActions/UserActions";
 import { getUserProfile } from "./redux/Actions/ProfileActions/ProfileActions";
-import { getAllCountries } from "./redux/Actions/UtilityActions/UtilityActions";
+import { getAllCountries, getAllCourseCategories } from "./redux/Actions/UtilityActions/UtilityActions";
 import { connect, useDispatch } from "react-redux";
 
 //  Components 
@@ -83,6 +83,7 @@ const App = (props) => {
 
   useEffect(() => {
     props.getAllCountries()
+    props.getAllCourseCategories()
   }, [])
 
   useEffect(() => {
@@ -220,7 +221,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  getAllCountries: getAllCountries
+  getAllCountries: getAllCountries,
+  getAllCourseCategories: getAllCourseCategories
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -10,6 +10,7 @@ export const apiBaseURL = 'http://194.163.152.51';
 export const get_all_countries = '/api/utility/get_all_countries/';
 // export const get_states = '/api/utility/get_states/?country=' ;
 export const get_cities = '/api/utility/get_cities/?country=';
+export const get_all_category = '/api/course/get_all_category/';
 
 
 // Authentication URLs 
@@ -29,4 +30,4 @@ export const get_tutor = '/api/profile/get_tutor/';
 
 
 export const get_all_courses = '/api/course/get_all_courses/';
-
+export const create_course = '/api/course/create_course/'

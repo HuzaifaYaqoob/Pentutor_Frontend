@@ -9,38 +9,148 @@ import Form, { TextInput, EmailInput, ContactNumberInput, DOBInput, DropDownInpu
 
 import ReactQuill from "react-quill"
 import 'react-quill/dist/quill.snow.css'
+import SelectDropDown from '../../../../components/FormSection/Dropdown'
+import { connect, useDispatch } from 'react-redux'
+import { createCourse } from '../../../../redux/Actions/CourseActions/CourseActions'
 
 
-const AddCourse = () => {
-    const [details, setDetail] = useState("");
-    const [yourWillLearn, setyourWillLearn] = useState("");
+const AddCourse = (props) => {
+    const [course_data, setCourseData] = useState({})
+    const dispatch = useDispatch()
+
+
+    console.log(props.utility.categories)
+
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setCourseData({
+            ...course_data,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = () => {
+        dispatch(
+            createCourse(
+                course_data,
+                (result) => {
+                    console.log(result)
+                }
+            )
+        )
+    }
+
 
     return (
         <DashboardBase>
             <ContentBox HeaderText='Add Course' />
-            <Form btnText='Create' >
+            <Form
+                btnText='Create'
+                onSubmit={() => {
+                    handleSubmit()
+                }}
+            >
                 <div className='block lg:flex items-stretch gap-5'>
                     <div className='flex-1'>
-                        <TextInput Label='Course Title / Name' placeholder='Learn Seo: Begginer To Advance In 1 Month ...' />
+                        <TextInput
+                            name='title'
+                            Label='Course Title / Name'
+                            placeholder='Learn Seo: Begginer To Advance In 1 Month ...'
+                            className='text-start'
+                            onChange={handleChange}
+                            value={course_data.title}
+                        />
                         <br />
-                        <TextInput Label='Set Course Price' placeholder='20K PKR' />
+                        <TextInput
+                            type='number'
+                            name='price'
+                            Label='Set Course Price'
+                            placeholder='20K PKR'
+                            className='text-start'
+                            onChange={handleChange}
+                            value={course_data.price}
+                        />
                     </div>
                     <div className='flex-1 border border-dashed border-gray-300 rounded'>
-                        <FileInput />
+                        <FileInput
+                            id='course-image'
+                            name='image'
+                            onChange={
+                                (e) => {
+                                    handleChange({ ...e, target: { ...e.target, value: e.target.files[0], name: 'image' } })
+                                }
+                            }
+                        />
                     </div>
                 </div>
                 <div className=' flex flex-col md:flex-row my-7 gap-6'>
-                    <DropDownInput Label='Select Level' placeholder='Advance' data={['Advance', 'Medium', 'Low']} />
-                    <DropDownInput Label='Select Category' placeholder='Marketing' data={['Marketing', 'Agency']} />
+                    <div className='flex-1'>
+                        <SelectDropDown
+                            title={'Select Level'}
+                            placeholder='Advance'
+                            name={'level'}
+                            value={course_data.level}
+                            options={[
+                                {
+                                    label: 'Easy',
+                                    value: 'Easy'
+                                },
+                                {
+                                    label: 'Medium',
+                                    value: 'Medium'
+                                },
+                                {
+                                    label: 'Advance',
+                                    value: 'Advance'
+                                },
+                            ]}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className='flex-1'>
+                        <SelectDropDown
+                            title={'Select Category'}
+                            placeholder='Marketing'
+                            name='course_category'
+                            value={course_data.course_category}
+                            options={
+                                props.utility.categories.map(cat => {
+                                    return {
+                                        label: cat.title,
+                                        value: cat.slug
+                                    }
+                                })
+                            }
+                            onChange={handleChange}
+                        />
+                    </div>
                 </div>
+                <SelectDropDown
+                    title={'Select Language'}
+                    placeholder='English'
+                    name='language'
+                    value={course_data.language}
+                    options={[
+                        {
+                            label: 'Easy',
+                            value: 'Easy'
+                        },
+                    ]}
+                    onChange={handleChange}
+                />
                 <div>
                     <h3 className='font-bold text-lg mb-5'>Course Details</h3>
                     <ReactQuill
                         className='h-52'
                         theme='snow'
-                        value={details}
+                        value={course_data.description ? course_data.description : ''}
                         style={{ minHeight: '300px' }}
                         placeholder='Enter Course Detail'
+                        name='description'
+                        onChange={(text_val) => {
+                            handleChange({ target: { value: text_val, name: 'description' } })
+                        }}
                     />
                 </div>
                 <div className='my-16 mb-32'>
@@ -48,9 +158,13 @@ const AddCourse = () => {
                     <ReactQuill
                         className='h-52'
                         theme='snow'
-                        value={yourWillLearn}
+                        value={course_data.things_you_will_learn ? course_data.things_you_will_learn : ''}
                         style={{ minHeight: '300px' }}
                         placeholder='Things You Will Learn'
+                        name='things_you_will_learn'
+                        onChange={(text_val) => {
+                            handleChange({ target: { value: text_val, name: 'things_you_will_learn' } })
+                        }}
                     />
                 </div>
 
@@ -59,4 +173,12 @@ const AddCourse = () => {
     )
 }
 
-export default AddCourse
+const mapStateToProps = state => {
+    return state
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCourse)
