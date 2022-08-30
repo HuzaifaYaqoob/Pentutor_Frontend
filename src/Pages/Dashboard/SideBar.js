@@ -62,14 +62,14 @@ const SideBar = (props) => {
             <div className='fixed  w-12 pentutor-shadow flex lg:hidden items-center justify-center rounded-full top-2 left-2 h-12 z-50 cursor-pointer bg-white' onClick={() => { setSideBarShow('fixed') }}>
                 <HamburgerIcon />
             </div >
-            <div className={`w-52 pentutor-shadow rounded-3xl overflow-hidden ${sideBarshow} bg-white lg:block top-0 z-50 max-h-screen lg:max-h-full overflow-y-auto `}>
+            <div className={`sticky top-6 h-fit w-52 sidebar-shadow rounded-3xl overflow-hidden ${sideBarshow} bg-white lg:block top-0 z-50 max-h-screen lg:max-h-full overflow-y-auto `}>
                 <span className='absolute top-3 right-3 text-white cursor-pointer' onClick={() => { setSideBarShow('hidden') }} >
                     <FontAwesomeIcon icon={faTimes} />
                 </span>
                 <div className='w-52 h-44 bg-indigo-900 flex items-center justify-center rounded-3xl'>
                     <div className='text-center'>
                         <div className='w-28 overflow-hidden h-28 rounded-full mx-auto flex items-center justify-center'>
-                            <div className='w-24 h-24 mx-auto bg-center bg-cover rounded-full bg-no-repeat border border-gray-200' style={{backgroundImage : `url('${props.user.userData && props.user.userData.profile_image ? apiBaseURL + props.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'}')` }} alt="ProfilePic" />
+                            <div className='w-24 h-24 mx-auto bg-center bg-cover rounded-full bg-no-repeat border border-gray-200' style={{ backgroundImage: `url('${props.user.userData && props.user.userData.profile_image ? apiBaseURL + props.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'}')` }} alt="ProfilePic" />
                         </div>
                         <Link to={`/dashboard/${props.user.userData && props.user.userData.user_type?.toLowerCase()}/profile/edit/`} className='capitalize w-full text-center mt-4 text-white font-medium text-sm'>{props.user.userData && props.user?.userData?.user?.first_name ? `${props.user.userData.user.first_name} ${props.user.userData.user.last_name}` : props.user.userData?.user?.username}</Link>
                     </div>
