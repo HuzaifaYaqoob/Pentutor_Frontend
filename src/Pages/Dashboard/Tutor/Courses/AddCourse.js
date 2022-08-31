@@ -12,11 +12,16 @@ import 'react-quill/dist/quill.snow.css'
 import SelectDropDown from '../../../../components/FormSection/Dropdown'
 import { connect, useDispatch } from 'react-redux'
 import { createCourse } from '../../../../redux/Actions/CourseActions/CourseActions'
+import { useHistory } from 'react-router-dom'
 
 
 const AddCourse = (props) => {
     const [course_data, setCourseData] = useState({})
+    const [btn_clicked, setButtonClicked] = useState(false)
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
+    const history = useHistory()
+
 
 
     console.log(props.utility.categories)
@@ -31,14 +36,24 @@ const AddCourse = (props) => {
     }
 
     const handleSubmit = () => {
-        dispatch(
-            createCourse(
-                course_data,
-                (result) => {
-                    console.log(result)
-                }
+
+        if (course_data.title && course_data.price && course_data.image && course_data.level && course_data.course_category && course_data.language && course_data.description && course_data.things_you_will_learn) {
+            setLoading(true)
+            dispatch(
+                createCourse(
+                    course_data,
+                    (result) => {
+                        alert('Created')
+                        console.log(result)
+                        setLoading(false)
+                        history.push(`/dashboard/tutor/courses/${result.slug}/add-videos/`)
+                    }
+                )
             )
-        )
+        }
+        else {
+            alert('all fields are required')
+        }
     }
 
 
@@ -47,7 +62,9 @@ const AddCourse = (props) => {
             <ContentBox HeaderText='Add Course' />
             <Form
                 btnText='Create'
+                btnLoading={loading}
                 onSubmit={() => {
+                    setButtonClicked(true)
                     handleSubmit()
                 }}
             >
@@ -60,6 +77,7 @@ const AddCourse = (props) => {
                             className='text-start'
                             onChange={handleChange}
                             value={course_data.title}
+                            error={btn_clicked && !course_data.title ? true : false}
                         />
                         <br />
                         <TextInput
@@ -70,6 +88,8 @@ const AddCourse = (props) => {
                             className='text-start'
                             onChange={handleChange}
                             value={course_data.price}
+                            error={btn_clicked && !course_data.price ? true : false}
+
                         />
                     </div>
                     <div className='flex-1 border border-dashed border-gray-300 rounded'>
@@ -81,6 +101,7 @@ const AddCourse = (props) => {
                                     handleChange({ ...e, target: { ...e.target, value: e.target.files[0], name: 'image' } })
                                 }
                             }
+                            error={btn_clicked && !course_data.image ? true : false}
                         />
                     </div>
                 </div>
@@ -106,6 +127,7 @@ const AddCourse = (props) => {
                                 },
                             ]}
                             onChange={handleChange}
+                            error={btn_clicked && !course_data.level ? true : false}
                         />
                     </div>
                     <div className='flex-1'>
@@ -123,6 +145,7 @@ const AddCourse = (props) => {
                                 })
                             }
                             onChange={handleChange}
+                            error={btn_clicked && !course_data.course_category ? true : false}
                         />
                     </div>
                 </div>
@@ -138,6 +161,7 @@ const AddCourse = (props) => {
                         },
                     ]}
                     onChange={handleChange}
+                    error={btn_clicked && !course_data.language ? true : false}
                 />
                 <div>
                     <h3 className='font-bold text-lg mb-5'>Course Details</h3>
@@ -151,6 +175,7 @@ const AddCourse = (props) => {
                         onChange={(text_val) => {
                             handleChange({ target: { value: text_val, name: 'description' } })
                         }}
+                        error={btn_clicked && !course_data.description ? true : false}
                     />
                 </div>
                 <div className='my-16 mb-32'>
@@ -165,6 +190,7 @@ const AddCourse = (props) => {
                         onChange={(text_val) => {
                             handleChange({ target: { value: text_val, name: 'things_you_will_learn' } })
                         }}
+                        error={btn_clicked && !course_data.things_you_will_learn ? true : false}
                     />
                 </div>
 

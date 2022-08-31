@@ -1,4 +1,4 @@
-import { CREATE_COURSE } from "../../ActionsTypes/CourseActionTypes"
+import { CREATE_COURSE, CREATE_COURSE_CHAPTER } from "../../ActionsTypes/CourseActionTypes"
 
 
 
@@ -14,6 +14,14 @@ const initialState = {
 
 const CourseReducer = (state = initialState, action) => {
     switch (action.type) {
+        case CREATE_COURSE_CHAPTER:
+            return {
+                ...state,
+                // my_courses: [
+                //     ...state.my_courses,
+                //     action.payload
+                // ]
+            }
         case CREATE_COURSE:
             return {
                 ...state,

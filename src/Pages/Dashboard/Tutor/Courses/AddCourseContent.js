@@ -1,10 +1,15 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlay, faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 
 import DashboardBase from "../../DashboardBase"
+import { useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { createChapterVideo, createCourseChapter } from '../../../../redux/Actions/CourseActions/CourseActions'
 
 
 const AddVideo = () => {
@@ -20,33 +25,58 @@ const AddVideo = () => {
 }
 
 
-const CourseSection = (props) => {
+const CourseSection = ({ data, onVideoAdd }) => {
     const [dropDownActive, setDropDownActive] = React.useState(false)
-    const [AddedVideos, setAddedVideos] = React.useState([<AddVideo/>])
+    const [selected_file, setSelectedFile] = useState(undefined)
+    const dispatch = useDispatch()
 
-    const AddNewVideo = () =>{
-        setAddedVideos([...AddedVideos , <AddVideo/>])
+    const AddNewVideo = () => {
+        if (selected_file) {
+            dispatch(
+                createChapterVideo(
+                    { chapter: data.slug, video: selected_file },
+                    (result) => {
+                        setSelectedFile(undefined)
+                        onVideoAdd && onVideoAdd(result)
+                    },
+                    () => {
+                        setSelectedFile(undefined)
+                    }
+                )
+            )
+        }
     }
+
     return (
         <div className='my-5'>
             <div className='bg-white rounded border border-gray-200 px-2 shadow text-xs text-gray-600 flex gap-8 cursor-pointer items-center' onClick={() => { setDropDownActive(!dropDownActive) }}>
                 <FontAwesomeIcon icon={faPlay} className={'transition-all ' + (dropDownActive ? 'rotate-90 transform' : '')} />
-                <p className='p-3 block w-full outline-none' contentEditable={true}>{props.title}</p>
+                <p className='p-3 block w-full outline-none'>{data.title}</p>
             </div>
             {
                 dropDownActive ?
                     <div className='my-3' >
                         {
-                            AddedVideos.map(item => item)
+                            data.videos?.map((vid, index) => {
+                                return (
+                                    <AddVideo />
+                                )
+                            })
                         }
                         <div className='flex items-center justify-between text-sm'>
-                            <button onClick={()=>{AddNewVideo()}} className='flex items-center gap-2 bg-indigo-900 text-white rounded py-1 px-3'>
+                            <label htmlFor={data.slug} onClick={() => { AddNewVideo() }} className='flex items-center gap-2 bg-indigo-900 text-white rounded py-1 px-3 cursor-pointer'>
                                 <FontAwesomeIcon icon={faPlusCircle} />
                                 Add Video
-                            </button>
-                            <button className='flex items-center gap-2 bg-green-500 text-white rounded py-1 px-3'>
-                                Save
-                            </button>
+                            </label>
+                            <input
+                                type={'file'}
+                                id={data.slug}
+                                className='hidden'
+                                accept='.mp4,.MP4,.mkv,.MKV'
+                                onChange={(e) => {
+                                    setSelectedFile(e.target.files[0])
+                                }}
+                            />
                         </div>
                     </div>
                     :
@@ -58,27 +88,50 @@ const CourseSection = (props) => {
 }
 
 
-const AddCourseContent = () => {
-    const [sections, setSections] = React.useState([
-        'Chapter 1: Discussion',
-        'Chapter 2',
-        'Chapter 3',
-    ])
+const AddCourseContent = (props) => {
+    const [sections, setSections] = React.useState([])
+    const [title, setTitle] = useState('Discussion')
+    const params = useParams()
+    const history = useHistory()
+    const dispatch = useDispatch()
+    console.log(params)
 
     const AddNewSection = () => {
-        setSections([...sections, 'New Section'])
+        dispatch(createCourseChapter(
+            { course: params.course_id, title: `Chapter ${sections.length + 1} : ${title}` },
+            (result) => {
+                setSections([
+                    ...sections,
+                    result
+                ])
+            }
+        ))
     }
+
+    useEffect(() => {
+        if (params.course_id) {
+
+        }
+        else {
+            history.goBack()
+        }
+    }, [params.course_id])
+
     return (
         <DashboardBase>
-            <button to='/dashboard/tutor/courses/add-new/' onClick={() => { AddNewSection() }} className='bg-yellow-200 text-indigo-900 py-2 px-7 ml-auto block rounded text-lg font-bold cursor-pointer' >
+            <button
+                to='/dashboard/tutor/courses/add-new/'
+                onClick={() => { AddNewSection() }}
+                className='bg-yellow-200 text-indigo-900 py-2 px-7 ml-auto block rounded text-lg font-bold cursor-pointer'
+            >
                 Add Section
                 <FontAwesomeIcon className='ml-2' icon={faPlusCircle} />
             </button>
             <div className='bg-white rounded shadow border border-gray-200 my-10 px-10 py-8'>
                 {
-                    sections.map(item =>
+                    sections.map(chapter =>
 
-                        <CourseSection title={item} />
+                        <CourseSection data={chapter} />
                     )
                 }
             </div>

@@ -38,10 +38,10 @@ export const TextInput = (props) => {
         <div className='flex-1'>
             <InputLabel text={props.Label} />
             <input
-                type={props.type  ? props.type  :'text'}
+                type={props.type ? props.type : 'text'}
                 name={props.name}
                 placeholder={props.placeholder}
-                className={`w-full text-center outline-none p-2 border border-gray-200 rounded ${props.className}`}
+                className={`w-full text-center outline-none p-2 border rounded ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} ${props.className}`}
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)
@@ -201,22 +201,33 @@ export const RadioButtons = (props) => {
 
 
 export const FileInput = (props) => {
+    const [selected_file, setSelectedFile] = useState(undefined)
     return (
-        <div>
+        <div className='h-full'>
             <label
                 className='mb-3 capitalize cursor-pointer'
                 htmlFor={props.id && props.id}
             >
-                {props.Label}
+                {/* { props.Label } */}
                 {
-                    !props.remove_logo &&
-                    <FontAwesomeIcon icon={faFile} className='text-7xl text-gray-400 block mx-auto my-10 cursor-pointer' />
+                    selected_file ?
+                        <div className='w-full h-full bg-center bg-cover bg-no-repeat' style={{ backgroundImage: `url('${selected_file}')` }}></div>
+                        :
+                        <>
+                            {
+                                !props.remove_logo &&
+                                <FontAwesomeIcon icon={faFile} className='text-7xl text-gray-400 block mx-auto my-10 cursor-pointer' />
+                            }
+                        </>
                 }
             </label>
             <input
                 type="file"
                 id={props.id && props.id}
-                onChange={props.onChange && props.onChange}
+                onChange={(e) => {
+                    props.onChange && props.onChange(e)
+                    setSelectedFile(URL.createObjectURL(e.target.files[0]))
+                }}
                 accept={props.accept && props.accept}
                 hidden
                 value={props.value && props.value}
@@ -227,13 +238,14 @@ export const FileInput = (props) => {
 }
 
 
-const Form = ({ className, ...props }) => {
+const Form = ({ className, btnLoading, ...props }) => {
     return (
         <div className={`my-10 container ${className}`}>
             {props.children}
             <div>
                 <button
-                    className='color-green py-2 px-5 mt-4 text-lg text-white rounded capitalize'
+                    disabled={btnLoading}
+                    className='color-green py-2 px-5 mt-4 text-lg text-white rounded capitalize disabled:bg-gray-700 disabled:cursor-not-allowed'
                     onClick={() => {
                         props.onSubmit ? props.onSubmit() : alert('onSubmit Event Lister required')
                     }}
