@@ -1,7 +1,7 @@
 
 
 
-import { apiBaseURL, create_chapter_video, create_course, create_course_chapter } from "../../apiURLs"
+import { apiBaseURL, create_chapter_video, create_course, create_course_chapter, get_course } from "../../apiURLs"
 import Cookies from "js-cookie";
 import { CREATE_CHAPTER_VIDEO, CREATE_COURSE, CREATE_COURSE_CHAPTER } from "../../ActionsTypes/CourseActionTypes";
 
@@ -127,4 +127,26 @@ export const createChapterVideo = (data, success, fail) => dispatch => {
             fail && fail()
             console.log(err)
         })
+}
+
+export const getSingleCourse = (data, success, fail) => {
+    let s_code
+
+    fetch(apiBaseURL + get_course + `?course=${data.id}`)
+        .then(response => {
+            s_code = response.status
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            if (s_code == 200) {
+                success && success(result.data)
+            }
+        })
+        .catch((err) => {
+            fail && fail()
+            console.log(err)
+        })
+
 }

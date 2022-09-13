@@ -9,7 +9,9 @@ import { useLocation } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { createChapterVideo, createCourseChapter } from '../../../../redux/Actions/CourseActions/CourseActions'
+import { createChapterVideo, createCourseChapter, getSingleCourse } from '../../../../redux/Actions/CourseActions/CourseActions'
+import Popup from '../../../../components/Popup'
+import Form, { TextInput } from '../../FormSection/Form'
 
 
 const AddVideo = () => {
@@ -49,17 +51,19 @@ const CourseSection = ({ data, onVideoAdd }) => {
 
     return (
         <div className='my-5'>
-            <div className='bg-white rounded border border-gray-200 px-2 shadow text-xs text-gray-600 flex gap-8 cursor-pointer items-center' onClick={() => { setDropDownActive(!dropDownActive) }}>
-                <FontAwesomeIcon icon={faPlay} className={'transition-all ' + (dropDownActive ? 'rotate-90 transform' : '')} />
-                <p className='p-3 block w-full outline-none'>{data.title}</p>
+            <div className='bg-white rounded border border-gray-200 px-2 shadow text-xs text-gray-600 flex justify-between  items-center' onClick={() => { setDropDownActive(!dropDownActive) }}>
+                <div className='flex items-center gap-8 cursor-pointer'>
+                    <FontAwesomeIcon icon={faPlay} className={'transition-all ' + (dropDownActive ? 'rotate-90 transform' : '')} />
+                    <p className='p-3 block w-full outline-none'>{data.title}</p>
+                </div>
             </div>
             {
                 dropDownActive ?
                     <div className='my-3' >
                         {
-                            data.videos?.map((vid, index) => {
+                            data.video?.map((vid, index) => {
                                 return (
-                                    <AddVideo />
+                                    <AddVideo data={vid} key={index} />
                                 )
                             })
                         }
@@ -91,26 +95,44 @@ const CourseSection = ({ data, onVideoAdd }) => {
 const AddCourseContent = (props) => {
     const [sections, setSections] = React.useState([])
     const [title, setTitle] = useState('Discussion')
+    const [course_data, setCourseData] = useState(undefined)
+    const [title_popup, setTitlePopup] = useState(false)
     const params = useParams()
     const history = useHistory()
     const dispatch = useDispatch()
-    console.log(params)
 
     const AddNewSection = () => {
         dispatch(createCourseChapter(
-            { course: params.course_id, title: `Chapter ${sections.length + 1} : ${title}` },
+            { course: params.course_id, title: `Chapter ${course_data?.chapter?.length + 1} : ${title}` },
             (result) => {
-                setSections([
-                    ...sections,
-                    result
-                ])
+                setTitlePopup(false)
+                setCourseData({
+                    ...course_data,
+                    chapter: [
+                        ...course_data.chapter,
+                        result
+                    ]
+                })
+            },
+            () => {
+                setTitlePopup(false)
             }
         ))
     }
 
+    console.log(course_data)
+
     useEffect(() => {
         if (params.course_id) {
-
+            getSingleCourse(
+                { id: params.course_id },
+                (result) => {
+                    setCourseData(result)
+                },
+                () => {
+                    history.goBack()
+                }
+            )
         }
         else {
             history.goBack()
@@ -121,21 +143,51 @@ const AddCourseContent = (props) => {
         <DashboardBase>
             <button
                 to='/dashboard/tutor/courses/add-new/'
-                onClick={() => { AddNewSection() }}
+                onClick={() => { setTitlePopup(true) }}
                 className='bg-yellow-200 text-indigo-900 py-2 px-7 ml-auto block rounded text-lg font-bold cursor-pointer'
             >
                 Add Section
                 <FontAwesomeIcon className='ml-2' icon={faPlusCircle} />
             </button>
-            <div className='bg-white rounded shadow border border-gray-200 my-10 px-10 py-8'>
-                {
-                    sections.map(chapter =>
-
-                        <CourseSection data={chapter} />
-                    )
-                }
-            </div>
-
+            {
+                course_data && course_data.chapter &&
+                course_data.chapter.length > 0 &&
+                <div className='bg-white rounded shadow border border-gray-200 my-10 px-10 py-8'>
+                    {
+                        course_data.chapter.map((chapter, index) => {
+                            return (
+                                <CourseSection data={chapter} key={index} />
+                            )
+                        })
+                    }
+                </div>
+            }
+            {
+                title_popup &&
+                <Popup
+                    heading='Add Chapter Title'
+                    onclose={() => {
+                        setTitlePopup(false)
+                    }}
+                >
+                    <div>
+                        <Form
+                            btnText='Submit'
+                            onSubmit={() => {
+                                AddNewSection()
+                            }}
+                        >
+                            <TextInput
+                                className='text-start'
+                                placeholder='Enter Title'
+                                onChange={(e) => {
+                                    setTitle(e.target.value)
+                                }}
+                            />
+                        </Form>
+                    </div>
+                </Popup>
+            }
         </DashboardBase>
     )
 }

@@ -33,3 +33,4 @@ export const get_all_courses = '/api/course/get_all_courses/';
 export const create_course = '/api/course/create_course/'
 export const create_course_chapter = '/api/course/create_course_chapter/'
 export const create_chapter_video = '/api/course/create_chapter_video/'
+export const get_course = '/api/course/get_course/'

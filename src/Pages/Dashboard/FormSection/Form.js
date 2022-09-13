@@ -257,5 +257,10 @@ const Form = ({ className, btnLoading, ...props }) => {
     )
 }
 
+Form.defaultProps = {
+    btnLoading: false,
+    onSubmit: () => { },
+    btnText: 'Button'
+}
 
 export default Form
