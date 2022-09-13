@@ -1,9 +1,9 @@
 
 
 
-import { apiBaseURL, create_chapter_video, create_course, create_course_chapter, get_course } from "../../apiURLs"
+import { apiBaseURL, create_chapter_video, create_course, create_course_chapter, delete_chapter_video, delete_course, get_course, get_my_courses } from "../../apiURLs"
 import Cookies from "js-cookie";
-import { CREATE_CHAPTER_VIDEO, CREATE_COURSE, CREATE_COURSE_CHAPTER } from "../../ActionsTypes/CourseActionTypes";
+import { CREATE_CHAPTER_VIDEO, CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, DELETE_COURSE_CHAPTER_VIDEO, GET_MY_COURSES } from "../../ActionsTypes/CourseActionTypes";
 
 
 export const createCourse = (data, success, fail) => dispatch => {
@@ -149,4 +149,102 @@ export const getSingleCourse = (data, success, fail) => {
             console.log(err)
         })
 
+}
+
+export const getMyCourses = () => dispatch => {
+    let s_code
+
+    fetch(apiBaseURL + get_my_courses,
+        {
+            headers: {
+                Authorization: `Token ${Cookies.get('auth_token')}`
+            }
+        })
+        .then(response => {
+            s_code = response.status
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            if (s_code == 200) {
+                dispatch({
+                    type: GET_MY_COURSES,
+                    payload: result.data
+                })
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+export const deleteCourse = (data, success, fail) => dispatch => {
+    let s_code
+    let form_data = new FormData()
+    form_data.append('slug', data.id)
+
+    fetch(apiBaseURL + delete_course,
+        {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Token ${Cookies.get('auth_token')}`
+            },
+            body: form_data
+        })
+        .then(response => {
+            s_code = response.status
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            if (s_code == 200) {
+                dispatch({
+                    type: DELETE_COURSE,
+                    payload: data.id
+                })
+                success && success(result.data)
+            }
+            else {
+                fail && fail()
+            }
+        })
+        .catch((err) => {
+            fail && fail()
+            console.log(err)
+        })
+}
+
+export const deleteCourseChapterVideo = (data, success, fail) => dispatch => {
+    let s_code
+    let form_data = new FormData()
+    form_data.append('video', data.id)
+
+    fetch(apiBaseURL + delete_chapter_video,
+        {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Token ${Cookies.get('auth_token')}`
+            },
+            body: form_data
+        })
+        .then(response => {
+            s_code = response.status
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            if (s_code == 200) {
+                success && success(result.data)
+            }
+            else {
+                fail && fail()
+            }
+        })
+        .catch((err) => {
+            fail && fail()
+            console.log(err)
+        })
 }

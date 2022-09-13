@@ -112,7 +112,6 @@ export const getUserData = (auth_token, success, fail) => dispatch => {
         })
         .then(result => {
             if (s_code == 200) {
-                console.log(result)
                 dispatch({
                     type: GET_USER_DATA,
                     payload: result
