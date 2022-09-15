@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { createChapterVideo, createCourseChapter, deleteCourseChapterVideo, getSingleCourse } from '../../../../redux/Actions/CourseActions/CourseActions'
+import { createChapterVideo, createCourseChapter, deleteCourseChapter, deleteCourseChapterVideo, getSingleCourse } from '../../../../redux/Actions/CourseActions/CourseActions'
 import Popup from '../../../../components/Popup'
 import Form, { TextInput } from '../../FormSection/Form'
 
@@ -45,10 +45,11 @@ const VideoCard = ({ data, onDeleteClick, deleting }) => {
 }
 
 
-const CourseSection = ({ data, onVideoAdd, onDeleteVideo }) => {
+const CourseSection = ({ data, onVideoAdd, onDeleteVideo, onDeleteChapter }) => {
     const [dropDownActive, setDropDownActive] = React.useState(false)
     const [selected_file, setSelectedFile] = useState(undefined)
     const [uploading, setUploading] = useState(false)
+    const [deleting_chpt, setDeletingChptr] = useState(undefined)
     const [deleting, setDeleting] = useState(undefined)
     const dispatch = useDispatch()
 
@@ -70,6 +71,22 @@ const CourseSection = ({ data, onVideoAdd, onDeleteVideo }) => {
                 )
             )
         }
+    }
+
+    const DeleteChapter = () => {
+        setDeletingChptr(true)
+        dispatch(
+            deleteCourseChapter(
+                { id: data.slug },
+                () => {
+                    onDeleteChapter && onDeleteChapter()
+                    setDeletingChptr(false)
+                },
+                () => {
+                    setDeletingChptr(false)
+                }
+            )
+        )
     }
 
     const DeleteVideo = (id) => {
@@ -96,10 +113,29 @@ const CourseSection = ({ data, onVideoAdd, onDeleteVideo }) => {
 
     return (
         <div className='my-5'>
-            <div className='bg-white rounded border border-gray-200 px-2 shadow text-xs text-gray-600 flex justify-between  items-center' onClick={() => { setDropDownActive(!dropDownActive) }}>
-                <div className='flex items-center gap-8 cursor-pointer'>
-                    <FontAwesomeIcon icon={faPlay} className={'transition-all ' + (dropDownActive ? 'rotate-90 transform' : '')} />
-                    <p className='p-3 block w-full outline-none'>{data.title}</p>
+            <div className='bg-white rounded border border-gray-200 px-2 shadow text-xs text-gray-600 flex justify-between  items-center'
+            >
+                <div className='flex items-center justify-between w-full px-4 gap-8'>
+                    <div
+                        className='flex items-center gap-8'
+                        onClick={() => { setDropDownActive(!dropDownActive) }}
+                    >
+                        <FontAwesomeIcon icon={faPlay} className={'transition-all ' + (dropDownActive ? 'rotate-90 transform' : '')} />
+                        <p className='p-3 block w-full outline-none'>{data.title}</p>
+                    </div>
+                    {
+                        deleting_chpt ?
+                            <>
+                                <span>Deleting...</span>
+                            </>
+                            :
+                            <span
+                                className='text-red-600 cursor-pointer'
+                                onClick={() => {
+                                    DeleteChapter()
+                                }}
+                            >Delete</span>
+                    }
                 </div>
             </div>
             {
@@ -164,7 +200,7 @@ const AddCourseContent = (props) => {
 
     const AddNewSection = () => {
         dispatch(createCourseChapter(
-            { course: params.course_id, title: `Chapter ${course_data?.chapter?.length + 1} : ${title}` },
+            { course: params.course_id, title: `${title}` },
             (result) => {
                 setTitlePopup(false)
                 setCourseData({
@@ -263,6 +299,14 @@ const AddCourseContent = (props) => {
                                         handleDeleteVideo(chapter.slug, video_id)
                                     }}
                                     onVideoAdd={(data) => { handleAddNewVideo(chapter.slug, data) }}
+                                    onDeleteChapter={() => {
+                                        setCourseData({
+                                            ...course_data,
+                                            chapter: [
+                                                ...course_data.chapter.filter(itm => itm.slug != chapter.slug)
+                                            ]
+                                        })
+                                    }}
                                 />
                             )
                         })
