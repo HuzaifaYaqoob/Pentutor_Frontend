@@ -50,6 +50,7 @@ const ProfileDisplayCard = ({ data }) => {
 }
 
 export const CourseCard = ({ data }) => {
+    console.log(data)
     return (
         <div className='w-full max-w-xs relative pentutor-shadow rounded-md overflow-hidden px-3 pt-1'>
             <div  >

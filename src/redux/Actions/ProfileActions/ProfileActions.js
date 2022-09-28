@@ -32,7 +32,7 @@ export const getUserProfile = (data, success, fail) => dispatch => {
             }
         })
         .catch(err => {
-            console.log('Profile ERROR :  ', err)
+            fail && fail()
         })
 }
 
@@ -42,13 +42,13 @@ export const UpdateUserProfile = (data, success, fail) => dispatch => {
     let update_form = new FormData()
 
     for (let dt_k in data) {
-        if (data[dt_k]){
+        if (data[dt_k]) {
             if (dt_k == 'user') {
                 update_form.append(dt_k, JSON.stringify(data[dt_k]))
             }
             else {
                 update_form.append(dt_k, data[dt_k])
-                
+
             }
         }
     }
@@ -71,6 +71,7 @@ export const UpdateUserProfile = (data, success, fail) => dispatch => {
         })
         .then(result => {
             if (s_code == 200) {
+                success && success()
                 dispatch(
                     {
                         type: GET_USER_PROFILE,
@@ -78,9 +79,12 @@ export const UpdateUserProfile = (data, success, fail) => dispatch => {
                     }
                 )
             }
+            else {
+                fail && fail()
+            }
         })
         .catch(err => {
-            console.log('Profile ERROR :  ', err)
+            fail && fail()
         })
 
 }

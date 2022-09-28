@@ -1,6 +1,6 @@
 
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -41,7 +41,7 @@ export const TextInput = (props) => {
                 type={props.type ? props.type : 'text'}
                 name={props.name}
                 placeholder={props.placeholder}
-                className={`w-full text-center outline-none p-2 border rounded ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} ${props.className}`}
+                className={`w-full outline-none p-2 border rounded ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} ${props.className}`}
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)
@@ -165,7 +165,7 @@ export const DropDownInput = (props) => {
                     dropDownActive &&
                     <div className='absolute w-full top-full bg-white py-3 px-1 pentutor-shadow z-50'>
                         {
-                            props.data.map((item) => {
+                            props?.data?.map((item) => {
                                 return (
                                     <DropDownItem
                                         label={item.label}
@@ -202,6 +202,14 @@ export const RadioButtons = (props) => {
 
 export const FileInput = (props) => {
     const [selected_file, setSelectedFile] = useState(undefined)
+
+    useEffect(() => {
+        if (props.value && typeof props.value != 'object') {
+            setSelectedFile(props.value)
+        }
+    }, [props.value])
+
+
     return (
         <div className='h-full'>
             <label
@@ -211,15 +219,16 @@ export const FileInput = (props) => {
                 {/* { props.Label } */}
                 {
                     selected_file ?
-                        <div className='w-full h-full bg-center bg-cover bg-no-repeat' style={{ backgroundImage: `url('${selected_file}')` }}></div>
+                        <div className='w-[120px] h-[120px] rounded-full bg-center bg-cover bg-no-repeat border border-gray-200' style={{ backgroundImage: `url('${selected_file}')` }}></div>
                         :
                         <>
                             {
                                 !props.remove_logo &&
-                                <FontAwesomeIcon icon={faFile} className='text-7xl text-gray-400 block mx-auto my-10 cursor-pointer' />
+                                <FontAwesomeIcon icon={faFile} className='text-6xl text-gray-400 block mx-auto my-10 cursor-pointer' />
                             }
                         </>
                 }
+                <p className='text-center my-3'>{props.label}</p>
             </label>
             <input
                 type="file"
@@ -230,7 +239,7 @@ export const FileInput = (props) => {
                 }}
                 accept={props.accept && props.accept}
                 hidden
-                value={props.value && props.value}
+                value={''}
                 name={props.name}
             />
         </div>

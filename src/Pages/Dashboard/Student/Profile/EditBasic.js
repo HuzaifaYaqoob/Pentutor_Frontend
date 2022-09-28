@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
+import { toast } from "react-toastify"
 import { getUserProfile, UpdateUserProfile } from "../../../../redux/Actions/ProfileActions/ProfileActions"
 import { getCity } from "../../../../redux/Actions/UtilityActions/UtilityActions"
 import Form, { ContactNumberInput, DOBInput, DropDownInput, EmailInput, RadioButtons, TextArea, TextInput } from "../../FormSection/Form"
@@ -18,10 +19,12 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
     const [gender, setGender] = useState('')
     const [area, SetArea] = useState('')
     const [detail, setDetail] = useState('')
+    const [loading, setLoading] = useState(false)
 
 
 
     const UpdateStudentProfile = () => {
+        setLoading(true)
         props.UpdateUserProfile(
             {
                 user: {
@@ -30,12 +33,20 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                 },
                 mobile: mobile,
                 date_of_birth: date_of_birth,
-                Country: country.id,
-                city: city.id,
+                Country: country?.id,
+                city: city?.id,
                 cnic_number: cnic_number,
                 gender: gender,
                 area: area,
                 detail: detail,
+            },
+            () => {
+                toast.success('Updated Successfully')
+                setLoading(false)
+            },
+            () => {
+                toast.error('Something went wrong')
+                setLoading(false)
             }
         )
     }
@@ -66,7 +77,12 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
 
     return (
         <div>
-            <Form btnText='save' onSubmit={() => { UpdateStudentProfile() }} className='mx-auto max-w-6xl w-full '>
+            <Form
+                btnText='save'
+                onSubmit={() => { UpdateStudentProfile() }}
+                className='mx-auto max-w-6xl w-full mt-2'
+                btnLoading={loading}
+            >
                 <div className='md:flex gap-10 mb-5'>
 
                     <TextInput
@@ -116,13 +132,14 @@ const EditBasicDetails = ({ user_profile_, setUserProfile, ...props }) => {
                         placeholder='Select Country'
                         value={country && country.name}
                         data={
-                            props.utility.countries.length > 0 &&
-                            props.utility.countries.map((ct) => {
-                                return {
-                                    label: ct.name,
-                                    value: ct.id
-                                }
-                            })
+                            props.utility.countries.length > 0 ?
+                                props.utility.countries.map((ct) => {
+                                    return {
+                                        label: ct.name,
+                                        value: ct.id
+                                    }
+                                })
+                                : []
                         }
                         onChange={(value) => {
                             getCity(value)

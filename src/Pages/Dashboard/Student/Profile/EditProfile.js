@@ -21,7 +21,7 @@ import EditProfessionalDetails from "./EditProfessional"
 const ProfileTab = (props) => {
     return (
         <div
-            className={`py-1 px-4 my-2 rounded cursor-pointer ${props.active ? 'bg-yellow-450 text-white' : ' border border-yellow-400 '} hover:bg-yellow-400 hover:text-white`}
+            className={`py-1 px-4 my-2 rounded cursor-pointer ${props.active ? 'text-yellow-600' : 'text-gray-900'}`}
             onClick={props.onClick}
         >
             {props.text}
@@ -29,9 +29,6 @@ const ProfileTab = (props) => {
     )
 
 }
-
-
-
 
 const EditProfile = (props) => {
     const [active_tab, setActiveTab] = useState('BASIC')
@@ -42,6 +39,31 @@ const EditProfile = (props) => {
     const [selected_degree, setSelectedDegree] = useState(undefined)
     const [selected_cnic, setSelectedCnic] = useState(undefined)
 
+
+    const Form_Steps = [
+        {
+            text: 'Basic Information',
+            onClick: () => {
+                setActiveTab('BASIC')
+            },
+            active: active_tab == 'BASIC' ? true : false
+        },
+        {
+            active: active_tab == 'OTHERDETAILS' ? true : false,
+            text: 'Other Details',
+            onClick: () => {
+                setActiveTab('OTHERDETAILS')
+            }
+        },
+        {
+            active: active_tab == 'DOCUMENT' ? true : false,
+            text: 'Documents/Media',
+            onClick: () => {
+                setActiveTab('DOCUMENT')
+
+            }
+        }
+    ]
 
 
 
@@ -64,8 +86,8 @@ const EditProfile = (props) => {
         props.UpdateUserProfile(
             {
                 ...user_profile,
-                Country: user_profile.Country.id,
-                city: user_profile.city.id,
+                Country: user_profile?.Country?.id,
+                city: user_profile?.city?.id,
                 ...image_data
             }
         )
@@ -86,20 +108,6 @@ const EditProfile = (props) => {
                 <ContentBox HeaderText='Welcome to Profile' />
                 <div className="mx-auto max-w-6xl w-full">
                     <div className="flex items-center justify-between flex-wrap">
-                        <ProfileTab
-                            active={active_tab == 'BASIC' ? true : false}
-                            text='Basic Information'
-                            onClick={() => {
-                                setActiveTab('BASIC')
-                            }}
-                        />
-                        <ProfileTab
-                            active={active_tab == 'OTHERDETAILS' ? true : false}
-                            text='Other Details'
-                            onClick={() => {
-                                setActiveTab('OTHERDETAILS')
-                            }}
-                        />
                         {/* <ProfileTab
                             active={active_tab == 'QUALIFICATION' ? true : false}
                             text='Qualification'
@@ -121,13 +129,23 @@ const EditProfile = (props) => {
                                 setActiveTab('REFERRENCE')
                             }}
                         /> */}
-                        <ProfileTab
-                            active={active_tab == 'DOCUMENT' ? true : false}
-                            text='Documents/Media'
-                            onClick={() => {
-                                setActiveTab('DOCUMENT')
-                            }}
-                        />
+                        {
+                            Form_Steps.map((step, index) => {
+                                return (
+                                    <>
+                                        {
+                                            index != 0 &&
+                                            <div className="flex-1 border-dashed border-yellow-300 border-t-[2px] h-0 p-0"></div>
+                                        }
+                                        <ProfileTab
+                                            active={step.active}
+                                            text={step.text}
+                                            onClick={step.onClick}
+                                        />
+                                    </>
+                                )
+                            })
+                        }
                     </div>
                     <div>
                         {

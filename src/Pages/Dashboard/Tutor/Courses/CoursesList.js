@@ -56,35 +56,40 @@ const TutorCourses = () => {
                         <p className='table-cell py-2 text-indigo-600'>Actions</p>
                     </div>
                     {
-                        state.course.my_courses.length > 0 ?
-                            state.course.my_courses.map((course, index) => {
-                                return (
-                                    <>
-                                        <div className="table-row ">
-                                            <TableData
-                                                className='text-blue-700 cursor-pointer'
-                                                text={course.title}
-                                                onClick={() => {
-                                                    history.push(`/dashboard/tutor/courses/${course.slug}/add-videos/`)
-                                                }}
-                                            />
-                                            <TableData text={course.duration} />
-                                            <TableData text='september 25, 2021' />
-                                            <div>
-                                                <p
-                                                    className="text-red-600 cursor-pointer"
+                        state.course.updated_ ?
+                            state.course.my_courses.length > 0 ?
+                                state.course.my_courses.map((course, index) => {
+                                    return (
+                                        <>
+                                            <div className="table-row ">
+                                                <TableData
+                                                    className='text-blue-700 cursor-pointer'
+                                                    text={course.title}
                                                     onClick={() => {
-                                                        DeleteCourseHandler(course.slug)
+                                                        history.push(`/dashboard/tutor/courses/${course.slug}/add-videos/`)
                                                     }}
-                                                >Delete</p>
+                                                />
+                                                <TableData text={course.duration} />
+                                                <TableData text='september 25, 2021' />
+                                                <div>
+                                                    <p
+                                                        className="text-red-600 cursor-pointer"
+                                                        onClick={() => {
+                                                            DeleteCourseHandler(course.slug)
+                                                        }}
+                                                    >Delete</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </>
-                                )
-                            })
+                                        </>
+                                    )
+                                })
+                                :
+                                <>
+                                    <p className="text-center">Not found</p>
+                                </>
                             :
                             <>
-                                <p>Not found</p>
+                                <p>Loading...</p>
                             </>
                     }
 

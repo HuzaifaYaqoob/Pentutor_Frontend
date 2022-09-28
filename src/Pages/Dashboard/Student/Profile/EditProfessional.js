@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { connect } from "react-redux"
+import { toast } from "react-toastify"
 import { UpdateUserProfile } from "../../../../redux/Actions/ProfileActions/ProfileActions"
 import Form, { DropDownInput, RadioButtons, TextInput, TimeInput } from "../../FormSection/Form"
 
@@ -23,9 +24,11 @@ const EditProfessionalDetails = ({ user_profile_, setUserProfile, ...props }) =>
     const [teaching_method, setTeachingMethod] = useState('')
     const [study_time, setStudyTime] = useState('')
     const [preferred_teacher, setPreferredTeacher] = useState('')
+    const [loading, setLoading] = useState(false)
 
 
     const UpdateStudentProfile = () => {
+        setLoading(true)
         props.UpdateUserProfile(
             {
                 qualification: qualification,
@@ -34,7 +37,15 @@ const EditProfessionalDetails = ({ user_profile_, setUserProfile, ...props }) =>
                 teaching_method: teaching_method,
                 study_timing: study_time,
                 prefered_teacher: preferred_teacher
-            }
+            },
+            () => {
+                setLoading(false)
+                toast.success('Updated Successfully')
+            },
+            () => {
+                setLoading(false)
+                toast.error('Something went wrong')
+            },
         )
     }
 
@@ -50,7 +61,7 @@ const EditProfessionalDetails = ({ user_profile_, setUserProfile, ...props }) =>
 
 
     return (
-        <Form btnText='save' onSubmit={() => { UpdateStudentProfile() }} className='mx-auto max-w-6xl w-full mt-5'>
+        <Form btnText='save' btnLoading={loading} onSubmit={() => { UpdateStudentProfile() }} className='mx-auto max-w-6xl w-full mt-5'>
             <div>
                 <div className='md:flex gap-10'>
                     <TextInput

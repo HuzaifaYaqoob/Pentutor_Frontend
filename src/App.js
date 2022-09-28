@@ -55,6 +55,8 @@ import PostNewJob from "./Pages/Dashboard/SuperAdmin/Jobs/PostNew";
 import Loader from './components/Loader/Loader'
 import { Switch, Route, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = (props) => {
@@ -115,6 +117,9 @@ const App = (props) => {
 
         <Loader />
       }
+      <div>
+        <ToastContainer />
+      </div>
       <Route exact path={
         [
           '/',
