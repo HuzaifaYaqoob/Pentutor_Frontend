@@ -37,16 +37,25 @@ const UserDropDown = (props) => {
             }
             <div className='relative'>
 
-                <span className='flex items-center justify-center w-12 rounded-full overflow-hidden h-12 ' onClick={() => { setDropDownActive(!dropDownActive) }}>
-                    <img className='w-10 cursor-pointer ' src={state.user.userData && state.user.userData.profile_image ? apiBaseURL + state.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'} alt="Logo" />
+                <span
+                    className='flex items-center border border-gray-300 justify-center w-12 rounded-full cursor-pointer bg-center bg-cover bg-no-repeat overflow-hidden h-12 '
+                    onClick={() => { setDropDownActive(!dropDownActive) }}
+                    style={{
+                        backgroundImage: `url('${state.user.userData && state.user.userData.profile_image ? state.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'}')`
+                    }}
+                >
                 </span>
 
                 {
                     dropDownActive ?
-                        <div className='absolute top-full mt-5 right-0 bg-gray-600 rounded-lg text-white z-50 w-72'>
+                        <div className='absolute top-full mt-5 right-0 bg-white rounded-lg text-gray-800 z-50 w-72 shadow-2xl'>
                             <div className='py-4 px-4 flex items-center gap-4'>
-                                <span className='flex items-center justify-center w-12 rounded-full overflow-hidden h-12 ' >
-                                    <img className='w-10 cursor-pointer ' src={state.user.userData && state.user.userData.profile_image ? apiBaseURL + state.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'} alt="Logo" />
+                                <span
+                                    className='flex border-gray-300  items-center justify-center w-12 rounded-full cursor-pointer bg-center bg-cover bg-no-repeat overflow-hidden h-12 '
+                                    style={{
+                                        backgroundImage: `url('${state.user.userData && state.user.userData.profile_image ? state.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'}')`
+                                    }}
+                                >
                                 </span>
                                 <div>
                                     <p className='font-medium text-lg'>{state.user.loggedIn && state.user.userData && state.user.userData.name}</p>
@@ -54,7 +63,7 @@ const UserDropDown = (props) => {
                                 </div>
                             </div>
                             <hr />
-                            <div className='px-5   py-3 '>
+                            <div className='px-3 py-3 '>
                                 <Link
                                     to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type?.toLowerCase()}/`}
                                     className='text-lg relative w-full block mb-1'
@@ -75,7 +84,7 @@ const UserDropDown = (props) => {
                                 </Link>
                             </div>
                             <hr />
-                            <div className='p-6'>
+                            <div className='p-3'>
                                 <Link
                                     to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type?.toLowerCase()}/profile/edit/`}
                                     className='text-lg relative w-full block'
@@ -84,7 +93,7 @@ const UserDropDown = (props) => {
                                 </Link>
                             </div>
                             <hr />
-                            <div className='p-6'>
+                            <div className='p-3'>
                                 <span
                                     className='text-lg cursor-pointer'
                                     onClick={() => {

@@ -1,3 +1,4 @@
 
 
 export const GET_ALL_TUTORS = 'GET_ALL_TUTORS'
+export const GET_FEATURED_TUTORS = 'GET_FEATURED_TUTORS'

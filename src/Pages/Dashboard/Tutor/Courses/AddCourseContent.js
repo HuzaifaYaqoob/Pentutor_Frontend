@@ -17,7 +17,7 @@ import Form, { TextInput } from '../../FormSection/Form'
 const VideoCard = ({ data, onDeleteClick, deleting }) => {
 
     return (
-        <div className='rounded border border-gray-200 my-2 py-1 px-5 flex justify-between items-center'>
+        <div className='rounded border border-gray-200 my-2 py-1 pr-5 pl-1 flex justify-between items-center'>
             <div className='flex items-center gap-3'>
                 <div
                     className='w-[80px] h-[80px] border border-gray-200 bg-center bg-cover bg-no-repeat'
@@ -117,7 +117,7 @@ const CourseSection = ({ data, onVideoAdd, onDeleteVideo, onDeleteChapter }) => 
             >
                 <div className='flex items-center justify-between w-full px-4 gap-8'>
                     <div
-                        className='flex items-center gap-8'
+                        className='flex items-center gap-8 cursor-pointer'
                         onClick={() => { setDropDownActive(!dropDownActive) }}
                     >
                         <FontAwesomeIcon icon={faPlay} className={'transition-all ' + (dropDownActive ? 'rotate-90 transform' : '')} />
@@ -288,7 +288,7 @@ const AddCourseContent = (props) => {
             {
                 course_data && course_data.chapter &&
                 course_data.chapter.length > 0 &&
-                <div className='bg-white rounded shadow border border-gray-200 my-10 px-10 py-8'>
+                <div className='bg-white rounded shadow border border-gray-200 my-10 p-3'>
                     {
                         course_data.chapter.map((chapter, index) => {
                             return (

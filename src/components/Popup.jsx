@@ -19,7 +19,7 @@ const Popup = (props) => {
                                 <h1 className={`${props.size == 'md' ? 'p-[1rem]' : 'p-[1.2rem]'} font-semibold text-xl`}>{props.heading ? props.heading : 'Add prop heading'}</h1>
                                 <hr />
                             </div>
-                            <div className='p-[1.2rem] overflow-y-auto overflow-x-hidden scroll-hidden max-h-[80vh]'>
+                            <div className='px-[1.2rem] overflow-y-auto overflow-x-hidden scroll-hidden max-h-[80vh]'>
                                 {props.children ? props.children : 'Add prop children!'}
                             </div>
                         </div>

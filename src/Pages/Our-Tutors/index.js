@@ -27,7 +27,7 @@ export const TutorCard = ({ data, ...props }) => {
             <div className='absolute w-36 h-36 shadow-xl p-2 flex items-center justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden'>
                 <div
                     className='w-36 h-36 rounded-full bg-center bg-cover bg-no-repeat'
-                    style={{backgroundImage : `url('${data?.profile_image ? apiBaseURL + data?.profile_image : process.env.PUBLIC_URL + props.ImagePath}')`}}
+                    style={{ backgroundImage: `url('${data?.profile_image ? apiBaseURL + data?.profile_image : process.env.PUBLIC_URL + props.ImagePath}')` }}
                     alt="Profile Image"
                 />
             </div>
@@ -82,12 +82,18 @@ const OurTutors = (props) => {
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap5 my-20'>
                     {
-                        props.tutor.all_tutors.length > 0 &&
-                        props.tutor.all_tutors.map((tutor, t_ind) => {
-                            return (
-                                <TutorCard key={t_ind} data={tutor} ImagePath='/images/profilepic.png' />
-                            )
-                        })
+                        props.tutor.all_tutors.length > 0 ?
+                            props.tutor.all_tutors.map((tutor, t_ind) => {
+                                return (
+                                    <TutorCard key={t_ind} data={tutor} ImagePath='/images/profilepic.png' />
+                                )
+                            })
+                            :
+                            <>
+                                <div>
+                                    <p className='text-center'>No Tutor Registered yet</p>
+                                </div>
+                            </>
                     }
                 </div>
             </div>

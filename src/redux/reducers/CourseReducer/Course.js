@@ -1,7 +1,4 @@
-import { CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, GET_MY_COURSES } from "../../ActionsTypes/CourseActionTypes"
-
-
-
+import { CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, GET_ALL_COURSES, GET_MY_COURSES } from "../../ActionsTypes/CourseActionTypes"
 
 
 
@@ -9,11 +6,19 @@ import { CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, GET_MY_COURSES } f
 const initialState = {
     profile: {},
     updated_: false,
-    my_courses: []
+    my_courses: [],
+    all_courses: [],
+    all_courses_updated: false,
 }
 
 const CourseReducer = (state = initialState, action) => {
     switch (action.type) {
+        case GET_ALL_COURSES:
+            return {
+                ...state,
+                all_courses: action.payload,
+                all_courses_updated: true
+            }
         case DELETE_COURSE:
             return {
                 ...state,

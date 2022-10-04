@@ -19,6 +19,8 @@ export const register_user = '/api/authentication/register/'; // This URL will b
 export const user_api = '/api/authentication/user/'; // THis URL is to GET User data and Update
 
 
+export const create_student_query = '/api/utility/create_student_query/'
+
 // Profile URLs 
 
 export const profile = '/api/profile/';
@@ -27,6 +29,7 @@ export const profile = '/api/profile/';
 
 export const get_all_tutors = '/api/profile/get_all_tutors/';
 export const get_tutor = '/api/profile/get_tutor/';
+export const get_featured_tutors_url = '/api/profile/get_featured_tutors/';
 
 
 export const get_all_courses = '/api/course/get_all_courses/';

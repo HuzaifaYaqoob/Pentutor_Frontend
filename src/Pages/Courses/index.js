@@ -11,6 +11,8 @@ import useTitle from '../../Hooks/useTitle'
 import { CourseCard } from '../Our-Tutors/ViewProfile'
 import { useEffect, useState } from 'react'
 import { apiBaseURL, get_all_courses } from '../../redux/apiURLs'
+import { getAllCourses } from '../../redux/Actions/CourseActions/CourseActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 const SlideDot = (props) => {
     return (
@@ -63,25 +65,16 @@ const CoursesCard = (props) => {
 
 const Courses = () => {
     useTitle('Courses')
-    const [course_data, setCourseData] = useState([])
-    console.log(course_data)
+    const dispatch = useDispatch()
+    const state = useSelector(state => state)
 
-    const getAllCourses = () => {
-        fetch(
-            apiBaseURL + get_all_courses
-        )
-            .then(response => {
-                if (response.status == 200) {
-                    return response.json()
-                }
-            })
-            .then(result => {
-                setCourseData(result.data)
-            })
-    }
 
     useEffect(() => {
-        getAllCourses()
+        if (!state.course.all_courses_updated) {
+            dispatch(
+                getAllCourses()
+            )
+        }
     }, [])
     return (
         <div>
@@ -101,14 +94,25 @@ const Courses = () => {
                 {/* <CoursesCard Heading='Languages' itemsData={['Arabic', 'Chinese', 'French', 'German', 'English']} /> */}
                 {/* <CoursesCard Heading='Short Ceourses' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
                 {
-                    course_data &&
-                    course_data.map((course, index) => {
-                        return (
+                    state.course.all_courses_updated ?
+                        state.course.all_courses.length > 0 ?
+                            state.course.all_courses.map((course, index) => {
+                                return (
+                                    <>
+                                        <CourseCard data={course} key={index} />
+                                    </>
+                                )
+                            })
+                            :
                             <>
-                                <CourseCard data={course} key={index} />
+                                <div>
+                                    <p className='text-center'>No Course Registered Yet</p>
+                                </div>
                             </>
-                        )
-                    })
+                        :
+                        <>
+                            Loading...
+                        </>
                 }
             </div>
         </div>

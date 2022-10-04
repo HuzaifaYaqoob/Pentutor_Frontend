@@ -13,6 +13,7 @@ import SelectDropDown from '../../../../components/FormSection/Dropdown'
 import { connect, useDispatch } from 'react-redux'
 import { createCourse } from '../../../../redux/Actions/CourseActions/CourseActions'
 import { useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 
 const AddCourse = (props) => {
@@ -43,16 +44,18 @@ const AddCourse = (props) => {
                 createCourse(
                     course_data,
                     (result) => {
-                        alert('Created')
-                        console.log(result)
+                        toast.success('Course Created Successfully')
                         setLoading(false)
                         history.push(`/dashboard/tutor/courses/${result.slug}/add-videos/`)
+                    },
+                    () => {
+                        toast.error('Something went wrong')
                     }
                 )
             )
         }
         else {
-            alert('all fields are required')
+            toast.info('All Fields are Required')
         }
     }
 

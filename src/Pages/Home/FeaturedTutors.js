@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 import Card from "../Our-Tutors/card"
 import { TutorCard } from "../Our-Tutors"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { get_featured_tutors } from "../../redux/Actions/TutorActions/TutorActions"
 
 
 const FeaturedTutorCard = () => {
@@ -24,15 +27,41 @@ const FeaturedTutorCard = () => {
 
 
 const FeaturedTutors = () => {
+    const state = useSelector(state => state)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!state.tutor.featured_tutors_updated_) {
+            dispatch(
+                get_featured_tutors()
+            )
+        }
+    }, [])
     return (
         <>
             <div className="my-10">
-                <h3 className="text-center text-3xl font-medium text-[#313D6A] mb-10">Featured Tutors</h3>
-                <div className="mt-10 flex items-center justify-between">
-                    <TutorCard data={{}} />
-                    <TutorCard data={{}} />
-                    <TutorCard data={{}} />
-                </div>
+                <h3 className="text-center text-3xl font-medium text-[#313D6A] mb-20">Featured Tutors</h3>
+                {
+                    state.tutor.featured_tutors_updated_ ?
+                        state.tutor.featured_tutors.length > 0 ?
+                            <div className="mt-10 flex items-center justify-between">
+                                {
+                                    state.tutor.featured_tutors.map((tutor, index) => {
+                                        return (
+                                            <TutorCard data={tutor} key={index} />
+                                        )
+                                    })
+                                }
+                            </div>
+                            :
+                            <>
+                                Not found
+                            </>
+                        :
+                        <>
+                            Loading...
+                        </>
+                }
             </div>
         </>
         // <div className='bg-gray-100 py-10 mt-10'>

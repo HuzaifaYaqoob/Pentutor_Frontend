@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { apiBaseURL, get_tutor } from '../../redux/apiURLs'
 import LineHeader from '../../components/LineHeading'
 import Table from '../../components/Table'
+import { useHistory } from 'react-router-dom'
 
 const ProfHeading = ({ text }) => {
     return (
@@ -50,15 +51,24 @@ const ProfileDisplayCard = ({ data }) => {
 }
 
 export const CourseCard = ({ data }) => {
-    console.log(data)
+    const location = useHistory()
     return (
         <div className='w-full max-w-xs relative pentutor-shadow rounded-md overflow-hidden px-3 pt-1'>
-            <div  >
-                <img className='w-full block' src={process.env.PUBLIC_URL + '/images/blog/blogImage.png'} alt="Image" />
+            <div
+                className='w-full min-h-[200px] bg-center bg-cover bg-no-repeat rounded-md'
+                style={{
+                    backgroundImage: `url('${data.media && data.media.length > 0 ? data.media[0].image : process.env.PUBLIC_URL + '/images/blog/blogImage.png'}')`
+                }}
+            >
             </div>
             <div className='px-3 mt-3'>
-                <p className='bg-green-200 text-green-600 py-1 px-4 text-sm rounded-full inline-block'>{data?.category}</p>
-                <h3 className='text-sm my-4'>{data?.title}</h3>
+                <p className='bg-green-200 text-green-600 py-1 px-4 text-sm rounded-full inline-block'>{(data?.category && data?.category?.title) ? data?.category?.title : 'N/A'}</p>
+                <h3
+                    className='text-sm my-4 cursor-pointer'
+                    onClick={() => {
+                        location.push(`/courses/${data.slug}/view/`)
+                    }}
+                >{data?.title}</h3>
                 <p className='text-xs flex items-center justify-between mb-4'>
                     <span>
                         <span className='text-yellow-400'>{data?.star_rating}</span>
@@ -83,7 +93,7 @@ export const CourseCard = ({ data }) => {
 
                     <div className='flex items-center'>
                         <img className='mr-2 w-12' src={process.env.PUBLIC_URL + '/images/user.png'} />
-                        <h3 className='capitalize text-sm'>ibrahim kamran</h3>
+                        <h3 className='capitalize text-sm'>{data?.user?.first_name} {data?.user?.last_name}</h3>
                     </div>
                     <span className='text-red-500 text-sm'>
                         {data?.price} PKR
@@ -111,7 +121,6 @@ const ProfileDetails = ({ heading, text }) => {
 const ViewProfile = ({ match, ...props }) => {
     const { profile_slug } = match.params
     const [tutor_data, setTutorData] = useState({})
-    console.log(tutor_data)
 
     const getTutorProfile = () => {
         fetch(

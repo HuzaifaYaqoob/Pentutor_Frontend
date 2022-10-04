@@ -1,10 +1,32 @@
 
 
 
-import { apiBaseURL, create_chapter_video, create_course, create_course_chapter, delete_chapter_video, delete_course, delete_course_chapter, get_course, get_my_courses } from "../../apiURLs"
+import { apiBaseURL, create_chapter_video, create_course, create_course_chapter, delete_chapter_video, delete_course, delete_course_chapter, get_all_courses, get_course, get_my_courses } from "../../apiURLs"
 import Cookies from "js-cookie";
-import { CREATE_CHAPTER_VIDEO, CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, DELETE_COURSE_CHAPTER_VIDEO, GET_MY_COURSES } from "../../ActionsTypes/CourseActionTypes";
+import { CREATE_CHAPTER_VIDEO, CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, DELETE_COURSE_CHAPTER_VIDEO, GET_ALL_COURSES, GET_MY_COURSES } from "../../ActionsTypes/CourseActionTypes";
 
+
+
+
+export const getAllCourses = () => dispatch => {
+    fetch(
+        apiBaseURL + get_all_courses
+    )
+        .then(response => {
+            if (response.status == 200) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            dispatch({
+                type: GET_ALL_COURSES,
+                payload: result.data
+            })
+        })
+        .catch((err) => {
+
+        })
+}
 
 export const createCourse = (data, success, fail) => dispatch => {
     let s_code;

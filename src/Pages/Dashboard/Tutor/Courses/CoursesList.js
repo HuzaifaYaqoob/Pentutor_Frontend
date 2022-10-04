@@ -69,7 +69,7 @@ const TutorCourses = () => {
                                                         history.push(`/dashboard/tutor/courses/${course.slug}/add-videos/`)
                                                     }}
                                                 />
-                                                <TableData text={course.duration} />
+                                                <TableData text={new Date(course?.duration * 1000).toISOString().substr(11, 8)} />
                                                 <TableData text='september 25, 2021' />
                                                 <div>
                                                     <p
