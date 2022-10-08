@@ -6,7 +6,6 @@ import Moment from "react-moment"
 
 
 const Content = ({ chapter }) => {
-    console.log(chapter?.duration)
     return (
         <div className='my-4'>
             <div className='flex items-center justify-between text-xs mb-6'>

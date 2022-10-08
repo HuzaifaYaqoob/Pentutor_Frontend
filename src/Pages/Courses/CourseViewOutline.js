@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faVideo, faTv, faFile } from "@fortawesome/free-solid-svg-icons"
 
 import parse from 'html-react-parser';
+import { useDispatch } from "react-redux";
+import { AddToCartCourse } from "../../redux/Actions/CourseActions/CourseActions";
+import { toast } from "react-toastify";
 
 
 const Outline = (props) => {
@@ -25,6 +28,23 @@ const LearnThings = (props) => {
 
 
 const CourseOutline = ({ data }) => {
+    const dispatch = useDispatch()
+
+    const AddtoCartCourseHandler = () => {
+        dispatch(
+            AddToCartCourse(
+                {
+                    id: data.slug
+                },
+                () => {
+                    toast.success('Added to cart')
+                },
+                () => {
+                    toast.error('Something went wrong')
+                }
+            )
+        )
+    }
     return (
         <div className='container mx-auto flex flex-col lg:flex-row items-start my-16 gap-10 px-5'>
             <div className='w-60 pentutor-shadow '>
@@ -36,7 +56,10 @@ const CourseOutline = ({ data }) => {
                     <Outline text='Mobile & Web View' icon={faTv} />
                     <Outline text='Assignement' icon={faFile} />
                     <Outline text='Certificate on Completion' icon={faVideo} />
-                    <button className='bg-yellow-300 mr-2 py-3 px-5 w-full mt-3 rounded-md '>Add to Cart</button>
+                    <button
+                        className='bg-yellow-300 mr-2 py-3 px-5 w-full mt-3 rounded-md '
+                        onClick={AddtoCartCourseHandler}
+                    >Add to Cart</button>
                 </div>
             </div>
             <div className='p-6 bg-white pentutor-shadow flex-1 rounded '>

@@ -1,7 +1,8 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useSelector } from "react-redux"
 
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 
 export const CartCourseCard = () => {
@@ -40,6 +41,10 @@ export const CartCourseCard = () => {
 
 
 const UserCart = () => {
+    const state = useSelector(state => state)
+    const route = useHistory()
+
+    console.log(state.course.cart_items)
     return (
         <div>
             <div className='w-full bg-indigo-900 text-center text-white py-3'>
@@ -47,11 +52,21 @@ const UserCart = () => {
             </div>
 
             <div className='flex flex-col-reverse lg:flex-row items-start justify-between gap-9 container mx-auto bg my-10 px-5'>
-                <div className='flex-1'>
-                    <CartCourseCard />
-                    <CartCourseCard />
-                    <CartCourseCard />
-                </div>
+                {
+                    state.course.cart_items.length > 0 ?
+                        <div className='flex-1'>
+                            {
+                                state.course.cart_items.map((cart_item, index) => {
+                                    return (
+                                        <CartCourseCard data={cart_item} />
+                                    )
+                                })
+                            }
+                        </div>
+                        :
+                        <p className="text-center my-10 flex-1">No Cart Item</p>
+                }
+
                 <div className='bg-white shadow-lg rouned w-72 p-5'>
                     <div className='flex items-end justify-between'>
                         <p>Total :</p>
