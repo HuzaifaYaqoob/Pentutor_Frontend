@@ -205,8 +205,8 @@ const AddCourseContent = (props) => {
                 setTitlePopup(false)
                 setCourseData({
                     ...course_data,
-                    chapter: [
-                        ...course_data.chapter,
+                    chapters: [
+                        ...course_data.chapters,
                         result
                     ]
                 })
@@ -238,8 +238,8 @@ const AddCourseContent = (props) => {
     const handleAddNewVideo = (chapter_id, data) => {
         setCourseData({
             ...course_data,
-            chapter: [
-                ...course_data.chapter.map(chpt => {
+            chapters: [
+                ...course_data.chapters.map(chpt => {
                     if (chpt.slug == chapter_id) {
                         return {
                             ...chpt,
@@ -258,8 +258,8 @@ const AddCourseContent = (props) => {
     const handleDeleteVideo = (chapter_id, vid_id) => {
         setCourseData({
             ...course_data,
-            chapter: [
-                ...course_data.chapter.map(chptr => {
+            chapters: [
+                ...course_data?.chapters.map(chptr => {
                     if (chptr.slug == chapter_id) {
                         return {
                             ...chptr,
@@ -286,32 +286,36 @@ const AddCourseContent = (props) => {
                 <FontAwesomeIcon className='ml-2' icon={faPlusCircle} />
             </button>
             {
-                course_data && course_data.chapter &&
-                course_data.chapter.length > 0 &&
-                <div className='bg-white rounded shadow border border-gray-200 my-10 p-3'>
-                    {
-                        course_data.chapter.map((chapter, index) => {
-                            return (
-                                <CourseSection
-                                    data={chapter}
-                                    key={index}
-                                    onDeleteVideo={(video_id) => {
-                                        handleDeleteVideo(chapter.slug, video_id)
-                                    }}
-                                    onVideoAdd={(data) => { handleAddNewVideo(chapter.slug, data) }}
-                                    onDeleteChapter={() => {
-                                        setCourseData({
-                                            ...course_data,
-                                            chapter: [
-                                                ...course_data.chapter.filter(itm => itm.slug != chapter.slug)
-                                            ]
-                                        })
-                                    }}
-                                />
-                            )
-                        })
-                    }
-                </div>
+                course_data && course_data?.chapters &&
+                    course_data?.chapters?.length > 0 ?
+                    <div className='bg-white rounded shadow border border-gray-200 my-10 p-3'>
+                        {
+                            course_data?.chapters?.map((chapter, index) => {
+                                return (
+                                    <CourseSection
+                                        data={chapter}
+                                        key={index}
+                                        onDeleteVideo={(video_id) => {
+                                            handleDeleteVideo(chapter.slug, video_id)
+                                        }}
+                                        onVideoAdd={(data) => { handleAddNewVideo(chapter.slug, data) }}
+                                        onDeleteChapter={() => {
+                                            setCourseData({
+                                                ...course_data,
+                                                chapter: [
+                                                    ...course_data.chapter.filter(itm => itm.slug != chapter.slug)
+                                                ]
+                                            })
+                                        }}
+                                    />
+                                )
+                            })
+                        }
+                    </div>
+                    :
+                    <>
+                        <p className='text-center my-10'>No Chapter Added yet</p>
+                    </>
             }
             {
                 title_popup &&

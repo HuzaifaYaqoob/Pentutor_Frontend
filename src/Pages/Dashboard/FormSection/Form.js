@@ -211,9 +211,9 @@ export const FileInput = (props) => {
 
 
     return (
-        <div className='h-full'>
+        <div className='h-full flex items-center justify-center'>
             <label
-                className='mb-3 capitalize cursor-pointer'
+                className='capitalize cursor-pointer flex items-center justify-center'
                 htmlFor={props.id && props.id}
             >
                 {/* { props.Label } */}

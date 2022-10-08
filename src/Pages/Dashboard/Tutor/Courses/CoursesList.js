@@ -85,7 +85,7 @@ const TutorCourses = () => {
                                 })
                                 :
                                 <>
-                                    <p className="text-center">Not found</p>
+                                    <p className="my-4" >No Couse Added</p>
                                 </>
                             :
                             <>

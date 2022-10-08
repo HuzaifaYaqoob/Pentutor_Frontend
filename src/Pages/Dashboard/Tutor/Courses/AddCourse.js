@@ -50,6 +50,7 @@ const AddCourse = (props) => {
                     },
                     () => {
                         toast.error('Something went wrong')
+                        setLoading(false)
                     }
                 )
             )
@@ -95,7 +96,7 @@ const AddCourse = (props) => {
 
                         />
                     </div>
-                    <div className='flex-1 border border-dashed border-gray-300 rounded'>
+                    <div className='px-10 border border-dashed border-gray-300 rounded'>
                         <FileInput
                             id='course-image'
                             name='image'
