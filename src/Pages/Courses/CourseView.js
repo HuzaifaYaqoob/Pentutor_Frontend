@@ -11,10 +11,28 @@ import StudentFeedback from "./StudentFeedback"
 
 import { CourseCard } from "../Our-Tutors/ViewProfile"
 import { useEffect, useState } from "react"
-import { getSingleCourse } from "../../redux/Actions/CourseActions/CourseActions"
+import { AddToCartCourse, getSingleCourse } from "../../redux/Actions/CourseActions/CourseActions"
 import { useDispatch } from "react-redux"
+import { toast } from "react-toastify"
 
 const CourseViewHeroSection = ({ data }) => {
+    const dispatch = useDispatch()
+
+    const AddtoCartCourseHandler = () => {
+        dispatch(
+            AddToCartCourse(
+                {
+                    id: data.slug
+                },
+                () => {
+                    toast.success('Added to cart')
+                },
+                () => {
+                    toast.error('Something went wrong')
+                }
+            )
+        )
+    }
     return (
         <div className='pt-10 bg-indigo-900 '>
             <div className='container mx-auto flex lg:flex-row flex-col items-center justify-between'>
@@ -32,19 +50,24 @@ const CourseViewHeroSection = ({ data }) => {
                         Language: {data?.language}
                     </p>
                     <div className='mt-10'>
-                        <button className='bg-yellow-300 mr-2 py-3 px-5 rounded-md '>Add to Cart</button>
+                        <button
+                            className='bg-yellow-300 mr-2 py-3 px-5 rounded-md '
+                            onClick={() => {
+                                AddtoCartCourseHandler()
+                            }}
+                        >Add to Cart</button>
                         <button className='bg-transparent border border-white py-3 px-5 rounded-md text-white text-sm'>Buy Now</button>
                     </div>
                 </div>
                 <div className='max-w-sm w-full bg-white lg:mt-0 mt-10'>
                     <div
-                        className='bg-gray-200 flex items-center justify-center w-full h-56 relative'
+                        className='bg-gray-200 flex items-center justify-center w-full h-56 relative bg-center bg-cover bg-no-repeat'
                         style={{
                             backgroundImage: `url('${data?.media?.length > 0 ? data?.media[0].image : ''}')`
                         }}
                     >
                         {/* <img className='w-full' src={process.env.PUBLIC_URL + '/images/seo.png'} alt="SEO" /> */}
-                        <img className='w-10 absolute cursor-pointer' src={process.env.PUBLIC_URL + '/images/yt.png'} alt="" />
+                        {/* <img className='w-10 absolute cursor-pointer' src={process.env.PUBLIC_URL + '/images/yt.png'} alt="" /> */}
                     </div>
                     <div className='px-6 py-3'>
                         <p className='flex items-center gap-4'>

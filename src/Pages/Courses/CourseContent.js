@@ -45,7 +45,7 @@ const CourseContent = ({ data }) => {
                 </div>
             </div>
             {
-                data?.chapters.length > 4 &&
+                data?.chapters?.length > 4 &&
                 <button className='w-full py-2 text-center border border-gray-400 rounded text-sm font-medium'>{data?.chapters.length - 4} More Sections</button>
             }
         </div>

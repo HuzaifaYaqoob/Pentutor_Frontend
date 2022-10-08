@@ -41,3 +41,5 @@ export const get_course = '/api/course/get_course/'
 export const delete_course = '/api/course/delete_course/'
 export const delete_chapter_video = '/api/course/delete_chapter_video/'
 export const delete_course_chapter = '/api/course/delete_course_chapter/'
+
+export const add_to_cart_url = '/api/course/add_to_cart/'

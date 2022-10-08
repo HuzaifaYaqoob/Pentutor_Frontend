@@ -1,7 +1,7 @@
 
 
 
-import { apiBaseURL, create_chapter_video, create_course, create_course_chapter, delete_chapter_video, delete_course, delete_course_chapter, get_all_courses, get_course, get_my_courses } from "../../apiURLs"
+import { add_to_cart_url, apiBaseURL, create_chapter_video, create_course, create_course_chapter, delete_chapter_video, delete_course, delete_course_chapter, get_all_courses, get_course, get_my_courses } from "../../apiURLs"
 import Cookies from "js-cookie";
 import { CREATE_CHAPTER_VIDEO, CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, DELETE_COURSE_CHAPTER_VIDEO, GET_ALL_COURSES, GET_MY_COURSES } from "../../ActionsTypes/CourseActionTypes";
 
@@ -301,5 +301,38 @@ export const deleteCourseChapter = (data, success, fail) => dispatch => {
         .catch((err) => {
             fail && fail()
             console.log(err)
+        })
+}
+
+export const AddToCartCourse = (data, success, fail) => dispatch => {
+    let s_code;
+
+    let form_data = new FormData()
+    form_data.append('course', data.id)
+
+    fetch(apiBaseURL + add_to_cart_url,
+        {
+            headers: {
+                Authorization: `Token ${Cookies.get('auth_token')}`
+            },
+            method: 'POST',
+            body: form_data
+        })
+        .then(response => {
+            s_code = response.status
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            if (s_code == 201) {
+                success && success()
+            }
+            else {
+                fail && fail()
+            }
+        })
+        .catch(err => {
+            fail && fail()
         })
 }

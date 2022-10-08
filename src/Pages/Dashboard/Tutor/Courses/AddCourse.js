@@ -23,11 +23,6 @@ const AddCourse = (props) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-
-
-    console.log(props.utility.categories)
-
-
     const handleChange = (e) => {
         const { name, value } = e.target
         setCourseData({
@@ -49,6 +44,7 @@ const AddCourse = (props) => {
                         history.push(`/dashboard/tutor/courses/${result.slug}/add-videos/`)
                     },
                     () => {
+                        setLoading(false)
                         toast.error('Something went wrong')
                         setLoading(false)
                     }
