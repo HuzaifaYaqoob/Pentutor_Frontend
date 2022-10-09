@@ -1,9 +1,9 @@
 
 
 
-import { add_to_cart_url, apiBaseURL, create_chapter_video, create_course, create_course_chapter, delete_chapter_video, delete_course, delete_course_chapter, get_all_courses, get_cart_items, get_course, get_my_courses } from "../../apiURLs"
+import { add_to_cart_url, apiBaseURL, create_chapter_video, create_course, create_course_chapter, delete_chapter_video, delete_course, delete_course_chapter, get_all_courses, get_cart_items, get_course, get_my_courses, remove_from_cart } from "../../apiURLs"
 import Cookies from "js-cookie";
-import { ADD_ITEM_TO_CART, CREATE_CHAPTER_VIDEO, CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, DELETE_COURSE_CHAPTER_VIDEO, GET_ALL_COURSES, GET_CART_ITEMS, GET_MY_COURSES } from "../../ActionsTypes/CourseActionTypes";
+import { ADD_ITEM_TO_CART, CREATE_CHAPTER_VIDEO, CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, DELETE_COURSE_CHAPTER_VIDEO, GET_ALL_COURSES, GET_CART_ITEMS, GET_MY_COURSES, REMOVE_FROM_CART } from "../../ActionsTypes/CourseActionTypes";
 
 
 
@@ -365,6 +365,43 @@ export const getCartItems = (data, success, fail) => dispatch => {
                 dispatch({
                     type: GET_CART_ITEMS,
                     payload: result.message
+                })
+            }
+            else {
+                fail && fail()
+            }
+        })
+        .catch(err => {
+            fail && fail()
+        })
+}
+
+export const removeCourseFromCart = (data, success, fail) => dispatch => {
+    let s_code;
+    let form_data = new FormData()
+    form_data.append('cart', data.id)
+
+    fetch(
+        apiBaseURL + remove_from_cart,
+        {
+            headers: {
+                Authorization: `Token ${Cookies.get('auth_token')}`
+            },
+            body: form_data,
+            method: 'DELETE'
+        })
+        .then(response => {
+            s_code = response.status
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            if (s_code == 200) {
+                success && success()
+                dispatch({
+                    type: REMOVE_FROM_CART,
+                    payload: data.id
                 })
             }
             else {

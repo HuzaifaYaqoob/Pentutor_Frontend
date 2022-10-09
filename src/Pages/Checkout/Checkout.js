@@ -1,9 +1,25 @@
 
 import { DropDownInput, TextInput } from "../Dashboard/FormSection/Form"
 import { CartCourseCard } from "../Cart/UserCart"
+import { useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { useEffect, useState } from "react"
+import SelectDropDown from "../../components/FormSection/Dropdown"
 
 
 const Checkout = () => {
+    const state = useSelector(state => state)
+    const route = useHistory()
+    const [total_price, setTotalPrice] = useState(0)
+
+
+    useEffect(() => {
+        let price = 0
+        state.course.cart_items.forEach(itm => {
+            price += itm.course.price
+        })
+        setTotalPrice(price)
+    }, [state.course.cart_items])
     return (
         <div>
             <div className='w-full color-green text-center text-white py-3'>
@@ -14,7 +30,16 @@ const Checkout = () => {
                     <div>
                         <h3 className='mb-5'>Billing Address</h3>
                         <div className='md:w-96'>
-                            <DropDownInput placeholder='Pakistan' data={['Pakistan', 'US']} />
+                            <SelectDropDown
+                                placeholder='Select Country'
+                                value={''}
+                                title='Select Country'
+                                options={[
+                                    { label: 'Palkistan', value: 'Pakistan' },
+                                    { label: 'Dubai', value: 'Dubai' }
+                                ]}
+                            />
+                            {/* <DropDownInput placeholder='Pakistan' data={['Pakistan', 'US']} /> */}
                         </div>
                     </div>
                     <div className='block md:flex items-center gap-8 my-5'>
@@ -38,13 +63,19 @@ const Checkout = () => {
                     </div>
                     <span className='flex items-center justify-between'>
                         <span>Total:</span>
-                        <span className='font-medium text-gray-900 '>20K PKR</span>
+                        <span className='font-medium text-gray-900 '>{total_price} PKR</span>
                     </span>
                     <button className='color-green rounded text-center block py-4 w-full mt-16 text-white font-medium'>Complete Payment</button>
                 </div>
             </div>
             <div className="max-w-4xl px-9">
-                <CartCourseCard />
+                {
+                    state.course.cart_items.map((cart_item, index) => {
+                        return (
+                            <CartCourseCard data={cart_item} key={index} />
+                        )
+                    })
+                }
             </div>
         </div>
     )

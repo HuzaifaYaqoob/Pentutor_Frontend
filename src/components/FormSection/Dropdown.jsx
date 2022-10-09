@@ -79,7 +79,7 @@ const SelectDropDown = ({ title, name, value, onBlur, placeholder, options, onCh
                         }
                     })
                 }}
-                isDisabled={disabled}
+                isDisabled={disabled ? disabled : options?.length == 0}
                 placeholder={placeholder}
             />
             {/* {error && <span className='text-[#eb3b3b]'>{error}</span>} */}
@@ -91,9 +91,7 @@ const SelectDropDown = ({ title, name, value, onBlur, placeholder, options, onCh
 SelectDropDown.defaultProps = {
     title: 'Enter "title" prop',
     placeholder: 'Enter "placeholder" prop',
-    options: [
-        { value: 'no_value', label: 'Enter "options" prop' },
-    ],
+    options: [],
     name: 'no_name',
     value: 'no_value',
     onBlur: () => { },

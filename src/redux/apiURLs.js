@@ -44,3 +44,4 @@ export const delete_course_chapter = '/api/course/delete_course_chapter/'
 
 export const add_to_cart_url = '/api/course/add_to_cart/'
 export const get_cart_items = '/api/course/get_my_cart/'
+export const remove_from_cart = '/api/course/delete_cart/'

@@ -1,4 +1,4 @@
-import { ADD_ITEM_TO_CART, CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, GET_ALL_COURSES, GET_CART_ITEMS, GET_MY_COURSES } from "../../ActionsTypes/CourseActionTypes"
+import { ADD_ITEM_TO_CART, CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, GET_ALL_COURSES, GET_CART_ITEMS, GET_MY_COURSES, REMOVE_FROM_CART } from "../../ActionsTypes/CourseActionTypes"
 
 
 
@@ -14,6 +14,14 @@ const initialState = {
 
 const CourseReducer = (state = initialState, action) => {
     switch (action.type) {
+        case REMOVE_FROM_CART:
+            return {
+                ...state,
+                cart_items: [
+                    ...state.cart_items.filter(itm => itm.slug != action.payload)
+                ]
+            }
+
         case ADD_ITEM_TO_CART:
             return {
                 ...state,
