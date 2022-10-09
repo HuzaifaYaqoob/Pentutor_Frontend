@@ -56,7 +56,7 @@ const AvailableJobs = () =>{
                 <JobsCard/>
                 <JobsCard/>
             </div>
-            <div className='flex items-center justify-center gap-4'>
+            {/* <div className='flex items-center justify-center gap-4'>
                 <div className='text-indigo-900'>
                     <h1 className='font-bold text-3xl'>Available Jobs</h1>
                     <p className='text-lg font-light'>Online / Home Tution Jobs</p>
@@ -68,7 +68,7 @@ const AvailableJobs = () =>{
             <div className='grid grid-cols-1 md:grid-cols-2 gap-10 px-6 my-10'>
                 <JobsCard/>
                 <JobsCard/>
-            </div>
+            </div> */}
         </div>
     )
 }

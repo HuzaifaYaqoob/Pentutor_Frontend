@@ -156,8 +156,20 @@ const AddCourse = (props) => {
                     value={course_data.language}
                     options={[
                         {
-                            label: 'Easy',
-                            value: 'Easy'
+                            label: 'English',
+                            value: 'English'
+                        },
+                        {
+                            label: 'Urdu',
+                            value: 'Urdu'
+                        },
+                        {
+                            label: 'Punjabi',
+                            value: 'Punjabi'
+                        },
+                        {
+                            label: 'Hindi',
+                            value: 'Hindi'
                         },
                     ]}
                     onChange={handleChange}

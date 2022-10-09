@@ -12,8 +12,8 @@ const BlogPost = ({ data, className, ...props }) => {
             >
                 <p className='shadow-lg capitalize text-white w-full bg-yellow-450 py-1 relative px-2 rounded text-lg font-semibold text-center ' style={{ top: '85%' }}>{data?.title}</p>
             </div>
-            <div className='px-6 py-9'>
-                <p className='text-xs text-gray-800'>{data?.description.slice(0, 50)}</p>
+            <div className='px-6 pt-16 pb-3'>
+                <p className='text-xs text-gray-800'>{data?.description.slice(0, 200)}</p>
             </div>
             <div className='text-center'>
                 <Link to={`/blogs/view/${data?.slug}/`} className='py-1 px-5 text-center text-white bg-yellow-450 rounded mx-auto inline-block'>Read More</Link>

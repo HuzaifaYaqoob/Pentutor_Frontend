@@ -13,6 +13,7 @@ import { apiBaseURL } from "../../../../redux/apiURLs"
 
 import { UpdateUserProfile } from "../../../../redux/Actions/ProfileActions/ProfileActions"
 import { getCity } from "../../../../redux/Actions/UtilityActions/UtilityActions"
+import SelectDropDown from "../../../../components/FormSection/Dropdown"
 
 const EditProfileTutor = (props) => {
     const [user_profile, setUserProfile] = useState()
@@ -153,65 +154,70 @@ const EditProfileTutor = (props) => {
                     </div>
                     <hr className='my-10' />
                     <div className='flex gap-10'>
-                        <DropDownInput
-                            Label='Select Country'
-                            placeholder='Select Country'
-                            value={user_profile && user_profile.Country && user_profile.Country.name}
-                            data={
-                                props.utility.countries.length > 0 ?
-                                    props.utility.countries.map((ct) => {
-                                        return {
-                                            label: ct.name,
-                                            value: ct.id
+                        <div className="flex-1">
+                            <SelectDropDown
+                                title='Select Country'
+                                placeholder='Select Country'
+                                value={user_profile && user_profile.Country && user_profile.Country.name}
+                                options={
+                                    props.utility.countries.length > 0 ?
+                                        props.utility.countries.map((ct) => {
+                                            return {
+                                                label: ct.name,
+                                                value: ct.id
+                                            }
+                                        }) : []
+                                }
+                                onChange={(e) => {
+                                    getCity(e.target.value)
+                                    setUserProfile(
+                                        {
+                                            ...user_profile,
+                                            Country: {
+                                                ...props.utility.countries.filter((ft_ct) => {
+                                                    if (ft_ct.id == e.target.value) {
+                                                        return ft_ct
+                                                    }
+                                                })[0]
+                                            },
+                                            city: 0
                                         }
-                                    }) : []
-                            }
-                            onChange={(value) => {
-                                getCity(value)
-                                setUserProfile(
-                                    {
-                                        ...user_profile,
-                                        Country: {
-                                            ...props.utility.countries.filter((ft_ct) => {
-                                                if (ft_ct.id == value) {
-                                                    return ft_ct
-                                                }
-                                            })[0]
-                                        },
-                                        city: 0
-                                    }
-                                )
-                            }}
-                        />
-                        <DropDownInput
-                            Label='Select City'
-                            placeholder='Select City'
-                            value={user_profile && user_profile.city && user_profile.city.name}
-                            data={
-                                all_cities.length > 0 ?
-                                    all_cities.map((ct) => {
-                                        return {
-                                            label: ct.name,
-                                            value: ct.id
+                                    )
+                                }}
+                            />
+                        </div>
+                        <div className="flex-1">
+                            <SelectDropDown
+                                title='Select City'
+                                placeholder='Select City'
+                                value={user_profile && user_profile.city && user_profile.city.name}
+                                options={
+                                    all_cities.length > 0 ?
+                                        all_cities.map((ct) => {
+                                            return {
+                                                label: ct.name,
+                                                value: ct.id
+                                            }
+                                        })
+                                        : []
+                                }
+                                onChange={(e) => {
+                                    setUserProfile(
+                                        {
+                                            ...user_profile,
+                                            city: {
+                                                ...all_cities.filter((ft_ct) => {
+                                                    if (ft_ct.id == e.target.value) {
+                                                        return ft_ct
+                                                    }
+                                                })[0]
+                                            }
                                         }
-                                    })
-                                    : []
-                            }
-                            onChange={(value) => {
-                                setUserProfile(
-                                    {
-                                        ...user_profile,
-                                        city: {
-                                            ...all_cities.filter((ft_ct) => {
-                                                if (ft_ct.id == value) {
-                                                    return ft_ct
-                                                }
-                                            })[0]
-                                        }
-                                    }
-                                )
-                            }}
-                        />
+                                    )
+                                }}
+                            />
+                        </div>
+
                     </div>
                     <br />
                     <TextInput

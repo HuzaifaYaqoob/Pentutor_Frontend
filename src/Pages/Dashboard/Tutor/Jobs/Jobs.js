@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"
 
 
 const TableData = (props) => {
-    const {className , otherProps} = props
+    const { className, otherProps } = props
     return (
         <p className={'table-cell py-5 ' + className}>{props.text}</p>
     )
@@ -20,7 +20,8 @@ const TableData = (props) => {
 const TutorJobsTable = () => {
     return (
         <div className='bg-white shadow rounded border border-gray-200 mt-10'>
-            <div className="table w-full px-5">
+            <p className="text-center my-10">No Job at the moment</p>
+            {/* <div className="table w-full px-5">
                 <div className="table-row-group">
                     <div className="table-row">
                         <p className='table-cell py-2 text-indigo-600'>Job Title</p>
@@ -42,7 +43,7 @@ const TutorJobsTable = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

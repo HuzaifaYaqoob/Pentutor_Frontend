@@ -11,7 +11,7 @@ import StudentFeedback from "./StudentFeedback"
 
 import { CourseCard } from "../Our-Tutors/ViewProfile"
 import { useEffect, useState } from "react"
-import { AddToCartCourse, getSingleCourse } from "../../redux/Actions/CourseActions/CourseActions"
+import { AddToCartCourse, getSingleCourse, getUserCourses } from "../../redux/Actions/CourseActions/CourseActions"
 import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 
@@ -89,6 +89,7 @@ const CourseView = (props) => {
     const dispatch = useDispatch()
     const { course_slug } = props.match.params
     const [courseData, setCourseData] = useState({})
+    const [user_courses, setUserCourse] = useState([])
 
 
     useEffect(() => {
@@ -97,11 +98,13 @@ const CourseView = (props) => {
                 { id: course_slug },
                 (result) => {
                     setCourseData(result)
-
+                    dispatch(
+                        getUserCourses({ id: result.user.id, course: result?.slug }, (result) => { setUserCourse(result) })
+                    )
                 }
             )
         }
-    }, [])
+    }, [course_slug])
     return (
         <div>
             <CourseViewHeroSection data={courseData} />
@@ -111,13 +114,23 @@ const CourseView = (props) => {
             <StudentFeedback data={courseData} />
             <hr className='container mx-auto' />
             <div className='container mx-auto my-10'>
-                <h3 className='mb-4'>More Course By  <span className='text-yellow-400'>Ibrahim Akram</span> </h3>
-                <div className='md:grid-cols-2 place-content-center lg:grid-cols-3 grid gap-10'>
-                    <CourseCard data={{}} />
-                    <CourseCard data={{}} />
-                    <CourseCard data={{}} />
-                    <CourseCard data={{}} />
-                </div>
+                <h3 className='mb-4'>More Course By  <span className='text-yellow-400'>{courseData?.user?.first_name} {courseData?.user?.last_name}</span> </h3>
+                {
+                    user_courses.length > 0 ?
+                        <div className='md:grid-cols-2 place-content-center lg:grid-cols-3 grid gap-10'>
+                            {
+                                user_courses.map(course => {
+                                    return (
+                                        <CourseCard data={course} />
+                                    )
+                                })
+                            }
+                        </div>
+                        :
+                        <>
+                            <p>Not found</p>
+                        </>
+                }
             </div>
         </div>
     )

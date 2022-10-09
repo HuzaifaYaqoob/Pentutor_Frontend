@@ -34,7 +34,7 @@ const StudentFeedback = () => {
             <div className='mb-2'>
                 <h3 className='font-medium'>Student Feedback</h3>
             </div>
-            <div className='flex lg:items-center gap-5 lg:flex-row flex-col'>
+            {/* <div className='flex lg:items-center gap-5 lg:flex-row flex-col'>
                 <div className='flex items-center'>
                     <div className='mx-auto'>
                         <h3 className='text-7xl font-medium ' style={{ color: '#02C8C8' }}>4.9</h3>
@@ -62,7 +62,8 @@ const StudentFeedback = () => {
                     <RatingStar value='2%' />
                     <RatingStar value='0%' />
                 </div>
-            </div>
+            </div> */}
+            <p className="text-center my-10">No Feedback yet</p>
         </div>
     )
 }

@@ -142,7 +142,7 @@ const CourseSection = ({ data, onVideoAdd, onDeleteVideo, onDeleteChapter }) => 
                 dropDownActive ?
                     <div className='my-3' >
                         {
-                            data.video?.map((vid, index) => {
+                            data.videos?.map((vid, index) => {
                                 return (
                                     <VideoCard
                                         data={vid}
@@ -243,8 +243,8 @@ const AddCourseContent = (props) => {
                     if (chpt.slug == chapter_id) {
                         return {
                             ...chpt,
-                            video: [
-                                ...chpt.video,
+                            videos: [
+                                ...chpt.videos,
                                 data
                             ]
                         }
@@ -263,8 +263,8 @@ const AddCourseContent = (props) => {
                     if (chptr.slug == chapter_id) {
                         return {
                             ...chptr,
-                            video: [
-                                ...chptr.video.filter(vid => vid.slug != vid_id)
+                            videos: [
+                                ...chptr.videos.filter(vid => vid.slug != vid_id)
                             ]
                         }
                     }

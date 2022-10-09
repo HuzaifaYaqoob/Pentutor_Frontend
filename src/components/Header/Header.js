@@ -74,7 +74,7 @@ const UserDropDown = (props) => {
                                 <Link to='/cart/' className='text-lg relative w-full block mb-1'>
                                     Cart
                                     <span className='absolute right-0 bg-yellow-450 w-6 top-0 flex items-center justify-center h-6 rounded-full'>
-                                        1
+                                        {state.course.cart_items.length}
                                     </span>
                                 </Link>
                                 <Link to='/wishlist/' className='text-lg relative w-full block'>

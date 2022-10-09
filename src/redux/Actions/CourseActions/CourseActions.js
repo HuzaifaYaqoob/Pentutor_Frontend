@@ -1,7 +1,7 @@
 
 
 
-import { add_to_cart_url, apiBaseURL, create_chapter_video, create_course, create_course_chapter, delete_chapter_video, delete_course, delete_course_chapter, get_all_courses, get_cart_items, get_course, get_my_courses, remove_from_cart } from "../../apiURLs"
+import { add_to_cart_url, apiBaseURL, create_chapter_video, create_course, create_course_chapter, delete_chapter_video, delete_course, delete_course_chapter, get_all_courses, get_cart_items, get_course, get_my_courses, get_user_courses_url, remove_from_cart } from "../../apiURLs"
 import Cookies from "js-cookie";
 import { ADD_ITEM_TO_CART, CREATE_CHAPTER_VIDEO, CREATE_COURSE, CREATE_COURSE_CHAPTER, DELETE_COURSE, DELETE_COURSE_CHAPTER_VIDEO, GET_ALL_COURSES, GET_CART_ITEMS, GET_MY_COURSES, REMOVE_FROM_CART } from "../../ActionsTypes/CourseActionTypes";
 
@@ -169,6 +169,27 @@ export const getSingleCourse = (data, success, fail) => {
         .catch((err) => {
             fail && fail()
             console.log(err)
+        })
+
+}
+
+export const getUserCourses = (data, success, fail) => {
+    let s_code
+
+    fetch(apiBaseURL + get_user_courses_url + `?user=${data.id}&course=${data.course}`)
+        .then(response => {
+            s_code = response.status
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            if (s_code == 200) {
+                success && success(result.data)
+            }
+        })
+        .catch((err) => {
+            fail && fail()
         })
 
 }
