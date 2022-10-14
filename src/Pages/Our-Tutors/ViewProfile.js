@@ -152,7 +152,12 @@ const ViewProfile = ({ match, ...props }) => {
             <div className='max-w-[1300px] mx-auto my-10 flex items-start rounded-tr-[30px] justify-between gap-10'>
                 <div className='max-w-[250px] w-full bg-[#313D6A] rounded-tr-[30px] overflow-hidden'>
                     <div className='my-10'>
-                        <div className='w-[100px] mb-3 h-[100px] mx-auto rounded-full bg-gray-100'></div>
+                        <div
+                            className='w-[100px] mb-3 h-[100px] mx-auto rounded-full bg-cover bg-center bg-no-repeat bg-gray-100'
+                            style={{
+                                backgroundImage: `url('${tutor_data?.profile_image}')`
+                            }}
+                        ></div>
                         <p className='text-white text-center text-sm'>Tutor ID: PT143</p>
                         <p className='text-[#F5BB07] text-center text-2xl font-medium'>{tutor_data?.name}</p>
                     </div>

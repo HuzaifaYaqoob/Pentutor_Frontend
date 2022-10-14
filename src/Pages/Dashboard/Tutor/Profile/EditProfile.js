@@ -14,14 +14,45 @@ import { apiBaseURL } from "../../../../redux/apiURLs"
 import { UpdateUserProfile } from "../../../../redux/Actions/ProfileActions/ProfileActions"
 import { getCity } from "../../../../redux/Actions/UtilityActions/UtilityActions"
 import SelectDropDown from "../../../../components/FormSection/Dropdown"
+import { ProfileTab } from "../../Student/Profile/EditProfile"
 
 const EditProfileTutor = (props) => {
     const [user_profile, setUserProfile] = useState()
     const [all_cities, setAllCities] = useState([])
+    const [active_tab, setActiveTab] = useState('BASIC')
+
 
     const [selected_image, setSelectedImage] = useState(undefined)
     const [selected_degree, setSelectedDegree] = useState(undefined)
     const [selected_cnic, setSelectedCnic] = useState(undefined)
+
+
+
+    const Form_Steps = [
+        {
+            text: 'Basic Information',
+            onClick: () => {
+                setActiveTab('BASIC')
+            },
+            active: active_tab == 'BASIC' ? true : false
+        },
+        {
+            active: active_tab == 'PROFESSIONALDETAILS' ? true : false,
+            text: 'Professional Details',
+            onClick: () => {
+                setActiveTab('PROFESSIONALDETAILS')
+            }
+        },
+        {
+            active: active_tab == 'DOCUMENT' ? true : false,
+            text: 'Documents/Media',
+            onClick: () => {
+                setActiveTab('DOCUMENT')
+
+            }
+        }
+    ]
+
 
 
     const UpdateStudentProfile = () => {
@@ -73,6 +104,26 @@ const EditProfileTutor = (props) => {
         <>
             <DashboardBase>
                 <ContentBox HeaderText='Welcome to Profile' />
+                <div className="flex items-center justify-between flex-wrap">
+                    {
+                        Form_Steps.map((step, index) => {
+                            return (
+                                <>
+                                    {
+                                        index != 0 &&
+                                        <div className="flex-1 border-dashed border-yellow-300 border-t-[2px] h-0 p-0"></div>
+                                    }
+                                    <ProfileTab
+                                        active={step.active}
+                                        text={step.text}
+                                        onClick={step.onClick}
+                                    />
+                                </>
+                            )
+                        })
+                    }
+                </div>
+
                 <Form
                     btnText='save'
                     onSubmit={() => {

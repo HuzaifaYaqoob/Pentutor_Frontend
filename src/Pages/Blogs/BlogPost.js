@@ -3,7 +3,6 @@
 import { Link } from 'react-router-dom'
 
 const BlogPost = ({ data, className, ...props }) => {
-    console.log(data)
     return (
         <div className={'max-w-md rounded min-w-[300px] overflow-hidden pb-6 pentutor-shadow mx-auto ' + className}>
             <div

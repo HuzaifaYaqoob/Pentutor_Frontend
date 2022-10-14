@@ -18,7 +18,7 @@ import EditExperience from "./EditExperience"
 import EditReferrence from "./EditReferrence"
 import EditProfessionalDetails from "./EditProfessional"
 
-const ProfileTab = (props) => {
+export const ProfileTab = (props) => {
     return (
         <div
             className={`py-1 px-4 my-2 rounded cursor-pointer ${props.active ? 'text-yellow-600' : 'text-gray-900'}`}

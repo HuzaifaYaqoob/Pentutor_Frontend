@@ -24,10 +24,10 @@ const TutorPoint = (props) => {
 export const TutorCard = ({ data, ...props }) => {
     return (
         <div className='pentutor-shadow rounded p-7 mb-14 pt-24 relative max-w-sm mx-auto w-full'>
-            <div className='absolute w-36 h-36 shadow-xl p-2 flex items-center justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden'>
+            <div className='absolute w-36 h-36 shadow-xl flex items-center justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden'>
                 <div
                     className='w-36 h-36 rounded-full bg-center bg-cover bg-no-repeat'
-                    style={{ backgroundImage: `url('${data?.profile_image ? apiBaseURL + data?.profile_image : process.env.PUBLIC_URL + props.ImagePath}')` }}
+                    style={{ backgroundImage: `url('${data?.profile_image ? data?.profile_image : process.env.PUBLIC_URL + props.ImagePath}')` }}
                     alt="Profile Image"
                 />
             </div>
@@ -36,7 +36,7 @@ export const TutorCard = ({ data, ...props }) => {
                 <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>{data?.user?.first_name} {data?.user?.last_name}</p>
             </div>
             <div className='my-10 whitespace-nowrap'>
-                <TutorPoint property='qualification' value={data?.qualification} />
+                <TutorPoint property='qualification' value={data?.qualifications ? data?.qualifications[0] : 'N/A'} />
                 {/* <TutorPoint property='experience' value='21 years' /> */}
                 <TutorPoint property='areas to teach' value='johar town' />
                 <TutorPoint property='experience' value={'21 years'} />
