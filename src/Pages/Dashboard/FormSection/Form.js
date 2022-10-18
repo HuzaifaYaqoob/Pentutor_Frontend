@@ -33,13 +33,13 @@ export const TextArea = (props) => {
     )
 }
 
-export const TextInput = (props) => {
+export const TextInput = ({ name, ...props }) => {
     return (
         <div className='flex-1'>
             <InputLabel text={props.Label} />
             <input
                 type={props.type ? props.type : 'text'}
-                name={props.name}
+                name={name}
                 placeholder={props.placeholder}
                 className={`w-full outline-none p-2 border rounded ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} ${props.className}`}
                 value={props.value && props.value}
@@ -53,13 +53,13 @@ export const TextInput = (props) => {
 
 export const EmailInput = (props) => {
     return (
-        <div className='flex-1'>
+        <div className='flex-1 '>
             <InputLabel text={props.Label} />
-            <div className='flex pentutor-shadow border border-gray-200'>
+            <div className='flex border border-gray-200 rounded'>
                 <input
                     type="email"
                     placeholder={props.placeholder}
-                    className='w-full flex-1 text-center my-0 outline-none py-2'
+                    className='w-full flex-1 text-start px-2 rounded my-0 outline-none py-2'
                     value={props.value && props.value}
                     onChange={(e) => {
                         props.onChange && props.onChange(e)
@@ -89,6 +89,7 @@ export const ContactNumberInput = (props) => {
                         placeholder='3********'
                         className='outline-none my-0 flex-1 p-2 border border-gray-200 rounded '
                         value={props.value && props.value}
+                        name={props.name && props.name}
                         onChange={(e) => {
                             props.onChange && props.onChange(e)
                         }}
