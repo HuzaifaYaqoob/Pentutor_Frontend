@@ -49,3 +49,6 @@ export const remove_from_cart = '/api/course/delete_cart/'
 
 export const get_blog_posts_url = '/api/blog/get_blog_posts/'
 export const get_single_blog_url = '/api/blog/get_single_blog/'
+
+export const add_qualification_url = '/api/profile/add_qualification/'
+export const add_experience_url = '/api/profile/add_experience/'

@@ -18,6 +18,7 @@ import { ProfileTab } from "../../Student/Profile/EditProfile"
 
 import TutorBasicInfoEdit from './BasicInfo'
 import TutorDocumentMediaEdit from "./DocumentMedia"
+import ProfesionalDetails from "./ProfessionalInfo"
 
 const EditProfileTutor = (props) => {
     const [user_profile, setUserProfile] = useState({})
@@ -136,6 +137,18 @@ const EditProfileTutor = (props) => {
                     {
                         active_tab == 'BASIC' &&
                         <TutorBasicInfoEdit
+                            data={user_profile}
+                            onUpdateData={(data) => {
+                                setUserProfile({
+                                    ...user_profile,
+                                    ...data
+                                })
+                            }}
+                        />
+                    }
+                    {
+                        active_tab == 'PROFESSIONALDETAILS' &&
+                        <ProfesionalDetails
                             data={user_profile}
                             onUpdateData={(data) => {
                                 setUserProfile({

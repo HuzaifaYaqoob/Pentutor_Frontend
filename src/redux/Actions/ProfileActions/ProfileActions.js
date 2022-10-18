@@ -1,6 +1,6 @@
 
 import Cookies from "js-cookie"
-import { apiBaseURL, profile } from "../../apiURLs"
+import { add_experience_url, add_qualification_url, apiBaseURL, profile } from "../../apiURLs"
 
 import { GET_USER_PROFILE } from "../../ActionsTypes/ProfileActionTypes";
 
@@ -87,4 +87,83 @@ export const UpdateUserProfile = (data, success, fail) => dispatch => {
             fail && fail()
         })
 
+}
+
+
+export const CreateQualification = (data, success, fail) => dispatch => {
+    let s_code;
+
+    let form_data = new FormData()
+
+    for (let dt in data) {
+        form_data.append(dt, data[dt])
+    }
+
+    fetch(
+        apiBaseURL + add_qualification_url,
+        {
+            method: 'POST',
+            headers: {
+                Authorization: `Token ${Cookies.get('auth_token')}`
+            },
+            body: form_data
+        }
+    )
+        .then(response => {
+            s_code = response.status
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            if (s_code == 201) {
+                success && success(result?.data)
+            }
+            else {
+                fail && fail()
+            }
+
+        })
+        .catch(err => {
+            fail && fail()
+        })
+}
+
+export const CreateExperience = (data, success, fail) => dispatch => {
+    let s_code;
+
+    let form_data = new FormData()
+
+    for (let dt in data) {
+        form_data.append(dt, data[dt])
+    }
+
+    fetch(
+        apiBaseURL + add_experience_url,
+        {
+            method: 'POST',
+            headers: {
+                Authorization: `Token ${Cookies.get('auth_token')}`
+            },
+            body: form_data
+        }
+    )
+        .then(response => {
+            s_code = response.status
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then(result => {
+            if (s_code == 201) {
+                success && success(result?.data)
+            }
+            else {
+                fail && fail()
+            }
+
+        })
+        .catch(err => {
+            fail && fail()
+        })
 }
