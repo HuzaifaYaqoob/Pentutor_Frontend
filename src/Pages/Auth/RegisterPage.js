@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import AuthBase from "./AuthBase"
 
-import { Route, useParams } from 'react-router-dom'
+import { Link, Route, useParams } from 'react-router-dom'
 
 import StudentForm from "./StudentForm"
 import TutorRegisterForm from "./TutorRegisterForm"
@@ -50,6 +50,9 @@ const RegisterPage = (props) => {
                     {/* <Route path='/auth/register/student/' component={StudentForm} />
                     <Route path='/auth/register/tutor/' component={TutorRegisterForm} /> */}
                     <RegisterForm />
+                    <div className='text-center mt-8 flex items-center gap-2 justify-center' >
+                        <p className='text-center text-black text-sm'>Already have an account?</p><Link to='/auth/login/' className='text-sm text-yellow-500'>Login!</Link>
+                    </div>
                 </div>
             </div>
         </AuthBase>

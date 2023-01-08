@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { RegisterUser } from '../../redux/Actions/UserActions/UserActions'
 import Loader from '../../components/Loader/Loader'
+import { toast } from 'react-toastify'
 
 const RegisterForm = (props) => {
     const params = useParams()
@@ -64,7 +65,7 @@ const RegisterForm = (props) => {
                     setLoading(false)
                 },
                 (data) => {
-                    alert(data)
+                    toast.info(data)
                     setLoading(false)
                 }
             )
