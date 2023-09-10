@@ -7,6 +7,11 @@ import { apiBaseURL, get_tutor } from '../../redux/apiURLs'
 import LineHeader from '../../components/LineHeading'
 import Table from '../../components/Table'
 import { useHistory } from 'react-router-dom'
+import { request_demo_class } from '../../redux/Actions/TutorActions/TutorActions'
+import Cookies from 'js-cookie'
+import Popup from '../../components/Popup'
+import Form from '../Dashboard/FormSection/Form'
+import InputField from '../../components/FormSection/InputField'
 
 const ProfHeading = ({ text }) => {
     return (
@@ -121,10 +126,18 @@ const ProfileDetails = ({ heading, text }) => {
 const ViewProfile = ({ match, ...props }) => {
     const { profile_slug } = match.params
     const [tutor_data, setTutorData] = useState({})
+    const [democlasPopup, setDemoClassPopup] = useState(false)
+    const [requestClassData, setRequestClassData] = useState({})
+
 
     const getTutorProfile = () => {
         fetch(
-            apiBaseURL + get_tutor + `?slug=${profile_slug}`
+            apiBaseURL + get_tutor + `?slug=${profile_slug}`,
+            {
+                headers: {
+                    Authorization: `Token ${Cookies.get('auth_token')}`
+                },
+            }
         )
             .then(response => {
                 if (response.status == 200) {
@@ -159,7 +172,20 @@ const ViewProfile = ({ match, ...props }) => {
                             }}
                         ></div>
                         <p className='text-white text-center text-sm'>Tutor ID: PT143</p>
-                        <p className='text-[#F5BB07] text-center text-2xl font-medium'>{tutor_data?.name}</p>
+                        <p className='text-[#F5BB07] text-center text-2xl mb-3 font-medium'>{tutor_data?.name}</p>
+                        {
+                            tutor_data?.is_demo_requested ?
+                                <>
+                                    <p className='text-[#F5BB07] rounded-full text-center font-medium block'>Demo class already requested</p>
+                                </>
+                                :
+                                <button
+                                    className='bg-[#F5BB07] px-4 max-w-max mx-auto rounded-full text-center font-medium block'
+                                    onClick={() => {
+                                        setDemoClassPopup(true)
+                                    }}
+                                >Request demo class</button>
+                        }
                     </div>
                     <div className='flex items-start gap-3 pl-3 text-white'>
                         <span>icon</span>
@@ -398,6 +424,78 @@ const ViewProfile = ({ match, ...props }) => {
                     </div> */}
                 </div>
             </div>
+
+            {
+                democlasPopup &&
+                <Popup
+                    heading='Select demo class Time'
+                    onclose={() => {
+                        setDemoClassPopup(false)
+                    }}
+                >
+                    <div>
+                        <Form
+                            btnText='Request'
+                            btnLoading={requestClassData.btnLoading}
+                            onSubmit={() => {
+                                setRequestClassData({
+                                    ...requestClassData,
+                                    btnLoading: true
+                                })
+                                request_demo_class(
+                                    {
+                                        id: tutor_data?.slug,
+                                        selected_date : requestClassData.selected_date,
+                                        selected_time : requestClassData.selected_time,
+                                    },
+                                    () => {
+                                        alert('requested')
+                                        setTutorData({
+                                            ...tutor_data,
+                                            is_demo_requested: true
+                                        })
+                                        setDemoClassPopup(false)
+                                    },
+                                    () => {
+                                        setRequestClassData({
+                                            ...requestClassData,
+                                            btnLoading: false
+                                        })
+                                        alert('something got wrong')
+                                    }
+                                )
+                            }}
+                        >
+                            <div className='flex items-center gap-5'>
+                                <div className='flex-1'>
+                                    <InputField
+                                        type='date'
+                                        value={requestClassData.selected_date}
+                                        onChange={(e) => {
+                                            setRequestClassData({
+                                                ...requestClassData,
+                                                selected_date: e.target.value
+                                            })
+                                        }}
+                                    />
+                                </div>
+                                <div className='flex-1'>
+                                    <InputField
+                                        type='time'
+                                        value={requestClassData.selected_time}
+                                        onChange={(e) => {
+                                            setRequestClassData({
+                                                ...requestClassData,
+                                                selected_time: e.target.value
+                                            })
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        </Form>
+                    </div>
+                </Popup>
+            }
         </>
     )
 }

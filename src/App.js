@@ -36,6 +36,7 @@ import PurchasesCourses from "./Pages/Dashboard/Student/Courses/Courses";
 import TutorDashboard from "./Pages/Dashboard/Tutor/TutorDashboard";
 import EditProfileTutor from "./Pages/Dashboard/Tutor/Profile/EditProfile";
 import CoursesList from "./Pages/Dashboard/Tutor/Courses/CoursesList";
+import UpcommingClassesPage from "./Pages/Dashboard/Tutor/UpcommingClasses";
 import AddCourse from "./Pages/Dashboard/Tutor/Courses/AddCourse";
 import AddCourseContent from "./Pages/Dashboard/Tutor/Courses/AddCourseContent";
 import TutorJobs from "./Pages/Dashboard/Tutor/Jobs/Jobs";
@@ -178,6 +179,7 @@ const App = (props) => {
 
         <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
         <Route exact path='/dashboard/tutor/profile/edit/' component={EditProfileTutor} />
+        <Route exact path='/dashboard/tutor/upcomming-classes/' component={UpcommingClassesPage} />
         <Route exact path='/dashboard/tutor/courses/' component={CoursesList} />
         <Route exact path='/dashboard/tutor/courses/add-new/' component={AddCourse} />
         <Route exact path='/dashboard/tutor/courses/:course_id/add-videos/' component={AddCourseContent} />

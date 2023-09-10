@@ -1,7 +1,7 @@
 
 
-// export const apiBaseURL = 'http://127.0.0.1:8000';
-export const apiBaseURL = 'http://pentutor-backend.redexpo.co.uk';
+export const apiBaseURL = 'http://127.0.0.1:8000';
+// export const apiBaseURL = 'http://pentutor-backend.redexpo.co.uk';
 // export const apiBaseURL = 'http://194.163.152.51';
 // export const apiBaseURL = 'http://pentutors.com';
 
@@ -31,6 +31,7 @@ export const profile = '/api/profile/';
 export const get_all_tutors = '/api/profile/get_all_tutors/';
 export const get_tutor = '/api/profile/get_tutor/';
 export const get_featured_tutors_url = '/api/profile/get_featured_tutors/';
+export const request_demo_class_url = '/api/video_chat/request-tutor-demo-class/';
 
 
 export const get_all_courses = '/api/course/get_all_courses/';

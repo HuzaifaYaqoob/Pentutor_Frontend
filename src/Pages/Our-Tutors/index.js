@@ -23,7 +23,7 @@ const TutorPoint = (props) => {
 
 export const TutorCard = ({ data, ...props }) => {
     return (
-        <div className='pentutor-shadow rounded p-7 mb-14 pt-24 relative max-w-sm mx-auto w-full'>
+        <div className='pentutor-shadow rounded-xl p-7 mb-14 pt-24 relative max-w-sm mx-auto w-full border'>
             <div className='absolute w-36 h-36 shadow-xl flex items-center justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden'>
                 <div
                     className='w-36 h-36 rounded-full bg-center bg-cover bg-no-repeat'

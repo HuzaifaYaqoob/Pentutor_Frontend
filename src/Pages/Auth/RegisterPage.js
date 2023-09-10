@@ -15,7 +15,7 @@ const RegisterTab = (props) => {
             props.history.push(`/auth/register/${props.path}/`)
     }
     return (
-        <div className={'w-full py-6 text-center cursor-pointer ' + (props.active ? 'bg-white ' : 'bg-gray-200 ') + (props.path && 'hover:bg-gray-100 ')} onClick={() => { ChangeTab() }}>
+        <div className={'w-full py-6 text-center cursor-pointer ' + (props.active ? 'bg-blue-900 hover:bg-blue-900 ' : 'bg-gray-200 ') + (props.path && 'hover:bg-gray-100 ')} onClick={() => { ChangeTab() }}>
             <p className={'font-bold text-sm ' + (props.active ? 'text-yellow-500' : 'text-gray-500')}>{props.Title}</p>
         </div>
     )

@@ -78,14 +78,19 @@ const SideBar = (props) => {
                     {/* <BarLink icon={faThList} text='Pentutor' nextPath='/' /> */}
                     <BarLink icon={faThList} text='Dashboard' nextPath={`/dashboard/${props.user.userData && props.user.userData.user_type?.toLowerCase()}/`} />
 
+                    {/* Routes For Student  */}
                     <Route path='/dashboard/student/'>
-                        <BarLink icon={faBook} text='Courses' nextPath='/dashboard/student/courses/' />
+                        {/* <BarLink icon={faBook} text='Courses' nextPath='/dashboard/student/courses/' /> */}
+                        <BarLink icon={faBook} text='Classes' nextPath='/dashboard/student/courses/' />
                     </Route>
 
 
+                    {/* Routes For Tutor  */}
                     <Route path='/dashboard/tutor/' >
-                        <BarLink icon={faBook} text='Courses' nextPath='/dashboard/tutor/courses/' />
-                        <BarLink icon={faBook} text='Jobs' nextPath='/dashboard/tutor/jobs/' />
+                        <BarLink icon={faBook} text='Upcomming Classes' nextPath='/dashboard/tutor/upcomming-classes/' />
+                        <BarLink icon={faBook} text='Requests' nextPath='/dashboard/tutor/demo-classes-requests/' />
+                        {/* <BarLink icon={faBook} text='Courses' nextPath='/dashboard/tutor/courses/' /> */}
+                        {/* <BarLink icon={faBook} text='Jobs' nextPath='/dashboard/tutor/jobs/' /> */}
                     </Route>
 
                     <Route path='/dashboard/super-admin/'>
@@ -97,13 +102,12 @@ const SideBar = (props) => {
                         <BarLink icon={faCodeBranch} text='New Job' nextPath='/dashboard/super-admin/jobs/post-new/' />
                         <BarLink icon={faPager} text='Blog' nextPath='/dashboard/super-admin/blog/' />
                         <BarLink icon={faPager} text='Add Blog Post' nextPath='/dashboard/super-admin/blog/post-new/' />
-
                     </Route>
 
-                    <BarLink icon={faThList} text='attendance' />
-                    <BarLink icon={faCreditCard} text='payment record' />
-                    <BarLink icon={faHandshake} text='agreement' />
-                    <BarLink icon={faThList} text='home tution' />
+                    {/* <BarLink icon={faThList} text='attendance' /> */}
+                    {/* <BarLink icon={faCreditCard} text='payment record' /> */}
+                    {/* <BarLink icon={faHandshake} text='agreement' /> */}
+                    {/* <BarLink icon={faThList} text='home tution' /> */}
                     {/* <BarLink icon={faExclamationCircle} text='report' /> */}
                     {/* <BarLink icon={faUser} text='Chat Box' nextPath='/chat/' /> */}
                     <BarLink
