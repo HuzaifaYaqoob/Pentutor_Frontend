@@ -42,7 +42,9 @@ const ProfessionalTraining = () => {
                             </>
                         :
                         <>
-                            Loading...
+                            <p className="text-center">
+                                Loading...
+                            </p>
                         </>
                 }
                 <button

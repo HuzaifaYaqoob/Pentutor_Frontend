@@ -59,7 +59,9 @@ const FeaturedTutors = () => {
                             </>
                         :
                         <>
-                            Loading...
+                            <p className="text-center">
+                                Loading...
+                            </p>
                         </>
                 }
             </div>
