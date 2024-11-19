@@ -82,9 +82,9 @@ const Courses = () => {
             <FormSection formHeading='Search Courses'>
                 <div className='max-w-2xl mx-auto flex items-center gap-3'>
                     <div className='flex-1'>
-                        <InputField placeholder='Search Any Course By Keywords' />
+                        <InputField placeholder='Search Any Course By Keywords'/>
                     </div>
-                    <button className='text-center bg-yellow-450 text-indigo-900 h-full py-2 rounded px-7 font-semibold text-xl'>Search</button>
+                    <button className='text-center bg-[#F5BB07] text-indigo-900 h-full py-2.5 border border-[#F5BB07] cursor-pointer rounded px-7 font-semibold text-xl'>Search</button>
                 </div>
             </FormSection>
             <div className='container mx-auto grid grid-cols-1 place-content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20 my-20'>
