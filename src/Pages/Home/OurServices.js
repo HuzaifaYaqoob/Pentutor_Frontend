@@ -2,7 +2,7 @@
 
 const ServiceCard = (props) => {
     return (
-        <div className={'container rounded-xl mx-auto px-5 flex items-center flex-col  justify-between mb-20 ' + (props.reverse ? 'md:flex-row-reverse  flex-col' : 'md:flex-row')}  >
+        <div className={'container rounded-xl mx-auto px-5 flex items-center flex-col gap-14 justify-between mb-20' + (props.reverse ? 'md:flex-row-reverse  flex-col' : 'md:flex-row')}  >
             <div className='flex-1 pl-10 pr-5'>
                 <h3 className='text-indigo-900 font-bold mb-5 text-2xl'>{props.Heading}</h3>
                 <p className='text-gray-800 mb-10 pr-20'>{props.text}</p>

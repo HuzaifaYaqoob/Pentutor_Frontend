@@ -77,7 +77,7 @@ const FeaturedTutors = () => {
         //             <FeaturedTutorCard/>
         //             <FeaturedTutorCard/>
         //         </div>
-        //         <button className='mx-auto  block my-9 rounded border border-yellow-400 bg-yellow-100 text-yellow-400 py-1 px-3 text-xl'>View All</button>
+        //         <button className='mx-auto  block my-9 rounded border border-[#F5BB07] bg-[#F5BB07] text-white py-1.5 px-4'>View All</button>
         //     </div>
         // </div>
     )
