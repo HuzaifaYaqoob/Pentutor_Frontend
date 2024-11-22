@@ -2,20 +2,16 @@
 
 const HomePageCard = (props) =>{
     return(
-        <div className={ (props.cardReverse ? 'flex-row-reverse justify-end gap-10' : ' justify-between')  + ' max-w-6xl mx-auto bg-white shadow-md p-7 pt-0 rounded-2xl my-40 flex items-center'}>
-            <div className=''>
-                <div className='mb-2'>
-                    <h3 className={`capitalize font-bold text-6xl whitespace-nowrap ${props.preferredColor}`}>{props.heading}</h3>
-                </div>
-                <div className='text-2xl font-semibold text-gray-500 mb-10'>
-                    <p className='text-gray-500 mb-10'>Search thousand of tutors</p>
-                    <ol className='capitalize list-disc list-inside text-xl'>
+        <div className={ (props.cardReverse ? 'flex-row-reverse justify-end gap-10' : ' justify-between')  + ' max-w-6xl mx-auto bg-white shadow-md p-3 lg:p-7 pt-0 rounded-2xl my-40 flex items-center lg:flex-row flex-col'}>
+            <div className='space-y-2'>
+                <h3 className={`capitalize font-bold text-4xl whitespace-nowrap ${props.preferredColor}`}>{props.heading}</h3>
+                <div className='font-semibold text-gray-500 mb-10 space-y-6'>
+                    <p className='text-gray-500 text-2xl'>Search thousand of tutors</p>
+                    <ol className='capitalize list-disc list-inside text-lg'>
                         <li>find tutors in your area</li>
                         <li>contact & arrange lessons with tutor </li>
                     </ol>
-                </div>
-                <div>
-                    <button className={`capitalize ${props.bgpreferredColor} py-3 px-4 rounded text-white text-md`}>Read more</button>
+                    <button className={`capitalize ${props.bgpreferredColor} py-2 px-4 rounded text-white text-md`}>Read more</button>
                 </div>
             </div>
             <div className='px-10 pt-20'>

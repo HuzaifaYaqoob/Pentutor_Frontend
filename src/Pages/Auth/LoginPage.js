@@ -127,7 +127,7 @@ const LoginPage = (props) => {
                     Login
                 </button>
                 <p className='text-xs mt-5'>
-                    Don't Have an account ? 
+                    Don't Have an account? 
                     <Link className='text-yellow-600 capitalize px-1' to='/auth/register/student/'>
                         Register!
                     </Link>
