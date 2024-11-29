@@ -92,7 +92,7 @@ const AddCourse = (props) => {
 
                         />
                     </div>
-                    <div className='px-10 border border-dashed border-gray-300 rounded'>
+                    <div className='px-10 border border-dashed border-gray-300 rounded-md'>
                         <FileInput
                             id='course-image'
                             name='image'
@@ -175,13 +175,13 @@ const AddCourse = (props) => {
                     onChange={handleChange}
                     error={btn_clicked && !course_data.language ? true : false}
                 />
-                <div>
+                <div className='mt-4'>
                     <h3 className='font-bold text-lg mb-5'>Course Details</h3>
                     <ReactQuill
                         className='h-52'
                         theme='snow'
                         value={course_data.description ? course_data.description : ''}
-                        style={{ minHeight: '300px' }}
+                        style={{ minHeight: '300px', borderRadius: '12px' }}
                         placeholder='Enter Course Detail'
                         name='description'
                         onChange={(text_val) => {
@@ -190,7 +190,7 @@ const AddCourse = (props) => {
                         error={btn_clicked && !course_data.description ? true : false}
                     />
                 </div>
-                <div className='my-16 mb-32'>
+                <div className='my-16'>
                     <h3 className='font-bold text-lg mb-5'>Things You Will Learn</h3>
                     <ReactQuill
                         className='h-52'
@@ -205,7 +205,6 @@ const AddCourse = (props) => {
                         error={btn_clicked && !course_data.things_you_will_learn ? true : false}
                     />
                 </div>
-
             </Form>
         </DashboardBase>
     )

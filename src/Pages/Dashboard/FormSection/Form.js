@@ -9,7 +9,7 @@ import { faChevronDown, faTimes, faFile } from '@fortawesome/free-solid-svg-icon
 
 const InputLabel = (props) => {
     return (
-        <p className='mb-3 capitalize'>{props.text}</p>
+        <p className='mb-2 capitalize text-sm'>{props.text}</p>
     )
 }
 
@@ -41,7 +41,7 @@ export const TextInput = ({ name, ...props }) => {
                 type={props.type ? props.type : 'text'}
                 name={name}
                 placeholder={props.placeholder}
-                className={`w-full outline-none p-2 border rounded ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} ${props.className}`}
+                className={`w-full outline-none p-2.5 border text-sm rounded-md ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} ${props.className}`}
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)
@@ -252,10 +252,10 @@ const Form = ({ className, btnLoading, ...props }) => {
     return (
         <div className={`my-10 container ${className}`}>
             {props.children}
-            <div>
+            <div className='flex items-center justify-end'>
                 <button
                     disabled={btnLoading}
-                    className='color-green py-2 px-5 mt-4 text-lg text-white rounded capitalize disabled:bg-gray-700 disabled:cursor-not-allowed'
+                    className='bg-indigo-900 py-2 px-5 mt-4 text-white rounded-md capitalize disabled:bg-gray-700 disabled:cursor-not-allowed'
                     onClick={() => {
                         props.onSubmit ? props.onSubmit() : alert('onSubmit Event Lister required')
                     }}

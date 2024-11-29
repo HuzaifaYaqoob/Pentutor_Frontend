@@ -10,6 +10,7 @@ import { useEffect } from "react"
 import { deleteCourse, getMyCourses } from "../../../../redux/Actions/CourseActions/CourseActions"
 import { useLocation } from "react-router-dom"
 import { useHistory } from "react-router-dom"
+import Svgs from "../../../../Assets/svgs"
 
 const FilterTag = (props) => {
     return (
@@ -46,14 +47,14 @@ const TutorCourses = () => {
     }
 
     return (
-        <div className='bg-white shadow rounded border border-gray-200 mt-10'>
-            <div className="table w-full px-5">
+        <div className='bg-white rounded-lg border border-gray-200 mt-10'>
+            <div className="table w-full">
                 <div className="table-row-group">
-                    <div className="table-row">
-                        <p className='table-cell py-2 text-indigo-600'>Course Name</p>
-                        <p className='table-cell py-2 text-indigo-600'>Duration</p>
-                        <p className='table-cell py-2 text-indigo-600'>Date Published</p>
-                        <p className='table-cell py-2 text-indigo-600'>Actions</p>
+                    <div className="table-row !border-b border-red-400">
+                        <p className='table-cell border-b border-gray-200 py-3 px-5 text-[#706F6F] font-medium'>Course Name</p>
+                        <p className='table-cell border-b border-gray-200 py-3 px-5 text-[#706F6F] font-medium'>Duration</p>
+                        <p className='table-cell border-b border-gray-200 py-3 px-5 text-[#706F6F] font-medium'>Date Published</p>
+                        <p className='table-cell border-b border-gray-200 py-3 px-5 text-[#706F6F] font-medium'>Actions</p>
                     </div>
                     {
                         state.course.updated_ ?
@@ -61,23 +62,30 @@ const TutorCourses = () => {
                                 state.course.my_courses.map((course, index) => {
                                     return (
                                         <>
-                                            <div className="table-row ">
+                                            <div className="table-row">
                                                 <TableData
-                                                    className='text-blue-700 cursor-pointer'
+                                                    className='text-indigo-900 cursor-pointer px-5 font-medium'
                                                     text={course.title}
                                                     onClick={() => {
                                                         history.push(`/dashboard/tutor/courses/${course.slug}/add-videos/`)
                                                     }}
                                                 />
-                                                <TableData text={new Date(course?.duration * 1000).toISOString().substr(11, 8)} />
-                                                <TableData text='september 25, 2021' />
-                                                <div>
+                                                <TableData className='px-5' text={new Date(course?.duration * 1000).toISOString().substr(11, 8)} />
+                                                <TableData className='px-5' text='September 25, 2021' />
+                                                <div className="flex items-center px-5 gap-4">
                                                     <p
                                                         className="text-red-600 cursor-pointer"
                                                         onClick={() => {
                                                             DeleteCourseHandler(course.slug)
                                                         }}
                                                     >Delete</p>
+                                                    <span className="cursor-pointer"
+                                                        onClick={() => {
+                                                            history.push(`/dashboard/tutor/courses/${course.slug}/add-videos/`)
+                                                        }}
+                                                    >
+                                                        <Svgs.EditIcon/>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </>
@@ -85,14 +93,13 @@ const TutorCourses = () => {
                                 })
                                 :
                                 <>
-                                    <p className="my-4" >No Couse Added</p>
+                                    <p className="my-4 text-sm px-5" >No Couse Added</p>
                                 </>
                             :
                             <>
                                 <p>Loading...</p>
                             </>
                     }
-
                 </div>
             </div>
         </div>
@@ -111,19 +118,18 @@ const CoursesList = ({ getMyCourses, ...props }) => {
     }, [])
     return (
         <DashboardBase>
-            <div className='py-10'>
-                <div className="flex items-center justify-between">
+            <div className='py-5'>
+                <div className="flex items-center justify-end">
                     {/* <div className='flex items-center gap-5'>
                         <h3>Filter: </h3>
                         <FilterTag active text='All' />
                         <FilterTag text='un-Published' />
                         <FilterTag text='Published' />
                     </div> */}
-                    <Link to='/dashboard/tutor/courses/add-new/' className='bg-yellow-200 text-indigo-900 py-2 px-7 rounded text-lg font-bold cursor-pointer' >
+                    <Link to='/dashboard/tutor/courses/add-new/' className='bg-indigo-900 select-none text-white py-2 px-7 rounded-md text-lg font-bold cursor-pointer' >
                         Create A Course
                         <FontAwesomeIcon className='ml-2' icon={faPlusCircle} />
                     </Link>
-
                 </div>
                 <TutorCourses />
             </div>
