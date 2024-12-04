@@ -1,5 +1,5 @@
 
-
+import React, { useRef } from 'react';
 import { useEffect, useState } from 'react'
 
 
@@ -103,16 +103,27 @@ export const ContactNumberInput = (props) => {
 
 
 export const DOBInput = (props) => {
+
+    const inputRef = useRef(null);
+
+    const handleClick = () => {
+        if (inputRef.current) {
+            inputRef.current.showPicker();
+        }
+    };
+
     return (
         <div className='flex-1'>
             <InputLabel text={props.Label} />
             <input
+                ref={inputRef}
                 type="date"
-                className='w-full bg-white outline-none p-2 border border-gray-200 rounded '
+                className='w-full bg-white outline-none p-2 border border-gray-200 rounded-md cursor-pointer'
                 value={props.value && props.value}
                 onChange={(e) => {
-                    props.onChange && props.onChange(e)
+                    props.onChange && props.onChange(e);
                 }}
+                onClick={handleClick}
             />
         </div>
     )
