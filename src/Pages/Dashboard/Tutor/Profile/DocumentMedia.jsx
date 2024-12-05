@@ -21,7 +21,7 @@ const TutorDocumentMediaEdit = ({ data, onUpdateData, ...props }) => {
         <>
             <div className="flex flex-col md:flex-row items-center justify-between mb-5">
                 {
-                    data && data.profile_image &&
+                    // data && data.profile_image &&
                     <FileInput
                         accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
                         Label='Profile Picture'
@@ -32,7 +32,7 @@ const TutorDocumentMediaEdit = ({ data, onUpdateData, ...props }) => {
                     />
                 }
                 {
-                    data && data.degree_image &&
+                    // data && data.degree_image &&
                     <FileInput
                         accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
                         Label='add degree picture'
@@ -43,7 +43,7 @@ const TutorDocumentMediaEdit = ({ data, onUpdateData, ...props }) => {
                     />
                 }
                 {
-                    data && data.cnic_image &&
+                    // data && data.cnic_image &&
                     <FileInput
                         accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
                         Label='add CNIC Front'
@@ -54,7 +54,7 @@ const TutorDocumentMediaEdit = ({ data, onUpdateData, ...props }) => {
                     />
                 }
                 {
-                    data && data.cnic_back &&
+                    // data && data.cnic_back &&
                     <FileInput
                         accept='.png,.jpg,.jpeg,.PNG,.JPG,.JPEG'
                         Label='add CNIC Back'

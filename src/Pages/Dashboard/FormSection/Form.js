@@ -225,10 +225,10 @@ export const FileInput = (props) => {
     return (
         <div className='h-full flex items-center justify-center'>
             <label
-                className='capitalize cursor-pointer flex items-center justify-center'
+                className='capitalize cursor-pointer flex flex-col items-center justify-center'
                 htmlFor={props.id && props.id}
             >
-                {/* { props.Label } */}
+                { props.Label }
                 {
                     selected_file ?
                         <div className='w-[120px] h-[120px] rounded-full bg-center bg-cover bg-no-repeat border border-gray-200' style={{ backgroundImage: `url('${selected_file}')` }}></div>
