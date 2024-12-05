@@ -43,6 +43,11 @@ const TutorBasicInfoEdit = ({ data, onUpdateData, ...props }) => {
         setErrors(newErrors)
         return Object.keys(newErrors).length === 0
     }
+    useEffect(() => {
+        if (data?.Country?.id){
+            getCity(data?.Country?.id)
+        }
+    }, [data?.Country?.id])
 
     return (
         <>
@@ -56,6 +61,7 @@ const TutorBasicInfoEdit = ({ data, onUpdateData, ...props }) => {
                     onChange={(e) => {
                         onUpdateData({
                             user: {
+                                ...data?.user,
                                 first_name: e.target.value
                             }
                         })
@@ -72,6 +78,7 @@ const TutorBasicInfoEdit = ({ data, onUpdateData, ...props }) => {
                     onChange={(e) => {
                         onUpdateData({
                             user: {
+                                ...data?.user,
                                 last_name: e.target.value
                             }
                         })
@@ -89,6 +96,7 @@ const TutorBasicInfoEdit = ({ data, onUpdateData, ...props }) => {
                     onChange={(e) => {
                         onUpdateData({
                             user: {
+                                ...data?.user,
                                 email: e.target.value
                             }
                         })
@@ -138,7 +146,7 @@ const TutorBasicInfoEdit = ({ data, onUpdateData, ...props }) => {
                     <SelectDropDown
                         title='Select Country'
                         placeholder='Select Country'
-                        value={data?.Country?.name}
+                        value={data?.Country?.id}
                         options={
                             props.utility.countries.length > 0 ?
                                 props.utility.countries.map((ct) => {
@@ -170,7 +178,7 @@ const TutorBasicInfoEdit = ({ data, onUpdateData, ...props }) => {
                     <SelectDropDown
                         title='Select City'
                         placeholder='Select City'
-                        value={data?.city?.name}
+                        value={data?.city?.id}
                         options={
                             all_cities.length > 0 ?
                                 all_cities.map((ct) => {
