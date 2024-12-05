@@ -198,12 +198,12 @@ const LoggedUser = (props) => {
 
 const NavLink = (props) => {
     return (
-        <li className="py-2 px-3 rounded-sm overflow-hidden cursor-pointer relative">
+        <Link to={props.nextPath} className="py-2 px-3 rounded-sm overflow-hidden cursor-pointer relative">
             <Route path={props.nextPath} exact >
                 <ActiveEffect />
             </Route>
-            <Link className="relative capitalize" to={props.nextPath}>{props.text}</Link>
-        </li>
+            <li className="relative capitalize">{props.text}</li>
+        </Link>
     )
 }
 
@@ -233,14 +233,14 @@ const Header = (props) => {
         <>
             <div className='bg-yellow-450 p-2 w-full'>
                 <div className='container mx-auto flex justify-end'>
-                    <p className='text-white'>Call Now +92-300-111-81-87</p>
+                    <p className='text-black text-sm '>Call Now +92-300-111-81-87</p>
                 </div>
             </div>
-            <header className='container py-4 lg:px-14 px-3 mx-auto flex items-center justify-between '>
+            <header className='container py-1 lg:px-14 px-3 mx-auto flex items-center justify-between '>
                 <HamburgerIcon onClick={() => { setMobileNavShow('block') }} />
-                <div className='LOGO '>
+                <Link to={'/'} className='LOGO cursor-pointer'>
                     <img className='w-40' src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Logo" />
-                </div>
+                </Link>
                 <nav className={`absolute top-0 left-0 right-0 p-6 lg:p-0 z-50 lg:relative ${mobileNavshow} lg:block`} >
                     <ul className="flex items-center text-xs gap-1 pentutor-shadow lg:shadow-none lg:flex-row py-5 flex-col bg-white relative">
                         <span className='absolute top-3 left-5 text-xl cursor-pointer lg:hidden' onClick={() => { setMobileNavShow('hidden') }}>

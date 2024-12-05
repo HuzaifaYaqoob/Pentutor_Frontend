@@ -17,15 +17,15 @@ import Form, { TextInput } from '../../FormSection/Form'
 const VideoCard = ({ data, onDeleteClick, deleting }) => {
 
     return (
-        <div className='rounded border border-gray-200 my-2 py-1 pr-5 pl-1 flex justify-between items-center'>
+        <div className='rounded-md border border-gray-200 my-2 py-1 pr-5 pl-1 flex justify-between items-center'>
             <div className='flex items-center gap-3'>
                 <div
-                    className='w-[80px] h-[80px] border border-gray-200 bg-center bg-cover bg-no-repeat'
+                    className='w-[80px] h-[80px] border border-gray-200 bg-center bg-cover bg-no-repeat rounded-md'
                     style={{
                         backgroundImage: `url('${data.vid_thumbnail}')`
                     }}
                 ></div>
-                <p className='outline-none flex-1' placeholder='Add Video Title' >{data.title}</p>
+                <p className='outline-none flex-1 text-sm' placeholder='Add Video Title' >{data.title}</p>
             </div>
             {
                 deleting ?
@@ -112,8 +112,8 @@ const CourseSection = ({ data, onVideoAdd, onDeleteVideo, onDeleteChapter }) => 
     }, [selected_file])
 
     return (
-        <div className='my-5'>
-            <div className='bg-white rounded border border-gray-200 px-2 shadow text-xs text-gray-600 flex justify-between  items-center'
+        <div className='mt-5'>
+            <div className='bg-white rounded-md border border-gray-200 px-2 text-xs text-gray-600 flex justify-between  items-center'
             >
                 <div className='flex items-center justify-between w-full px-4 gap-8'>
                     <div
@@ -121,7 +121,7 @@ const CourseSection = ({ data, onVideoAdd, onDeleteVideo, onDeleteChapter }) => 
                         onClick={() => { setDropDownActive(!dropDownActive) }}
                     >
                         <FontAwesomeIcon icon={faPlay} className={'transition-all ' + (dropDownActive ? 'rotate-90 transform' : '')} />
-                        <p className='p-3 block w-full outline-none'>{data.title}</p>
+                        <p className='p-3 block w-full outline-none text-sm'>{data.title}</p>
                     </div>
                     {
                         deleting_chpt ?
@@ -130,7 +130,7 @@ const CourseSection = ({ data, onVideoAdd, onDeleteVideo, onDeleteChapter }) => 
                             </>
                             :
                             <span
-                                className='text-red-600 cursor-pointer'
+                                className='text-red-600 cursor-pointer text-sm'
                                 onClick={() => {
                                     DeleteChapter()
                                 }}
@@ -280,7 +280,7 @@ const AddCourseContent = (props) => {
             <button
                 to='/dashboard/tutor/courses/add-new/'
                 onClick={() => { setTitlePopup(true) }}
-                className='bg-yellow-200 text-indigo-900 py-2 px-7 ml-auto block rounded text-lg font-bold cursor-pointer'
+                className='bg-indigo-900 select-none text-white py-2 px-7 ml-auto block rounded-md text-lg font-bold cursor-pointer'
             >
                 Add Section
                 <FontAwesomeIcon className='ml-2' icon={faPlusCircle} />
@@ -288,7 +288,7 @@ const AddCourseContent = (props) => {
             {
                 course_data && course_data?.chapters &&
                     course_data?.chapters?.length > 0 ?
-                    <div className='bg-white rounded shadow border border-gray-200 my-10 p-3'>
+                    <div className='bg-white rounded-md border border-gray-200 my-10 p-5 !pt-0'>
                         {
                             course_data?.chapters?.map((chapter, index) => {
                                 return (

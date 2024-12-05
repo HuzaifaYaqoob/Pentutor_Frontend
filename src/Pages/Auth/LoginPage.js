@@ -95,12 +95,12 @@ const LoginPage = (props) => {
                             value={username}
                             type="text" id='Username'
                             placeholder='Enter Your Email'
-                            className={`outline-none w-full bg-gray-200 block rounded-lg text-sm p-2 ${username_err && 'border border-red-700'}`}
+                            className={`outline-none w-full bg-[#F4F3F3] block rounded text-sm py-2 px-3 ${username_err && 'border border-red-700'}`}
                             onChange={(e) => { setUsername(e.target.value); setUsernameErr(undefined) }}
                         />
                     </div>
                 </div>
-                <div className='text-gray-800 mb-3'>
+                <div className='text-gray-800'>
                     <label htmlFor="Password" className={`${password_err && 'text-red-700'} block text-sm mb-1`}>Password</label>
                     <div className='relative'>
                         <input
@@ -108,7 +108,7 @@ const LoginPage = (props) => {
                             type={show_pw ? 'text' : "password"}
                             id='Password'
                             placeholder='Enter Your Password'
-                            className={`outline-none bg-gray-200 rounded-lg  text-sm w-full block p-2 ${password_err && 'border border-red-700'}`}
+                            className={`outline-none bg-[#F4F3F3] rounded text-sm w-full block py-2 px-3 ${password_err && 'border border-red-700'}`}
                             onChange={(e) => { setPassword(e.target.value); setPasswordErr(undefined) }}
                         />
                         <span
@@ -127,8 +127,8 @@ const LoginPage = (props) => {
                     Login
                 </button>
                 <p className='text-xs mt-5'>
-                    Don't Have an account?
-                    <Link className='text-yellow-600 capitalize' to='/auth/register/student/'>
+                    Don't Have an account? 
+                    <Link className='text-yellow-600 capitalize px-1' to='/auth/register/student/'>
                         Register!
                     </Link>
                 </p>

@@ -28,7 +28,7 @@ const WhyChoose = () => {
                     <br />
                     Pen Tutor is your personalized tutoring service to fit your needs. Our goal is to provide a world-class education to anyone, anywhere. We focus on skill mastering to help learners establish strong basics so there is no limit to what they can pursue next!</p>
             </div>
-            <div className="my-6 flex items-center justify-between">
+            <div className="my-6 flex items-center justify-between lg:flex-row flex-col">
                 <div className="flex-1">
                     <ListItem index={1} title={'Conceptual Study Environment'} />
                     <ListItem index={0} title={'Advance Teaching Methodology'} />

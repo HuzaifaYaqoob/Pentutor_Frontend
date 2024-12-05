@@ -27,7 +27,7 @@ const CreateJob = () =>{
                 <div className='md:w-96'>
                     <DropDownInput placeholder='Male' data={['Female' , 'Male' , 'Others']} Label='Select Your Gender' />
                 </div>
-                <button className='bg-yellow-500 text-white py-2 px-7 w-full md:w-auto rounded-lg text-lg my-5'>Request</button>
+                <button className='bg-indigo-900 select-none text-white py-2 px-7 ml-auto block rounded-md text-lg font-bold cursor-pointer'>Request</button>
             </div>
         </DashboardBase>
     )

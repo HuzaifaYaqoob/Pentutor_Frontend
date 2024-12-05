@@ -50,7 +50,7 @@ const RegisterPage = (props) => {
                     {/* <Route path='/auth/register/student/' component={StudentForm} />
                     <Route path='/auth/register/tutor/' component={TutorRegisterForm} /> */}
                     <RegisterForm />
-                    <div className='text-center mt-8 flex items-center gap-2 justify-center' >
+                    <div className='text-center mt-8 flex items-center gap-1 justify-center' >
                         <p className='text-center text-black text-sm'>Already have an account?</p><Link to='/auth/login/' className='text-sm text-yellow-500'>Login!</Link>
                     </div>
                 </div>
