@@ -24,7 +24,7 @@ const DashboardHeader = (props) => {
                 </span>
             </div>
             <div className='col-span-2 mt-5 md:mt-0'>
-                <div className='rounded-md border border-gray-200 flex items-center px-3 text-xs'>
+                <div className='rounded-lg border border-gray-200 flex items-center px-3 text-xs'>
                     <FontAwesomeIcon className='text-gray-400' icon={faSearch} />
                     <div className='flex-1'>
                         <input type="text" className='outline-none text-xs py-3 w-full text-center' placeholder='Search Anything' />

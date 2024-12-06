@@ -32,6 +32,8 @@ import Inbox from "./Pages/Dashboard/Chat/Inbox";
 import StudentDashboard from './Pages/Dashboard/Student/StudentDashboard'
 import EditProfile from "./Pages/Dashboard/Student/Profile/EditProfile";
 import PurchasesCourses from "./Pages/Dashboard/Student/Courses/Courses";
+import JobsPage from "./Pages/Dashboard/Student/Jobs/Jobs";
+import CreateStudentsJob from "./Pages/Dashboard/Student/Jobs/CreateJob";
 
 import TutorDashboard from "./Pages/Dashboard/Tutor/TutorDashboard";
 import EditProfileTutor from "./Pages/Dashboard/Tutor/Profile/EditProfile";
@@ -176,6 +178,8 @@ const App = (props) => {
         <Route exact path='/dashboard/student/' component={StudentDashboard} />
         <Route exact path='/dashboard/student/profile/edit/' component={EditProfile} />
         <Route exact path='/dashboard/student/courses/' component={PurchasesCourses} />
+        <Route exact path='/dashboard/student/jobs/' component={JobsPage} />
+        <Route exact path='/dashboard/student/jobs/add-new/' component={CreateStudentsJob} />
 
         <Route exact path='/dashboard/tutor/' component={TutorDashboard} />
         <Route exact path='/dashboard/tutor/profile/edit/' component={EditProfileTutor} />

@@ -9,7 +9,7 @@ import { faChevronDown, faTimes, faFile } from '@fortawesome/free-solid-svg-icon
 
 const InputLabel = (props) => {
     return (
-        <p className='mb-2 capitalize text-sm'>{props.text}</p>
+        <p className='mb-2 capitalize text-sm font-medium'>{props.text}</p>
     )
 }
 
@@ -21,7 +21,7 @@ export const TextArea = (props) => {
             <InputLabel text={props.Label} />
             <textarea
                 placeholder={props.placeholder}
-                className='w-full text-start outline-none p-2 border border-gray-200 rounded h-40 '
+                className={`w-full text-start outline-none p-2 border ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} text-sm rounded-lg font-medium h-40`}
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)
@@ -41,7 +41,7 @@ export const TextInput = ({ name, ...props }) => {
                 type={props.type ? props.type : 'text'}
                 name={name}
                 placeholder={props.placeholder}
-                className={`w-full outline-none p-2.5 border text-sm rounded-md ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} ${props.className}`}
+                className={`w-full outline-none p-2.5 border text-sm rounded-lg font-medium ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} ${props.className}`}
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)
@@ -163,8 +163,8 @@ export const DropDownInput = (props) => {
         <div className='flex-1 relative'>
             <InputLabel text={props.Label} />
             <div className='relative'>
-                <div className='flex items-center cursor-pointer px-2 border border-gray-200 rounded ' onClick={() => { setDropDownActive(!dropDownActive) }} s >
-                    <p className='w-full text-center  text-gray-500 my-2'  >{props.value ? props.value : props.placeholder}</p>
+                <div className={`flex items-center cursor-pointer px-2 py-[3px] border ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} rounded-lg`} onClick={() => { setDropDownActive(!dropDownActive) }} s >
+                    <p className='w-full text-center text-gray-500 my-2 text-sm'  >{props.value ? props.value : props.placeholder}</p>
                     {
                         dropDownActive ?
                             <FontAwesomeIcon icon={faTimes} className='absolute top-3 right-5 cursor-pointer ' onClick={() => { setDropDownActive(!dropDownActive) }} />
