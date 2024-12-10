@@ -2,10 +2,12 @@
 
 import { Link } from 'react-router-dom'
 import SideBar from './SideBar'
+import Header from '../../components/Header/Header'
 
 const DashboardBase = (props) => {
     return (
         <>
+        <Header/>
             <div className='p-5 flex gap-10 pr-20 relative'>
                 <SideBar activeUser={props.activeUser} />
                 <div className='flex-1'>

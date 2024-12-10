@@ -12,6 +12,7 @@ import Cookies from 'js-cookie'
 import Popup from '../../components/Popup'
 import Form from '../Dashboard/FormSection/Form'
 import InputField from '../../components/FormSection/InputField'
+import { toast } from 'react-toastify'
 
 const ProfHeading = ({ text }) => {
     return (
@@ -116,7 +117,7 @@ const ProfileDetails = ({ heading, text }) => {
         <>
             <div className='mb-1 flex items-center justify-between'>
                 <span className='text-sm text-[#F5BB07] font-bold'>{heading}</span>
-                <span className='text-sm text-white'>{text}</span>
+                <span className='text-sm text-white'>{text || 'N/A'}</span>
             </div>
         </>
     )
@@ -171,8 +172,8 @@ const ViewProfile = ({ match, ...props }) => {
                                 backgroundImage: `url('${tutor_data?.profile_image}')`
                             }}
                         ></div>
-                        <p className='text-white text-center text-sm'>Tutor ID: PT143</p>
-                        <p className='text-[#F5BB07] text-center text-2xl mb-3 font-medium'>{tutor_data?.name}</p>
+                        <p className='text-white text-center text-sm mb-2'>Tutor ID: PT{tutor_data?.id}</p>
+                        {/* <p className='text-[#F5BB07] text-center text-2xl mb-3 font-medium'>{tutor_data?.name}</p> */}
                         {
                             tutor_data?.is_demo_requested ?
                                 <>
@@ -191,11 +192,11 @@ const ViewProfile = ({ match, ...props }) => {
                         <span>icon</span>
                         <p className='text-sm'>{tutor_data?.area}</p>
                     </div>
-                    <hr className='bg-red-500 my-4' />
+                    {/* <hr className='bg-red-500 my-4' />
                     <div className='flex items-start gap-3 pl-3 text-white'>
                         <span>icon</span>
                         <p className='text-sm'>{tutor_data?.mobile}</p>
-                    </div>
+                    </div> */}
                     <hr className='bg-red-500 my-4' />
                     <div className='px-3 mb-4'>
                         <ProfileDetails heading='City' text={`${tutor_data?.city?.name}`} />
@@ -442,6 +443,7 @@ const ViewProfile = ({ match, ...props }) => {
                                     ...requestClassData,
                                     btnLoading: true
                                 })
+                                let tid = toast.loading('Please wait...')
                                 request_demo_class(
                                     {
                                         id: tutor_data?.slug,
@@ -449,7 +451,13 @@ const ViewProfile = ({ match, ...props }) => {
                                         selected_time : requestClassData.selected_time,
                                     },
                                     () => {
-                                        alert('requested')
+                                        setTimeout(() => {
+                                            toast.update(tid, {
+                                                render : 'requested',
+                                                type : 'success',
+                                                isLoading : false
+                                            })
+                                        }, 1000);
                                         setTutorData({
                                             ...tutor_data,
                                             is_demo_requested: true
@@ -457,11 +465,15 @@ const ViewProfile = ({ match, ...props }) => {
                                         setDemoClassPopup(false)
                                     },
                                     () => {
+                                        toast.update(tid, {
+                                            render : 'Something went wrong',
+                                            type : 'error',
+                                            isLoading : false
+                                        })
                                         setRequestClassData({
                                             ...requestClassData,
                                             btnLoading: false
                                         })
-                                        alert('something got wrong')
                                     }
                                 )
                             }}

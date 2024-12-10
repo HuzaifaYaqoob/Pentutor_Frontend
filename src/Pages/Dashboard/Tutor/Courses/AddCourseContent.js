@@ -45,7 +45,7 @@ const VideoCard = ({ data, onDeleteClick, deleting }) => {
 }
 
 
-const CourseSection = ({ data, onVideoAdd, onDeleteVideo, onDeleteChapter }) => {
+const CourseSection = ({ data, onVideoAdd, onDeleteVideo, onDeleteChapter, index }) => {
     const [dropDownActive, setDropDownActive] = React.useState(false)
     const [selected_file, setSelectedFile] = useState(undefined)
     const [uploading, setUploading] = useState(false)
@@ -117,11 +117,11 @@ const CourseSection = ({ data, onVideoAdd, onDeleteVideo, onDeleteChapter }) => 
             >
                 <div className='flex items-center justify-between w-full px-4 gap-8'>
                     <div
-                        className='flex items-center gap-8 cursor-pointer'
+                        className='flex items-center gap-3 cursor-pointer'
                         onClick={() => { setDropDownActive(!dropDownActive) }}
                     >
                         <FontAwesomeIcon icon={faPlay} className={'transition-all ' + (dropDownActive ? 'rotate-90 transform' : '')} />
-                        <p className='p-3 block w-full outline-none text-sm'>{data.title}</p>
+                        <p className='p-3 block w-full outline-none text-sm'>Chapter {index}: <strong>{data.title}</strong></p>
                     </div>
                     {
                         deleting_chpt ?
@@ -274,27 +274,35 @@ const AddCourseContent = (props) => {
         })
 
     }
+    console.log(course_data)
 
     return (
         <DashboardBase>
-            <button
-                to='/dashboard/tutor/courses/add-new/'
-                onClick={() => { setTitlePopup(true) }}
-                className='bg-indigo-900 select-none text-white py-2 px-7 ml-auto block rounded-md text-lg font-bold cursor-pointer'
-            >
-                Add Section
-                <FontAwesomeIcon className='ml-2' icon={faPlusCircle} />
-            </button>
+            <div className='flex justify-between mb-3'>
+                <div>
+                    <h3 className="text-2xl font-medium ">Course</h3>
+                    {course_data?.title ? <p className='text-sm'>{course_data?.title}</p> : ''}
+                </div>
+                <button
+                    to='/dashboard/tutor/courses/add-new/'
+                    onClick={() => { setTitlePopup(true) }}
+                    className='bg-indigo-900 select-none text-white py-2 px-7 ml-auto block rounded-md text-lg font-bold cursor-pointer'
+                >
+                    Add Chapter
+                    <FontAwesomeIcon className='ml-2' icon={faPlusCircle} />
+                </button>
+            </div>
             {
                 course_data && course_data?.chapters &&
                     course_data?.chapters?.length > 0 ?
-                    <div className='bg-white rounded-md border border-gray-200 my-10 p-5 !pt-0'>
+                    <div className='bg-white border-gray-200 my-10 !pt-0'>
                         {
                             course_data?.chapters?.map((chapter, index) => {
                                 return (
                                     <CourseSection
                                         data={chapter}
                                         key={index}
+                                        index={index + 1}
                                         onDeleteVideo={(video_id) => {
                                             handleDeleteVideo(chapter.slug, video_id)
                                         }}
@@ -314,7 +322,9 @@ const AddCourseContent = (props) => {
                     </div>
                     :
                     <>
-                        <p className='text-center my-10'>No Chapter Added yet</p>
+                        <div className='my-10'>
+                            <p className='text-center text-sm'>Add Chapters</p>
+                        </div>
                     </>
             }
             {

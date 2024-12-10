@@ -119,13 +119,14 @@ const CoursesList = ({ getMyCourses, ...props }) => {
     return (
         <DashboardBase>
             <div className='py-5'>
-                <div className="flex items-center justify-end">
+                <div className="flex items-center justify-between">
                     {/* <div className='flex items-center gap-5'>
                         <h3>Filter: </h3>
                         <FilterTag active text='All' />
                         <FilterTag text='un-Published' />
                         <FilterTag text='Published' />
                     </div> */}
+                    <h3 className="text-2xl font-medium ">Courses</h3>
                     <Link to='/dashboard/tutor/courses/add-new/' className='bg-indigo-900 select-none text-white py-2 px-7 rounded-md text-lg font-bold cursor-pointer' >
                         Create A Course
                         <FontAwesomeIcon className='ml-2' icon={faPlusCircle} />

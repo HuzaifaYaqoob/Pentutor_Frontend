@@ -33,6 +33,9 @@ export const get_all_tutors = '/api/profile/get_all_tutors/';
 export const get_tutor = '/api/profile/get_tutor/';
 export const get_featured_tutors_url = '/api/profile/get_featured_tutors/';
 export const request_demo_class_url = '/api/video_chat/request-tutor-demo-class/';
+export const get_tutor_demo_classes_requests = '/api/video_chat/get_tutor_demo_classes_requests/';
+export const accept_reject_demo_class = '/api/video_chat/accept_reject_demo_class/';
+export const get_video_sessions = '/api/video_chat/get_user_video_chats/';
 
 
 export const get_all_courses = '/api/course/get_all_courses/';

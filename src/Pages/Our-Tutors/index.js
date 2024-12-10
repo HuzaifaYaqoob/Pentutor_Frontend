@@ -16,27 +16,29 @@ const TutorPoint = (props) => {
     return (
         <div className='flex items-center justify-between mb-4'>
             <p className='font-bold text-gray-900 capitalize'>{props.property}:</p>
-            <p className='text-gray-700 font-medium capitalize'>{props.value}</p>
+            <p className='text-gray-700 font-medium capitalize'>{props.value || 'N/A'}</p>
         </div>
     )
 }
 
 export const TutorCard = ({ data, ...props }) => {
+
+    console.log(data)
     return (
         <div className='pentutor-shadow rounded-xl p-7 mb-14 pt-24 relative max-w-sm mx-auto w-full border'>
             <div className='absolute w-36 h-36 shadow-xl flex items-center justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden'>
                 <div
                     className='w-36 h-36 rounded-full bg-center bg-cover bg-no-repeat'
-                    style={{ backgroundImage: `url('${data?.profile_image ? data?.profile_image : process.env.PUBLIC_URL + props.ImagePath}')` }}
+                    style={{ backgroundImage: `url('${data?.profile_image ? data?.profile_image : ''}')` }}
                     alt="Profile Image"
                 />
             </div>
             <div className='w-full text-center'>
-                {/* <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>ID: PT149</p> */}
-                <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>{data?.user?.first_name} {data?.user?.last_name}</p>
+                <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>ID: PT{data?.id}</p>
+                {/* <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>{data?.user?.first_name} {data?.user?.last_name}</p> */}
             </div>
             <div className='my-10 whitespace-nowrap'>
-                <TutorPoint property='qualification' value={data?.qualifications ? data?.qualifications[0] : 'N/A'} />
+                <TutorPoint property='qualification' value={data?.qualifications ? data?.qualifications[0]?.degree : 'N/A'} />
                 {/* <TutorPoint property='experience' value='21 years' /> */}
                 <TutorPoint property='areas to teach' value='johar town' />
                 <TutorPoint property='experience' value={'21 years'} />

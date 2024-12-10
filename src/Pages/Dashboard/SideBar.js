@@ -62,7 +62,7 @@ const SideBar = (props) => {
             <div className='fixed  w-12 pentutor-shadow flex lg:hidden items-center justify-center rounded-full top-2 left-2 h-12 z-50 cursor-pointer bg-white' onClick={() => { setSideBarShow('fixed') }}>
                 <HamburgerIcon />
             </div >
-            <div className={`sticky top-6 h-fit w-52 min-w-[208px] sidebar-shadow rounded-3xl overflow-hidden ${sideBarshow} bg-white lg:block top-0 z-50 max-h-screen lg:max-h-full overflow-y-auto `}>
+            <div className={`sticky top-6 h-fit w-52 min-w-[208px] border rounded-3xl overflow-hidden ${sideBarshow} bg-white lg:block top-0 z-50 max-h-screen lg:max-h-full overflow-y-auto `}>
                 <span className='absolute top-3 block lg:hidden right-3 text-white cursor-pointer' onClick={() => { setSideBarShow('hidden') }} >
                     <FontAwesomeIcon icon={faTimes} />
                 </span>

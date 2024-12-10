@@ -56,12 +56,12 @@ const TutorJobs = () => {
         <DashboardBase>
             <ContentBox HeaderText='All Jobs' />
             <div>
-                <div className='text-right'>
+                {/* <div className='text-right'>
                     <Link to='/dashboard/tutor/jobs/add-new/' className='bg-indigo-900 select-none max-w-max text-white py-2 px-7 ml-auto block rounded-md text-lg font-bold cursor-pointer' >
                         Add Job
                         <FontAwesomeIcon className='ml-2' icon={faPlusCircle} />
                     </Link>
-                </div>
+                </div> */}
                 <div>
                     <TutorJobsTable />
                 </div>
