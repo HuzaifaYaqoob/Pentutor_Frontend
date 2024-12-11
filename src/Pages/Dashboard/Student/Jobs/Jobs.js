@@ -3,6 +3,11 @@ import ContentBox from "../../ContentBox"
 import DashboardBase from "../../DashboardBase"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPencilAlt, faPlusCircle, faTrashAlt } from "@fortawesome/free-solid-svg-icons"
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
+import { apiBaseURL, get_my_jobs } from "../../../../redux/apiURLs"
+import Cookies from "js-cookie"
+import Moment from "react-moment"
 
 const TableData = ({ text, className }) => {
     return <p className={'table-cell py-5 ' + className}>{text}</p>
@@ -16,23 +21,31 @@ const TutorJobsTable = ({ jobs }) => {
                     <div className="table-row-group">
                         <div className="table-row">
                             <p className='table-cell py-2 text-indigo-600'>Job Title</p>
-                            <p className='table-cell py-2 text-indigo-600'>Creation Date</p>
-                            <p className='table-cell py-2 text-indigo-600'>Status</p>
-                            <p className='table-cell py-2 text-indigo-600'>Action</p>
+                            <p className='table-cell py-2 text-indigo-600'>Class</p>
+                            <p className='table-cell py-2 text-indigo-600'>Subject</p>
+                            <p className='table-cell py-2 text-indigo-600'>Salary</p>
+                            <p className='table-cell py-2 text-indigo-600'>Method</p>
+                            <p className='table-cell py-2 text-indigo-600'>Created At</p>
+                            {/* <p className='table-cell py-2 text-indigo-600'>Status</p>
+                            <p className='table-cell py-2 text-indigo-600'>Action</p> */}
                         </div>
                         {jobs.map((job, index) => (
                             <div className="table-row" key={index}>
                                 <TableData text={job.title} />
-                                <TableData text={job.creationDate} />
+                                <TableData text={job.class_teach} />
+                                <TableData text={job.subject_teach} />
+                                <TableData text={job.salary} />
+                                <TableData text={job.method} />
+                                <TableData text={<Moment fromNow>{job.created_at}</Moment>} />
                                 <TableData className='text-yellow-400' text={job.status} />
-                                <div className=' py-5 flex items-center gap-4'>
+                                {/* <div className=' py-5 flex items-center gap-4'>
                                     <span className='text-xs w-6 h-6 bg-red-400 text-red-600 rounded-full flex items-center justify-center cursor-pointer'>
                                         <FontAwesomeIcon icon={faTrashAlt} />
                                     </span>
                                     <span className='text-xs w-6 h-6 bg-gray-400 text-gray-600 rounded-full flex items-center justify-center cursor-pointer'>
                                         <FontAwesomeIcon icon={faPencilAlt} />
                                     </span>
-                                </div>
+                                </div> */}
                             </div>
                         ))}
                     </div>
@@ -45,14 +58,23 @@ const TutorJobsTable = ({ jobs }) => {
 }
 
 const JobsPage = () => {
-    const jobs = [
-        {
-            title: "Adobe Photoshop Beginner to Advance",
-            creationDate: "September 25, 2021",
-            status: "Requested",
-        },
-    ]
+    const [jobs, setJobs] = useState([])
 
+    const getMyJobs = async () =>{
+        const response = await fetch(
+            apiBaseURL + get_my_jobs,
+            {
+                headers: {'Authorization' : `Token ${Cookies.get('auth_token')}`}, 
+            }
+        )
+        let result = await response.json()
+        setJobs(result.data || [])
+    }
+
+
+    useEffect(() =>{
+        getMyJobs()
+    }, [])
     return (
         <DashboardBase>
             <ContentBox HeaderText='All Jobs' />

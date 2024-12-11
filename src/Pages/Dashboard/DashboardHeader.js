@@ -11,7 +11,7 @@ const DashboardHeader = (props) => {
 
     useEffect(() => {
         let date = new Date()
-        setCurrentDate(`${date.getDate()}-${MONTHS[date.getMonth()]}-${date.getFullYear()}`)
+        setCurrentDate(`${date.getDate()}-${MONTHS[date.getMonth()] || date.getMonth()}-${date.getFullYear()}`)
 
     }, [])
     return (

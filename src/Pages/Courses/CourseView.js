@@ -37,7 +37,7 @@ const CourseViewHeroSection = ({ data }) => {
         <div className='pt-10 bg-indigo-900 '>
             <div className='container mx-auto flex lg:flex-row flex-col items-center justify-between'>
                 <div className=''>
-                    <h1 className='text-white text-2xl font-medium mb-4'>{data?.title}</h1>
+                    <h1 className='text-white text-4xl font-bold mb-4'>{data?.title}</h1>
                     <p className='text-xs text-white font-light'>Use Advance tools to rank your website on 1st page</p>
                     <p className='flex items-center gap-3 text-yellow-300 text-xs mt-4'>
                         <span>{data?.star_rating}</span>

@@ -58,3 +58,6 @@ export const get_single_blog_url = '/api/blog/get_single_blog/'
 
 export const add_qualification_url = '/api/profile/add_qualification/'
 export const add_experience_url = '/api/profile/add_experience/'
+
+export const create_user_job = '/api/job/create_job/'
+export const get_my_jobs = '/api/job/get_my_jobs/'

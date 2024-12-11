@@ -7,7 +7,7 @@ import ContentBoxSubConent from "../ContentBoxSubContent"
 const StudentDashboard = () =>{
     return(
         <DashboardBase activeUser='student'>
-            <ContentBox/>
+            <ContentBox HeaderText='Welcome to Student Portal' />
             <ContentBoxSubConent/>
             
         </DashboardBase>

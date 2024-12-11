@@ -3,19 +3,43 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlay } from "@fortawesome/free-solid-svg-icons"
 import Moment from "react-moment"
+import { useState } from "react"
 
 
 const Content = ({ chapter }) => {
+    const [expand, setExpand] = useState(false)
+
+    console.log(chapter)
     return (
         <div className='my-4'>
             <div className='flex items-center justify-between text-xs mb-6'>
-                <div className='flex items-center gap-4'>
+                <div className='flex items-center gap-4 cursor-pointer' onClick={()=>{setExpand(!expand)}}>
                     <FontAwesomeIcon className='text-gray-700' icon={faPlay} />
-                    <p>{chapter?.title}</p>
+                    <p className="font-medium text-gray-700 text-[16px]">{chapter?.title}</p>
                 </div>
                 <p>{chapter?.videos?.length} Lectures. {chapter?.duration && <Moment format="m [minute] ss [seconds]">{chapter?.duration * 1000}</Moment>}</p>
-
             </div>
+            {
+                expand && 
+                <div className="pl-7">
+                    {
+                        chapter?.videos?.map(video =>{
+                            return (
+                                <div className="flex items-start gap-2 mb-2">
+                                    <div class="w-[80px] h-[80px] border border-gray-200 bg-center bg-cover bg-no-repeat rounded-md" 
+                                    style={{
+                                        backgroundImage: `url('${video.vid_thumbnail}')`
+                                    }}></div>
+                                    <div>
+                                        <p>{video.title}</p>
+                                        <p className="text-sm">{video.duration} Seconds</p>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            }
             <hr />
         </div>
     )

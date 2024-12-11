@@ -47,7 +47,7 @@ const CourseOutline = ({ data }) => {
     }
     return (
         <div className='container mx-auto flex flex-col lg:flex-row items-start my-16 gap-10 px-5'>
-            <div className='w-60 pentutor-shadow '>
+            <div className='w-60 pentutor-shadow sticky top-[70px]'>
                 <h3 className='py-4 w-full text-center font-bold'>This course includes</h3>
                 <hr />
                 <div className='p-6'>

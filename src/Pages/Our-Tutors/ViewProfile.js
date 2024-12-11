@@ -59,7 +59,7 @@ const ProfileDisplayCard = ({ data }) => {
 export const CourseCard = ({ data }) => {
     const location = useHistory()
     return (
-        <div className='w-full max-w-xs relative pentutor-shadow rounded-md overflow-hidden px-3 pt-1'>
+        <div className='w-full max-w-xs relative border rounded-xl overflow-hidden'>
             <div
                 className='w-full min-h-[200px] bg-center bg-cover bg-no-repeat rounded-md'
                 style={{
@@ -68,32 +68,35 @@ export const CourseCard = ({ data }) => {
             >
             </div>
             <div className='px-3 mt-3'>
-                <p className='bg-green-200 text-green-600 py-1 px-4 text-sm rounded-full inline-block'>{(data?.category && data?.category?.title) ? data?.category?.title : 'N/A'}</p>
+                <div className='flex justify-between'>
+                    <p className='bg-green-200 text-green-600 py-1 px-4 text-sm rounded-full inline-block'>{(data?.category && data?.category?.title) ? data?.category?.title : 'N/A'}</p>
+                    <span>
+                        <span className='text-yellow-400'>{data?.star_rating}</span>
+                        <FontAwesomeIcon className='mx-1 text-yellow-400' icon={faStar} />
+                        <span className='text-gray-400'>({data?.review_count})</span>
+                    </span>
+                </div>
                 <h3
-                    className='text-sm my-4 cursor-pointer'
+                    className='text-lg font-semibold my-2 cursor-pointer'
                     onClick={() => {
                         location.push(`/courses/${data.slug}/view/`)
                     }}
                 >{data?.title}</h3>
-                <p className='text-xs flex items-center justify-between mb-4'>
-                    <span>
-                        <span className='text-yellow-400'>{data?.star_rating}</span>
-                        <FontAwesomeIcon className='mx-2 text-yellow-400' icon={faStar} />
-                        <span className='text-gray-400'>({data?.review_count})</span>
-                    </span>
+                <p className='text-xs flex items-center justify-between mb-2'>
                     <span>
                         {data?.students} <span className='text-gray-400'>students</span>
                     </span>
+                    <p className='text-xs flex items-center justify-between pl-4 gap-1'>
+                        <span>
+                            {data?.lectures} Lectures
+                        </span>
+                        |
+                        <span>
+                            {data?.duration} Sec
+                        </span>
+                    </p>
                 </p>
-                <p className='text-xs flex items-center justify-between mb-2 pl-4'>
-                    <span>
-                        {data?.duration}
-                    </span>
-                    <span>
-                        {data?.lectures} Lectures
-                    </span>
-                </p>
-                <p className='text-sm pl-4'>{data?.level}</p>
+                <p className='text-sm'>{data?.level}</p>
                 <hr className='mt-4' />
                 <div className='flex items-center justify-between my-4'>
 
