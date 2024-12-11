@@ -31,7 +31,7 @@ const TutorJobsTable = ({ jobs }) => {
                         </div>
                         {jobs.map((job, index) => (
                             <div className="table-row" key={index}>
-                                <TableData text={job.title} />
+                                <TableData text={<Link to={`/jobs/job_details/${job.id}/`} className='text-blue-600 underline'>{job.title}</Link>} />
                                 <TableData text={job.class_teach} />
                                 <TableData text={job.subject_teach} />
                                 <TableData text={`${job.salary} PKR`} />
