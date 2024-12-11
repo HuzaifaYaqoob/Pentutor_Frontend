@@ -50,7 +50,7 @@ const JobsCard = ({ job }) => {
             <div className="py-3 text-center flex items-center justify-end px-3">
                 <Link
                     to={{
-                        pathname: `/jobs/job_details`,
+                        pathname: `/jobs/job_details/${job?.id}`,
                         state: { job },
                     }}
                     className="bg-yellow-450 text-white px-8 py-2 rounded-lg"

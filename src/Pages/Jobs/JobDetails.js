@@ -1,14 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIdBadge, faCalendarAlt, faCheckCircle, faFile, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 
 import { TextInput, TextArea } from "../Dashboard/FormSection/Form";
+import { apiBaseURL, apply_job, get_single_job } from "../../redux/apiURLs";
+import Cookies from "js-cookie";
+import Moment from "react-moment";
 
-const JobDetails = () => {
+
+const JobKeys = (props) => {
+    return (
+        <div className="flex items-center justify-between mb-3">
+            <p className="font-bold capitalize">{props.data.property}:</p>
+            <p className="font-medium">{props.data.value}</p>
+        </div>
+    );
+};
+
+
+const JobDetails = (props) => {
     const location = useLocation();
-    const job = location.state?.job;
+    // const job = location.state?.job;
+    const [job, setJob] = useState({})
+    const { job_id } = props?.match?.params
+    console.log(job_id)
+
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -75,10 +93,28 @@ const JobDetails = () => {
         return Object.keys(errors).length === 0;
     };
 
-    const handleApplyJob = () => {
+    const handleApplyJob = async () => {
         if (validateForm()) {
             setIsSubmitted(true);
-            toast.success("Job application submitted successfully!");
+            let form_data = new FormData()
+            form_data.append('message', formData.message)
+            if (formData.resume){
+                form_data.append('resume', formData.resume)
+            }
+            const response = await fetch(
+                apiBaseURL + apply_job + `${job_id}/`,
+                {
+                    headers: {'Authorization' : `Token ${Cookies.get('auth_token')}`},
+                    method : 'POST',
+                    body : form_data
+                }
+            )
+            let status = response.status
+            let result = await response.json()
+            if (status == 200){
+                console.log(result)
+                toast.success("Job application submitted successfully!");
+            }
             setFormData({
                 firstName: "",
                 lastName: "",
@@ -90,6 +126,26 @@ const JobDetails = () => {
             toast.error("Please fill in all the required fields.");
         }
     };
+
+
+    const getSingleJob = async () =>{
+        const response = await fetch(
+            apiBaseURL + get_single_job + `${job_id}/`,
+            {
+                headers: {'Authorization' : `Token ${Cookies.get('auth_token')}`}, 
+            }
+        )
+        let result = await response.json()
+        console.log(result)
+        setJob(result || {})
+
+    }
+
+    useEffect(() =>{
+        if (job_id){
+            getSingleJob()
+        }
+    }, [job_id])
 
     return (
         <main>
@@ -106,13 +162,26 @@ const JobDetails = () => {
                             <div className="text-white mt-12 max-w-[900px] mx-auto grid grid-cols-2 gap-3">
                                 <p className="mb-2 flex items-center">
                                     <FontAwesomeIcon icon={faIdBadge} className="mr-3" />
-                                    <span>Job ID: {job.id}</span>
+                                    <span>Gender: {job.gender}</span>
                                 </p>
                                 <p className="mb-2 flex items-center">
                                     <FontAwesomeIcon icon={faCalendarAlt} className="mr-3" />
-                                    <span>Posted: {job.posted} Ago</span>
+                                    <span>Posted At: <Moment fromNow>{job.posted}</Moment></span>
                                 </p>
-                                {job.details.map((detail, index) => (
+                                <JobKeys data={{'property' : 'Class', 'value' : job.class_teach}} />
+                                <JobKeys data={{'property' : 'Subject', 'value' : job.subject_teach}} />
+                                <JobKeys data={{'property' : 'Experience', 'value' : job.experience}} />
+                                <JobKeys data={{'property' : 'Salary', 'value' : job.salary}} />
+                                <JobKeys data={{'property' : 'Prefered Gender', 'value' : job.gender}} />
+                                {
+                                    job.time && 
+                                    <JobKeys data={{'property' : 'Prefered Time', 'value' : job.time}} />
+                                }
+                                {
+                                    job.location && 
+                                    <JobKeys data={{'property' : 'Location', 'value' : job.location}} />
+                                }
+                                {job?.details?.map((detail, index) => (
                                     <p key={index} className="mb-2 flex items-center">
                                         <FontAwesomeIcon icon={faCheckCircle} className="mr-3" />
                                         <span>

@@ -85,7 +85,7 @@ const App = (props) => {
     '/cart/',
     '/checkout/',
     '/jobs/',
-    '/jobs/job_details/',
+    '/jobs/job_details/:job_id/',
     '/home/',
     '/auth/logn/',
     '/auth/register/',
@@ -143,6 +143,7 @@ const App = (props) => {
           '/cart/',
           '/checkout/',
           '/jobs/',
+          "/jobs/job_details/:job_id/",
         ]
       } component={Header} />
 
@@ -162,7 +163,7 @@ const App = (props) => {
         <Route exact path="/blogs" component={BlogPage} />
         <Route exact path="/blogs/view/:blog_id/" component={BlogView} />
         <Route exact path="/jobs" component={AvailableJobs} />
-        <Route exact path="/jobs/job_details" component={JobDetails} />
+        <Route exact path="/jobs/job_details/:job_id/" component={JobDetails} />
 
 
         <Route exact path="/chat/" component={ChatBox} />
@@ -229,6 +230,7 @@ const App = (props) => {
           '/cart/',
           '/checkout/',
           '/jobs/',
+          "/jobs/job_details/:job_id/"
         ]
       } component={Footer} />
 
