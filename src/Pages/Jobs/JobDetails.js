@@ -9,38 +9,27 @@ import { apiBaseURL, apply_job, get_single_job } from "../../redux/apiURLs";
 import Cookies from "js-cookie";
 import Moment from "react-moment";
 
-
-const JobKeys = (props) => {
+const JobKeys = ({ data }) => {
     return (
         <div className="flex items-center justify-between mb-3">
-            <p className="font-bold capitalize">{props.data.property}:</p>
-            <p className="font-medium">{props.data.value}</p>
+            <p className="font-bold capitalize">{data.property}:</p>
+            <p className="font-medium">{data.value}</p>
         </div>
     );
 };
 
-
 const JobDetails = (props) => {
     const location = useLocation();
-    // const job = location.state?.job;
-    const [job, setJob] = useState({})
-    const { job_id } = props?.match?.params
-    console.log(job_id)
-
+    const [job, setJob] = useState({});
+    const { job_id } = props?.match?.params;
+    console.log(job_id);
 
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
         message: "",
+        resume: null,
     });
 
     const [formErrors, setFormErrors] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
         message: "",
     });
 
@@ -57,38 +46,11 @@ const JobDetails = (props) => {
         }));
     };
 
-    const validateField = (field, value) => {
-        if (!value.trim()) {
-            return "This field is required";
-        }
-        return "";
-    };
-
-    const validateEmail = (email) => {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return emailRegex.test(email) ? "" : "Please enter a valid email address.";
-    };
-
-    const validatePhone = (phone) => {
-        const phoneRegex = /^\d{11}$/; // Check if the phone number contains exactly 11 digits
-        return phoneRegex.test(phone) ? "" : "Phone number must be 11 digits.";
-    };
-
     const validateForm = () => {
         const errors = {};
-        Object.keys(formData).forEach((key) => {
-            const error = validateField(key, formData[key]);
-            if (error) {
-                errors[key] = error;
-            }
-        });
-
-        const emailError = validateEmail(formData.email);
-        if (emailError) errors.email = emailError;
-
-        const phoneError = validatePhone(formData.phone);
-        if (phoneError) errors.phone = phoneError;
-
+        if (!formData.message.trim()) {
+            errors.message = "Cover letter is required.";
+        }
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
     };
@@ -96,56 +58,50 @@ const JobDetails = (props) => {
     const handleApplyJob = async () => {
         if (validateForm()) {
             setIsSubmitted(true);
-            let form_data = new FormData()
-            form_data.append('message', formData.message)
-            if (formData.resume){
-                form_data.append('resume', formData.resume)
+            let form_data = new FormData();
+            form_data.append('message', formData.message);
+            if (formData.resume) {
+                form_data.append('resume', formData.resume);
             }
+
             const response = await fetch(
                 apiBaseURL + apply_job + `${job_id}/`,
                 {
-                    headers: {'Authorization' : `Token ${Cookies.get('auth_token')}`},
-                    method : 'POST',
-                    body : form_data
+                    headers: { 'Authorization': `Token ${Cookies.get('auth_token')}` },
+                    method: 'POST',
+                    body: form_data,
                 }
-            )
-            let status = response.status
-            let result = await response.json()
-            if (status == 200){
-                console.log(result)
+            );
+            const result = await response.json();
+            if (response.status === 200) {
                 toast.success("Job application submitted successfully!");
             }
             setFormData({
-                firstName: "",
-                lastName: "",
-                email: "",
-                phone: "",
                 message: "",
+                resume: null,
             });
         } else {
             toast.error("Please fill in all the required fields.");
         }
     };
 
-
-    const getSingleJob = async () =>{
+    const getSingleJob = async () => {
         const response = await fetch(
             apiBaseURL + get_single_job + `${job_id}/`,
             {
-                headers: {'Authorization' : `Token ${Cookies.get('auth_token')}`}, 
+                headers: { 'Authorization': `Token ${Cookies.get('auth_token')}` },
             }
-        )
-        let result = await response.json()
-        console.log(result)
-        setJob(result || {})
+        );
+        const result = await response.json();
+        console.log(result);
+        setJob(result || {});
+    };
 
-    }
-
-    useEffect(() =>{
-        if (job_id){
-            getSingleJob()
+    useEffect(() => {
+        if (job_id) {
+            getSingleJob();
         }
-    }, [job_id])
+    }, [job_id]);
 
     return (
         <main>
@@ -168,27 +124,35 @@ const JobDetails = (props) => {
                                     <FontAwesomeIcon icon={faCalendarAlt} className="mr-3" />
                                     <span>Posted At: <Moment fromNow>{job.posted}</Moment></span>
                                 </p>
-                                <JobKeys data={{'property' : 'Class', 'value' : job.class_teach}} />
-                                <JobKeys data={{'property' : 'Subject', 'value' : job.subject_teach}} />
-                                <JobKeys data={{'property' : 'Experience', 'value' : job.experience}} />
-                                <JobKeys data={{'property' : 'Salary', 'value' : `${job.salary} PKR`}} />
-                                <JobKeys data={{'property' : 'Prefered Gender', 'value' : job.gender}} />
-                                {
-                                    job.time && 
-                                    <JobKeys data={{'property' : 'Prefered Time', 'value' : job.time}} />
-                                }
-                                {
-                                    job.location && 
-                                    <JobKeys data={{'property' : 'Location', 'value' : job.location}} />
-                                }
-                                {job?.details?.map((detail, index) => (
-                                    <p key={index} className="mb-2 flex items-center">
-                                        <FontAwesomeIcon icon={faCheckCircle} className="mr-3" />
-                                        <span>
-                                            {detail.property}: {detail.value}
-                                        </span>
-                                    </p>
-                                ))}
+                                <p className="flex">
+                                  <JobKeys data={{ 'property': 'Class', 'value': job.class_teach }} />
+                                </p>
+                                <p className="flex">
+                                  <JobKeys data={{ 'property': 'Subject', 'value': job.subject_teach }} />
+                                </p>
+                                <p className="flex">
+                                  <JobKeys data={{ 'property': 'Experience', 'value': job.experience }} />
+                                </p>
+                                <p className="flex">
+                                  <JobKeys data={{ 'property': 'Salary', 'value': `${job.salary} PKR` }} />
+                                </p>
+                                <p className="flex">
+                                  <JobKeys data={{ 'property': 'Preferred Gender', 'value': job.gender }} />
+                                </p>
+                                <p className="flex">
+                                  {job.time && <JobKeys data={{ 'property': 'Preferred Time', 'value': job.time }} />}
+                                </p>
+                                <p className="flex">
+                                  {job.location && <JobKeys data={{ 'property': 'Location', 'value': job.location }} />}
+                                </p>
+                                <p className="flex">
+                                  {job?.details?.map((detail, index) => (
+                                      <p key={index} className="mb-2 flex items-center">
+                                          <FontAwesomeIcon icon={faCheckCircle} className="mr-3" />
+                                          <span>{detail.property}: {detail.value}</span>
+                                      </p>
+                                  ))}
+                                </p>
                             </div>
                         </>
                     ) : (
@@ -197,9 +161,7 @@ const JobDetails = (props) => {
                                 icon={faFile}
                                 className="text-5xl text-gray-400 block mx-auto my-5 cursor-pointer"
                             />
-                            <h3 className="text-white font-semibold text-2xl">
-                                No job details available.
-                            </h3>
+                            <h3 className="text-white font-semibold text-2xl">No job details available.</h3>
                         </div>
                     )}
                 </div>
@@ -210,48 +172,34 @@ const JobDetails = (props) => {
                     <>
                         <h3 className="text-2xl font-semibold text-center">Apply for this Job</h3>
                         <div className="space-y-3">
-                            <div className="flex items-center gap-4">
-                                <TextInput
-                                    Label="First Name"
-                                    placeholder="Enter First Name"
-                                    value={formData.firstName}
-                                    onChange={(e) => handleInputChange("firstName", e.target.value)}
-                                    error={formErrors.firstName || ""}
-                                />
-                                <TextInput
-                                    Label="Last Name"
-                                    placeholder="Enter Last Name"
-                                    value={formData.lastName}
-                                    onChange={(e) => handleInputChange("lastName", e.target.value)}
-                                    error={formErrors.lastName || ""}
-                                />
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <TextInput
-                                    type="email"
-                                    Label="Email Address"
-                                    placeholder="Enter your Email"
-                                    value={formData.email}
-                                    onChange={(e) => handleInputChange("email", e.target.value)}
-                                    error={formErrors.email || ""}
-                                />
-                                <TextInput
-                                    type="tel"
-                                    Label="Phone Number"
-                                    placeholder="Enter your Phone"
-                                    value={formData.phone}
-                                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                                    error={formErrors.phone || ""}
-                                />
-                            </div>
                             <div>
                                 <TextArea
-                                    Label="Cover Message"
-                                    placeholder="Write a short message"
+                                    Label="Cover Letter"
+                                    placeholder="Write a short cover letter"
                                     value={formData.message}
                                     onChange={(e) => handleInputChange("message", e.target.value)}
                                     error={formErrors.message || ""}
                                 />
+                            </div>
+                            <div className="space-y-1.5 cursor-pointer">
+                                <label htmlFor="resume" className="block font-medium text-sm">Resume (Optional)</label>
+                                <div className="relative border text-sm border-gray-200 p-2.5 w-full rounded-lg font-medium cursor-pointer flex items-center">
+                                    <FontAwesomeIcon
+                                        icon={faFile}
+                                        className="mr-2 text-gray-500 text-lg"
+                                    />
+                                    <p className="inline-block">
+                                        {formData.resume ? formData.resume.name : "Upload Resume"}
+                                    </p>
+                                    <input
+                                        type="file"
+                                        id="resume"
+                                        name="resume"
+                                        accept=".pdf,.doc,.docx,.txt"
+                                        onChange={(e) => handleInputChange("resume", e.target.files[0])}
+                                        className="opacity-0 absolute h-full w-full inset-0 cursor-pointer"
+                                    />
+                                </div>
                             </div>
                         </div>
                         <button
