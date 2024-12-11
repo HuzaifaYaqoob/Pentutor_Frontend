@@ -65,51 +65,6 @@ const JobsCard = ({ job }) => {
 const AvailableJobs = () => {
     const [jobs, setJobs] = useState([])
     console.log(jobs)
-    // const jobs = [
-    //     {
-    //         id: 1,
-    //         title: "English Teacher Required for FSC-|| MSC",
-    //         type: "Home Tutor",
-    //         description: "Looking for a qualified and experienced English teacher to assist FSC students in Johar Town.",
-    //         posted: "4 Days",
-    //         details: [
-    //             { property: "Qualification Required", value: "Masters" },
-    //             { property: "Experience Required", value: "5 Years" },
-    //             { property: "Location", value: "Johar Town" },
-    //             { property: "Experience", value: "21 Years" },
-    //             { property: "Salary", value: "18K-25K" },
-    //         ],
-    //     },
-    //     {
-    //         id: 2,
-    //         title: "Mathematics Teacher for O-Level",
-    //         type: "Part-Time",
-    //         description: "A Mathematics teacher needed for O-Level students in Model Town. Flexible timings available.",
-    //         posted: "9 Days",
-    //         details: [
-    //             { property: "Qualification Required", value: "Masters in Math" },
-    //             { property: "Experience Required", value: "3 Years" },
-    //             { property: "Location", value: "Model Town" },
-    //             { property: "Experience", value: "15 Years" },
-    //             { property: "Salary", value: "25K-30K" },
-    //         ],
-    //     },
-    //     {
-    //       id: 3,
-    //       title: "Frontend We Developer",
-    //       type: "Full Time",
-    //       description: "A Senior Frontend We Developer needed for our companby in Model Town. Flexible timings available.",
-    //       posted: "6h",
-    //       details: [
-    //           { property: "Qualification Required", value: "Masters in Codding" },
-    //           { property: "Experience Required", value: "3 Years" },
-    //           { property: "Location", value: "Model Town" },
-    //           { property: "Experience", value: "3 Years" },
-    //           { property: "Salary", value: "70K-90K" },
-    //       ],
-    //   },
-    // ];
-
 
     const getAllJobs = async () =>{
         const response = await fetch(
@@ -131,10 +86,9 @@ const AvailableJobs = () => {
         <div className="container mx-auto my-5">
             <div className="flex items-center justify-center gap-4">
                 <div className="text-indigo-900">
-                    <h1 className="font-bold text-3xl">Available Jobs</h1>
-                    <p className="text-lg font-light">Teaching / Other Jobs</p>
+                    <h1 className="font-bold text-3xl text-center">Available Jobs</h1>
+                    <p className="text-lg font-light text-center">Teaching / Other Jobs</p>
                 </div>
-                {/* <div className="bg-indigo-900 text-white rounded-lg py-2 px-5">Post Job</div> */}
             </div>
             {jobs.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 px-6 my-10">
