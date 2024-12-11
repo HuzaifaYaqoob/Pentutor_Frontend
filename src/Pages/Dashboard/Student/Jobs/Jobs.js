@@ -34,7 +34,7 @@ const TutorJobsTable = ({ jobs }) => {
                                 <TableData text={job.title} />
                                 <TableData text={job.class_teach} />
                                 <TableData text={job.subject_teach} />
-                                <TableData text={job.salary} />
+                                <TableData text={`${job.salary} PKR`} />
                                 <TableData text={job.method} />
                                 <TableData text={<Moment fromNow>{job.created_at}</Moment>} />
                                 <TableData className='text-yellow-400' text={job.status} />

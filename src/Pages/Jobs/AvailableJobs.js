@@ -32,7 +32,7 @@ const JobsCard = ({ job }) => {
                 <JobKeys data={{'property' : 'Class', 'value' : job.class_teach}} />
                 <JobKeys data={{'property' : 'Subject', 'value' : job.subject_teach}} />
                 <JobKeys data={{'property' : 'Experience', 'value' : job.experience}} />
-                <JobKeys data={{'property' : 'Salary', 'value' : job.salary}} />
+                <JobKeys data={{'property' : 'Salary', 'value' : `${job.salary} PKR`}} />
                 <JobKeys data={{'property' : 'Prefered Gender', 'value' : job.gender}} />
                 {
                     job.time && 
