@@ -33,6 +33,8 @@ import Inbox from "./Pages/Dashboard/Chat/Inbox";
 import StudentDashboard from './Pages/Dashboard/Student/StudentDashboard'
 import EditProfile from "./Pages/Dashboard/Student/Profile/EditProfile";
 import PurchasesCourses from "./Pages/Dashboard/Student/Courses/Courses";
+import StudentClassesPage from "./Pages/Dashboard/Student/Classes";
+import DemoClassRequestStudentPage from "./Pages/Dashboard/Student/DemoClass";
 import JobsPage from "./Pages/Dashboard/Student/Jobs/Jobs";
 import CreateStudentsJob from "./Pages/Dashboard/Student/Jobs/CreateJob";
 
@@ -181,7 +183,9 @@ const App = (props) => {
 
         <Route exact path='/dashboard/student/' component={StudentDashboard} />
         <Route exact path='/dashboard/student/profile/edit/' component={EditProfile} />
+        <Route exact path='/dashboard/student/classes/' component={StudentClassesPage} />
         <Route exact path='/dashboard/student/courses/' component={PurchasesCourses} />
+        <Route exact path='/dashboard/student/demo-class-requests/' component={DemoClassRequestStudentPage} />
         <Route exact path='/dashboard/student/jobs/' component={JobsPage} />
         <Route exact path='/dashboard/student/jobs/add-new/' component={CreateStudentsJob} />
 

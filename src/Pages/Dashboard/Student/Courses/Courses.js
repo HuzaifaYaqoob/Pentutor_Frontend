@@ -49,10 +49,11 @@ const StudentCourses = () => {
                         <p className='table-cell py-2 text-indigo-600'>Total Lectures</p>
                         <p className='table-cell py-2 text-indigo-600 text-center'>Progress Rate</p>
                     </div>
+                    {/* <Course/>
                     <Course/>
-                    <Course/>
-                    <Course/>
+                <Course/> */}
                 </div>
+                <p className="my-10 text-center">No Course Enrolled</p>
             </div>
         </div>
     )

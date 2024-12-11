@@ -80,9 +80,9 @@ const SideBar = (props) => {
 
                     {/* Routes For Student  */}
                     <Route path='/dashboard/student/'>
-                        <BarLink icon={faBook} text='Classes' nextPath='/dashboard/student/courses/' />
+                        <BarLink icon={faBook} text='Classes' nextPath='/dashboard/student/classes/' />
                         <BarLink icon={faBook} text='Courses' nextPath='/dashboard/student/courses/' />
-                        <BarLink icon={faBook} text='Demo Requests' nextPath='/dashboard/student/courses/' />
+                        <BarLink icon={faBook} text='Demo Requests' nextPath='/dashboard/student/demo-class-requests/' />
                         <BarLink icon={faBook} text='Jobs' nextPath='/dashboard/student/jobs/' />
                         <BarLink icon={faBook} text='Profile' nextPath='/dashboard/student/profile/edit/' />
                     </Route>

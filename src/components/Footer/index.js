@@ -48,7 +48,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <p className='py-5 w-full text-white text-center'>Copyright © 2021 | Pen Tutor</p>
+            <p className='py-5 w-full text-white text-center'>Copyright © 2024 | Pen Tutor</p>
         </footer>
     )
 }
