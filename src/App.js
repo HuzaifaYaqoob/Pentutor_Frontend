@@ -25,6 +25,7 @@ import Checkout from "./Pages/Checkout/Checkout";
 import Wishlist from "./Pages/Wishlist/Wishlist";
 
 import AvailableJobs from "./Pages/Jobs/AvailableJobs";
+import JobDetails from "./Pages/Jobs/JobDetails";
 
 import ChatBox from "./Pages/Dashboard/Chat/ChatBox";
 import Inbox from "./Pages/Dashboard/Chat/Inbox";
@@ -82,6 +83,7 @@ const App = (props) => {
     '/cart/',
     '/checkout/',
     '/jobs/',
+    '/jobs/job_details/',
     '/home/',
     '/auth/logn/',
     '/auth/register/',
@@ -158,6 +160,7 @@ const App = (props) => {
         <Route exact path="/blogs" component={BlogPage} />
         <Route exact path="/blogs/view/:blog_id/" component={BlogView} />
         <Route exact path="/jobs" component={AvailableJobs} />
+        <Route exact path="/jobs/job_details" component={JobDetails} />
 
 
         <Route exact path="/chat/" component={ChatBox} />
