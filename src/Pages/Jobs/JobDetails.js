@@ -220,7 +220,58 @@ const JobDetails = (props) => {
                         </h3>
                     </div>
                 )}
+                {
+                    job?.applied_jobs?.length > 0 &&
+                    <>
+                        <h3 className="text-2xl font-semibold">Job Applications</h3>
+                        <div className="mt-10">
+                            <div className="relative overflow-x-auto sm:rounded-lg border">
+                                <table className="w-full text-sm text-left text-gray-500 ">
+                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                                        <tr>
+                                            <th scope="col" className="px-6 py-3">
+                                                Tutor
+                                            </th>
+                                            <th scope="col" className="px-6 py-3">
+                                                Cover Letter
+                                            </th>
+                                            <th scope="col" className="px-6 py-3">
+                                                Applied At
+                                            </th>
+                                            <th scope="col" className="px-6 py-3">
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            job?.applied_jobs?.map((itm, index) =>{
+                                                return (
+                                                    <tr className="bg-white border-b ">
+                                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                            {itm.tutor_id || '---'}
+                                                        </th>
+                                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                            {itm.message}
+                                                        </th>
+                                                        <td className="px-6 py-4">
+                                                            <Moment fromNow>{itm.created_at}</Moment>
+                                                        </td>
+                                                        <td className="px-6 py-4 text-blue-600 cursor-pointer hover:underline">
+                                                            Hire
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </>
+                }
             </section>
+
         </main>
     );
 };
