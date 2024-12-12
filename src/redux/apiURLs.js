@@ -1,7 +1,8 @@
 
 
 // export const apiBaseURL = 'http://127.0.0.1:8000';
-export const apiBaseURL = 'http://192.168.100.5:8000';
+// export const apiBaseURL = 'http://192.168.100.5:8000';
+export const apiBaseURL = 'http://192.168.100.47:8000';
 // export const apiBaseURL = 'http://pentutor-backend.redexpo.co.uk';
 // export const apiBaseURL = 'http://194.163.152.51';
 // export const apiBaseURL = 'http://pentutors.com';
