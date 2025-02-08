@@ -46,7 +46,7 @@ const RegisterPage = (props) => {
                     </Route>
 
                 </div>
-                <div className='bg-white p-8 pt-3 relative'>
+                <div className='bg-white p-5 sm:p-8x pt-3 relative'>
                     {/* <Route path='/auth/register/student/' component={StudentForm} />
                     <Route path='/auth/register/tutor/' component={TutorRegisterForm} /> */}
                     <RegisterForm />
