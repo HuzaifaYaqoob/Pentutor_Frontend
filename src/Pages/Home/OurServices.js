@@ -7,10 +7,13 @@ const ServiceCard = (props) => {
                 <p className='text-gray-800 text-sm sm:text-[16px]'>{props.text}</p>
                 <button className='py-2 px-4 bg-indigo-900 rounded text-white !mt-6'>Read More</button>
             </div>
-            <div className='relative mt-10 md:mt-0'>
-                <span className='absolute -top-4 -left-4 bg-indigo-900 rounded-lg w-40 h-20 block'></span>
-                <img className='w-80 relative z-30' src={process.env.PUBLIC_URL + props.imagePath} alt="" />
-                <span className='absolute -bottom-4 -right-4 bg-yellow-400 rounded-lg w-40 h-20 block'></span>
+            <div className='relative mt-10 md:mt-0 flex-1 w-full'>
+                <span className='absolute -top-4 left-0 md:-left-4 bg-indigo-900 rounded-lg w-40 h-20 block'></span>
+                <div
+                    className="md:w-full w-[96%] mx-auto h-80 md:h-96 bg-cover bg-center bg-no-repeat relative z-30 rounded-xl"
+                    style={{ backgroundImage: `url(${process.env.PUBLIC_URL + props.imagePath})` }}
+                ></div>
+                <span className='absolute -bottom-4 right-0 md:-right-4 bg-yellow-400 rounded-lg w-40 h-20 block'></span>
             </div>
         </div>
     )
