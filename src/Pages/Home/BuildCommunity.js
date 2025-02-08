@@ -3,7 +3,7 @@ import React from 'react'
 const BuildCommunity = () => {
   return (
     <>
-        <section className='container mx-auto mb-10 mt-32 space-y-7 md:space-y-10'>
+        <section className='max-w-[1300px] mx-auto mb-10 mt-32 space-y-7 md:space-y-10'>
             <div className='space-y-2'>
                 <p className='text-indigo-900 text-sm font-medium text-center'>Build up the community</p>
                 <h3 className='text-yellow-500 text-3xl md:text-4xl font-bold text-center'>Join the biggest community of learning</h3>

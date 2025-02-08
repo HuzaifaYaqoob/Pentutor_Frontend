@@ -231,46 +231,48 @@ const Header = (props) => {
 
     return (
         <>
-            <div className='bg-yellow-450 p-2 w-full'>
-                <div className='container mx-auto flex justify-end'>
+            <div className='bg-yellow-450 py-2 w-full px-4 sm:px-6 md:px-8'>
+                <div className='max-w-[1300px] mx-auto flex justify-end'>
                     <p className='text-black text-sm '>Call Now +92-300-111-81-87</p>
                 </div>
             </div>
-            <header className='container py-2 sm:py-1 lg:px-14 px-3 mx-auto flex items-center justify-between '>
-                <HamburgerIcon onClick={() => { setMobileNavShow('block') }} />
-                <Link to={'/'} className='LOGO cursor-pointer sm:block hidden'>
-                    <img className='w-40' src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Logo" />
-                </Link>
-                <nav className={`absolute top-0 left-0 right-0 p-6 lg:p-0 z-50 lg:relative ${mobileNavshow} lg:block`} >
-                    <ul className="flex items-center text-xs gap-1 pentutor-shadow lg:shadow-none lg:flex-row py-5 flex-col bg-white relative">
-                        <span className='absolute top-3 left-5 text-xl cursor-pointer lg:hidden' onClick={() => { setMobileNavShow('hidden') }}>
-                            <FontAwesomeIcon icon={faTimes} />
-                        </span>
-                        <NavLink nextPath='/' text='Home' />
-                        <NavLink nextPath='/courses/' text='Courses' />
-                        <NavLink nextPath='/our-tutor/' text='Our Tutors' />
-                        <NavLink nextPath='/about-us/' text='About Us' />
-                        <NavLink nextPath='/contact-us/' text='Contact Us' />
-                        <NavLink nextPath='/blogs/' text='Blogs' />
-                        <NavLink nextPath='/jobs/' text='Jobs' />
+            <div className='px-4 sm:px-6 md:px-8'>
+                <header className='max-w-[1300px] py-2 sm:py-1 mx-auto flex items-center justify-between'>
+                    <HamburgerIcon onClick={() => { setMobileNavShow('block') }} />
+                    <Link to={'/'} className='LOGO cursor-pointer sm:block hidden'>
+                        <img className='w-40' src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Logo" />
+                    </Link>
+                    <nav className={`absolute top-0 left-0 right-0 p-6 lg:p-0 z-50 lg:relative ${mobileNavshow} lg:block`} >
+                        <ul className="flex items-center text-xs gap-1 pentutor-shadow lg:shadow-none lg:flex-row py-5 flex-col bg-white relative">
+                            <span className='absolute top-3 left-5 text-xl cursor-pointer lg:hidden' onClick={() => { setMobileNavShow('hidden') }}>
+                                <FontAwesomeIcon icon={faTimes} />
+                            </span>
+                            <NavLink nextPath='/' text='Home' />
+                            <NavLink nextPath='/courses/' text='Courses' />
+                            <NavLink nextPath='/our-tutor/' text='Our Tutors' />
+                            <NavLink nextPath='/about-us/' text='About Us' />
+                            <NavLink nextPath='/contact-us/' text='Contact Us' />
+                            <NavLink nextPath='/blogs/' text='Blogs' />
+                            <NavLink nextPath='/jobs/' text='Jobs' />
+                        </ul>
+                    </nav>
+                    <ul className='flex items-center text-xs gap-2'>
+                        {
+                            props.user.loggedIn ?
+                                <LoggedUser />
+                                :
+                                <>
+                                    <li className='py-2 px-4 rounded overflow-hidden bg-gray-700 text-white cursor-pointer'>
+                                        <Link to='/auth/login/'>Sign In</Link>
+                                    </li>
+                                    <li className='py-2 px-4 rounded overflow-hidden border border-gray-700  cursor-pointer'>
+                                        <Link to='/auth/register/student/'>Sign Up</Link>
+                                    </li>
+                                </>
+                        }
                     </ul>
-                </nav>
-                <ul className='flex items-center text-xs gap-2'>
-                    {
-                        props.user.loggedIn ?
-                            <LoggedUser />
-                            :
-                            <>
-                                <li className='py-2 px-4 rounded overflow-hidden bg-gray-700 text-white cursor-pointer'>
-                                    <Link to='/auth/login/'>Sign In</Link>
-                                </li>
-                                <li className='py-2 px-4 rounded overflow-hidden border border-gray-700  cursor-pointer'>
-                                    <Link to='/auth/register/student/'>Sign Up</Link>
-                                </li>
-                            </>
-                    }
-                </ul>
-            </header>
+                </header>
+            </div>
         </>
     )
 }
