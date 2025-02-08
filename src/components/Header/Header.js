@@ -236,9 +236,9 @@ const Header = (props) => {
                     <p className='text-black text-sm '>Call Now +92-300-111-81-87</p>
                 </div>
             </div>
-            <header className='container py-1 lg:px-14 px-3 mx-auto flex items-center justify-between '>
+            <header className='container py-2 sm:py-1 lg:px-14 px-3 mx-auto flex items-center justify-between '>
                 <HamburgerIcon onClick={() => { setMobileNavShow('block') }} />
-                <Link to={'/'} className='LOGO cursor-pointer'>
+                <Link to={'/'} className='LOGO cursor-pointer sm:block hidden'>
                     <img className='w-40' src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Logo" />
                 </Link>
                 <nav className={`absolute top-0 left-0 right-0 p-6 lg:p-0 z-50 lg:relative ${mobileNavshow} lg:block`} >

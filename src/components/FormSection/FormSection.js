@@ -4,7 +4,7 @@ const FormSection = (props) => {
     const {className , otherProps} = props
     return (
         <div className={'bg-indigo-900 relative px-5'  + ' ' +  className} {...otherProps} >
-            <div className='container lg:mx-auto relative '>
+            <div className='px-4 sm:px-6 md:px-8 max-w-[1300px] lg:mx-auto relative '>
                 {
                     props.hideLabel ?
                         <></>

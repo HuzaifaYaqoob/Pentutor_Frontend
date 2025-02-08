@@ -22,6 +22,7 @@ import HomePageCard from '../../components/HomePageCard/HomePageCard';
 import { CreateSutedentQuery } from '../../redux/Actions/UtilityActions/UtilityActions';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import BuildCommunity from './BuildCommunity';
 
 
 const HomePagePromotCard = (props) => {
@@ -72,14 +73,12 @@ const HomePage = (props) => {
 
             {/* Form Section Student QUery Form  */}
             <div className='mt-20'>
-                <h3 className='w-full text-center font-bold text-indigo-900 text-4xl capitalize' >student query form</h3>
+                <h3 className='w-full text-center font-bold text-indigo-900 text-2xl sm:text-3xl md:text-4xl capitalize' >student query form</h3>
             </div>
             <FormSection formHeading='student query form' className='my-10 bg-cover bg-center bg-no-repeat bg-image-studentqueryform' hideLabel  >
                 <span className='w-full h-full absolute top-0 left-0 bg-black block bg-opacity-50'></span>
-
-                <div className='container mx-auto relative  z-20'>
-
-                    <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 '>
+                <div className='max-w-[1300px] mx-auto relative z-20'>
+                    <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                         <InputField
                             placeholder='Enter Your Full Name'
                             type='text'
@@ -130,14 +129,17 @@ const HomePage = (props) => {
                     </button>
                 </div>
             </FormSection>
-            <HomePageCard preferredColor={'text-[#F5BB07]'} bgpreferredColor={'bg-[#F5BB07]'} heading={'For Students'} imagePath={'/images/girlImage.png'} cardReverse />
-            <HomePageCard preferredColor={'text-[#313D6A]'} bgpreferredColor={'bg-[#313D6A]'} heading={'For Tutors'} imagePath={'/images/girlImage1.png'} />
-            <WhyChoose />
-            {/* <div className='flex flex-col sm:flex-row gap-5 container mx-auto px-5'>
-                <HomePagePromotCard ImagePath='/images/img1.png' heading='for tutors' btnText='start a course' />
-                <HomePagePromotCard ImagePath='/images/img2.png' activeBtn heading='for students' btnText='take a course' />
-            </div> */}
-            <FeaturedTutors />
+            <div className='px-4 sm:px-6 md:px-8 py-10 space-y-16'>
+                <HomePageCard preferredColor={'text-[#F5BB07]'} bgpreferredColor={'bg-[#F5BB07]'} heading={'For Students'} imagePath={'/images/girlImage.png'} cardReverse />
+                <HomePageCard preferredColor={'text-[#313D6A]'} bgpreferredColor={'bg-[#313D6A]'} heading={'For Tutors'} imagePath={'/images/girlImage1.png'} />
+                <BuildCommunity/>
+                <WhyChoose />
+                {/* <div className='flex flex-col sm:flex-row gap-5 container mx-auto px-5'>
+                    <HomePagePromotCard ImagePath='/images/img1.png' heading='for tutors' btnText='start a course' />
+                    <HomePagePromotCard ImagePath='/images/img2.png' activeBtn heading='for students' btnText='take a course' />
+                </div> */}
+                <FeaturedTutors />
+            </div>
             <OurServices />
             <ProfessionalTraining />
             <BlogSection />
