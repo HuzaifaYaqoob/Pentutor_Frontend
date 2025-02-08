@@ -17,10 +17,10 @@ const BlogSection = () => {
     }, [])
 
     return (
-        <div className='py-20 px-5'>
-            <div className="container mx-auto ">
-                <h3 className='text-indigo-900 font-bold text-3xl text-center mb-9'><span className='text-yellow-400'>Blogs</span></h3>
-                <div className='grid place-content-center md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20'>
+        <div className='py-20 px-4 sm:px-6 md:px-8'>
+            <div className="max-w-[1300px] w-full space-y-10 mx-auto">
+                <h3 className='text-indigo-900 font-bold text-3xl text-center'>Latest <span className='text-yellow-400'>Blogs</span> & Stories</h3>
+                <div className='grid place-content-center sm:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {
                         state.blog.blog_posts.slice(0, 3).map(post => {
                             return (
@@ -31,8 +31,7 @@ const BlogSection = () => {
                     {/* <BlogPost className='transform lg:-translate-y-10' />
                     <BlogPost /> */}
                 </div>
-                <button className='mx-auto  block my-9 rounded border border-[#F5BB07] bg-[#F5BB07] text-white py-1.5 px-4'>View All</button>
-
+                <button className='mx-auto block rounded border border-[#F5BB07] bg-[#F5BB07] text-white py-1.5 px-4'>View All</button>
             </div>
         </div>
     )

@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 
 const AuthBase = (props) => {
     return (
-        <div className='w-full h-screen'>
-            <div className='max-w-7xl h-full mx-auto flex items-center justify-between'>
+        <div className='w-full h-screen px-4 sm:px-6 md:px-8'>
+            <div className='max-w-[1300px] h-full mx-auto flex items-center justify-between'>
                 <div className='flex-1'>
                     <span className='block mx-auto text-center'>
                         <Link to='/' className='inline-block'>

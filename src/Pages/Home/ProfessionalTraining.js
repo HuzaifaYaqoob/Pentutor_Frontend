@@ -21,13 +21,13 @@ const ProfessionalTraining = () => {
         }
     }, [])
     return (
-        <div className='bg-gray-100 py-20'>
-            <div className="container mx-auto ">
-                <h3 className='text-indigo-900 font-bold text-3xl text-center mb-9'>Professional <span className='text-yellow-400'>Training</span></h3>
+        <div className='bg-gray-100 py-20 px-4 sm:px-6 md:px-8'>
+            <div className="max-w-[1300px] w-full mx-auto space-y-10">
+                <h3 className='text-indigo-900 font-bold text-3xl text-center'>Professional <span className='text-yellow-400'>Training</span></h3>
                 {
                     state.course.all_courses_updated ?
                         state.course.all_courses.length > 0 ?
-                            <div className='grid place-content-center md:grid-cols-2 lg:grid-cols-3 gap-10'>
+                            <div className='grid place-content-center sm:grid-cols-2 lg:grid-cols-3 gap-5'>
                                 {
                                     state.course.all_courses.map((course, index) => {
                                         return (
@@ -38,17 +38,15 @@ const ProfessionalTraining = () => {
                             </div>
                             :
                             <>
-                                Not found
+                                <p className="text-center">Not found</p>
                             </>
                         :
                         <>
-                            <p className="text-center">
-                                Loading...
-                            </p>
+                            <p className="text-center">Loading...</p>
                         </>
                 }
                 <button
-                    className='mx-auto  block my-9 rounded border border-[#F5BB07] bg-[#F5BB07] text-white py-1.5 px-4'
+                    className='mx-auto block rounded border border-[#F5BB07] bg-[#F5BB07] text-white py-1.5 px-4'
                     onClick={() => {
                         location.push('/courses')
                     }}

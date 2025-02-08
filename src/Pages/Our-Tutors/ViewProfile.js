@@ -59,55 +59,58 @@ const ProfileDisplayCard = ({ data }) => {
 export const CourseCard = ({ data }) => {
     const location = useHistory()
     return (
-        <div className='w-full max-w-xs relative border rounded-xl overflow-hidden'>
+        <div className='w-full relative border border-[#CACBE6] rounded-xl overflow-hidden'>
             <div
-                className='w-full min-h-[200px] bg-center bg-cover bg-no-repeat rounded-md'
+                className='w-full h-60 bg-center bg-cover bg-no-repeat rounded-md'
                 style={{
                     backgroundImage: `url('${data.media && data.media.length > 0 ? data.media[0].image : process.env.PUBLIC_URL + '/images/blog/blogImage.png'}')`
                 }}
             >
             </div>
-            <div className='px-3 mt-3'>
-                <div className='flex justify-between'>
-                    <p className='bg-green-200 text-green-600 py-1 px-4 text-sm rounded-full inline-block'>{(data?.category && data?.category?.title) ? data?.category?.title : 'N/A'}</p>
-                    <span>
-                        <span className='text-yellow-400'>{data?.star_rating}</span>
-                        <FontAwesomeIcon className='mx-1 text-yellow-400' icon={faStar} />
-                        <span className='text-gray-400'>({data?.review_count})</span>
-                    </span>
-                </div>
-                <h3
-                    className='text-lg font-semibold my-2 cursor-pointer'
-                    onClick={() => {
-                        location.push(`/courses/${data.slug}/view/`)
-                    }}
-                >{data?.title}</h3>
-                <p className='text-xs flex items-center justify-between mb-2'>
-                    <span>
-                        {data?.students} <span className='text-gray-400'>students</span>
-                    </span>
-                    <p className='text-xs flex items-center justify-between pl-4 gap-1'>
-                        <span>
-                            {data?.lectures} Lectures
+            <div className='mt-3 space-y-3'>
+                <div className='px-3 space-y-3'>
+                    <div className='flex justify-between'>
+                        <p className='bg-green-200 text-green-600 flex items-center px-2.5 text-[11px] rounded-full inline-block'>{(data?.category && data?.category?.title) ? data?.category?.title : 'N/A'}</p>
+                        <span className='flex items-center'>
+                            <span className='text-yellow-400 font-medium'>{data?.star_rating}</span>
+                            <FontAwesomeIcon className='mx-1 text-yellow-400 text-sm' icon={faStar} />
+                            <span className='text-gray-400 text-sm'>({data?.review_count})</span>
                         </span>
-                        |
+                    </div>
+                    <h3
+                        className='text-lg font-semibold cursor-pointer h-[54px] overflow-hidden'
+                        onClick={() => {
+                            location.push(`/courses/${data.slug}/view/`)
+                        }}
+                    >{data?.title}</h3>
+                    <p className='text-xs flex items-center justify-between'>
                         <span>
-                            {data?.duration} Sec
+                            {data?.students} <span className='text-gray-400'>students</span>
                         </span>
+                        <p className='text-xs flex items-center justify-between pl-4 gap-1'>
+                            <span>
+                                {data?.lectures} Lectures
+                            </span>
+                            |
+                            <span>
+                            {data?.duration >= 3600 
+                                ? `${Math.floor(data?.duration / 3600)}h ${Math.floor((data?.duration % 3600) / 60)}m`
+                                : data?.duration >= 60 
+                                ? `${Math.floor(data?.duration / 60)}m ${data?.duration % 60}s`
+                                : `${data?.duration} Sec`}
+                            </span>
+                        </p>
                     </p>
-                </p>
-                <p className='text-sm'>{data?.level}</p>
-                <hr className='mt-4' />
-                <div className='flex items-center justify-between my-4'>
-
-                    <div className='flex items-center'>
-                        <img className='mr-2 w-12' src={process.env.PUBLIC_URL + '/images/user.png'} />
+                    <p className='text-sm !mt-2 text-[#0755E9]'>{data?.level}</p>
+                </div>
+                <div className='flex items-center justify-between py-2 border-t border-[#CACBE6] px-2.5 gap-2'>
+                    <div className='flex items-center gap-2'>
+                        <img className='w-12' src={process.env.PUBLIC_URL + '/images/user.png'} />
                         <h3 className='capitalize text-sm'>{data?.user?.first_name} {data?.user?.last_name}</h3>
                     </div>
                     <span className='text-red-500 text-sm'>
                         {data?.price} PKR
                     </span>
-
                 </div>
             </div>
         </div>

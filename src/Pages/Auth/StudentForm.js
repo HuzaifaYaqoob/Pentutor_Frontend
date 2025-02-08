@@ -39,7 +39,7 @@ const RegisterForm = () => {
 const StudentForm = (props) => {
     return (
         <>
-            <div className='bg-white p-8 pt-3 relative'>
+            <div className='bg-white p-5 sm:p-8 pt-3 relative'>
                 <Route exact path='/auth/register/student' component={RegisterForm} />
             </div>
         </>

@@ -39,12 +39,12 @@ const FeaturedTutors = () => {
     }, [])
     return (
         <>
-            <div className="my-10">
-                <h3 className="text-center text-3xl font-medium text-[#313D6A] mb-20">Featured Tutors</h3>
+            <div className="space-y-10 max-w-[1300px] w-full mx-auto">
+                <h3 className="text-center text-3xl font-bold text-[#313D6A]">Featured Tutors</h3>
                 {
                     state.tutor.featured_tutors_updated_ ?
                         state.tutor.featured_tutors.length > 0 ?
-                            <div className="mt-10 flex items-center justify-between">
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 !mt-20">
                                 {
                                     state.tutor.featured_tutors.map((tutor, index) => {
                                         return (
@@ -55,13 +55,11 @@ const FeaturedTutors = () => {
                             </div>
                             :
                             <>
-                                Not found
+                                <p className="text-center">Not found</p>
                             </>
                         :
                         <>
-                            <p className="text-center">
-                                Loading...
-                            </p>
+                            <p className="text-center">Loading...</p>
                         </>
                 }
             </div>
