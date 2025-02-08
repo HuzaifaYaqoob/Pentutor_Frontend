@@ -131,8 +131,8 @@ const HomePage = (props) => {
                 </div>
             </FormSection>
             <div className='px-4 sm:px-6 md:px-8 py-10 space-y-16'>
-                <HomePageCard preferredColor={'text-[#F5BB07]'} bgpreferredColor={'bg-[#F5BB07]'} heading={'For Students'} imagePath={'/images/girlImage.png'} cardReverse />
-                <HomePageCard preferredColor={'text-[#313D6A]'} bgpreferredColor={'bg-[#313D6A]'} heading={'For Tutors'} imagePath={'/images/girlImage1.png'} />
+                <HomePageCard students peragraph='Find the Perfect Tutor & Accelerate Your Learning!' preferredColor={'text-[#F5BB07]'} bgpreferredColor={'bg-[#F5BB07]'} heading={'For Students'} imagePath={'/images/girlImage.png'} cardReverse />
+                <HomePageCard peragraph='Grow Your Tutoring Business & Inspire Students!' preferredColor={'text-[#313D6A]'} bgpreferredColor={'bg-[#313D6A]'} heading={'For Tutors'} imagePath={'/images/girlImage1.png'} />
                 <BuildCommunity/>
                 <WhyChoose />
                 {/* <div className='flex flex-col sm:flex-row gap-5 container mx-auto px-5'>
