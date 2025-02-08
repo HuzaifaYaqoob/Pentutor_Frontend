@@ -1,8 +1,8 @@
 
 
-// export const apiBaseURL = 'http://127.0.0.1:8000';
+export const apiBaseURL = 'http://127.0.0.1:8000';
 // export const apiBaseURL = 'http://192.168.100.5:8000';
-export const apiBaseURL = 'http://192.168.100.47:8000';
+// export const apiBaseURL = 'http://192.168.100.47:8000';
 // export const apiBaseURL = 'http://pentutor-backend.redexpo.co.uk';
 // export const apiBaseURL = 'http://194.163.152.51';
 // export const apiBaseURL = 'http://pentutors.com';
@@ -66,3 +66,7 @@ export const get_my_jobs = '/api/job/get_my_jobs/'
 export const get_jobs = '/api/job/get_jobs/'
 export const get_single_job = '/api/job/get_single_job/'
 export const apply_job = '/api/job/apply_job/'
+
+
+
+export const checkout_order_url = '/api/order/checkout_course/'

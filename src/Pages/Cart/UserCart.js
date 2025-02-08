@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
 import { toast } from "react-toastify"
 import { removeCourseFromCart } from "../../redux/Actions/CourseActions/CourseActions"
+import { apiBaseURL, checkout_order_url } from "../../redux/apiURLs"
+import Cookies from "js-cookie"
 
 
 export const CartCourseCard = ({ data }) => {
@@ -82,6 +84,34 @@ const UserCart = () => {
         setTotalPrice(price)
     }, [state.course.cart_items])
 
+    const CheckoutOrder = async () => {
+        let tid = toast.loading('Please wait...')
+        const response = await fetch(apiBaseURL + checkout_order_url,
+            {
+                method : 'POST',
+                headers : {'Authorization' : `Token ${Cookies.get('auth_token')}`},
+            }
+        )
+        let status_code = response?.status
+        console.log(status_code)
+        if (status_code == '200'){
+            const result = await response.json()
+            toast.update(tid, {
+                render : result.message || 'Something went wrong',
+                type : 'success',
+                isLoading : false
+            })
+            route.push(`/order/${result.id}/`)
+        }
+        else{
+            toast.update(tid, {
+                render : 'Something went wrong',
+                type : 'error',
+                isLoading : false
+            })
+        }
+    }
+
     return (
         <div>
             <div className='w-full bg-indigo-900 text-center text-white py-3'>
@@ -112,7 +142,8 @@ const UserCart = () => {
                             <p className='text-gray-800 font-bold mb-3'>{total_price} PKR</p>
                         </span>
                     </div>
-                    <Link to='/checkout/' className='bg-yellow-450 text-center text-white font-bold block w-full rounded py-3 mt-4 hover:bg-yellow-500'>Checkout</Link>
+                    {/* <Link to='/checkout/' className='bg-yellow-450 text-center text-white font-bold block w-full rounded py-3 mt-4 hover:bg-yellow-500'>Checkout</Link> */}
+                    <button onClick={CheckoutOrder} className='bg-yellow-450 text-center text-white font-bold block w-full rounded py-3 mt-4 hover:bg-yellow-500'>Checkout</button>
                 </div>
             </div>
         </div>
