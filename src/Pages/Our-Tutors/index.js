@@ -27,11 +27,16 @@ export const TutorCard = ({ data, ...props }) => {
     return (
         <div className='rounded-xl p-7 mb-14 pt-24 relative w-full border !z-0'>
             <div className='absolute w-36 h-36 shadow-xl flex items-center bg-white justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden !z-40'>
-                <div
-                    className='w-36 h-36 rounded-full bg-center bg-cover bg-no-repeat'
-                    style={{ backgroundImage: `url('${data?.profile_image ? data?.profile_image : ''}')` }}
-                    alt="Profile Image"
-                />
+            <div
+                className="w-36 h-36 rounded-full bg-center bg-cover bg-no-repeat flex items-center justify-center"
+                style={data?.profile_image ? { backgroundImage: `url('${data.profile_image}')` } : {}}
+            >
+                {!data?.profile_image && (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-16 h-16 fill-gray-500">
+                        <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/>
+                    </svg>
+                )}
+            </div>
             </div>
             <div className='w-full text-center'>
                 <p className='bg-yellow-450 py-0.5 px-7 rounded text-white font-medium inline-block'>ID: PT{data?.id}</p>

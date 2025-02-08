@@ -72,9 +72,10 @@ const HomePage = (props) => {
             <WelcomePTHeroSection />
 
             {/* Form Section Student QUery Form  */}
-            <div className='mt-20'>
-                <h3 className='w-full text-center font-bold text-indigo-900 text-2xl sm:text-3xl md:text-4xl capitalize' >student query form</h3>
+            <div className='px-4 sm:px-6 md:px-8 py-10 space-y-16'>
+                <FeaturedTutors />
             </div>
+            <h3 className='w-full text-center font-bold text-indigo-900 text-2xl sm:text-3xl md:text-4xl capitalize' >student query form</h3>
             <FormSection formHeading='student query form' className='my-10 bg-cover bg-center bg-no-repeat bg-image-studentqueryform' hideLabel  >
                 <span className='w-full h-full absolute top-0 left-0 bg-black block bg-opacity-50'></span>
                 <div className='max-w-[1300px] mx-auto relative z-20'>
@@ -138,7 +139,6 @@ const HomePage = (props) => {
                     <HomePagePromotCard ImagePath='/images/img1.png' heading='for tutors' btnText='start a course' />
                     <HomePagePromotCard ImagePath='/images/img2.png' activeBtn heading='for students' btnText='take a course' />
                 </div> */}
-                <FeaturedTutors />
             </div>
             <OurServices />
             <ProfessionalTraining />

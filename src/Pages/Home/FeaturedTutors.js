@@ -40,11 +40,11 @@ const FeaturedTutors = () => {
     return (
         <>
             <div className="space-y-10 max-w-[1300px] w-full mx-auto">
-                <h3 className="text-center text-3xl font-bold text-[#313D6A]">Featured Tutors</h3>
+                <h3 class="text-indigo-900 font-bold text-3xl text-center">Featured <span class="text-yellow-400">Tutors</span></h3>
                 {
                     state.tutor.featured_tutors_updated_ ?
                         state.tutor.featured_tutors.length > 0 ?
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 !mt-20">
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 !mt-28">
                                 {
                                     state.tutor.featured_tutors.map((tutor, index) => {
                                         return (
