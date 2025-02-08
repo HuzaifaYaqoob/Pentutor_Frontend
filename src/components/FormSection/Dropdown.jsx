@@ -59,7 +59,7 @@ const SelectDropDown = ({ title, name, value, onBlur, placeholder, options, onCh
     }
 
     return (<>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 flex-1'>
             {title && <p className='text-sm'>{title}</p>}
             <Select
                 styles={error ? errorStyle : colourStyles}

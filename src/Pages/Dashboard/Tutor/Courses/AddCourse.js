@@ -59,7 +59,9 @@ const AddCourse = (props) => {
 
     return (
         <DashboardBase>
-            <ContentBox HeaderText='Add Course' />
+            <div className="mb-3">
+                <h3 className="text-2xl font-medium ">Add Course</h3>
+            </div>
             <Form
                 btnText='Create'
                 btnLoading={loading}
@@ -80,19 +82,47 @@ const AddCourse = (props) => {
                             error={btn_clicked && !course_data.title ? true : false}
                         />
                         <br />
-                        <TextInput
-                            type='number'
-                            name='price'
-                            Label='Set Course Price'
-                            placeholder='20K PKR'
-                            className='text-start'
-                            onChange={handleChange}
-                            value={course_data.price}
-                            error={btn_clicked && !course_data.price ? true : false}
+                        <div className='flex gap-5 items-start'>
+                            <TextInput
+                                type='number'
+                                name='price'
+                                Label='Set Course Price'
+                                placeholder='20K PKR'
+                                className='text-start'
+                                onChange={handleChange}
+                                value={course_data.price}
+                                error={btn_clicked && !course_data.price ? true : false}
 
-                        />
+                            />
+                            <SelectDropDown
+                                title={'Select Language'}
+                                placeholder='English'
+                                name='language'
+                                value={course_data.language}
+                                options={[
+                                    {
+                                        label: 'English',
+                                        value: 'English'
+                                    },
+                                    {
+                                        label: 'Urdu',
+                                        value: 'Urdu'
+                                    },
+                                    {
+                                        label: 'Punjabi',
+                                        value: 'Punjabi'
+                                    },
+                                    {
+                                        label: 'Hindi',
+                                        value: 'Hindi'
+                                    },
+                                ]}
+                                onChange={handleChange}
+                                error={btn_clicked && !course_data.language ? true : false}
+                            />
+                        </div>
                     </div>
-                    <div className='px-10 border border-dashed border-gray-300 rounded-md'>
+                    <div className='px-10 border border-dashed border-gray-300 rounded-md min-w-[400px]'>
                         <FileInput
                             id='course-image'
                             name='image'
@@ -103,6 +133,7 @@ const AddCourse = (props) => {
                             }
                             error={btn_clicked && !course_data.image ? true : false}
                         />
+                        <p className='text-center my-1'>Upload Thumbnail</p>
                     </div>
                 </div>
                 <div className=' flex flex-col md:flex-row my-7 gap-6'>
@@ -149,32 +180,6 @@ const AddCourse = (props) => {
                         />
                     </div>
                 </div>
-                <SelectDropDown
-                    title={'Select Language'}
-                    placeholder='English'
-                    name='language'
-                    value={course_data.language}
-                    options={[
-                        {
-                            label: 'English',
-                            value: 'English'
-                        },
-                        {
-                            label: 'Urdu',
-                            value: 'Urdu'
-                        },
-                        {
-                            label: 'Punjabi',
-                            value: 'Punjabi'
-                        },
-                        {
-                            label: 'Hindi',
-                            value: 'Hindi'
-                        },
-                    ]}
-                    onChange={handleChange}
-                    error={btn_clicked && !course_data.language ? true : false}
-                />
                 <div className='mt-4'>
                     <h3 className='font-bold text-lg mb-5'>Course Details</h3>
                     <ReactQuill

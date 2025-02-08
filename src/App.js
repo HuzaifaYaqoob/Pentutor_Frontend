@@ -64,6 +64,7 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import OrderViewPage from "./Pages/Order";
 
 
 const App = (props) => {
@@ -141,6 +142,7 @@ const App = (props) => {
           '/blogs/view/:blog_id/',
           '/wishlist/',
           '/cart/',
+          '/order/:order_id/',
           '/checkout/',
           '/jobs/',
           "/jobs/job_details/:job_id/",
@@ -153,6 +155,7 @@ const App = (props) => {
 
         <Route exact path='/wishlist/' component={Wishlist} />
         <Route exact path='/cart/' component={UserCart} />
+        <Route exact path='/order/:order_id/' component={OrderViewPage} />
         <Route exact path='/checkout/' component={Checkout} />
         <Route exact path="/courses" component={Courses} />
         <Route exact path="/courses/:course_slug/view/" component={CourseView} />
@@ -228,6 +231,7 @@ const App = (props) => {
           '/blogs/view/:blog_id/',
           '/wishlist/',
           '/cart/',
+          '/order/:order_id/',
           '/checkout/',
           '/jobs/',
           "/jobs/job_details/:job_id/"

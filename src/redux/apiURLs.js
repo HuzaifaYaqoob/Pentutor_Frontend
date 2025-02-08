@@ -66,3 +66,7 @@ export const get_my_jobs = '/api/job/get_my_jobs/'
 export const get_jobs = '/api/job/get_jobs/'
 export const get_single_job = '/api/job/get_single_job/'
 export const apply_job = '/api/job/apply_job/'
+
+
+
+export const checkout_order_url = '/api/order/checkout_course/'
