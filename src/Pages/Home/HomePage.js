@@ -72,7 +72,7 @@ const HomePage = (props) => {
             <WelcomePTHeroSection />
 
             {/* Form Section Student QUery Form  */}
-            <div className='px-4 sm:px-6 md:px-8 py-10 space-y-16'>
+            <div className='px-4 sm:px-6 md:px-8 pt-12 space-y-16'>
                 <FeaturedTutors />
             </div>
             <h3 className='w-full text-center font-bold text-indigo-900 text-2xl sm:text-3xl md:text-4xl capitalize' >student query form</h3>

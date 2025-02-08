@@ -25,7 +25,7 @@ export const TutorCard = ({ data, ...props }) => {
 
     console.log(data)
     return (
-        <div className='rounded-xl p-7 mb-14 pt-24 relative w-full border !z-0'>
+        <div className='rounded-xl p-7 mb-16 pt-24 relative w-full border !z-0'>
             <div className='absolute w-36 h-36 shadow-xl flex items-center bg-white justify-center top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden !z-40'>
             <div
                 className="w-36 h-36 rounded-full bg-center bg-cover bg-no-repeat flex items-center justify-center"
