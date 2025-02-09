@@ -44,7 +44,7 @@ const FeaturedTutors = () => {
                 {
                     state.tutor.featured_tutors_updated_ ?
                         state.tutor.featured_tutors.length > 0 ?
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 !mt-28">
+                            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 !mt-28">
                                 {
                                     state.tutor.featured_tutors.map((tutor, index) => {
                                         return (

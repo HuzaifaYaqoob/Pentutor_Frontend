@@ -124,7 +124,7 @@ const HomePage = (props) => {
                         className='w-12 h-12 bg-yellow-450 rounded-full'
                         onClick={() => {
                             submitQueryData()
-                        }}
+                        }} 
                     >
                         <FontAwesomeIcon icon={faArrowRight} className='text-indigo-900 hover:scale-110 transition-all' />
                     </button>
@@ -138,7 +138,7 @@ const HomePage = (props) => {
                 {/* <div className='flex flex-col sm:flex-row gap-5 container mx-auto px-5'>
                     <HomePagePromotCard ImagePath='/images/img1.png' heading='for tutors' btnText='start a course' />
                     <HomePagePromotCard ImagePath='/images/img2.png' activeBtn heading='for students' btnText='take a course' />
-                </div> */}
+                </div> */}l
             </div>
             <OurServices />
             <ProfessionalTraining />

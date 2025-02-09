@@ -59,26 +59,26 @@ const ProfileDisplayCard = ({ data }) => {
 export const CourseCard = ({ data }) => {
     const location = useHistory()
     return (
-        <div className='w-full relative border border-[#CACBE6] rounded-xl overflow-hidden'>
+        <div className='w-full relative border border-[#CACBE6] rounded-lg overflow-hidden'>
             <div
-                className='w-full h-60 bg-center bg-cover bg-no-repeat rounded-md'
+                className='w-full h-44 bg-center bg-cover bg-no-repeat rounded-md'
                 style={{
                     backgroundImage: `url('${data.media && data.media.length > 0 ? data.media[0].image : process.env.PUBLIC_URL + '/images/blog/blogImage.png'}')`
                 }}
             >
             </div>
-            <div className='mt-3 space-y-3'>
-                <div className='px-3 space-y-3'>
-                    <div className='flex justify-between'>
-                        <p className='bg-green-200 text-green-600 flex items-center px-2.5 text-[11px] rounded-full inline-block'>{(data?.category && data?.category?.title) ? data?.category?.title : 'N/A'}</p>
-                        <span className='flex items-center'>
-                            <span className='text-yellow-400 font-medium'>{data?.star_rating}</span>
-                            <FontAwesomeIcon className='mx-1 text-yellow-400 text-sm' icon={faStar} />
-                            <span className='text-gray-400 text-sm'>({data?.review_count})</span>
+            <div className='mt-2 space-y-2'>
+                <div className='px-2 space-y-1.5'>
+                    <div className='flex justify-between items-center'>
+                        <p className='bg-green-200/80 text-green-600 flex items-center px-2.5 text-[10px] rounded-full py-[3px]'>{(data?.category && data?.category?.title) ? data?.category?.title : 'N/A'}</p>
+                        <span className='flex items-center gap-1'>
+                            <span className='text-yellow-400 font-medium text-sm'>{data?.star_rating}</span>
+                            <FontAwesomeIcon className='text-yellow-400 text-xs' icon={faStar} />
+                            <span className='text-gray-400 text-xs'>({data?.review_count})</span>
                         </span>
                     </div>
                     <h3
-                        className='text-lg font-semibold cursor-pointer h-[54px] overflow-hidden'
+                        className='font-semibold cursor-pointer h-[52px] overflow-hidden'
                         onClick={() => {
                             location.push(`/courses/${data.slug}/view/`)
                         }}
@@ -103,10 +103,10 @@ export const CourseCard = ({ data }) => {
                     </p>
                     <p className='text-sm !mt-2 text-[#0755E9]'>{data?.level}</p>
                 </div>
-                <div className='flex items-center justify-between py-2 border-t border-[#CACBE6] px-2.5 gap-2'>
-                    <div className='flex items-center gap-2'>
-                        <img className='w-12' src={process.env.PUBLIC_URL + '/images/user.png'} />
-                        <h3 className='capitalize text-sm'>{data?.user?.first_name} {data?.user?.last_name}</h3>
+                <div className='flex items-center justify-between py-1.5 border-t border-[#CACBE6] px-2 gap-2'>
+                    <div className='flex items-center gap-1.5'>
+                        <img className='w-11' src={process.env.PUBLIC_URL + '/images/user.png'} />
+                        <h3 className='capitalize text-xs'>{data?.user?.first_name} {data?.user?.last_name}</h3>
                     </div>
                     <span className='text-red-500 text-sm'>
                         {data?.price} PKR
