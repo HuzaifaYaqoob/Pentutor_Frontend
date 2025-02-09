@@ -15,7 +15,7 @@ const ListItem = ({ index, title }) => {
 
 const WhyChoose = () => {
     return (
-        <div className='max-w-[1300px] mx-auto px-2 sm:px-6 md:px-10 mb-10 mt-32 space-y-4 sm:space-y-6'>
+        <div className='max-w-[1300px] mx-auto mb-10 mt-32 space-y-4 sm:space-y-6'>
             <h3 className='text-indigo-900 font-bold text-2xl sm:text-3xl md:text-4xl capitalize w-full text-center'>Why Choose <span className='text-yellow-500'> Pen Tutor</span></h3>
             <div>
                 <p className="text-center text-sm md:text-lg">Pen Tutor is a 'Network of Trained Tutors' committed to provide you highly qualified & experienced Online & Home tutoring services, individual and group sessions anywhere, anytime.

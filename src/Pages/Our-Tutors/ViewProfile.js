@@ -108,7 +108,7 @@ export const CourseCard = ({ data }) => {
                         <img className='w-11' src={process.env.PUBLIC_URL + '/images/user.png'} />
                         <h3 className='capitalize text-xs'>{data?.user?.first_name} {data?.user?.last_name}</h3>
                     </div>
-                    <span className='text-red-500 text-sm'>
+                    <span className='text-green-500 text-sm font-semibold'>
                         {data?.price} PKR
                     </span>
                 </div>

@@ -138,12 +138,11 @@ const HomePage = (props) => {
                 {/* <div className='flex flex-col sm:flex-row gap-5 container mx-auto px-5'>
                     <HomePagePromotCard ImagePath='/images/img1.png' heading='for tutors' btnText='start a course' />
                     <HomePagePromotCard ImagePath='/images/img2.png' activeBtn heading='for students' btnText='take a course' />
-                </div> */}l
+                </div> */}
             </div>
             <OurServices />
             <ProfessionalTraining />
             <BlogSection />
-
         </main>
     )
 }

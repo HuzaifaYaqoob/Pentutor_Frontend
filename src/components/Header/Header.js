@@ -28,7 +28,6 @@ const UserDropDown = (props) => {
     const [dropDownActive, setDropDownActive] = useState(false)
     const [show_alert, setShowAlert] = useState(false)
 
-
     return (
         <>
 
@@ -46,73 +45,66 @@ const UserDropDown = (props) => {
                     }}
                 >
                 </span>
-
                 {
                     dropDownActive ?
-                        <div className='absolute top-full mt-5 right-0 bg-white rounded-lg text-gray-800 z-50 w-72 shadow-2xl'>
-                            <div className='py-4 px-4 flex items-center gap-4'>
-                                <span
-                                    className='flex border-gray-300  items-center justify-center w-12 rounded-full cursor-pointer bg-center bg-cover bg-no-repeat overflow-hidden h-12 '
+                        <div className='absolute top-full mt-2 right-0 bg-white rounded-lg text-gray-800 z-50 w-72 border border-[#CACBE6]'>
+                            <div className='py-2 px-3 flex items-center gap-2 border-b border-[#CACBE6]'>
+                                <div
+                                    className='flex border-gray-300 items-center justify-center w-12 h-12 rounded-full bg-center bg-cover bg-no-repeat overflow-hidden'
                                     style={{
                                         backgroundImage: `url('${state.user.userData && state.user.userData.profile_image ? state.user.userData.profile_image : process.env.PUBLIC_URL + '/images/profilepic.png'}')`
                                     }}
                                 >
-                                </span>
-                                <div>
-                                    <p className='font-medium text-lg'>{state.user.loggedIn && state.user.userData && state.user.userData.name}</p>
-                                    <p className='text-sm'>{state.user.loggedIn && state.user.userData && state.user.userData.user.email}</p>
+                                </div>
+                                <div className='flex-1 space-y-1'>
+                                    <h3 className='font-medium text-[16px] text-[#151E2C]'>{state.user.loggedIn && state.user.userData && state.user.userData.name}</h3>
+                                    <p className='text-xs text-[#111111]'>{state.user.loggedIn && state.user.userData && state.user.userData.user.email}</p>
                                 </div>
                             </div>
-                            <hr />
-                            <div className='px-3 py-3 '>
+                            <div className='px-3 border-b border-[#CACBE6] py-1.5'>
                                 <Link
                                     to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type?.toLowerCase()}/`}
-                                    className='text-lg relative w-full block mb-1'
+                                    className='text-[16px] text-[#151E2C] font-medium relative py-[7px] w-full block'
                                 >
                                     Dashboard
                                 </Link>
-                                <Link to='/cart/' className='text-lg relative w-full block mb-1'>
+                                <Link to='/cart/' className='text-[16px] text-[#151E2C] font-medium relative py-[7px] w-full block'>
                                     Cart
-                                    <span className='absolute right-0 bg-yellow-450 w-6 top-0 flex items-center justify-center h-6 rounded-full'>
+                                    <span className='absolute right-0 bg-yellow-450 w-5 top-0 flex items-center justify-center h-5 rounded-full text-[10px] font-semibold'>
                                         {state.course.cart_items.length}
                                     </span>
                                 </Link>
-                                <Link to='/wishlist/' className='text-lg relative w-full block'>
+                                <Link to='/wishlist/' className='text-[16px] text-[#151E2C] font-medium relative py-[7px] w-full block'>
                                     Wishlist
-                                    <span className='absolute right-0 bg-yellow-450 w-6 top-0 flex items-center justify-center h-6 rounded-full'>
+                                    <span className='absolute right-0 bg-yellow-450 w-5 top-0 flex items-center justify-center h-5 rounded-full text-[10px] font-semibold'>
                                         1
                                     </span>
                                 </Link>
                             </div>
-                            <hr />
-                            <div className='p-3'>
+                            <div className='border-b border-[#CACBE6]'>
                                 <Link
                                     to={`/dashboard/${state.user.userData && state.user.userData.user_type && state.user.userData.user_type?.toLowerCase()}/profile/edit/`}
-                                    className='text-lg relative w-full block'
+                                    className='text-[16px] text-[#151E2C] font-medium relative w-full block px-3 py-3.5'
                                 >
                                     Edit Profile
                                 </Link>
                             </div>
-                            <hr />
-                            <div className='p-3'>
-                                <span
-                                    className='text-lg cursor-pointer'
-                                    onClick={() => {
-                                        dispatch(
-                                            LoggoutUser(
-                                                () => {
-                                                    Cookies.remove('auth_token')
-                                                },
-                                                () => {
-                                                    setShowAlert(true)
-                                                }
-                                            )
+                            <div
+                                className='text-[16px] text-red-500 font-medium cursor-pointer px-3 py-3.5'
+                                onClick={() => {
+                                    dispatch(
+                                        LoggoutUser(
+                                            () => {
+                                                Cookies.remove('auth_token')
+                                            },
+                                            () => {
+                                                setShowAlert(true)
+                                            }
                                         )
-                                    }}>
-                                    Logout
-                                </span>
+                                    )
+                                }}>
+                                Logout
                             </div>
-
                         </div>
                         :
                         <></>
@@ -125,10 +117,9 @@ const UserDropDown = (props) => {
 
 const NotificationItem = () => {
     return (
-        <div className='py-2 overflow-hidden cursor-pointer '>
-            <p className='text-lg whitespace-nowrap'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <p className='text-gray-300'>26 Sep, 2021</p>
-            <span className='block w-full bg-gray-500 mt-2' style={{ height: '1px' }}></span>
+        <div className='py-2 px-3 border-b border-[#CACBE6] space-y-1.5'>
+            <p className='whitespace-nowrap text-[#151E2C] font-medium text-[16px] line_clamp_1'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+            <p className='text-sm text-[#3C3C3C]'>26 Sep, 2021</p>
         </div>
     )
 }
@@ -143,10 +134,11 @@ const NotificationDropDown = () => {
             </span>
             {
                 NotifyActive ?
-                    <div className='absolute top-full mt-5 right-0 bg-gray-600 text-white w-96 rounded-lg z-50'>
-                        <h3 className='text-xl px-3 py-1'>Notifications</h3>
-                        <hr />
-                        <div className='px-2'>
+                    <div className='absolute top-full mt-3 right-0 text-black bg-white border border-[#CACBE6] w-96 rounded-lg z-50 max-h-[340px] overflow-auto'>
+                        <h3 className='px-3 py-3 border-b border-[#CACBE6] font-semibold text-lg text-[#151E2C]'>Notifications</h3>
+                        <div>
+                            <NotificationItem />
+                            <NotificationItem />
                             <NotificationItem />
                             <NotificationItem />
                             <NotificationItem />
@@ -181,7 +173,7 @@ const LoggedUser = (props) => {
                     route.push('/cart')
                 }}
             >
-                <span className='bg-yellow-600 rounded-full w-[15px] h-[15px] flex items-center justify-center absolute text-white -top-1/3 right-0'>
+                <span className='bg-yellow-600 rounded-full w-[15px] h-[15px] flex items-center justify-center text-[10px] absolute text-white font-semibold -top-1/3 -right-2'>
                     {state.course.cart_items.length}
                 </span>
                 <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -193,7 +185,6 @@ const LoggedUser = (props) => {
         </div>
     )
 }
-
 
 
 const NavLink = (props) => {

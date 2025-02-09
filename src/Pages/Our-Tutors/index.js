@@ -70,8 +70,8 @@ const OurTutors = (props) => {
         <div>
             <HeroSection Text='certified tutors' ImagePath='/images/girlImage1.png' />
             <FormSection formHeading='Search Tutor'>
-                <div className='container mx-auto my-10'>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6'>
+                <div className='max-w-[1300px] w-full mx-auto py-5'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                         <InputField placeholder='Enter Any Subject' type='text' />
                         <InputField placeholder='Enter Any Grade to Search' type='text' />
                         <InputField placeholder='Enter City/Area to Search' type='text' />
@@ -83,25 +83,27 @@ const OurTutors = (props) => {
                     </div>
                 </div>
             </FormSection>
-            <div className='container mx-auto my-20 px-5'>
-                <div>
-                    <h3 className='w-full text-center text-indigo-900 font-bold text-2xl'>Registered Tutors</h3>
-                </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 gap5 my-20'>
-                    {
-                        props.tutor.all_tutors.length > 0 ?
-                            props.tutor.all_tutors.map((tutor, t_ind) => {
-                                return (
-                                    <TutorCard key={t_ind} data={tutor} ImagePath='/images/profilepic.png' />
-                                )
-                            })
-                            :
-                            <>
-                                <div>
-                                    <p className='text-center'>No Tutor Registered yet</p>
-                                </div>
-                            </>
-                    }
+            <div className='py-10 px-4 sm:px-6 md:px-8'>
+                <div className='max-w-[1300px] w-full mx-auto'>
+                    <div>
+                        <h3 className='w-full text-center text-indigo-900 font-bold text-2xl'>Registered Tutors</h3>
+                    </div>
+                    <div className='my-20 grid md:grid-cols-2 lg:grid-cols-3 gap-3'>
+                        {
+                            props.tutor.all_tutors.length > 0 ?
+                                props.tutor.all_tutors.map((tutor, t_ind) => {
+                                    return (
+                                        <TutorCard key={t_ind} data={tutor} ImagePath='/images/profilepic.png' />
+                                    )
+                                })
+                                :
+                                <>
+                                    <div>
+                                        <p className='text-center'>No Tutor Registered yet</p>
+                                    </div>
+                                </>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
