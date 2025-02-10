@@ -118,7 +118,7 @@ const UserDropDown = (props) => {
 const NotificationItem = () => {
     return (
         <div className='py-2 px-3 border-b border-[#CACBE6] space-y-1.5'>
-            <p className='whitespace-nowrap text-[#151E2C] font-medium text-[16px] line_clamp_1'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+            <h3 className='whitespace-nowrap text-[#151E2C] font-medium text-[16px] line_clamp_1'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h3>
             <p className='text-sm text-[#3C3C3C]'>26 Sep, 2021</p>
         </div>
     )

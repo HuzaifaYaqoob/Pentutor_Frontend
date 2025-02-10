@@ -11,7 +11,7 @@ import Moment from "react-moment";
 
 const JobKeys = ({ data }) => {
     return (
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-3 gap-1">
             <p className="font-bold capitalize">{data.property}:</p>
             <p className="font-medium">{data.value}</p>
         </div>
@@ -211,12 +211,14 @@ const JobDetails = (props) => {
                             </button>
                         </>
                     ) : (
-                        <div className="text-center">
-                            <FontAwesomeIcon
-                                icon={faCheck}
-                                className="text-5xl text-green-500 block mx-auto my-5"
-                            />
-                            <h3 className="text-2xl font-semibold text-green-500">
+                        <div className="text-center border border-[#CACBE6] rounded-xl px-4 py-8 space-y-3 max-w-[510px] w-full mx-auto">
+                            <div className="rounded-full bg-green-500 p-5 sm:p-6 mx-auto max-w-max flex items-center justify-center">
+                                <FontAwesomeIcon
+                                    icon={faCheck}
+                                    className="text-3xl sm:text-4xl text-white block mx-auto"
+                                />
+                            </div>
+                            <h3 className="text-lg sm:text-xl font-semibold text-green-500">
                                 Application Submitted Successfully!
                             </h3>
                         </div>
