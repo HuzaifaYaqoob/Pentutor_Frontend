@@ -21,7 +21,7 @@ export const TextArea = (props) => {
             <InputLabel text={props.Label} />
             <textarea
                 placeholder={props.placeholder}
-                className={`w-full text-start outline-none p-2 border ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} text-sm rounded-lg font-medium h-40`}
+                className={`w-full text-start outline-none p-2 border ${props.error ? 'border-red-500 border-[1.5px]' : 'border-gray-200 '} text-sm rounded-lg font-medium h-40 ${props.className}`}
                 value={props.value && props.value}
                 onChange={(e) => {
                     props.onChange && props.onChange(e)
