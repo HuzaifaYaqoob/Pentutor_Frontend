@@ -169,17 +169,34 @@ const ViewProfile = ({ match, ...props }) => {
     }, [profile_slug])
     return (
         <>
+        <section className='px-4 sm:px-6 md:px-8 py-10'>
+            <div className='max-w-[1300px] mx-auto'>
+                <div className='flex items-center gap-7'>
+                    <div
+                        className='w-44 h-44 mx-auto rounded-full bg-cover bg-center bg-no-repeat bg-gray-100'
+                        style={{
+                            backgroundImage: `url('${tutor_data?.profile_image}')`
+                        }}
+                    ></div>
+                    <div className='flex-1 space-y-1'>
+                        <p className='text-sm text-[#151E2C] font-medium'>Tutor ID: <span className='text-[#05D57C]'>PT{tutor_data?.id}</span></p>
+                        <div className='flex items-center gap-1.5'>
+                            <span className='flex items-center justify-center h-[14px] w-[14px]'>
+                                <svg className='fill-gray-500' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                                </svg>
+                            </span>
+                            <p className='text-sm text-[#111111] font-medium'>{tutor_data?.area}</p>
+                        </div>
+                        <p className='text-sm text-[#3C3C3C] !mt-2 line_clamp_4'>
+                            {tutor_data?.detail || "An experienced and passionate tutor committed to helping students unlock their full potential. With a deep understanding of various teaching methodologies, they tailor lessons to fit each student's unique learning style. Specializing in personalized learning plans, they focus on building confidence, enhancing skills, and ensuring academic success. Whether it's mastering a subject, preparing for exams, or developing critical thinking, they provide the guidance and support needed for long-term growth."}
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div className='max-w-[1300px] mx-auto my-10 flex items-start rounded-tr-[30px] justify-between gap-10'>
                 <div className='max-w-[250px] w-full bg-[#313D6A] rounded-tr-[30px] overflow-hidden'>
                     <div className='my-10'>
-                        <div
-                            className='w-[100px] mb-3 h-[100px] mx-auto rounded-full bg-cover bg-center bg-no-repeat bg-gray-100'
-                            style={{
-                                backgroundImage: `url('${tutor_data?.profile_image}')`
-                            }}
-                        ></div>
-                        <p className='text-white text-center text-sm mb-2'>Tutor ID: PT{tutor_data?.id}</p>
-                        {/* <p className='text-[#F5BB07] text-center text-2xl mb-3 font-medium'>{tutor_data?.name}</p> */}
                         {
                             tutor_data?.is_demo_requested ?
                                 <>
@@ -193,10 +210,6 @@ const ViewProfile = ({ match, ...props }) => {
                                     }}
                                 >Request demo class</button>
                         }
-                    </div>
-                    <div className='flex items-start gap-3 pl-3 text-white'>
-                        <span>icon</span>
-                        <p className='text-sm'>{tutor_data?.area}</p>
                     </div>
                     {/* <hr className='bg-red-500 my-4' />
                     <div className='flex items-start gap-3 pl-3 text-white'>
@@ -213,12 +226,6 @@ const ViewProfile = ({ match, ...props }) => {
                         <ProfileDetails heading='Date of Birth' text={`${tutor_data?.date_of_birth}`} />
                         <ProfileDetails heading='CNIC No.' text={`${tutor_data?.cnic_number}`} />
                         <ProfileDetails heading='Gender' text={`${tutor_data?.gender}`} />
-                    </div>
-                    <div className='flex gap-3 mb-4'>
-                        <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
-                        <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
-                        <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
-                        <span className='w-[40px] h-[40px] block rounded-full bg-gray-100'></span>
                     </div>
                 </div>
                 <div className='flex-1'>
@@ -431,6 +438,7 @@ const ViewProfile = ({ match, ...props }) => {
                     </div> */}
                 </div>
             </div>
+        </section>
 
             {
                 democlasPopup &&
