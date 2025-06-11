@@ -11,8 +11,8 @@ import { toast } from "react-toastify";
 const Outline = (props) => {
     return (
         <p className='flex items-center gap-2 text-gray-500 text-xs mb-3' >
-            <FontAwesomeIcon icon={props.icon} />
-            <span className='text-gray-500'>{props.text}</span>
+            <FontAwesomeIcon className="text-sm" icon={props.icon} />
+            <span className='text-[#111111]'>{props.text}</span>
         </p>
     )
 }
@@ -46,35 +46,36 @@ const CourseOutline = ({ data }) => {
         )
     }
     return (
-        <div className='container mx-auto flex flex-col lg:flex-row items-start my-16 gap-10 px-5'>
-            <div className='w-60 pentutor-shadow sticky top-[70px]'>
-                <h3 className='py-4 w-full text-center font-bold'>This course includes</h3>
-                <hr />
-                <div className='p-6'>
-                    <Outline text='Latest Record Lectures' icon={faVideo} />
-                    <Outline text='Life Time Access' icon={faVideo} />
-                    <Outline text='Mobile & Web View' icon={faTv} />
-                    <Outline text='Assignement' icon={faFile} />
-                    <Outline text='Certificate on Completion' icon={faVideo} />
-                    <button
-                        className='bg-yellow-300 mr-2 py-3 px-5 w-full mt-3 rounded-md '
-                        onClick={AddtoCartCourseHandler}
-                    >Add to Cart</button>
+        <section className="px-4 sm:px-6 md:px-8 py-9">
+            <div className='max-w-[1300px] w-full mx-auto flex flex-col lg:flex-row items-start gap-4'>
+                <div className='w-80 sticky top-[70px] border border-[#CACBE6] rounded-lg'>
+                    <h3 className='py-4 w-full text-center font-bold border-b border-[#CACBE6]'>This course includes</h3>
+                    <div className='p-3'>
+                        <Outline text='Latest Record Lectures' icon={faVideo} />
+                        <Outline text='Life Time Access' icon={faVideo} />
+                        <Outline text='Mobile & Web View' icon={faTv} />
+                        <Outline text='Assignement' icon={faFile} />
+                        <Outline text='Certificate on Completion' icon={faVideo} />
+                        <button
+                            className='bg-yellow-300 py-3 font-medium text-sm px-5 w-full mt-3 rounded-md '
+                            onClick={AddtoCartCourseHandler}
+                        >Add to Cart</button>
+                    </div>
+                </div>
+                <div className='p-6 bg-white flex-1 border border-[#CACBE6] rounded-lg'>
+                    <h3 className='font-bold mb-10'>This you will Learn</h3>
+                    {/* <LearnThings text='Latest Recorder Lectures Latest Recorder Lectures' ol_value={1} />
+                    <LearnThings text='Latest Recorder Lectures Latest Recorder Lectures Latest Recorder Lectures' ol_value={2} />
+                    <LearnThings text='Latest Recorder Lectures' ol_value={3} />
+                    <LearnThings text='Latest Recorder Lectures' ol_value={4} />
+                    <LearnThings text='Latest Recorder Lectures' ol_value={5} />
+                    <LearnThings text='Latest Recorder Lectures' ol_value={6} />
+                    <LearnThings text='Latest Recorder Lectures' ol_value={7} />
+                    <LearnThings text='Latest Recorder Lectures' ol_value={8} /> */}
+                    {data?.things_you_will_learn ? parse(data?.things_you_will_learn) : 'NA'}
                 </div>
             </div>
-            <div className='p-6 bg-white pentutor-shadow flex-1 rounded '>
-                <h3 className='font-bold mb-10'>This you will Learn</h3>
-                {/* <LearnThings text='Latest Recorder Lectures Latest Recorder Lectures' ol_value={1} />
-                <LearnThings text='Latest Recorder Lectures Latest Recorder Lectures Latest Recorder Lectures' ol_value={2} />
-                <LearnThings text='Latest Recorder Lectures' ol_value={3} />
-                <LearnThings text='Latest Recorder Lectures' ol_value={4} />
-                <LearnThings text='Latest Recorder Lectures' ol_value={5} />
-                <LearnThings text='Latest Recorder Lectures' ol_value={6} />
-                <LearnThings text='Latest Recorder Lectures' ol_value={7} />
-                <LearnThings text='Latest Recorder Lectures' ol_value={8} /> */}
-                {data?.things_you_will_learn ? parse(data?.things_you_will_learn) : 'NA'}
-            </div>
-        </div>
+        </section>
     )
 }
 

@@ -20,7 +20,7 @@ const BlogSection = () => {
         <div className='py-20 px-4 sm:px-6 md:px-8'>
             <div className="max-w-[1300px] w-full space-y-10 mx-auto">
                 <h3 className='text-indigo-900 font-bold text-3xl text-center'>Latest <span className='text-yellow-400'>Blogs</span> & Stories</h3>
-                <div className='grid place-content-center sm:grid-cols-2 lg:grid-cols-3 gap-5'>
+                <div className='grid place-content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
                     {
                         state.blog.blog_posts.slice(0, 3).map(post => {
                             return (

@@ -17,7 +17,7 @@ const DashboardHeader = (props) => {
     return (
         <div className='md:grid grid-cols-5 gap-5 mb-10 z-40 sticky top-0'>
             <div className='col-span-3 flex items-center justify-between'>
-                <h3 className='capitalize text-indigo-900 font-bold text-xl'>{props.HeaderText}</h3>
+                <h3 className='capitalize text-indigo-900 font-bold text-xl line_clamp_1 flex-1'>{props.HeaderText}</h3>
                 <span className='text-gray-500 font-medium flex items-center gap-3'>
                     <FontAwesomeIcon icon={faCalendarAlt} />
                     <p className='text-sm font-normal'>{current_date ? current_date : ''}</p>

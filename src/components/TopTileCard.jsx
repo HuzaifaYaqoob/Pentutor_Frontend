@@ -4,7 +4,7 @@ const TopTileCard = ({ bgColor, icon, title, value, active, onClick, tooltip }) 
     return (
         <div
             // onClick={onClick}
-            className={` relative flex flex-row  p-5 gap-[11px] rounded-[11px] border ease-in-out duration-75 cursor-pointer  ${active ? "border-[#19BEEC] border-2 " : ""}`}>
+            className={` relative flex flex-row  p-5 gap-[11px] rounded-xl border border-[#CACBE6] ease-in-out duration-75 cursor-pointer  ${active ? "border-[#19BEEC] border-2 " : ""}`}>
             <div className={` ${""} rounded-[6px]  items-center justify-center flex`}>
                 {icon}
             </div>

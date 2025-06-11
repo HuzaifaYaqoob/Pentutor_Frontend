@@ -8,7 +8,7 @@ const DashboardBase = (props) => {
     return (
         <>
         <Header/>
-            <div className='p-5 flex gap-10 pr-20 relative'>
+            <div className='px-4 sm:px-6 md:px-8 py-5 flex gap-5 sm:gap-6 lg:gap-10 relative'>
                 <SideBar activeUser={props.activeUser} />
                 <div className='flex-1'>
                     {props.children}

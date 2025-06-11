@@ -81,7 +81,7 @@ const StudentClassesPage = () =>{
                     ))}
                 </div>
                 <div className="">
-                    <div className="relative overflow-x-auto sm:rounded-lg border">
+                    <div className="relative overflow-x-auto sm:rounded-lg border border-[#CACBE6]">
                         <table className="w-full text-sm text-left text-gray-500 ">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>

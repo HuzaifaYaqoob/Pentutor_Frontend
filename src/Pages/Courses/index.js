@@ -77,45 +77,47 @@ const Courses = () => {
         }
     }, [])
     return (
-        <div>
+        <>
             <HeroSection Text='courses of your choice' ImagePath='/images/image1.png' />
-            <FormSection formHeading='Search Courses'>
-                <div className='max-w-2xl mx-auto flex items-center gap-3'>
+            <FormSection className='!px-4 sm:!px-6 md:!px-8' formHeading='Search Courses'>
+                <div className='max-w-3xl mx-auto flex items-center gap-2 sm:gap-3'>
                     <div className='flex-1'>
-                        <InputField placeholder='Search Any Course By Keywords'/>
+                        <InputField className='text-sm sm:text-[16px] !py-2.5 sm:py-3' placeholder='Search Any Course By Keywords'/>
                     </div>
-                    <button className='text-center bg-[#F5BB07] text-indigo-900 h-full py-2.5 border border-[#F5BB07] cursor-pointer rounded px-7 font-semibold text-xl'>Search</button>
+                    <button className='text-center bg-[#F5BB07] text-indigo-900 h-full sm:py-2.5 py-2 border border-[#F5BB07] cursor-pointer rounded px-5 sm:px-7 font-semibold sm:text-xl'>Search</button>
                 </div>
             </FormSection>
-            <div className='container mx-auto grid grid-cols-1 place-content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20 my-20'>
-                {/* <CoursesCard Heading='Classes' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
-                {/* <CoursesCard Heading='Subjects' itemsData={['Accouting', 'Commerce', 'Geography', 'English', 'Math']} /> */}
-                {/* <CoursesCard Heading='Test/Exams' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
-                {/* <CoursesCard Heading='Languages' itemsData={['Arabic', 'Chinese', 'French', 'German', 'English']} /> */}
-                {/* <CoursesCard Heading='Short Ceourses' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
-                {
-                    state.course.all_courses_updated ?
-                        state.course.all_courses.length > 0 ?
-                            state.course.all_courses.map((course, index) => {
-                                return (
-                                    <>
-                                        <CourseCard data={course} key={index} />
-                                    </>
-                                )
-                            })
+            <div className='py-10 px-4 sm:px-6 md:px-8'>
+                <div className='max-w-[1300px] mx-auto grid place-content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
+                    {/* <CoursesCard Heading='Classes' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
+                    {/* <CoursesCard Heading='Subjects' itemsData={['Accouting', 'Commerce', 'Geography', 'English', 'Math']} /> */}
+                    {/* <CoursesCard Heading='Test/Exams' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
+                    {/* <CoursesCard Heading='Languages' itemsData={['Arabic', 'Chinese', 'French', 'German', 'English']} /> */}
+                    {/* <CoursesCard Heading='Short Ceourses' itemsData={['A Level', 'Bechelors Degree', 'Commerce Degree', 'Engineering', 'Law Degree']} /> */}
+                    {
+                        state.course.all_courses_updated ?
+                            state.course.all_courses.length > 0 ?
+                                state.course.all_courses.map((course, index) => {
+                                    return (
+                                        <>
+                                            <CourseCard data={course} key={index} />
+                                        </>
+                                    )
+                                })
+                                :
+                                <>
+                                    <div>
+                                        <p className='text-center'>No Course Registered Yet</p>
+                                    </div>
+                                </>
                             :
                             <>
-                                <div>
-                                    <p className='text-center'>No Course Registered Yet</p>
-                                </div>
+                                Loading...
                             </>
-                        :
-                        <>
-                            Loading...
-                        </>
-                }
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
